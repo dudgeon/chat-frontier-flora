@@ -1,0 +1,17 @@
+{
+  "name": "chat-frontier-flora",
+  "version": "1.0.0",
+  "description": "Chat Frontier Flora Project",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "openai": "^4.28.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+} 
