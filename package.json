@@ -6,13 +6,19 @@
     "packages/*"
   ],
   "scripts": {
-    "web": "cd apps/web && npm run dev",
-    "mobile": "cd apps/mobile && npm start",
-    "build:web": "cd apps/web && npm run build",
-    "deploy": "cd apps/web && npm run build && netlify deploy --prod"
+    "dev:web": "npm run web -w @chat-frontier-flora/web",
+    "dev:mobile": "npm run start -w @chat-frontier-flora/mobile",
+    "build:web": "cd apps/web && npx expo export:web",
+    "build:mobile": "cd apps/mobile && eas build",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "postinstall": "npm run build -w @chat-frontier-flora/shared"
   },
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "prettier": "^3.0.0",
+    "eslint": "^8.0.0"
   },
   "dependencies": {
     "@react-navigation/native": "^7.1.10",

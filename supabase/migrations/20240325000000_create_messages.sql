@@ -40,5 +40,6 @@ CREATE POLICY "Allow insert access to all authenticated users"
     TO authenticated
     WITH CHECK (true);
 
--- Create index on created_at for better query performance
+-- Create indexes for better query performance
 CREATE INDEX messages_created_at_idx ON messages(created_at);
+CREATE INDEX messages_role_idx ON messages(role);
