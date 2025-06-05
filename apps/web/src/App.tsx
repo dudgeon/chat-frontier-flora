@@ -2,13 +2,17 @@ import { useState, useEffect } from 'react'
 import { ApiClient } from '@chat-frontier-flora/shared'
 import './App.css'
 
-console.log('Environment variables:', {
-  supabaseUrl: import.meta.env.VITE_SUPABASE_URL,
-  supabaseKey: import.meta.env.VITE_SUPABASE_ANON_KEY ? 'exists' : 'missing',
-  openaiKey: import.meta.env.VITE_OPENAI_API_KEY ? 'exists' : 'missing'
-});
+console.log('Starting app initialization...');
 
-type Message = {
+// Add error boundary
+const ErrorMessage = ({ error }: { error: Error }) => (
+  <div className="error-message">
+    <h2>Something went wrong</h2>
+    <pre>{error.message}</pre>
+  </div>
+);
+
+interface Message {
   id: number
   content: string
   role: 'user' | 'assistant'
@@ -16,93 +20,192 @@ type Message = {
 }
 
 function App() {
-  console.log('App component rendering');
-  const [messages, setMessages] = useState<Message[]>([
-    { id: 1, content: "Test message - if you see this, the app is rendering correctly", role: 'assistant', created_at: new Date().toISOString() }
-  ])
-  const [input, setInput] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [apiClient, setApiClient] = useState<ApiClient | null>(null);
 
-  // Comment out API client initialization until we have environment variables
-  /*
-  const apiClient = new ApiClient(
-    import.meta.env.VITE_SUPABASE_URL,
-    import.meta.env.VITE_SUPABASE_ANON_KEY,
-    import.meta.env.VITE_OPENAI_API_KEY
-  )
-  */
-
+  // Initialize API client
   useEffect(() => {
-    console.log('useEffect running, messages:', messages);
-    // Commenting out loadMessages until we have the API client set up
-    // loadMessages()
-  }, [])
-
-  const loadMessages = async () => {
-    /* Commenting out until we have API client
     try {
-      const data = await apiClient.getMessages()
-      setMessages(data)
-    } catch (error) {
-      console.error('Error loading messages:', error)
+      const client = new ApiClient(
+        import.meta.env.VITE_SUPABASE_URL,
+        import.meta.env.VITE_SUPABASE_ANON_KEY,
+        import.meta.env.VITE_OPENAI_API_KEY
+      );
+      setApiClient(client);
+
+      // Load existing messages
+      const loadMessages = async () => {
+        try {
+          const existingMessages = await client.getMessages();
+          setMessages(existingMessages);
+        } catch (err) {
+          console.error('Failed to load messages:', err);
+          setError('Failed to load message history. Please refresh to try again.');
+        }
+      };
+
+      loadMessages();
+    } catch (err) {
+      console.error('Failed to initialize API client:', err);
+      setError('Failed to initialize chat. Please check your API configuration.');
     }
-    */
-  }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!input.trim() || isLoading) return
+    e.preventDefault();
+    if (!input.trim() || isLoading || !apiClient) return;
 
-    const content = input.trim()
-    setInput('')
-    setIsLoading(true)
+    const userContent = input.trim();
+    setInput('');
+    setIsLoading(true);
+    setError(null);
 
     try {
-      // Temporarily just add the message locally
-      setMessages(prev => [...prev, {
-        id: Date.now(),
-        content,
-        role: 'user',
-        created_at: new Date().toISOString()
-      }])
-      /* Comment out API calls until we have environment variables
-      await apiClient.sendMessage(content)
-      await loadMessages()
-      */
-    } catch (error) {
-      console.error('Error sending message:', error)
+      const { userMessage, aiResponse } = await apiClient.sendMessage(userContent);
+
+      // Update messages with both user message and AI response
+      setMessages(prev => [
+        ...prev,
+        userMessage,
+        {
+          id: Date.now(), // temporary ID for immediate UI update
+          content: aiResponse,
+          role: 'assistant',
+          created_at: new Date().toISOString()
+        }
+      ]);
+    } catch (err) {
+      console.error('Error in chat:', err);
+      setError('Failed to send message. Please try again.');
+      // Restore input so user doesn't lose their message
+      setInput(userContent);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
-    <div className="app">
-      <h1>Chat Frontier Flora</h1>
-      <div className="messages">
+    <div style={{
+      maxWidth: '800px',
+      margin: '0 auto',
+      padding: '20px',
+      fontFamily: 'system-ui, -apple-system, sans-serif'
+    }}>
+      <h1 style={{
+        textAlign: 'center',
+        color: '#2c3e50',
+        marginBottom: '30px'
+      }}>
+        Chat Frontier Flora
+      </h1>
+
+      {error && (
+        <div style={{
+          padding: '12px',
+          marginBottom: '20px',
+          backgroundColor: '#fee2e2',
+          border: '1px solid #ef4444',
+          borderRadius: '6px',
+          color: '#dc2626'
+        }}>
+          {error}
+        </div>
+      )}
+
+      <div style={{
+        border: '1px solid #e1e1e1',
+        borderRadius: '8px',
+        height: '500px',
+        overflowY: 'auto',
+        padding: '20px',
+        marginBottom: '20px',
+        backgroundColor: '#f8f9fa'
+      }}>
+        {messages.length === 0 && !isLoading && !error && (
+          <div style={{
+            textAlign: 'center',
+            color: '#6b7280',
+            marginTop: '200px'
+          }}>
+            Start a conversation!
+          </div>
+        )}
+
         {messages.map((message) => (
           <div
             key={message.id}
-            className={`message ${message.role === 'user' ? 'user' : 'assistant'}`}
+            style={{
+              marginBottom: '16px',
+              textAlign: message.role === 'user' ? 'right' : 'left'
+            }}
           >
-            {message.content}
+            <div style={{
+              display: 'inline-block',
+              maxWidth: '70%',
+              padding: '12px 16px',
+              borderRadius: '12px',
+              backgroundColor: message.role === 'user' ? '#007AFF' : '#E9ECEF',
+              color: message.role === 'user' ? 'white' : 'black',
+            }}>
+              {message.content}
+            </div>
           </div>
         ))}
+        {isLoading && (
+          <div style={{ textAlign: 'left', marginBottom: '16px' }}>
+            <div style={{
+              display: 'inline-block',
+              padding: '12px 16px',
+              borderRadius: '12px',
+              backgroundColor: '#E9ECEF',
+              color: 'black',
+            }}>
+              Thinking...
+            </div>
+          </div>
+        )}
       </div>
-      <form onSubmit={handleSubmit} className="input-form">
+
+      <form onSubmit={handleSubmit} style={{
+        display: 'flex',
+        gap: '10px'
+      }}>
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Type a message..."
-          disabled={isLoading}
+          placeholder={apiClient ? "Type a message..." : "Initializing..."}
+          style={{
+            flex: 1,
+            padding: '12px',
+            borderRadius: '6px',
+            border: '1px solid #ced4da',
+            fontSize: '16px'
+          }}
+          disabled={isLoading || !apiClient}
         />
-        <button type="submit" disabled={isLoading}>
-          Send
+        <button
+          type="submit"
+          disabled={isLoading || !apiClient}
+          style={{
+            padding: '12px 24px',
+            backgroundColor: '#007AFF',
+            color: 'white',
+            border: 'none',
+            borderRadius: '6px',
+            fontSize: '16px',
+            cursor: (isLoading || !apiClient) ? 'not-allowed' : 'pointer',
+            opacity: (isLoading || !apiClient) ? 0.7 : 1
+          }}
+        >
+          {isLoading ? 'Sending...' : 'Send'}
         </button>
       </form>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

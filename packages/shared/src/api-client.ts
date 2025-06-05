@@ -10,8 +10,32 @@ export class ApiClient {
     supabaseKey: string,
     openaiKey: string
   ) {
-    this.supabase = createClient(supabaseUrl, supabaseKey);
+    this.supabase = createClient(supabaseUrl, supabaseKey, {
+      auth: {
+        autoRefreshToken: true,
+        persistSession: true
+      }
+    });
     this.openai = new OpenAI({ apiKey: openaiKey });
+
+    // Sign in anonymously if no session exists
+    this.ensureSession();
+  }
+
+  private async ensureSession() {
+    const { data: { session } } = await this.supabase.auth.getSession();
+    if (!session) {
+      await this.supabase.auth.signInWithPassword({
+        email: 'anonymous@example.com',
+        password: 'anonymous'
+      }).catch(() => {
+        // If sign in fails, try to sign up
+        return this.supabase.auth.signUp({
+          email: 'anonymous@example.com',
+          password: 'anonymous'
+        });
+      });
+    }
   }
 
   async getMessages() {
