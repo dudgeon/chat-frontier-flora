@@ -1,3 +1,7 @@
+-- Migration: Create messages table for chat application
+-- Created: 2024-03-25
+-- Description: Sets up the initial messages table with RLS policies
+
 -- Create messages table
 CREATE TABLE IF NOT EXISTS messages (
     id BIGSERIAL PRIMARY KEY,
