@@ -1,0 +1,23 @@
+{
+  "name": "chat-frontier-flora",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "web": "cd apps/web && npm run dev",
+    "mobile": "cd apps/mobile && npm start",
+    "build:web": "cd apps/web && npm run build",
+    "deploy": "cd apps/web && npm run build && netlify deploy --prod"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@react-navigation/native": "^7.1.10",
+    "@react-navigation/native-stack": "^7.3.14",
+    "react-native-safe-area-context": "^5.4.1",
+    "react-native-screens": "^4.11.1"
+  }
+}
