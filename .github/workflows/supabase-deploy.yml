@@ -20,21 +20,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Verify migration files
-        run: |
-          echo "Listing migration files:"
-          ls -la supabase/migrations/
-          echo "Migration file contents:"
-          cat supabase/migrations/*.sql
-
       - name: Setup Supabase CLI
         uses: supabase/setup-cli@v1
         with:
           version: latest
 
-      - name: Link and push migrations
+      - name: Link project
         run: |
           echo "Linking project..."
-          supabase link --project-ref "$SUPABASE_PROJECT_ID" --password "$SUPABASE_DB_PASSWORD"
+          supabase link --project-ref "$SUPABASE_PROJECT_ID" --password "$SUPABASE_DB_PASSWORD" --debug
+
+      - name: Push migrations
+        run: |
           echo "Pushing migrations..."
-          supabase db push
+          supabase db push --debug
