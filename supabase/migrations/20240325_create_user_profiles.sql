@@ -111,3 +111,5 @@ CREATE POLICY "Primary users can delete child profiles"
 -- Create indexes
 CREATE INDEX idx_user_profiles_parent_user_id ON user_profiles(parent_user_id);
 CREATE INDEX idx_user_profiles_user_role ON user_profiles(user_role);
+
+-- Migration applied via GitHub Actions for Task 1.7
