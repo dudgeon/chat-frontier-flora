@@ -1,5 +1,32 @@
 # 🔐 Authentication Quick Reference
 
+## 🚨 **MANDATORY: ENVIRONMENT FILE CHECK FIRST**
+
+**BEFORE ANY ENVIRONMENT VARIABLE DEBUGGING:**
+
+```bash
+# 1. ALWAYS CHECK FOR .env FILE FIRST
+ls -la | grep env
+# Expected output: -rw-r--r--@ 1 user staff 1040 Jun 6 08:44 .env
+
+# 2. VERIFY CONTENTS
+cat .env | grep EXPO_PUBLIC
+# Expected: EXPO_PUBLIC_SUPABASE_URL and EXPO_PUBLIC_SUPABASE_ANON_KEY
+
+# 3. CHECK APPS/WEB ENV COPY
+ls -la apps/web/ | grep env
+# May or may not exist - gets copied during build
+```
+
+**IF .env FILE NOT FOUND:**
+- ❌ DO NOT claim it doesn't exist
+- ❌ DO NOT proceed without verification
+- ✅ Use `ls -la` (shows hidden files)
+- ✅ Check if gitignored but present
+- ✅ Ask user to confirm location
+
+---
+
 ## 🚨 **CRITICAL FAILURE PREVENTION (READ FIRST)**
 
 ### **⚠️ BEFORE ANY CHANGE**

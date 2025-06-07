@@ -1,5 +1,28 @@
 # PROJECT CONTEXT - CHAT FRONTIER FLORA
 
+## 🚨 **CRITICAL: ENVIRONMENT FILES LOCATION**
+
+**MANDATORY CHECK BEFORE ANY ENVIRONMENT VARIABLE WORK:**
+
+### **Environment Files That EXIST:**
+- **`.env`** - Located in ROOT directory (hidden file, use `ls -la` to see)
+  - Contains: SUPABASE_URL, EXPO_PUBLIC_SUPABASE_URL, EXPO_PUBLIC_SUPABASE_ANON_KEY, OPENAI_API_KEY, NETLIFY_AUTH_TOKEN
+  - Used by: Local development, copied to apps/web during build
+  - Status: ✅ EXISTS - DO NOT CLAIM IT DOESN'T EXIST
+
+### **Environment File Check Commands:**
+```bash
+# ALWAYS run these commands FIRST when dealing with env vars:
+ls -la | grep env                    # Shows .env file in root
+cat .env                            # Shows contents (if accessible)
+ls -la apps/web/ | grep env          # Check for local .env files
+```
+
+### **Environment Variable Loading:**
+- **Local Development**: `.env` copied to `apps/web/.env` via `cp ../../.env .env` in package.json scripts
+- **Netlify Deployment**: Environment variables set in `netlify.toml` [build.environment] section
+- **Never assume**: Always verify with commands above
+
 ## CRITICAL ENVIRONMENT SETUP
 
 ### ✅ CONFIRMED: .env FILE EXISTS AND IS WORKING
