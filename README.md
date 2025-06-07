@@ -29,6 +29,29 @@ This is a monorepo containing:
 └── package.json         # Root workspace config
 ```
 
+## 🔐 Authentication System
+
+This project includes a comprehensive authentication system with user registration, login, and profile management. **The authentication flow was extremely complex to implement correctly.**
+
+### ⚠️ **CRITICAL**: Before modifying authentication code:
+
+- [📚 Authentication Flow Documentation](./AUTHENTICATION_FLOW_DOCUMENTATION.md) - **READ THIS FIRST**
+- [🔐 Authentication Quick Reference](./AUTHENTICATION_QUICK_REFERENCE.md) - Developer quick guide
+
+### Key Features
+
+- ✅ Email/password registration and login
+- ✅ Real-time form validation with submit button control
+- ✅ Secure session management with persistence
+- ✅ Role-based user profiles (primary/child accounts)
+- ✅ Comprehensive error handling and user feedback
+
+### Critical Files (Handle with Extreme Care)
+
+- `apps/web/src/contexts/AuthContext.tsx` - Core authentication logic
+- `apps/web/src/components/auth/SignUpForm.tsx` - User registration form
+- `supabase/migrations/20240325_create_user_profiles.sql` - Database schema
+
 ## Prerequisites
 
 - Node.js >= 18.18 (IMPORTANT: 18.17 will not work with some dependencies)
@@ -202,6 +225,29 @@ graph TD
    - Check React version compatibility (must be exact 18.2.0 for React Native)
    - Verify .npmrc configuration for legacy-peer-deps
    - Test builds locally before pushing
+
+## 🚀 Deployment
+
+This project uses Netlify for CI/CD deployment. The deployment process was complex to configure correctly due to React Native Web dependencies.
+
+### Key Deployment Documentation
+
+- [📋 Deployment Lessons Learned](./DEPLOYMENT_LESSONS_LEARNED.md) - **Comprehensive troubleshooting guide**
+- [🔧 Netlify Development Rules](./.cursor/rules/netlify-development.md) - Platform-specific guidance
+
+### Critical Deployment Requirements
+
+- **React Version**: Must be exact `18.2.0` (no ranges) for React Native Web compatibility
+- **NPM Configuration**: Use `legacy-peer-deps=true` in `.npmrc` for monorepo dependency resolution
+- **Build Strategy**: Static fallback ensures infrastructure works before adding complexity
+
+### Deployment Checklist
+
+- [ ] React versions are exact `18.2.0` in all packages
+- [ ] `.npmrc` contains `legacy-peer-deps=true`
+- [ ] No conflicting package-lock.json files
+- [ ] Build command works locally
+- [ ] Environment variables are properly configured
 
 ## License
 
