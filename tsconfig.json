@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -16,13 +20,24 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@chat-frontier-flora/*": ["packages/*/src"]
+      "@chat-frontier-flora/*": [
+        "packages/*/src"
+      ]
     }
   },
-  "exclude": ["node_modules"],
+  "exclude": [
+    "node_modules"
+  ],
   "references": [
-    { "path": "./apps/web" },
-    { "path": "./apps/mobile" },
-    { "path": "./packages/shared" }
-  ]
+    {
+      "path": "./apps/web"
+    },
+    {
+      "path": "./apps/mobile"
+    },
+    {
+      "path": "./packages/shared"
+    }
+  ],
+  "extends": "expo/tsconfig.base"
 }
