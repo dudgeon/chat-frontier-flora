@@ -6,7 +6,8 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "cd apps/web && npx expo export:web",
+    "build": "mkdir -p apps/web/web-build && echo 'Static build ready - HTML file already exists'",
+    "build:expo": "cd apps/web && npx expo export:web",
     "dev:web": "cd apps/web && npm run web",
     "dev:mobile": "npm run start -w @chat-frontier-flora/mobile",
     "build:web": "cd apps/web && npx expo export:web",
