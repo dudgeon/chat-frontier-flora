@@ -1,382 +1,50 @@
-<testsuites id="" name="" tests="90" failures="0" skipped="90" errors="0" time="0.08601299999999998">
-<testsuite name="accessibility.spec.ts" timestamp="2025-06-07T16:39:25.663Z" hostname="chromium" tests="5" failures="0" skipped="5" time="0" errors="0">
-<testcase name="Accessibility @accessibility › homepage should be accessible" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Accessibility @accessibility › sign up form should be accessible" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Accessibility @accessibility › login form should be accessible" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Accessibility @accessibility › forms should be keyboard navigable" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Accessibility @accessibility › error messages should be announced to screen readers" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-</testsuite>
-<testsuite name="auth-flow.spec.ts" timestamp="2025-06-07T16:39:25.663Z" hostname="chromium" tests="13" failures="0" skipped="13" time="0" errors="0">
-<testcase name="Authentication Flow › Initial App State › should load the app and show authentication UI" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Initial App State › should be accessible" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Registration Flow › should successfully register a new user" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Registration Flow › should show validation errors for invalid input" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Registration Flow › should validate password requirements in real-time" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Login Flow › should successfully log in existing user" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Login Flow › should show error for invalid credentials" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Role-Based Access Control › should restrict access to protected routes when not authenticated" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Role-Based Access Control › should allow access to protected routes when authenticated" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Logout Flow › should successfully log out user" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Mobile Responsiveness › should work correctly on mobile devices" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Visual Regression › should match sign up form visual snapshot" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Visual Regression › should match login form visual snapshot" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-</testsuite>
-<testsuite name="accessibility.spec.ts" timestamp="2025-06-07T16:39:25.663Z" hostname="firefox" tests="5" failures="0" skipped="5" time="0" errors="0">
-<testcase name="Accessibility @accessibility › homepage should be accessible" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Accessibility @accessibility › sign up form should be accessible" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Accessibility @accessibility › login form should be accessible" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Accessibility @accessibility › forms should be keyboard navigable" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Accessibility @accessibility › error messages should be announced to screen readers" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-</testsuite>
-<testsuite name="auth-flow.spec.ts" timestamp="2025-06-07T16:39:25.663Z" hostname="firefox" tests="13" failures="0" skipped="13" time="0" errors="0">
-<testcase name="Authentication Flow › Initial App State › should load the app and show authentication UI" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Initial App State › should be accessible" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Registration Flow › should successfully register a new user" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Registration Flow › should show validation errors for invalid input" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Registration Flow › should validate password requirements in real-time" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Login Flow › should successfully log in existing user" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Login Flow › should show error for invalid credentials" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Role-Based Access Control › should restrict access to protected routes when not authenticated" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Role-Based Access Control › should allow access to protected routes when authenticated" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Logout Flow › should successfully log out user" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Mobile Responsiveness › should work correctly on mobile devices" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Visual Regression › should match sign up form visual snapshot" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Visual Regression › should match login form visual snapshot" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-</testsuite>
-<testsuite name="accessibility.spec.ts" timestamp="2025-06-07T16:39:25.663Z" hostname="webkit" tests="5" failures="0" skipped="5" time="0" errors="0">
-<testcase name="Accessibility @accessibility › homepage should be accessible" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Accessibility @accessibility › sign up form should be accessible" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Accessibility @accessibility › login form should be accessible" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Accessibility @accessibility › forms should be keyboard navigable" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Accessibility @accessibility › error messages should be announced to screen readers" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-</testsuite>
-<testsuite name="auth-flow.spec.ts" timestamp="2025-06-07T16:39:25.663Z" hostname="webkit" tests="13" failures="0" skipped="13" time="0" errors="0">
-<testcase name="Authentication Flow › Initial App State › should load the app and show authentication UI" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Initial App State › should be accessible" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Registration Flow › should successfully register a new user" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Registration Flow › should show validation errors for invalid input" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Registration Flow › should validate password requirements in real-time" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Login Flow › should successfully log in existing user" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Login Flow › should show error for invalid credentials" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Role-Based Access Control › should restrict access to protected routes when not authenticated" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Role-Based Access Control › should allow access to protected routes when authenticated" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Logout Flow › should successfully log out user" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Mobile Responsiveness › should work correctly on mobile devices" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Visual Regression › should match sign up form visual snapshot" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Visual Regression › should match login form visual snapshot" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-</testsuite>
-<testsuite name="accessibility.spec.ts" timestamp="2025-06-07T16:39:25.663Z" hostname="Mobile Chrome" tests="5" failures="0" skipped="5" time="0" errors="0">
-<testcase name="Accessibility @accessibility › homepage should be accessible" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Accessibility @accessibility › sign up form should be accessible" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Accessibility @accessibility › login form should be accessible" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Accessibility @accessibility › forms should be keyboard navigable" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Accessibility @accessibility › error messages should be announced to screen readers" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-</testsuite>
-<testsuite name="auth-flow.spec.ts" timestamp="2025-06-07T16:39:25.663Z" hostname="Mobile Chrome" tests="13" failures="0" skipped="13" time="0" errors="0">
-<testcase name="Authentication Flow › Initial App State › should load the app and show authentication UI" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Initial App State › should be accessible" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Registration Flow › should successfully register a new user" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Registration Flow › should show validation errors for invalid input" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Registration Flow › should validate password requirements in real-time" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Login Flow › should successfully log in existing user" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Login Flow › should show error for invalid credentials" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Role-Based Access Control › should restrict access to protected routes when not authenticated" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Role-Based Access Control › should allow access to protected routes when authenticated" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Logout Flow › should successfully log out user" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Mobile Responsiveness › should work correctly on mobile devices" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Visual Regression › should match sign up form visual snapshot" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Visual Regression › should match login form visual snapshot" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-</testsuite>
-<testsuite name="accessibility.spec.ts" timestamp="2025-06-07T16:39:25.663Z" hostname="Mobile Safari" tests="5" failures="0" skipped="5" time="0" errors="0">
-<testcase name="Accessibility @accessibility › homepage should be accessible" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Accessibility @accessibility › sign up form should be accessible" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Accessibility @accessibility › login form should be accessible" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Accessibility @accessibility › forms should be keyboard navigable" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Accessibility @accessibility › error messages should be announced to screen readers" classname="accessibility.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-</testsuite>
-<testsuite name="auth-flow.spec.ts" timestamp="2025-06-07T16:39:25.663Z" hostname="Mobile Safari" tests="13" failures="0" skipped="13" time="0" errors="0">
-<testcase name="Authentication Flow › Initial App State › should load the app and show authentication UI" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Initial App State › should be accessible" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Registration Flow › should successfully register a new user" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Registration Flow › should show validation errors for invalid input" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Registration Flow › should validate password requirements in real-time" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Login Flow › should successfully log in existing user" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › User Login Flow › should show error for invalid credentials" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Role-Based Access Control › should restrict access to protected routes when not authenticated" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Role-Based Access Control › should allow access to protected routes when authenticated" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Logout Flow › should successfully log out user" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Mobile Responsiveness › should work correctly on mobile devices" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Visual Regression › should match sign up form visual snapshot" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Authentication Flow › Visual Regression › should match login form visual snapshot" classname="auth-flow.spec.ts" time="0">
-<skipped>
-</skipped>
+<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="13.507778">
+<testsuite name="auth-flow.spec.ts" timestamp="2025-06-07T16:40:36.406Z" hostname="chromium" tests="1" failures="1" skipped="0" time="7.796" errors="0">
+<testcase name="Authentication Flow › Initial App State › should load the app and show authentication UI" classname="auth-flow.spec.ts" time="7.796">
+<failure message="auth-flow.spec.ts:24:9 should load the app and show authentication UI" type="FAILURE">
+<![CDATA[  [chromium] › auth-flow.spec.ts:24:9 › Authentication Flow › Initial App State › should load the app and show authentication UI 
+
+    Error: Timed out 5000ms waiting for expect(locator).toHaveTitle(expected)
+
+    Locator: locator(':root')
+    Expected pattern: /Chat Frontier Flora/
+    Received string:  "web"
+    Call log:
+      - expect.toHaveTitle with timeout 5000ms
+      - waiting for locator(':root')
+        9 × locator resolved to <html lang="en">…</html>
+          - unexpected value "web"
+
+
+      24 |     test('should load the app and show authentication UI', async ({ page }) => {
+      25 |       // Wait for the app to load
+    > 26 |       await expect(page).toHaveTitle(/Chat Frontier Flora/);
+         |                          ^
+      27 |
+      28 |       // Should show some form of authentication UI
+      29 |       // This will depend on your app's initial state
+        at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/auth-flow.spec.ts:26:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/auth-flow-Authentication-F-d0c45--and-show-authentication-UI-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/auth-flow-Authentication-F-d0c45--and-show-authentication-UI-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-flow-Authentication-F-d0c45--and-show-authentication-UI-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-flow-Authentication-F-d0c45--and-show-authentication-UI-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|auth-flow-Authentication-F-d0c45--and-show-authentication-UI-chromium/video.webm]]
+
+[[ATTACHMENT|auth-flow-Authentication-F-d0c45--and-show-authentication-UI-chromium/error-context.md]]
+]]>
+</system-out>
 </testcase>
 </testsuite>
 </testsuites>

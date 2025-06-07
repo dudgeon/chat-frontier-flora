@@ -19,6 +19,8 @@
     "test:e2e:debug": "playwright test --debug",
     "test:visual": "playwright test --update-snapshots",
     "test:a11y": "playwright test --grep @accessibility",
+    "test:preview": "playwright test deploy-preview.spec.ts",
+    "test:preview:headed": "playwright test deploy-preview.spec.ts --headed",
     "test:all": "npm test && npm run test:e2e",
     "lint": "npm run lint --workspaces --if-present",
     "postinstall": "npm run build -w @chat-frontier-flora/shared"
