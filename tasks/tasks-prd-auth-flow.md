@@ -1,6 +1,7 @@
 ## Relevant Files
 
 - `supabase/migrations/20241206000000_create_user_profiles.sql` - Database migration for user profiles table and RLS policies
+- `supabase/migrations/20240325_add_missing_user_profile_fields.sql` - Migration to add missing PRD fields (full_name, development_consent, age_verification, consent_timestamp)
 - `packages/shared/src/types/auth.ts` - Shared types for authentication and user profiles
 - `apps/web/src/lib/database.types.ts` - Generated TypeScript types for Supabase database schema
 - `apps/web/src/components/auth/SignUpForm.tsx` - Sign-up form component with validation
@@ -34,14 +35,14 @@
 
 - [ ] 1.0 Database Setup and Configuration
   - [x] 1.1 Create user_role enum type
-  - [ ] 1.2 Create migration file for user_profiles table with role-based constraints (INCOMPLETE: missing required fields)
+  - [x] 1.2 Create migration file for user_profiles table with role-based constraints
   - [x] 1.3 Add RLS policy for users to read their own profiles
   - [x] 1.4 Add RLS policy for primary users to manage their child accounts
   - [x] 1.5 Add RLS policy to prevent child users from creating accounts
   - [x] 1.6 Test migration with rollback capability
   - [x] 1.7 Configure Supabase Auth settings (disable email confirmation)
   - [ ] 1.8 Create TypeScript types for user roles and database schema (INCOMPLETE: missing consent fields)
-  - [ ] 1.9 Update user_profiles table to include consent_timestamp field
+  - [x] 1.9 Update user_profiles table to include consent_timestamp field
 
 - [ ] 2.0 Authentication State Management
   - [x] 2.1 Create AuthContext with initial state including user role
