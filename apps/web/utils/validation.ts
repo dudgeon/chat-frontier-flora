@@ -135,6 +135,22 @@ export const validateSignUpForm = (data: SignUpFormData): ValidationResult => {
         });
     }
 
+    // ⚠️ CRITICAL: Full name validation (required by PRD)
+    if (!data.fullName || data.fullName.trim().length === 0) {
+        errors.push({
+            field: 'fullName',
+            message: 'Full name is required'
+        });
+    }
+
+    // ⚠️ CRITICAL: Age verification validation (required by PRD)
+    if (!data.ageVerification) {
+        errors.push({
+            field: 'ageVerification',
+            message: 'You must verify that you are 18 years of age or older'
+        });
+    }
+
     // ⚠️ CRITICAL: Terms agreement validation
     // Users MUST agree to terms before account creation
     if (!data.agreeToTerms) {
@@ -187,7 +203,15 @@ export const validateLoginForm = (data: LoginFormData): ValidationResult => {
 export const validateProfileUpdate = (data: ProfileUpdateData): ValidationResult => {
     const errors: ValidationError[] = [];
 
-    // Display name validation (optional)
+    // Full name validation (optional but cannot be empty if provided)
+    if (data.fullName !== undefined && data.fullName.trim().length === 0) {
+        errors.push({
+            field: 'fullName',
+            message: 'Full name cannot be empty'
+        });
+    }
+
+    // Display name validation (optional, kept for backward compatibility)
     if (data.displayName !== undefined && data.displayName.trim().length === 0) {
         errors.push({
             field: 'displayName',

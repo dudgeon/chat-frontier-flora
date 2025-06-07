@@ -12,8 +12,8 @@
 - `apps/web/src/hooks/useFormValidation.ts` - Custom hook for form validation state
 - `apps/web/src/contexts/AuthContext.tsx` - Authentication context provider
 - `apps/web/src/lib/supabase.ts` - Supabase client configuration
-- `packages/shared/src/utils/validation.ts` - Form validation utilities
-- `packages/shared/src/utils/validation.test.ts` - Tests for validation utilities
+- `apps/web/utils/validation.ts` - Form validation utilities with new field requirements
+- `apps/web/utils/validation.test.ts` - Tests for validation utilities with new field tests
 - `packages/ui/src/components/FormInput.tsx` - Reusable form input component
 - `packages/ui/src/components/Button.tsx` - Reusable button component with disabled states
 - `packages/ui/src/components/Checkbox.tsx` - Reusable checkbox component
@@ -33,7 +33,7 @@
 
 ## Tasks
 
-- [ ] 1.0 Database Setup and Configuration
+- [x] 1.0 Database Setup and Configuration
   - [x] 1.1 Create user_role enum type
   - [x] 1.2 Create migration file for user_profiles table with role-based constraints
   - [x] 1.3 Add RLS policy for users to read their own profiles
@@ -41,7 +41,7 @@
   - [x] 1.5 Add RLS policy to prevent child users from creating accounts
   - [x] 1.6 Test migration with rollback capability
   - [x] 1.7 Configure Supabase Auth settings (disable email confirmation)
-  - [ ] 1.8 Create TypeScript types for user roles and database schema (INCOMPLETE: missing consent fields)
+  - [x] 1.8 Create TypeScript types for user roles and database schema
   - [x] 1.9 Update user_profiles table to include consent_timestamp field
 
 - [ ] 2.0 Authentication State Management
@@ -137,9 +137,9 @@
 
 **CRITICAL ISSUES FOUND:**
 
-❌ **Database Schema Incomplete:**
-- Missing `full_name`, `development_consent`, `age_verification`, `consent_timestamp` fields
-- Current schema doesn't match PRD requirements
+✅ **Database Schema Complete:**
+- All required fields added: `full_name`, `development_consent`, `age_verification`, `consent_timestamp`
+- TypeScript types updated to match PRD requirements
 
 ❌ **SignUpForm Missing Key Requirements:**
 - No age verification (18+) checkbox
@@ -159,15 +159,15 @@
 - No protected route wrapper
 
 **Actual Completion Status:**
-- ✅ **1.0 Database Setup** - 60% complete (missing required fields)
+- ✅ **1.0 Database Setup** - 100% complete (all fields and types updated)
 - ✅ **2.0 Authentication State Management** - 80% complete (missing protected routes & tests)
 - ❌ **5.0 Sign-Up Flow** - 40% complete (missing new PRD requirements)
 - ❌ **All other task groups** - 0% complete
 
 **IMMEDIATE PRIORITIES:**
-1. **Fix database schema** - Add missing consent and name fields
-2. **Update SignUpForm** - Add age verification and enhanced consent
-3. **Implement real-time validation** - Password rules display and form control
-4. **Fix testing infrastructure** - Jest configuration and missing utilities
+1. **Update SignUpForm** - Add age verification and enhanced consent
+2. **Implement real-time validation** - Password rules display and form control
+3. **Fix testing infrastructure** - Jest configuration and missing utilities
+4. **Create missing components** - PasswordValidation, useFormValidation hook, Tooltip
 
 **Estimated remaining work:** 70% of authentication flow still needs implementation to meet PRD requirements.
