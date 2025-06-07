@@ -33,4 +33,4 @@ jobs:
       - name: Push migrations
         run: |
           echo "Pushing migrations..."
-          supabase db push --debug
+          supabase db push --include-all --debug

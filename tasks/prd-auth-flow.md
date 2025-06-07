@@ -21,10 +21,10 @@ This document outlines the authentication system for the chat application, focus
 ### Account Creation
 1. System must provide a signup form collecting:
    - Email address
-   - Password
+   - Password (with real-time validation and rule display)
    - Full name
-   - Checkbox attestation for age verification (18+)
-   - Checkbox attestation for development/analysis consent
+   - Checkbox attestation for age verification (18+) - **REQUIRED**
+   - Checkbox attestation for terms of service and data usage consent - **REQUIRED**
 
 2. Password requirements:
    - Minimum 8 characters
@@ -32,11 +32,40 @@ This document outlines the authentication system for the chat application, focus
    - At least one letter
    - No maximum length restriction
 
-3. System must validate:
+3. Password validation and display:
+   - System must validate password requirements in real-time as user types
+   - System must display password rules via tooltip, inline text, or similar affordance when password is invalid
+   - System must provide clear visual feedback (colors, icons) for met/unmet requirements
+   - Password field should show validation state (valid/invalid) clearly
+
+4. Form submission controls:
+   - Submit button must be disabled until ALL required fields are complete and valid
+   - Submit button must appear visually disabled (grayed out, different styling) when disabled
+   - Submit button must only become enabled when:
+     - Email is valid format
+     - Password meets all requirements
+     - Full name is provided
+     - Age verification checkbox is checked
+     - Terms and data usage consent checkbox is checked
+
+5. System must validate:
    - Email format
    - Password meets requirements
    - All required fields are completed
    - Both attestation checkboxes are checked
+
+6. Age verification requirement:
+   - User must explicitly attest they are 18 years of age or older
+   - This attestation is required before account creation
+   - Checkbox must be clearly labeled with age requirement
+
+7. Terms of service and data usage consent:
+   - User must agree to terms of service and privacy policy
+   - Terms must include clear warning that:
+     - All user data is available to the developer for the purpose of improving the app
+     - User data may be used for development and analysis purposes
+     - Users have the right to request deletion of their data
+   - Consent checkbox must be checked before account creation
 
 ### Authentication
 1. System must provide a login form with:
@@ -77,11 +106,14 @@ This document outlines the authentication system for the chat application, focus
 
 ## Design Considerations
 - Use clear, minimal forms with straightforward layout
-- Show password requirements inline during signup
+- Show password requirements inline during signup with real-time validation feedback
 - Display validation errors next to relevant fields
 - Provide visual confirmation of successful actions
 - Use consistent styling with the main application
 - Ensure mobile-friendly layout
+- Submit button should have clear disabled/enabled states
+- Password validation should be helpful, not punitive (show progress toward meeting requirements)
+- Terms and data usage information should be clear and prominent
 
 ## Technical Considerations
 1. Authentication Implementation:
@@ -93,11 +125,18 @@ This document outlines the authentication system for the chat application, focus
    - Store user profiles in Supabase
    - Include fields for future child account management
    - Implement proper RLS policies
+   - Store consent timestamps for compliance
 
 3. State Management:
    - Maintain auth state across the application
    - Handle session persistence
    - Manage loading states during auth operations
+   - Track form validation state for submit button control
+
+4. Form Validation:
+   - Implement real-time password validation
+   - Manage form state to control submit button
+   - Provide immediate feedback on field validation
 
 ## Success Metrics
 1. User Acquisition:
@@ -108,6 +147,7 @@ This document outlines the authentication system for the chat application, focus
    - Login success rate
    - Session maintenance reliability
    - Profile update success rate
+   - Form completion rate (users who start vs complete signup)
 
 3. Technical Performance:
    - Authentication response times
@@ -119,6 +159,8 @@ This document outlines the authentication system for the chat application, focus
 2. What should be the exact wording for the development/analysis consent?
 3. Should we add any additional profile fields in preparation for future features?
 4. What should be the specific error messages for each failure case?
+5. Should password validation show all rules at once, or only failed rules?
+6. What specific styling should be used for disabled vs enabled submit button?
 
 ## Database Schema
 
@@ -134,6 +176,7 @@ create table public.user_profiles (
   parent_user_id uuid references public.user_profiles(id),
   development_consent boolean not null,
   age_verification boolean not null,
+  consent_timestamp timestamptz not null default now(),
   created_at timestamptz default now(),
   updated_at timestamptz default now(),
   -- Add constraint to ensure child users have a parent

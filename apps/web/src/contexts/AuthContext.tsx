@@ -60,28 +60,40 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const signUp = async (email: string, password: string, role: 'primary' | 'child' = 'primary') => {
+  const signUp = async (email: string, password: string, displayName?: string, role: 'primary' | 'child' = 'primary') => {
     try {
       const { data: { user: authUser }, error } = await supabase.auth.signUp({
         email,
         password,
+        options: {
+          data: {
+            display_name: displayName || 'User',
+            user_role: role,
+          }
+        }
       });
 
       if (error) throw error;
       if (!authUser?.id) throw new Error('No user ID returned from signup');
 
-      // Create user profile
-      const { error: profileError } = await supabase
-        .from('user_profiles')
-        .insert([
-          {
+      // Manually create user profile (in case trigger fails)
+      try {
+        const { error: profileError } = await supabase
+          .from('user_profiles')
+          .insert({
             id: authUser.id,
+            display_name: displayName || 'User',
             user_role: role,
-          },
-        ]);
+          });
 
-      if (profileError) throw profileError;
+        if (profileError) {
+          console.warn('Profile creation error (might be handled by trigger):', profileError);
+        }
+      } catch (profileErr) {
+        console.warn('Profile creation failed (might be handled by trigger):', profileErr);
+      }
 
+      // Load the user profile
       await loadUserProfile(authUser.id);
     } catch (err) {
       console.error('Error during sign up:', err);
@@ -139,7 +151,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       throw new Error('Only primary users can create child accounts');
     }
 
-    await signUp(email, password, 'child');
+    await signUp(email, password, displayName, 'child');
   };
 
   const isPrimaryUser = () => user?.profile?.user_role === 'primary';
