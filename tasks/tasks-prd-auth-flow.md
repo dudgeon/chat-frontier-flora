@@ -46,7 +46,7 @@
   - [x] 1.8 Create TypeScript types for user roles and database schema
   - [x] 1.9 Update user_profiles table to include consent_timestamp field
 
-- [ ] 2.0 Authentication State Management
+- [x] 2.0 Authentication State Management
   - [x] 2.1 Create AuthContext with initial state including user role
   - [x] 2.2 Implement useAuth hook for accessing auth state and role checks
   - [x] 2.3 Add session persistence logic
@@ -55,7 +55,7 @@
   - [x] 2.6 Implement error handling for auth operations
   - [x] 2.7 Create protected route wrapper with role-based access
   - [x] 2.8 Add auth state change listeners
-  - [ ] 2.9 Write tests for auth context and hooks including role checks
+  - [x] 2.9 Write tests for auth context and hooks including role checks
 
 - [ ] 3.0 Form Validation Infrastructure
   - [ ] 3.1 Create useFormValidation hook for managing form state
