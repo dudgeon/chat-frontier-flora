@@ -61,20 +61,20 @@ This project includes a comprehensive authentication system with user registrati
 - Android Studio (for Android development)
 - Supabase CLI (for local development)
 
-## Environment Setup
+## 🚨 Environment Setup
 
-1. Create a `.env` file in both `apps/web` and `apps/mobile`:
+**CRITICAL: Environment file locations**
+
+- **`.env`** - Located in **root directory** (hidden file)
+  - Contains all environment variables for development
+  - Includes: `EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_ANON_KEY`, `OPENAI_API_KEY`, etc.
+  - Automatically copied to `apps/web/.env` during build process
 
 ```bash
-# OpenAI API Key (Required)
-EXPO_PUBLIC_OPENAI_API_KEY=your_openai_api_key_here
-
-# Supabase Configuration (Required)
-EXPO_PUBLIC_SUPABASE_URL=your_supabase_url_here
-EXPO_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key_here
+# Verify environment file exists:
+ls -la | grep env
+cat .env | head -5
 ```
-
-⚠️ IMPORTANT: All environment variables MUST be prefixed with `EXPO_PUBLIC_` to work correctly across platforms.
 
 ## Development
 

@@ -1,5 +1,78 @@
 # 🔐 Authentication Quick Reference
 
+## 🚨 **MANDATORY: ENVIRONMENT FILE CHECK FIRST**
+
+**BEFORE ANY ENVIRONMENT VARIABLE DEBUGGING:**
+
+```bash
+# 1. ALWAYS CHECK FOR .env FILE FIRST
+ls -la | grep env
+# Expected output: -rw-r--r--@ 1 user staff 1040 Jun 6 08:44 .env
+
+# 2. VERIFY CONTENTS
+cat .env | grep EXPO_PUBLIC
+# Expected: EXPO_PUBLIC_SUPABASE_URL and EXPO_PUBLIC_SUPABASE_ANON_KEY
+
+# 3. CHECK APPS/WEB ENV COPY
+ls -la apps/web/ | grep env
+# May or may not exist - gets copied during build
+```
+
+**IF .env FILE NOT FOUND:**
+- ❌ DO NOT claim it doesn't exist
+- ❌ DO NOT proceed without verification
+- ✅ Use `ls -la` (shows hidden files)
+- ✅ Check if gitignored but present
+- ✅ Ask user to confirm location
+
+---
+
+## 🚨 **CRITICAL FAILURE PREVENTION (READ FIRST)**
+
+### **⚠️ BEFORE ANY CHANGE**
+```bash
+# 1. MANDATORY: Create backup
+git checkout -b backup-$(date +%Y%m%d-%H%M)
+git push origin backup-$(date +%Y%m%d-%H%M)
+
+# 2. MANDATORY: Test current state
+npm run build:web && npm run dev:web &
+sleep 10 && curl http://localhost:19006 | grep "<title>"
+# Must return: <title>web</title>
+pkill -f "expo start"
+
+# 3. MANDATORY: Check dependencies
+npm ls react react-dom react-native-web | grep -E "(invalid|UNMET)"
+# Must return: NO OUTPUT (no conflicts)
+```
+
+### **🔴 NEVER DO THESE**
+- ❌ Delete files without `git log --oneline filename`
+- ❌ Claim success without checking browser console
+- ❌ Ignore npm version conflicts
+- ❌ Make multiple changes in one commit
+- ❌ Skip testing after dependency changes
+
+### **✅ ALWAYS DO THESE**
+- ✅ One change at a time with immediate testing
+- ✅ Use exact versions for React ecosystem (18.2.0)
+- ✅ Test browser console for webpack errors
+- ✅ Verify authentication flow end-to-end
+- ✅ Document what you changed and why
+
+### **🧪 SUCCESS VERIFICATION**
+```bash
+# ALL must pass before claiming success:
+✅ npm ls react react-dom react-native-web  # No conflicts
+✅ npm run build:web                        # Exit code 0
+✅ npm run dev:web                          # Starts without errors
+✅ curl http://localhost:19006              # Returns HTML
+✅ Browser console at localhost:19006       # No webpack errors
+✅ Manual signup test                       # Creates user in Supabase
+```
+
+---
+
 ## ⚠️ **BEFORE YOU START**
 
 **STOP!** If you're about to modify authentication code, read [`AUTHENTICATION_FLOW_DOCUMENTATION.md`](./AUTHENTICATION_FLOW_DOCUMENTATION.md) first.

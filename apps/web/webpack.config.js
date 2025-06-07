@@ -1,8 +1,16 @@
 const createExpoWebpackConfigAsync = require('@expo/webpack-config');
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = async function (env, argv) {
   const config = await createExpoWebpackConfigAsync(env, argv);
+
+  // Fix monorepo module resolution - look in root node_modules
+  config.resolve.modules = [
+    path.resolve(__dirname, '../../node_modules'),
+    path.resolve(__dirname, 'node_modules'),
+    'node_modules'
+  ];
 
   // Add crypto polyfills
   config.resolve.fallback = {

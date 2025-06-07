@@ -431,3 +431,276 @@ If authentication breaks in production:
 3. **Escalate**: Review this documentation for root cause
 4. **Fix**: Follow debugging guide above
 5. **Test**: Complete maintenance checklist before redeployment
+
+---
+
+## 🚨 **SYSTEMATIC FAILURE PREVENTION**
+
+### **⚠️ CRITICAL LESSONS FROM JUNE 2025 INCIDENT**
+
+**Incident Summary**: React Native Web module resolution failures caused by careless dependency management and premature success claims.
+
+#### **Root Cause Analysis**
+1. **Careless File Deletion**: Deleted critical files without understanding dependencies
+2. **Premature Success Claims**: Claimed fixes worked without proper verification
+3. **Incomplete Testing**: Tested build success but ignored runtime webpack errors
+4. **Version Conflict Ignorance**: Failed to properly resolve React 18.2.0 vs 18.3.1 conflicts
+
+#### **Systematic Failures That MUST Be Prevented**
+
+### **🔴 NEVER DO THESE THINGS**
+
+#### **1. File Deletion Without Understanding**
+```bash
+# ❌ NEVER: Delete files without understanding their purpose
+rm apps/web/metro.config.js  # Could break mobile builds
+rm apps/web/src/main.tsx     # Could break Vite builds
+rm apps/web/vite.config.ts   # Could break alternative build systems
+
+# ✅ ALWAYS: Research file purpose first
+git log --oneline apps/web/metro.config.js  # Check history
+grep -r "metro.config" .                     # Check references
+```
+
+#### **2. Claiming Success Without Verification**
+```bash
+# ❌ NEVER: Claim "build successful" without checking runtime
+npm run build  # ✅ Exits 0
+# But then ignore webpack errors in browser console
+
+# ✅ ALWAYS: Verify complete functionality
+npm run build && npm run start  # Test build AND runtime
+curl http://localhost:19006      # Test actual serving
+# Check browser console for errors
+```
+
+#### **3. Ignoring Version Conflicts**
+```bash
+# ❌ NEVER: Ignore npm version warnings
+npm ls react  # Shows conflicts but continue anyway
+
+# ✅ ALWAYS: Resolve version conflicts immediately
+npm ls react react-dom react-native-web  # Check ALL related packages
+# Fix overrides/resolutions in package.json
+# Clean install to verify resolution
+```
+
+#### **4. Making Multiple Changes Simultaneously**
+```bash
+# ❌ NEVER: Change multiple systems at once
+# - Delete metro.config.js
+# - Modify webpack.config.js
+# - Update package.json
+# - Change build commands
+# All in one commit
+
+# ✅ ALWAYS: One change at a time with verification
+git commit -m "Fix React version conflicts"
+# Test thoroughly
+git commit -m "Update webpack module resolution"
+# Test thoroughly
+```
+
+### **🟡 MANDATORY VERIFICATION STEPS**
+
+#### **Before ANY Change**
+```bash
+# 1. Create backup branch
+git checkout -b backup-before-changes
+git push origin backup-before-changes
+
+# 2. Document current working state
+npm run build > build-before.log 2>&1
+npm run dev:web > dev-before.log 2>&1 &
+curl http://localhost:19006 > response-before.html
+pkill -f "expo start"
+
+# 3. Test critical paths
+# - Authentication flow works
+# - Build completes without errors
+# - Runtime has no console errors
+```
+
+#### **After ANY Change**
+```bash
+# 1. Clean install to verify dependencies
+rm -rf node_modules package-lock.json
+npm install
+
+# 2. Test build process
+npm run build 2>&1 | tee build-after.log
+# Compare with build-before.log
+
+# 3. Test runtime
+npm run dev:web &
+sleep 15
+curl http://localhost:19006 > response-after.html
+# Compare with response-before.html
+
+# 4. Check browser console
+# Open http://localhost:19006
+# Check for ANY webpack/module errors
+# Screenshot console if errors exist
+
+# 5. Test authentication flow manually
+# - Can you see the signup form?
+# - Can you submit valid data?
+# - Does it create user in Supabase?
+```
+
+### **🔧 DEPENDENCY MANAGEMENT RULES**
+
+#### **React Native Web Specific Rules**
+```json
+// ✅ ALWAYS: Use exact versions for React ecosystem
+{
+  "dependencies": {
+    "react": "18.2.0",           // EXACT, not ^18.2.0
+    "react-dom": "18.2.0",       // EXACT, not ^18.2.0
+    "react-native": "0.73.4",    // Match Expo SDK
+    "react-native-web": "0.19.13" // Compatible with Expo 50
+  },
+  "overrides": {
+    "react": "18.2.0",           // Force exact version
+    "react-dom": "18.2.0"        // Force exact version
+  }
+}
+```
+
+#### **Monorepo Module Resolution Rules**
+```javascript
+// ✅ ALWAYS: Configure webpack for monorepo
+// apps/web/webpack.config.js
+config.resolve.modules = [
+  path.resolve(__dirname, '../../node_modules'),  // Root modules
+  path.resolve(__dirname, 'node_modules'),        // Local modules
+  'node_modules'                                  // Default
+];
+
+// ❌ NEVER: Assume modules will resolve automatically
+// ❌ NEVER: Mix local and hoisted node_modules
+```
+
+### **🧪 TESTING REQUIREMENTS FOR CHANGES**
+
+#### **Level 1: Basic Functionality**
+```bash
+# Must pass before claiming success
+✅ npm install (no errors)
+✅ npm run build (exits 0)
+✅ npm run dev:web (starts without errors)
+✅ curl http://localhost:19006 (returns HTML)
+✅ Browser console (no webpack errors)
+```
+
+#### **Level 2: Authentication Flow**
+```bash
+# Must pass for auth-related changes
+✅ Signup form visible
+✅ Form validation works
+✅ Submit button enables/disables correctly
+✅ Successful signup creates user
+✅ Error handling displays correctly
+```
+
+#### **Level 3: Cross-Platform Compatibility**
+```bash
+# Must pass for build system changes
+✅ Web build works (npm run build:web)
+✅ Mobile build works (npm run dev:mobile)
+✅ Netlify deployment works
+✅ No version conflicts (npm ls)
+```
+
+### **📋 INCIDENT RESPONSE CHECKLIST**
+
+#### **When Things Break**
+```bash
+# 1. STOP making changes immediately
+# 2. Document the exact error
+screenshot browser-console-errors.png
+npm run build > error-log.txt 2>&1
+
+# 3. Revert to last known good state
+git checkout backup-before-changes
+npm install
+npm run build  # Verify it works
+
+# 4. Analyze the failure systematically
+diff build-before.log error-log.txt
+# Identify EXACT change that caused failure
+
+# 5. Fix ONE thing at a time
+git checkout main
+# Make minimal fix
+# Test thoroughly
+# Commit only if verified working
+```
+
+### **🔍 ERROR PATTERN RECOGNITION**
+
+#### **React Native Web Module Errors**
+```bash
+# Pattern: "ENOENT: no such file or directory, open '.../apps/web/node_modules/react/...'"
+# Cause: Webpack looking in wrong node_modules location
+# Solution: Fix webpack.config.js resolve.modules
+
+# Pattern: "Module not found: Can't resolve 'react-dom/client'"
+# Cause: React version mismatch (18.3.1 vs 18.2.0)
+# Solution: Fix package.json overrides to exact versions
+```
+
+#### **Build vs Runtime Errors**
+```bash
+# Pattern: "npm run build" succeeds but browser shows webpack errors
+# Cause: Build process != development server
+# Solution: Test BOTH build AND dev server
+
+# Pattern: Static files serve but JavaScript fails
+# Cause: Module resolution works for assets but not for JS modules
+# Solution: Check webpack module resolution configuration
+```
+
+### **📚 REQUIRED READING BEFORE CHANGES**
+
+#### **For Dependency Changes**
+- [ ] Read DEPLOYMENT_LESSONS_LEARNED.md
+- [ ] Understand React Native Web compatibility matrix
+- [ ] Check Expo SDK compatibility guide
+- [ ] Review monorepo dependency hoisting behavior
+
+#### **For Build System Changes**
+- [ ] Understand difference between Metro (mobile) and Webpack (web)
+- [ ] Know when metro.config.js is needed vs not needed
+- [ ] Understand module resolution in monorepos
+- [ ] Test both development and production builds
+
+#### **For Authentication Changes**
+- [ ] Read this entire document
+- [ ] Understand Supabase auth flow
+- [ ] Know all validation requirements
+- [ ] Test with real Supabase instance
+
+### **🎯 SUCCESS CRITERIA**
+
+#### **A change is only successful when:**
+1. ✅ All builds complete without errors
+2. ✅ All development servers start without errors
+3. ✅ Browser console shows no webpack/module errors
+4. ✅ Authentication flow works end-to-end
+5. ✅ No version conflicts in dependency tree
+6. ✅ Netlify deployment succeeds (if applicable)
+7. ✅ Manual testing confirms functionality
+
+#### **Documentation of success must include:**
+1. Screenshots of working application
+2. Copy of clean build logs
+3. Copy of clean browser console
+4. Confirmation of authentication flow
+5. npm ls output showing clean dependencies
+
+---
+
+**⚠️ REMEMBER: The goal is not to fix things quickly, but to fix them correctly and permanently while learning from mistakes.**
+
+---
