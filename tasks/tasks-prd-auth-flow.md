@@ -11,6 +11,8 @@
 - `apps/web/src/hooks/useAuth.ts` - Custom hook for auth state management
 - `apps/web/src/hooks/useFormValidation.ts` - Custom hook for form validation state
 - `apps/web/src/contexts/AuthContext.tsx` - Authentication context provider
+- `apps/web/src/components/auth/ProtectedRoute.tsx` - Protected route wrapper with role-based access control
+- `apps/web/src/components/auth/ProtectedRoute.test.tsx` - Comprehensive tests for ProtectedRoute component
 - `apps/web/src/lib/supabase.ts` - Supabase client configuration
 - `apps/web/utils/validation.ts` - Form validation utilities with new field requirements
 - `apps/web/utils/validation.test.ts` - Tests for validation utilities with new field tests
@@ -51,7 +53,7 @@
   - [x] 2.4 Create auth state actions (login, logout, signup)
   - [x] 2.5 Add loading states for auth operations
   - [x] 2.6 Implement error handling for auth operations
-  - [ ] 2.7 Create protected route wrapper with role-based access
+  - [x] 2.7 Create protected route wrapper with role-based access
   - [x] 2.8 Add auth state change listeners
   - [ ] 2.9 Write tests for auth context and hooks including role checks
 
