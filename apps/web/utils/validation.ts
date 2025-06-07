@@ -63,8 +63,10 @@ export const validateEmail = (email: string): ValidationError | null => {
  *
  * ⚠️ CRITICAL REQUIREMENTS (DO NOT CHANGE):
  * - Minimum 8 characters
+ * - At least one uppercase letter
+ * - At least one lowercase letter
  * - At least one number
- * - At least one letter
+ * - At least one special character
  *
  * SECURITY NOTE: These are minimum requirements for user safety.
  * Relaxing these requirements weakens account security.
@@ -83,14 +85,24 @@ export const validatePassword = (password: string): ValidationError | null => {
         return { field: 'password', message: `Password must be at least ${PASSWORD_MIN_LENGTH} characters` };
     }
 
+    // ⚠️ CRITICAL: Must contain at least one uppercase letter
+    if (!/[A-Z]/.test(password)) {
+        return { field: 'password', message: 'Password must contain at least one uppercase letter' };
+    }
+
+    // ⚠️ CRITICAL: Must contain at least one lowercase letter
+    if (!/[a-z]/.test(password)) {
+        return { field: 'password', message: 'Password must contain at least one lowercase letter' };
+    }
+
     // ⚠️ CRITICAL: Must contain at least one number
     if (!/\d/.test(password)) {
         return { field: 'password', message: 'Password must contain at least one number' };
     }
 
-    // ⚠️ CRITICAL: Must contain at least one letter
-    if (!/[a-zA-Z]/.test(password)) {
-        return { field: 'password', message: 'Password must contain at least one letter' };
+    // ⚠️ CRITICAL: Must contain at least one special character
+    if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+        return { field: 'password', message: 'Password must contain at least one special character' };
     }
 
     return null;
