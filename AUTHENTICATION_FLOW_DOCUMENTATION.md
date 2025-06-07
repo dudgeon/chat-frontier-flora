@@ -4,6 +4,33 @@
 
 This authentication flow was extremely difficult to implement correctly. **DO NOT MODIFY** without reading this entire document and understanding all dependencies.
 
+## 🚨 **MANDATORY PRE-CHANGE CHECKLIST**
+
+**BEFORE MAKING ANY CHANGES TO AUTHENTICATION CODE:**
+
+- [ ] **STOP**: Is the current system working? If YES, document exactly what works before changing anything
+- [ ] **BACKUP**: Create a git commit of the current working state
+- [ ] **UNDERSTAND**: Read this entire documentation file
+- [ ] **IDENTIFY**: List ALL files you plan to modify
+- [ ] **DEPENDENCIES**: Map out what each file depends on
+- [ ] **TEST PLAN**: Write down how you will verify the change works
+- [ ] **ROLLBACK PLAN**: Know exactly how to revert if something breaks
+
+**NEVER:**
+- ❌ Delete files without understanding their purpose
+- ❌ Remove dependencies without checking what uses them
+- ❌ Change build systems without testing
+- ❌ Assume "cleanup" is safe
+- ❌ Make multiple changes at once
+- ❌ Skip testing after each change
+
+**ALWAYS:**
+- ✅ Make one small change at a time
+- ✅ Test after each change
+- ✅ Commit working states frequently
+- ✅ Document what you're doing and why
+- ✅ Ask "what could this break?" before changing anything
+
 ---
 
 ## 🎯 **Overview**

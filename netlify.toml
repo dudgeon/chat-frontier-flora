@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "npm run build:web"
   publish = "apps/web/web-build"
   functions = "netlify/functions"
 
@@ -29,7 +29,7 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Content-Security-Policy = "default-src 'self' https://api.openai.com https://*.supabase.co; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:;"
+    Content-Security-Policy = "default-src 'self' https://api.openai.com https://*.supabase.co; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; font-src 'self' data:;"
 
 [[edge_functions]]
   path = "/api/*"

@@ -4,6 +4,26 @@
 
 **STOP!** If you're about to modify authentication code, read [`AUTHENTICATION_FLOW_DOCUMENTATION.md`](./AUTHENTICATION_FLOW_DOCUMENTATION.md) first.
 
+## 🚨 **CRITICAL: PREVENT CARELESS MISTAKES**
+
+**This system has been broken by careless changes before. DO NOT:**
+
+- ❌ **Delete files without understanding their purpose**
+- ❌ **Remove dependencies without checking what uses them**
+- ❌ **Change build configurations without testing**
+- ❌ **Assume any file is "unused" or "safe to remove"**
+- ❌ **Make multiple changes at once**
+- ❌ **Skip testing after each change**
+
+**MANDATORY STEPS:**
+1. **Document current working state** before any changes
+2. **Make ONE change at a time**
+3. **Test immediately after each change**
+4. **Commit working states frequently**
+5. **Have a rollback plan ready**
+
+**If something breaks: IMMEDIATELY revert to last working commit!**
+
 ---
 
 ## 🚨 **Critical Files - Handle with Care**
