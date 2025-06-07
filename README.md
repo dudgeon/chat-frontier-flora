@@ -197,6 +197,12 @@ graph TD
    - Check for missing .env files
    - Restart development server
 
+4. **Deployment Issues**
+   - See [Deployment Lessons Learned](./DEPLOYMENT_LESSONS_LEARNED.md) for comprehensive troubleshooting
+   - Check React version compatibility (must be exact 18.2.0 for React Native)
+   - Verify .npmrc configuration for legacy-peer-deps
+   - Test builds locally before pushing
+
 ## License
 
 MIT
