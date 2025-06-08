@@ -22,13 +22,6 @@ export const AuthFlow: React.FC = () => {
   // Show authentication forms
   return (
     <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.title}>Chat Frontier Flora</Text>
-        <Text style={styles.subtitle}>
-          {authMode === 'signup' ? 'Create your account' : 'Sign in to your account'}
-        </Text>
-      </View>
-
       <View style={styles.formContainer}>
         {authMode === 'signup' ? <SignUpForm /> : <LoginForm />}
       </View>
@@ -58,22 +51,7 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: '#ffffff',
   },
-  headerContainer: {
-    alignItems: 'center',
-    marginBottom: 40,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#0056b3',
-    marginBottom: 8,
-    textAlign: 'center',
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-    textAlign: 'center',
-  },
+
   formContainer: {
     width: '100%',
     maxWidth: 400,

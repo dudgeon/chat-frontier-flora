@@ -127,79 +127,37 @@ export const PasswordValidation: React.FC<PasswordValidationProps> = ({
         </div>
       </div>
 
-      {/* Password Rules */}
-      <div className="space-y-2">
-        <div className="text-sm font-medium text-gray-700 mb-2">Password Requirements:</div>
+      {/* Password Rules - Compact Grid Layout */}
+      <div className="grid grid-cols-1 gap-1 mt-2 mb-1" style={{ fontSize: 11 }}>
         {ruleResults.map((rule) => (
           <div
             key={rule.id}
-            className="flex items-center space-x-2"
+            className="flex items-center"
             data-testid={`rule-${rule.id}`}
           >
-            {/* Check/X Icon */}
-            <div className="flex-shrink-0">
-              {rule.passed ? (
-                <svg
-                  className="w-4 h-4 text-green-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  data-testid={`rule-${rule.id}-check`}
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="w-4 h-4 text-gray-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  data-testid={`rule-${rule.id}-x`}
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              )}
-            </div>
-
-            {/* Rule Label */}
-            <span
-              className={`text-sm ${
-                rule.passed ? 'text-green-700' : 'text-gray-600'
-              }`}
-              data-testid={`rule-${rule.id}-label`}
-            >
+            {rule.passed ? (
+              <span className="text-green-500 mr-2" data-testid={`rule-${rule.id}-check`}>✓</span>
+            ) : (
+              <span className="text-gray-400 mr-2" data-testid={`rule-${rule.id}-x`}>○</span>
+            )}
+            <span className={rule.passed ? 'text-green-700' : 'text-gray-600'} data-testid={`rule-${rule.id}-label`} style={{ fontSize: 11 }}>
               {rule.label}
             </span>
           </div>
         ))}
       </div>
 
-      {/* Overall Status */}
+      {/* Overall Status - Compact */}
       {password.length > 0 && (
-        <div className="mt-3 pt-3 border-t border-gray-200">
+        <div className="mt-2 pt-2 border-t border-gray-200">
           <div
-            className={`text-sm font-medium ${
+            className={`text-xs ${
               allRequiredRulesPassed ? 'text-green-600' : 'text-gray-600'
             }`}
             data-testid="overall-status"
           >
             {allRequiredRulesPassed ? (
-              <div className="flex items-center space-x-1">
-                <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>Password meets all requirements</span>
-              </div>
+              <span>✓ All requirements met</span>
             ) : (
               <span>
                 {requiredRulesPassed} of {totalRequiredRules} requirements met

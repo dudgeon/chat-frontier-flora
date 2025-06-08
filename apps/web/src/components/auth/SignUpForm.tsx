@@ -30,6 +30,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useFormValidation, FieldConfig } from '../../hooks/useFormValidation';
 import { PasswordValidation } from './PasswordValidation';
 import { validateEmail, validatePassword } from '../../../utils/validation';
+import { Checkbox } from '../Checkbox';
 
 /**
  * 📋 Form Data Interface - PRD Compliant
@@ -43,7 +44,6 @@ interface SignUpFormData {
   confirmPassword: string;
   fullName: string; // PRD requires full_name, not displayName
   ageVerification: boolean; // PRD requirement: 18+ verification
-  termsConsent: boolean; // Standard terms agreement
   developmentConsent: boolean; // PRD requirement: development data usage consent
 }
 
@@ -114,15 +114,6 @@ export const SignUpForm: React.FC = () => {
         required: true,
         custom: (value: string) => {
           if (value !== 'true') return 'You must be 18 or older to create an account';
-          return null;
-        },
-      },
-    },
-    termsConsent: {
-      rules: {
-        required: true,
-        custom: (value: string) => {
-          if (value !== 'true') return 'You must agree to the terms and conditions';
           return null;
         },
       },
@@ -277,88 +268,26 @@ export const SignUpForm: React.FC = () => {
       </View>
 
       {/* ⚠️ CRITICAL: Age Verification Checkbox (PRD Requirement) */}
-      <TouchableOpacity
-        testID="age-verification-checkbox"
-        style={styles.checkboxContainer}
+      <Checkbox
+        label="I verify that I am 18 years of age or older"
+        checked={formValidation.getFieldProps('ageVerification').value === 'true'}
         onPress={() => {
           const currentValue = formValidation.getFieldProps('ageVerification').value === 'true';
           formValidation.updateField('ageVerification', (!currentValue).toString());
         }}
-      >
-        <View style={[
-          styles.checkbox,
-          formValidation.getFieldProps('ageVerification').value === 'true' && styles.checkboxChecked
-        ]}>
-          {formValidation.getFieldProps('ageVerification').value === 'true' && (
-            <Text style={styles.checkmark}>✓</Text>
-          )}
-        </View>
-        <Text style={styles.checkboxLabel}>
-          <Text style={styles.required}>* </Text>
-          I verify that I am 18 years of age or older
-        </Text>
-      </TouchableOpacity>
-      {formValidation.getFieldProps('ageVerification').touched && formValidation.getFieldProps('ageVerification').error && (
-        <Text style={styles.errorText}>{formValidation.getFieldProps('ageVerification').error}</Text>
-      )}
-
-      {/* ⚠️ CRITICAL: Terms Agreement Checkbox */}
-      <TouchableOpacity
-        testID="terms-checkbox"
-        style={styles.checkboxContainer}
-        onPress={() => {
-          const currentValue = formValidation.getFieldProps('termsConsent').value === 'true';
-          formValidation.updateField('termsConsent', (!currentValue).toString());
-        }}
-      >
-        <View style={[
-          styles.checkbox,
-          formValidation.getFieldProps('termsConsent').value === 'true' && styles.checkboxChecked
-        ]}>
-          {formValidation.getFieldProps('termsConsent').value === 'true' && (
-            <Text style={styles.checkmark}>✓</Text>
-          )}
-        </View>
-        <Text style={styles.checkboxLabel}>
-          <Text style={styles.required}>* </Text>
-          I agree to the Terms of Service and Privacy Policy
-        </Text>
-      </TouchableOpacity>
-      {formValidation.getFieldProps('termsConsent').touched && formValidation.getFieldProps('termsConsent').error && (
-        <Text style={styles.errorText}>{formValidation.getFieldProps('termsConsent').error}</Text>
-      )}
+        error={formValidation.getFieldProps('ageVerification').touched && formValidation.getFieldProps('ageVerification').error ? formValidation.getFieldProps('ageVerification').error || undefined : undefined}
+      />
 
       {/* ⚠️ CRITICAL: Development Consent Checkbox (PRD Requirement) */}
-      <TouchableOpacity
-        testID="development-consent-checkbox"
-        style={styles.checkboxContainer}
+      <Checkbox
+        label="I consent to the use of my data for development and improvement purposes"
+        checked={formValidation.getFieldProps('developmentConsent').value === 'true'}
         onPress={() => {
           const currentValue = formValidation.getFieldProps('developmentConsent').value === 'true';
           formValidation.updateField('developmentConsent', (!currentValue).toString());
         }}
-      >
-        <View style={[
-          styles.checkbox,
-          formValidation.getFieldProps('developmentConsent').value === 'true' && styles.checkboxChecked
-        ]}>
-          {formValidation.getFieldProps('developmentConsent').value === 'true' && (
-            <Text style={styles.checkmark}>✓</Text>
-          )}
-        </View>
-        <View style={styles.consentTextContainer}>
-          <Text style={styles.checkboxLabel}>
-            <Text style={styles.required}>* </Text>
-            I consent to the use of my data for development and improvement purposes
-          </Text>
-          <Text style={styles.consentDetails}>
-            This includes anonymized usage analytics, feature testing, and service improvements.
-            Your personal information will be protected according to our Privacy Policy.
-          </Text>
-        </View>
-      </TouchableOpacity>
-      {formValidation.getFieldProps('developmentConsent').touched && formValidation.getFieldProps('developmentConsent').error && (
-        <Text style={styles.errorText}>{formValidation.getFieldProps('developmentConsent').error}</Text>
-      )}
+        error={formValidation.getFieldProps('developmentConsent').touched && formValidation.getFieldProps('developmentConsent').error ? formValidation.getFieldProps('developmentConsent').error || undefined : undefined}
+      />
 
       {/* ⚠️ CRITICAL: Submit Button with Real-time State Control */}
       <TouchableOpacity

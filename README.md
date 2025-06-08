@@ -1,4 +1,4 @@
-# Chat Frontier Flora
+# Frontier.Family
 
 A modern cross-platform chat application built with Expo, React Native, Supabase, and OpenAI.
 

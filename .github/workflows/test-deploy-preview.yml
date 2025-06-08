@@ -60,7 +60,8 @@ jobs:
         run: npx playwright install --with-deps ${{ matrix.browser }}
 
       - name: Run Playwright tests against deploy preview
-        run: npm run test:preview
+        # Running all E2E tests (including Stagehand) for comprehensive coverage during migration
+        run: npm run test:e2e
         env:
           DEPLOY_PREVIEW_URL: ${{ needs.wait-for-netlify.outputs.preview-url }}
           PRODUCTION_URL: https://chat-frontier-flora.netlify.app # Replace with your production URL

@@ -22,7 +22,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: process.env.DEPLOY_PREVIEW_URL || 'http://localhost:19006',
+    baseURL: process.env.DEPLOY_PREVIEW_URL || process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:19006',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     /* Take screenshot on failure */
@@ -72,7 +72,7 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: process.env.DEPLOY_PREVIEW_URL ? undefined : {
     command: 'cd apps/web && npm run web',
-    url: 'http://localhost:19006',
+    port: 19006, // Let Playwright detect the actual URL
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000, // 2 minutes for server to start
   },

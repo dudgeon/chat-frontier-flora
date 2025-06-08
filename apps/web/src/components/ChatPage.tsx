@@ -26,7 +26,7 @@ export const ChatPage: React.FC<ChatPageProps> = ({
       {/* Main Chat Area */}
       <View style={styles.chatContainer}>
         <View style={styles.header}>
-          <Text style={styles.title}>Chat Frontier Flora</Text>
+          <Text style={styles.title}>Frontier.Family</Text>
           <TouchableOpacity
             style={styles.profileButton}
             onPress={onToggleProfileMenu}
