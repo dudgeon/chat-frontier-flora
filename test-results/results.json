@@ -11,7 +11,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 1
+      "actualWorkers": 2
     },
     "preserveOutput": "always",
     "reporter": [
@@ -43,7 +43,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 1
+          "actualWorkers": 2
         },
         "id": "chromium",
         "name": "chromium",
@@ -59,7 +59,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 1
+          "actualWorkers": 2
         },
         "id": "firefox",
         "name": "firefox",
@@ -75,7 +75,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 1
+          "actualWorkers": 2
         },
         "id": "webkit",
         "name": "webkit",
@@ -91,7 +91,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 1
+          "actualWorkers": 2
         },
         "id": "Mobile Chrome",
         "name": "Mobile Chrome",
@@ -107,7 +107,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 1
+          "actualWorkers": 2
         },
         "id": "Mobile Safari",
         "name": "Mobile Safari",
@@ -133,20 +133,20 @@
   },
   "suites": [
     {
-      "title": "debug-existing-auth.spec.ts",
-      "file": "debug-existing-auth.spec.ts",
+      "title": "stagehand-auth-test.spec.ts",
+      "file": "stagehand-auth-test.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Existing Auth Debug",
-          "file": "debug-existing-auth.spec.ts",
-          "line": 3,
+          "title": "Stagehand Authentication Flow",
+          "file": "stagehand-auth-test.spec.ts",
+          "line": 17,
           "column": 6,
           "specs": [
             {
-              "title": "debug what happens with existing auth session",
+              "title": "should complete signup flow with natural language actions",
               "ok": true,
               "tags": [],
               "tests": [
@@ -160,596 +160,64 @@
                     {
                       "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 16612,
+                      "status": "skipped",
+                      "duration": 0,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "=== STARTING EXISTING AUTH DEBUG ===\n"
+                          "text": "🎭 Testing Stagehand-powered authentication flow...\n"
                         },
                         {
-                          "text": "BROWSER LOG: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Environment variables check:\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: EXPO_PUBLIC_SUPABASE_URL: https://djtunsxmzhxffehkclre.supabase.co\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: EXPO_PUBLIC_SUPABASE_ANON_KEY: SET\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: All env vars: []\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: \"shadow*\" style props are deprecated. Use \"boxShadow\".\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Starting app initialization...\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Running application \"main\" with appParams:\n {rootTag: #root, hydrate: false} \nDevelopment-level warnings: ON.\nPerformance optimizations: OFF.\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: App component rendering\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Checking environment variables: {supabaseUrl: set, supabaseKey: set}\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 AppRouter rendering\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 AuthContext user state changed: not authenticated\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: props.pointerEvents is deprecated. Use style.pointerEvents\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Auth state changed: INITIAL_SESSION undefined\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔐 Starting signup for: test1749380486464@example.com\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🌐 Attempting Edge Function signup...\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Auth state changed: INITIAL_SESSION undefined\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 Skipping profile loading during signup process\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Failed to load resource: the server responded with a status of 404 (Not Found)\n"
-                        },
-                        {
-                          "text": "1. Submitted signup form\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: ⚠️ Edge Function not available, falling back to client-side approach\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 Using improved client-side signup...\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 📝 About to create auth user...\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Auth state changed: SIGNED_IN 1e052e32-ed55-422a-b8f4-02cacb0555de\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 Skipping profile loading during signup process\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 📝 Auth signup response received\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: ✅ Auth user created: 1e052e32-ed55-422a-b8f4-02cacb0555de\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 📝 About to create user profile...\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 📝 Profile creation response received\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: ✅ Profile created successfully\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 📝 About to load user profile...\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: User profile loaded successfully: {id: 1e052e32-ed55-422a-b8f4-02cacb0555de, user_role: primary, display_name: null, parent_user_id: null, created_at: 2025-06-08T11:01:31.896808+00:00}\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 User state updated, should trigger routing re-render\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🎉 Client-side signup flow completed successfully\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 Navigating to /chat after successful signup\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 AuthContext user state changed: authenticated\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Auth state changed: INITIAL_SESSION 1e052e32-ed55-422a-b8f4-02cacb0555de\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 Loading profile after auth state change\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: User profile loaded successfully: {id: 1e052e32-ed55-422a-b8f4-02cacb0555de, user_role: primary, display_name: null, parent_user_id: null, created_at: 2025-06-08T11:01:31.896808+00:00}\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 User state updated, should trigger routing re-render\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 AuthContext user state changed: authenticated\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: User profile loaded successfully: {id: 1e052e32-ed55-422a-b8f4-02cacb0555de, user_role: primary, display_name: null, parent_user_id: null, created_at: 2025-06-08T11:01:31.896808+00:00}\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 User state updated, should trigger routing re-render\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 AuthContext user state changed: authenticated\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Environment variables check:\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: EXPO_PUBLIC_SUPABASE_URL: https://djtunsxmzhxffehkclre.supabase.co\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: EXPO_PUBLIC_SUPABASE_ANON_KEY: SET\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: All env vars: []\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: \"shadow*\" style props are deprecated. Use \"boxShadow\".\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Starting app initialization...\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Running application \"main\" with appParams:\n {rootTag: #root, hydrate: false} \nDevelopment-level warnings: ON.\nPerformance optimizations: OFF.\n"
-                        },
-                        {
-                          "text": "2. Redirected to /chat\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: App component rendering\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Checking environment variables: {supabaseUrl: set, supabaseKey: set}\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 AppRouter rendering\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 AuthContext user state changed: not authenticated\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Auth state changed: SIGNED_IN 1e052e32-ed55-422a-b8f4-02cacb0555de\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 Loading profile after auth state change\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)\n"
-                        },
-                        {
-                          "text": "3. Page loaded after redirect\n"
-                        },
-                        {
-                          "text": "4. Body text after auth: \n    Loading...\n  \n\n...\n"
-                        },
-                        {
-                          "text": "5. Loading elements found: \u001b[33m1\u001b[39m\n"
-                        },
-                        {
-                          "text": "6. Chat elements found: \u001b[33m0\u001b[39m\n"
-                        },
-                        {
-                          "text": "=== SIMULATING PAGE REFRESH ===\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Environment variables check:\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: EXPO_PUBLIC_SUPABASE_URL: https://djtunsxmzhxffehkclre.supabase.co\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: EXPO_PUBLIC_SUPABASE_ANON_KEY: SET\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: All env vars: []\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: \"shadow*\" style props are deprecated. Use \"boxShadow\".\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Starting app initialization...\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Running application \"main\" with appParams:\n {rootTag: #root, hydrate: false} \nDevelopment-level warnings: ON.\nPerformance optimizations: OFF.\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: App component rendering\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Checking environment variables: {supabaseUrl: set, supabaseKey: set}\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 AppRouter rendering\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 AuthContext user state changed: not authenticated\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Auth state changed: SIGNED_IN 1e052e32-ed55-422a-b8f4-02cacb0555de\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 Loading profile after auth state change\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Failed to load user profile: Error: Profile query timeout\n    at http://localhost:19006/static/js/bundle.js:83769:27\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Using provided auth user despite profile error\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 AuthContext user state changed: authenticated\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: Auth state changed: INITIAL_SESSION 1e052e32-ed55-422a-b8f4-02cacb0555de\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 Loading profile after auth state change\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: User profile loaded successfully: {id: 1e052e32-ed55-422a-b8f4-02cacb0555de, user_role: primary, display_name: null, parent_user_id: null, created_at: 2025-06-08T11:01:31.896808+00:00}\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 User state updated, should trigger routing re-render\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 AuthContext user state changed: authenticated\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: User profile loaded successfully: {id: 1e052e32-ed55-422a-b8f4-02cacb0555de, user_role: primary, display_name: null, parent_user_id: null, created_at: 2025-06-08T11:01:31.896808+00:00}\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 User state updated, should trigger routing re-render\n"
-                        },
-                        {
-                          "text": "BROWSER LOG: 🔄 AuthContext user state changed: authenticated\n"
-                        },
-                        {
-                          "text": "7. Body text after refresh: \n    Chat Frontier Flora☰Chat Feature Coming Soon!We're working hard to bring you an amazing chat experience.Welcome, test1749380486464@example.com!\n  \n\n...\n"
-                        },
-                        {
-                          "text": "8. Loading elements after refresh: \u001b[33m0\u001b[39m\n"
-                        },
-                        {
-                          "text": "✅ Loading resolved after refresh\n"
-                        },
-                        {
-                          "text": "=== FINAL CONSOLE LOGS ===\n"
-                        },
-                        {
-                          "text": "1. %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold\n"
-                        },
-                        {
-                          "text": "2. Environment variables check:\n"
-                        },
-                        {
-                          "text": "3. EXPO_PUBLIC_SUPABASE_URL: https://djtunsxmzhxffehkclre.supabase.co\n"
-                        },
-                        {
-                          "text": "4. EXPO_PUBLIC_SUPABASE_ANON_KEY: SET\n"
-                        },
-                        {
-                          "text": "5. All env vars: []\n"
-                        },
-                        {
-                          "text": "6. \"shadow*\" style props are deprecated. Use \"boxShadow\".\n"
-                        },
-                        {
-                          "text": "7. Starting app initialization...\n"
-                        },
-                        {
-                          "text": "8. Running application \"main\" with appParams:\n {rootTag: #root, hydrate: false} \nDevelopment-level warnings: ON.\nPerformance optimizations: OFF.\n"
-                        },
-                        {
-                          "text": "9. App component rendering\n"
-                        },
-                        {
-                          "text": "10. Checking environment variables: {supabaseUrl: set, supabaseKey: set}\n"
-                        },
-                        {
-                          "text": "11. 🔄 AppRouter rendering\n"
-                        },
-                        {
-                          "text": "12. 🔄 AuthContext user state changed: not authenticated\n"
-                        },
-                        {
-                          "text": "13. props.pointerEvents is deprecated. Use style.pointerEvents\n"
-                        },
-                        {
-                          "text": "14. Auth state changed: INITIAL_SESSION undefined\n"
-                        },
-                        {
-                          "text": "15. [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o\n"
-                        },
-                        {
-                          "text": "16. [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o\n"
-                        },
-                        {
-                          "text": "17. 🔐 Starting signup for: test1749380486464@example.com\n"
-                        },
-                        {
-                          "text": "18. 🌐 Attempting Edge Function signup...\n"
-                        },
-                        {
-                          "text": "19. Auth state changed: INITIAL_SESSION undefined\n"
-                        },
-                        {
-                          "text": "20. 🔄 Skipping profile loading during signup process\n"
-                        },
-                        {
-                          "text": "21. Failed to load resource: the server responded with a status of 404 (Not Found)\n"
-                        },
-                        {
-                          "text": "22. ⚠️ Edge Function not available, falling back to client-side approach\n"
-                        },
-                        {
-                          "text": "23. 🔄 Using improved client-side signup...\n"
-                        },
-                        {
-                          "text": "24. 📝 About to create auth user...\n"
-                        },
-                        {
-                          "text": "25. Auth state changed: SIGNED_IN 1e052e32-ed55-422a-b8f4-02cacb0555de\n"
-                        },
-                        {
-                          "text": "26. 🔄 Skipping profile loading during signup process\n"
-                        },
-                        {
-                          "text": "27. 📝 Auth signup response received\n"
-                        },
-                        {
-                          "text": "28. ✅ Auth user created: 1e052e32-ed55-422a-b8f4-02cacb0555de\n"
-                        },
-                        {
-                          "text": "29. 📝 About to create user profile...\n"
-                        },
-                        {
-                          "text": "30. 📝 Profile creation response received\n"
-                        },
-                        {
-                          "text": "31. ✅ Profile created successfully\n"
-                        },
-                        {
-                          "text": "32. 📝 About to load user profile...\n"
-                        },
-                        {
-                          "text": "33. 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)\n"
-                        },
-                        {
-                          "text": "34. User profile loaded successfully: {id: 1e052e32-ed55-422a-b8f4-02cacb0555de, user_role: primary, display_name: null, parent_user_id: null, created_at: 2025-06-08T11:01:31.896808+00:00}\n"
-                        },
-                        {
-                          "text": "35. 🔄 User state updated, should trigger routing re-render\n"
-                        },
-                        {
-                          "text": "36. 🎉 Client-side signup flow completed successfully\n"
-                        },
-                        {
-                          "text": "37. 🔄 Navigating to /chat after successful signup\n"
-                        },
-                        {
-                          "text": "38. 🔄 AuthContext user state changed: authenticated\n"
-                        },
-                        {
-                          "text": "39. 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)\n"
-                        },
-                        {
-                          "text": "40. Auth state changed: INITIAL_SESSION 1e052e32-ed55-422a-b8f4-02cacb0555de\n"
-                        },
-                        {
-                          "text": "41. 🔄 Loading profile after auth state change\n"
-                        },
-                        {
-                          "text": "42. 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)\n"
-                        },
-                        {
-                          "text": "43. User profile loaded successfully: {id: 1e052e32-ed55-422a-b8f4-02cacb0555de, user_role: primary, display_name: null, parent_user_id: null, created_at: 2025-06-08T11:01:31.896808+00:00}\n"
-                        },
-                        {
-                          "text": "44. 🔄 User state updated, should trigger routing re-render\n"
-                        },
-                        {
-                          "text": "45. 🔄 AuthContext user state changed: authenticated\n"
-                        },
-                        {
-                          "text": "46. User profile loaded successfully: {id: 1e052e32-ed55-422a-b8f4-02cacb0555de, user_role: primary, display_name: null, parent_user_id: null, created_at: 2025-06-08T11:01:31.896808+00:00}\n"
-                        },
-                        {
-                          "text": "47. 🔄 User state updated, should trigger routing re-render\n"
-                        },
-                        {
-                          "text": "48. 🔄 AuthContext user state changed: authenticated\n"
-                        },
-                        {
-                          "text": "49. %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold\n"
-                        },
-                        {
-                          "text": "50. Environment variables check:\n"
-                        },
-                        {
-                          "text": "51. EXPO_PUBLIC_SUPABASE_URL: https://djtunsxmzhxffehkclre.supabase.co\n"
-                        },
-                        {
-                          "text": "52. EXPO_PUBLIC_SUPABASE_ANON_KEY: SET\n"
-                        },
-                        {
-                          "text": "53. All env vars: []\n"
-                        },
-                        {
-                          "text": "54. \"shadow*\" style props are deprecated. Use \"boxShadow\".\n"
-                        },
-                        {
-                          "text": "55. Starting app initialization...\n"
-                        },
-                        {
-                          "text": "56. Running application \"main\" with appParams:\n {rootTag: #root, hydrate: false} \nDevelopment-level warnings: ON.\nPerformance optimizations: OFF.\n"
-                        },
-                        {
-                          "text": "57. App component rendering\n"
-                        },
-                        {
-                          "text": "58. Checking environment variables: {supabaseUrl: set, supabaseKey: set}\n"
-                        },
-                        {
-                          "text": "59. 🔄 AppRouter rendering\n"
-                        },
-                        {
-                          "text": "60. 🔄 AuthContext user state changed: not authenticated\n"
-                        },
-                        {
-                          "text": "61. Auth state changed: SIGNED_IN 1e052e32-ed55-422a-b8f4-02cacb0555de\n"
-                        },
-                        {
-                          "text": "62. 🔄 Loading profile after auth state change\n"
-                        },
-                        {
-                          "text": "63. 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)\n"
-                        },
-                        {
-                          "text": "64. %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold\n"
-                        },
-                        {
-                          "text": "65. Environment variables check:\n"
-                        },
-                        {
-                          "text": "66. EXPO_PUBLIC_SUPABASE_URL: https://djtunsxmzhxffehkclre.supabase.co\n"
-                        },
-                        {
-                          "text": "67. EXPO_PUBLIC_SUPABASE_ANON_KEY: SET\n"
-                        },
-                        {
-                          "text": "68. All env vars: []\n"
-                        },
-                        {
-                          "text": "69. \"shadow*\" style props are deprecated. Use \"boxShadow\".\n"
-                        },
-                        {
-                          "text": "70. Starting app initialization...\n"
-                        },
-                        {
-                          "text": "71. Running application \"main\" with appParams:\n {rootTag: #root, hydrate: false} \nDevelopment-level warnings: ON.\nPerformance optimizations: OFF.\n"
-                        },
-                        {
-                          "text": "72. App component rendering\n"
-                        },
-                        {
-                          "text": "73. Checking environment variables: {supabaseUrl: set, supabaseKey: set}\n"
-                        },
-                        {
-                          "text": "74. 🔄 AppRouter rendering\n"
-                        },
-                        {
-                          "text": "75. 🔄 AuthContext user state changed: not authenticated\n"
-                        },
-                        {
-                          "text": "76. Auth state changed: SIGNED_IN 1e052e32-ed55-422a-b8f4-02cacb0555de\n"
-                        },
-                        {
-                          "text": "77. 🔄 Loading profile after auth state change\n"
-                        },
-                        {
-                          "text": "78. 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)\n"
-                        },
-                        {
-                          "text": "79. Failed to load user profile: Error: Profile query timeout\n    at http://localhost:19006/static/js/bundle.js:83769:27\n"
-                        },
-                        {
-                          "text": "80. Using provided auth user despite profile error\n"
-                        },
-                        {
-                          "text": "81. 🔄 AuthContext user state changed: authenticated\n"
-                        },
-                        {
-                          "text": "82. 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)\n"
-                        },
-                        {
-                          "text": "83. Auth state changed: INITIAL_SESSION 1e052e32-ed55-422a-b8f4-02cacb0555de\n"
-                        },
-                        {
-                          "text": "84. 🔄 Loading profile after auth state change\n"
-                        },
-                        {
-                          "text": "85. 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)\n"
-                        },
-                        {
-                          "text": "86. User profile loaded successfully: {id: 1e052e32-ed55-422a-b8f4-02cacb0555de, user_role: primary, display_name: null, parent_user_id: null, created_at: 2025-06-08T11:01:31.896808+00:00}\n"
-                        },
-                        {
-                          "text": "87. 🔄 User state updated, should trigger routing re-render\n"
-                        },
-                        {
-                          "text": "88. 🔄 AuthContext user state changed: authenticated\n"
-                        },
-                        {
-                          "text": "89. User profile loaded successfully: {id: 1e052e32-ed55-422a-b8f4-02cacb0555de, user_role: primary, display_name: null, parent_user_id: null, created_at: 2025-06-08T11:01:31.896808+00:00}\n"
-                        },
-                        {
-                          "text": "90. 🔄 User state updated, should trigger routing re-render\n"
-                        },
-                        {
-                          "text": "91. 🔄 AuthContext user state changed: authenticated\n"
+                          "text": "📝 Creating account for: test-1749383303745@stagehand-demo.com\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-06-08T11:01:24.085Z",
+                      "startTime": "2025-06-08T11:48:15.152Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "skipped"
+                }
+              ],
+              "id": "23d705daed2e8844e6a8-1b234d6ddf3e165316f4",
+              "file": "stagehand-auth-test.spec.ts",
+              "line": 38,
+              "column": 7
+            },
+            {
+              "title": "should handle form validation with natural language",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 16798,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🔍 Testing form validation with Stagehand...\n"
+                        },
+                        {
+                          "text": "🔐 Password validation: {\n  passwordStrength: \u001b[32m''\u001b[39m,\n  validationMessages: [],\n  isPasswordAcceptable: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "💪 Strong password validation: { passwordStrength: \u001b[32m'Strong'\u001b[39m, isPasswordAcceptable: \u001b[33mtrue\u001b[39m }\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-08T11:48:15.153Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -757,9 +225,9 @@
                   "status": "expected"
                 }
               ],
-              "id": "495fdcaa1b28d7d70659-6f774aef16e5ce237dbb",
-              "file": "debug-existing-auth.spec.ts",
-              "line": 4,
+              "id": "23d705daed2e8844e6a8-a170476c38dadaf4df91",
+              "file": "stagehand-auth-test.spec.ts",
+              "line": 145,
               "column": 7
             }
           ]
@@ -769,10 +237,10 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-06-08T11:01:23.452Z",
-    "duration": 18029.453999999998,
+    "startTime": "2025-06-08T11:48:14.077Z",
+    "duration": 22556.59,
     "expected": 1,
-    "skipped": 0,
+    "skipped": 1,
     "unexpected": 0,
     "flaky": 0
   }
