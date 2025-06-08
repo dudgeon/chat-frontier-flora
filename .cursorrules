@@ -1,0 +1,35 @@
+# Cursor Rules for chat-frontier-flora
+
+## CRITICAL DEPLOYMENT WORKFLOW - NEVER VIOLATE
+**MANDATORY PROTOCOL: NO EXCEPTIONS**
+
+1. **Local Testing First**: All changes MUST be tested locally with full verification
+2. **PR for Preview Deploy**: Create PR to trigger preview deployment - NEVER merge without this step
+3. **Preview Testing**: Test changes on the preview URL thoroughly
+4. **CI Verification**: Ensure all CI checks pass on the preview
+5. **Only Then Merge**: Merge to main only after preview testing confirms everything works
+6. **Production Verification**: Test production deployment after merge
+
+**VIOLATION OF THIS WORKFLOW IS A CRITICAL FAILURE**
+
+If the AI attempts to merge to main without preview testing, it must:
+- STOP immediately
+- Acknowledge the workflow violation
+- Create PR for preview testing instead
+- Wait for explicit user approval after preview testing
+
+## Authentication and Testing Rules
+
+- Always run from apps/web directory for Expo commands
+- Use data-testid selectors for E2E tests, not input[name] selectors
+- Verify webpack compilation shows "compiled with 1 warning" not "1 error"
+- Test both localhost and production environments appropriately
+- Never claim success without evidence (curl responses, test results, user confirmation)
+
+## Cost Management
+
+- Use Sonnet for routine tasks
+- Only use Opus for complex architectural decisions
+- Make minimal changes - don't touch unrelated files
+- Stop immediately if the AI starts making unrelated changes
+- Document expensive mistakes to prevent repetition

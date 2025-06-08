@@ -65,9 +65,5 @@ export interface ProfileUpdateData {
     confirmNewPassword?: string;
 }
 
-export interface ValidationError {
-    field: string;
-    message: string;
-}
-
-export type ValidationResult = ValidationError[] | null;
+// Re-export validation types from the dedicated validation module
+export type { ValidationError, ValidationResult } from './validation';

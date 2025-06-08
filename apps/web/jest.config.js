@@ -24,7 +24,6 @@ module.exports = {
     '!src/setupTests.ts'
   ],
   testPathIgnorePatterns: [
-    '<rootDir>/src/components/auth/SignUpForm.test.tsx',
-    '<rootDir>/src/components/auth/ProtectedRoute.test.tsx'
+    '/node_modules/'
   ]
 };

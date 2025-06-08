@@ -83,7 +83,7 @@ describe('ProtectedRoute', () => {
         </ProtectedRoute>
       );
 
-      expect(screen.getByText('Loading...')).toBeInTheDocument();
+      expect(screen.getByText('Setting up your account...')).toBeInTheDocument();
       expect(screen.queryByText('Protected Content')).not.toBeInTheDocument();
     });
 
