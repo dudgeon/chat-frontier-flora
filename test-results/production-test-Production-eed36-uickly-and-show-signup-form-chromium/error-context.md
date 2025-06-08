@@ -1,0 +1,166 @@
+# Test info
+
+- Name: Production Authentication Flow >> should load homepage quickly and show signup form
+- Location: /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/production-test.spec.ts:18:7
+
+# Error details
+
+```
+Error: Timed out 10000ms waiting for expect(locator).toBeVisible()
+
+Locator: locator('[data-testid="signup-form"]')
+Expected: visible
+Received: <element(s) not found>
+Call log:
+  - expect.toBeVisible with timeout 10000ms
+  - waiting for locator('[data-testid="signup-form"]')
+
+    at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/production-test.spec.ts:25:63
+```
+
+# Page snapshot
+
+```yaml
+- main:
+  - heading "Chat Frontier Flora" [level=1]
+  - text: Chat Frontier Flora Create your account Create Account Full Name *
+  - textbox "Enter your first and last name"
+  - text: Email Address *
+  - textbox "Enter your email address"
+  - text: Password *
+  - textbox "Enter your password"
+  - text: Confirm Password *
+  - textbox "Confirm your password"
+  - text: "* I verify that I am 18 years of age or older * I agree to the Terms of Service and Privacy Policy * I consent to the use of my data for development and improvement purposes This includes anonymized usage analytics, feature testing, and service improvements. Your personal information will be protected according to our Privacy Policy. Create Account Already have an account? Sign In"
+```
+
+# Test source
+
+```ts
+   1 | import { test, expect } from '@playwright/test';
+   2 |
+   3 | /**
+   4 |  * 🌐 PRODUCTION AUTHENTICATION FLOW TEST
+   5 |  *
+   6 |  * Tests the optimized authentication flow on the live Netlify deployment.
+   7 |  * Verifies that loading times are improved and the flow works end-to-end.
+   8 |  */
+   9 |
+   10 | const PRODUCTION_URL = 'https://frontier-family-flora.netlify.app';
+   11 |
+   12 | test.describe('Production Authentication Flow', () => {
+   13 |   test.beforeEach(async ({ page }) => {
+   14 |     // Navigate to production site
+   15 |     await page.goto(PRODUCTION_URL);
+   16 |   });
+   17 |
+   18 |   test('should load homepage quickly and show signup form', async ({ page }) => {
+   19 |     console.log('🌐 Testing production homepage load...');
+   20 |
+   21 |     // Wait for page to load
+   22 |     await page.waitForLoadState('networkidle');
+   23 |
+   24 |     // Should show the signup form (unauthenticated state)
+>  25 |     await expect(page.locator('[data-testid="signup-form"]')).toBeVisible({ timeout: 10000 });
+      |                                                               ^ Error: Timed out 10000ms waiting for expect(locator).toBeVisible()
+   26 |
+   27 |     // Check that we have the optimized form fields
+   28 |     await expect(page.locator('input[name="fullName"]')).toBeVisible();
+   29 |     await expect(page.locator('input[name="email"]')).toBeVisible();
+   30 |     await expect(page.locator('input[name="password"]')).toBeVisible();
+   31 |
+   32 |     console.log('✅ Homepage loaded successfully with signup form');
+   33 |   });
+   34 |
+   35 |   test('should complete signup flow with optimized loading times', async ({ page }) => {
+   36 |     console.log('🔐 Testing optimized signup flow in production...');
+   37 |
+   38 |     // Wait for signup form to be ready
+   39 |     await page.waitForSelector('[data-testid="signup-form"]', { timeout: 10000 });
+   40 |
+   41 |     // Generate unique test user
+   42 |     const timestamp = Date.now();
+   43 |     const testEmail = `test-prod-${timestamp}@example.com`;
+   44 |     const testPassword = 'TestPassword123!';
+   45 |     const testName = `Production Test User ${timestamp}`;
+   46 |
+   47 |     console.log(`📝 Creating test user: ${testEmail}`);
+   48 |
+   49 |     // Fill out the signup form
+   50 |     await page.fill('input[name="fullName"]', testName);
+   51 |     await page.fill('input[name="email"]', testEmail);
+   52 |     await page.fill('input[name="password"]', testPassword);
+   53 |
+   54 |     // Check age verification and development consent
+   55 |     await page.check('input[name="ageVerification"]');
+   56 |     await page.check('input[name="developmentConsent"]');
+   57 |
+   58 |     // Start timing the signup process
+   59 |     const startTime = Date.now();
+   60 |
+   61 |     // Submit the form
+   62 |     await page.click('button[type="submit"]');
+   63 |
+   64 |     // Wait for loading state with optimized message
+   65 |     const loadingElement = page.locator('text=Setting up your account...');
+   66 |     if (await loadingElement.isVisible()) {
+   67 |       console.log('✅ Optimized loading message displayed');
+   68 |
+   69 |       // Wait for loading to complete (should be much faster now)
+   70 |       await loadingElement.waitFor({ state: 'hidden', timeout: 5000 });
+   71 |     }
+   72 |
+   73 |     // Wait for redirect to chat page
+   74 |     await page.waitForURL('**/chat', { timeout: 10000 });
+   75 |
+   76 |     const endTime = Date.now();
+   77 |     const totalTime = endTime - startTime;
+   78 |
+   79 |     console.log(`⏱️ Total signup time: ${totalTime}ms`);
+   80 |
+   81 |     // Verify we're on the chat page
+   82 |     await expect(page).toHaveURL(/.*\/chat/);
+   83 |
+   84 |     // Wait for chat page to fully load
+   85 |     await page.waitForSelector('[data-testid="chat-page"]', { timeout: 10000 });
+   86 |
+   87 |     // Verify the profile menu is accessible (not stuck in loading)
+   88 |     const profileMenuButton = page.locator('[data-testid="profile-menu-button"]');
+   89 |     await expect(profileMenuButton).toBeVisible({ timeout: 5000 });
+   90 |
+   91 |     console.log('✅ Chat page loaded successfully with profile menu visible');
+   92 |
+   93 |     // Test logout functionality
+   94 |     await profileMenuButton.click();
+   95 |
+   96 |     // Wait for profile menu to open
+   97 |     await page.waitForSelector('[data-testid="profile-menu"]', { timeout: 5000 });
+   98 |
+   99 |     // Click logout
+  100 |     await page.click('[data-testid="logout-button"]');
+  101 |
+  102 |     // Should redirect back to homepage
+  103 |     await page.waitForURL(PRODUCTION_URL, { timeout: 10000 });
+  104 |
+  105 |     // Should show signup form again
+  106 |     await expect(page.locator('[data-testid="signup-form"]')).toBeVisible({ timeout: 5000 });
+  107 |
+  108 |     console.log('✅ Logout successful, redirected to homepage');
+  109 |
+  110 |     // Verify the total time was within optimized range (should be under 5 seconds)
+  111 |     expect(totalTime).toBeLessThan(5000);
+  112 |     console.log(`🚀 SUCCESS: Signup completed in ${totalTime}ms (under 5s target)`);
+  113 |   });
+  114 |
+  115 |   test('should handle authentication state correctly after page reload', async ({ page }) => {
+  116 |     console.log('🔄 Testing authentication state persistence after reload...');
+  117 |
+  118 |     // First, create a user and get to chat page
+  119 |     await page.waitForSelector('[data-testid="signup-form"]', { timeout: 10000 });
+  120 |
+  121 |     const timestamp = Date.now();
+  122 |     const testEmail = `test-reload-${timestamp}@example.com`;
+  123 |     const testPassword = 'TestPassword123!';
+  124 |     const testName = `Reload Test User ${timestamp}`;
+  125 |
+```

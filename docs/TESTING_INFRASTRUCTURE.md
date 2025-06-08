@@ -324,3 +324,24 @@ npx playwright show-report
 - **Keyboard navigation**: Full accessibility validation
 
 This testing infrastructure ensures high-quality, accessible, and performant code delivery while maintaining comprehensive coverage across all application features.
+
+## Conservative Testing Protocol (Required)
+
+**To prevent regressions and ensure maximum reliability, follow this protocol for ALL changes:**
+
+1. **Local Development & Testing**
+   - Make changes on a feature branch.
+   - Run all relevant unit, integration, and E2E tests locally.
+   - Manually test all plausibly impacted features—not just those directly changed. Err on the side of over-testing. If in doubt, test it.
+   - Only proceed if all local tests and manual checks pass.
+
+2. **Pull Request & Preview Deploy**
+   - Open a PR from your feature branch to main.
+   - This triggers a Netlify deploy preview and full CI run (unit, E2E, accessibility, performance, etc.).
+   - Review the deploy preview and CI results. Manually test the preview if possible.
+
+3. **Merge to Main**
+   - Only merge if all preview/CI tests pass and manual checks are satisfactory.
+   - After merging, verify the production deployment and run a final round of regression checks.
+
+**Note:** This conservative, over-testing approach is required due to past regression issues. Never skip regression testing, even for "small" changes.

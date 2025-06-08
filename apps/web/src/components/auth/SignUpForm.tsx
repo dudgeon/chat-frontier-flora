@@ -30,7 +30,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useFormValidation, FieldConfig } from '../../hooks/useFormValidation';
 import { PasswordValidation } from './PasswordValidation';
 import { validateEmail, validatePassword } from '../../../utils/validation';
-import { Checkbox } from '../../components/Checkbox';
+import { Checkbox } from '../../../../../packages/ui/src/components/Checkbox';
 
 /**
  * 📋 Form Data Interface - PRD Compliant
@@ -44,7 +44,6 @@ interface SignUpFormData {
   confirmPassword: string;
   fullName: string; // PRD requires full_name, not displayName
   ageVerification: boolean; // PRD requirement: 18+ verification
-  termsConsent: boolean; // Standard terms agreement
   developmentConsent: boolean; // PRD requirement: development data usage consent
 }
 
@@ -276,7 +275,7 @@ export const SignUpForm: React.FC = () => {
           const currentValue = formValidation.getFieldProps('ageVerification').value === 'true';
           formValidation.updateField('ageVerification', (!currentValue).toString());
         }}
-        error={formValidation.getFieldProps('ageVerification').touched && formValidation.getFieldProps('ageVerification').error}
+        error={formValidation.getFieldProps('ageVerification').touched && formValidation.getFieldProps('ageVerification').error ? formValidation.getFieldProps('ageVerification').error || undefined : undefined}
       />
 
       {/* ⚠️ CRITICAL: Development Consent Checkbox (PRD Requirement) */}
@@ -287,7 +286,7 @@ export const SignUpForm: React.FC = () => {
           const currentValue = formValidation.getFieldProps('developmentConsent').value === 'true';
           formValidation.updateField('developmentConsent', (!currentValue).toString());
         }}
-        error={formValidation.getFieldProps('developmentConsent').touched && formValidation.getFieldProps('developmentConsent').error}
+        error={formValidation.getFieldProps('developmentConsent').touched && formValidation.getFieldProps('developmentConsent').error ? formValidation.getFieldProps('developmentConsent').error || undefined : undefined}
       />
 
       {/* ⚠️ CRITICAL: Submit Button with Real-time State Control */}

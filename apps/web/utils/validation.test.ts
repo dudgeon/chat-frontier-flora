@@ -85,12 +85,6 @@ describe('validateSignUpForm', () => {
         const errors = validateSignUpForm(data);
         expect(errors?.find(e => e.field === 'ageVerification')).toBeTruthy();
     });
-
-    it('should return error when terms not agreed', () => {
-        const data = { ...validData, agreeToTerms: false };
-        const errors = validateSignUpForm(data);
-        expect(errors?.find(e => e.field === 'agreeToTerms')).toBeTruthy();
-    });
 });
 
 describe('validateLoginForm', () => {

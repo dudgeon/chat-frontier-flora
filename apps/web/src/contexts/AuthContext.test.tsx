@@ -202,7 +202,7 @@ describe('AuthContext', () => {
         password: 'Test123!',
         options: {
           data: {
-            display_name: 'Test User',
+            full_name: 'Test User',
             user_role: 'primary',
           },
         },
@@ -539,7 +539,7 @@ describe('AuthContext', () => {
         password: 'Test123!',
         options: {
           data: {
-            display_name: 'Child User',
+            full_name: 'Child User',
             user_role: 'child',
           },
         },
