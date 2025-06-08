@@ -8,10 +8,6 @@
   EXPO_PUBLIC_SUPABASE_URL = "https://djtunsxmzhxffehkclre.supabase.co"
   EXPO_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRqdHVuc3htemh4ZmZlaGtjbHJlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkwODc3MTAsImV4cCI6MjA2NDY2MzcxMH0.noI6qZ2nqAaGCntLeWRSpbfDndHFVoliYNk-Ywr0At4"
 
-# Secrets scanning configuration - exclude public Supabase credentials
-[build.processing.secrets]
-  omit_keys = ["SUPABASE_URL", "EXPO_PUBLIC_SUPABASE_URL", "EXPO_PUBLIC_SUPABASE_ANON_KEY"]
-
 [dev]
   command = "npm run dev"
   port = 3000
