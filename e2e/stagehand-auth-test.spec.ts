@@ -12,7 +12,7 @@ import { z } from 'zod';
  * - Self-healing tests that work even when elements move
  */
 
-const PREVIEW_URL = 'https://deploy-preview-2--frontier-family-flora.netlify.app';
+// Use Playwright's baseURL which handles environment detection automatically
 
 test.describe('Stagehand Authentication Flow', () => {
   let stagehand: Stagehand;
@@ -40,8 +40,8 @@ test.describe('Stagehand Authentication Flow', () => {
 
     const page = stagehand.page;
 
-    // Navigate to the preview deployment
-    await page.goto(PREVIEW_URL);
+    // Navigate to the base URL (automatically determined by Playwright config)
+    await page.goto('/');
 
     // Instead of brittle selectors, use natural language!
     await page.act('wait for the signup form to be visible');
@@ -146,7 +146,7 @@ test.describe('Stagehand Authentication Flow', () => {
     console.log('🔍 Testing form validation with Stagehand...');
 
     const page = stagehand.page;
-    await page.goto(PREVIEW_URL);
+    await page.goto('/');
 
     // Test password validation in real-time
     await page.act('fill in the password field with "weak"');

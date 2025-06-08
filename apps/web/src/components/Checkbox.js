@@ -1,19 +1,19 @@
 import React from 'react';
 import { TouchableOpacity, Text, View, StyleSheet } from 'react-native';
 
-interface CheckboxProps {
-  label: string;
-  checked: boolean;
-  onPress: () => void;
-  error?: string;
-}
-
-export const Checkbox: React.FC<CheckboxProps> = ({
+export const Checkbox = ({
   label,
   checked,
   onPress,
   error,
 }) => {
+  const handleKeyDown = (e) => {
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      onPress();
+    }
+  };
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -23,13 +23,9 @@ export const Checkbox: React.FC<CheckboxProps> = ({
         accessible={true}
         accessibilityRole="checkbox"
         accessibilityState={{ checked }}
-        tabIndex={0}
-        onKeyDown={e => {
-          if (e.nativeEvent.key === ' ' || e.nativeEvent.key === 'Enter') {
-            e.preventDefault();
-            onPress();
-          }
-        }}
+        aria-checked={checked}
+        focusable={true}
+        onKeyDown={handleKeyDown}
       >
         <View style={[styles.box, checked && styles.checked, error && styles.error]}>
           {checked && <View style={styles.checkmark} />}

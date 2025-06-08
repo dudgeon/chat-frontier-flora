@@ -9,11 +9,9 @@ import { z } from 'zod';
  * These tests use natural language and adapt to UI changes automatically.
  */
 
-// Test against both preview and production
-const TEST_URLS = {
-  preview: 'https://deploy-preview-2--frontier-family-flora.netlify.app',
-  production: 'https://frontier-family-flora.netlify.app'
-};
+// Production URL is constant, preview URL comes from environment
+const PRODUCTION_URL = 'https://frontier-family-flora.netlify.app';
+const PREVIEW_URL = process.env.DEPLOY_PREVIEW_URL;
 
 test.describe('Stagehand Production Authentication', () => {
   let stagehand: Stagehand;
@@ -39,8 +37,13 @@ test.describe('Stagehand Production Authentication', () => {
   test('should complete full authentication flow on preview deployment', async () => {
     console.log('🎭 Testing complete authentication flow with Stagehand on preview...');
 
+    // Skip if no preview URL is set
+    if (!PREVIEW_URL) {
+      test.skip(true, 'No DEPLOY_PREVIEW_URL set - this test requires a deploy preview');
+    }
+
     const page = stagehand.page;
-    await page.goto(TEST_URLS.preview);
+    await page.goto(PREVIEW_URL!);
 
     // Wait for page to load and verify we're on the signup page
     const pageState = await page.extract({
@@ -183,7 +186,13 @@ test.describe('Stagehand Production Authentication', () => {
     console.log('🔍 Testing form validation with Stagehand...');
 
     const page = stagehand.page;
-    await page.goto(TEST_URLS.preview);
+
+    // Skip if no preview URL is set
+    if (!PREVIEW_URL) {
+      test.skip(true, 'No DEPLOY_PREVIEW_URL set - this test requires a deploy preview');
+    }
+
+    await page.goto(PREVIEW_URL!);
 
     // Test with invalid email
     await page.act('fill in the email field with "invalid-email"');
@@ -222,7 +231,7 @@ test.describe('Stagehand Production Authentication', () => {
     console.log('🌐 Testing production deployment with Stagehand...');
 
     const page = stagehand.page;
-    await page.goto(TEST_URLS.production);
+    await page.goto(PRODUCTION_URL);
 
     // Verify production site loads correctly
     const productionState = await page.extract({

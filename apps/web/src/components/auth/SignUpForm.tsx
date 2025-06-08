@@ -30,7 +30,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useFormValidation, FieldConfig } from '../../hooks/useFormValidation';
 import { PasswordValidation } from './PasswordValidation';
 import { validateEmail, validatePassword } from '../../../utils/validation';
-import { Checkbox } from '../../../../../packages/ui/src/components/Checkbox';
+import { Checkbox } from '../Checkbox';
 
 /**
  * 📋 Form Data Interface - PRD Compliant
