@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { AuthProvider } from './contexts/AuthContext';
-import { SignUpForm } from './components/auth/SignUpForm';
+import { AppRouter } from './components/AppRouter';
 
 console.log('Starting app initialization...');
 
@@ -17,7 +17,7 @@ function App() {
   return (
     <AuthProvider>
       <View style={styles.container}>
-        <SignUpForm />
+        <AppRouter />
       </View>
     </AuthProvider>
   );
@@ -26,10 +26,7 @@ function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#f5f5f5',
-    padding: 20,
   },
 });
 

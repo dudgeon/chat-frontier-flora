@@ -68,7 +68,7 @@ test.describe('Authentication Flow', () => {
 
       // Should redirect or show success state
       // This will depend on your app's post-registration flow
-      await expect(page).toHaveURL(/dashboard|profile|home/, { timeout: 10000 });
+      await expect(page).toHaveURL(/chat/, { timeout: 10000 });
     });
 
     test('should show validation errors for invalid input', async ({ page }) => {
@@ -132,7 +132,7 @@ test.describe('Authentication Flow', () => {
       await submitButton.click();
 
       // Should redirect to authenticated area
-      await expect(page).toHaveURL(/dashboard|profile|home/, { timeout: 10000 });
+      await expect(page).toHaveURL(/chat/, { timeout: 10000 });
     });
 
     test('should show error for invalid credentials', async ({ page }) => {
@@ -158,7 +158,7 @@ test.describe('Authentication Flow', () => {
   test.describe('Role-Based Access Control', () => {
     test('should restrict access to protected routes when not authenticated', async ({ page }) => {
       // Try to access a protected route directly
-      await page.goto('/dashboard');
+      await page.goto('/chat');
 
       // Should redirect to login or show access denied
       await expect(page).toHaveURL(/login|signin|auth/, { timeout: 5000 });
@@ -180,14 +180,14 @@ test.describe('Authentication Flow', () => {
         await submitButton.click();
 
         // Wait for authentication to complete
-        await page.waitForURL(/dashboard|profile|home/, { timeout: 10000 });
+        await page.waitForURL(/chat/, { timeout: 10000 });
       }
 
       // Now try to access protected route
-      await page.goto('/dashboard');
+      await page.goto('/chat');
 
-      // Should be able to access the dashboard
-      await expect(page).toHaveURL(/dashboard/);
+      // Should be able to access the chat page
+      await expect(page).toHaveURL(/chat/);
     });
   });
 
@@ -206,10 +206,14 @@ test.describe('Authentication Flow', () => {
         const submitButton = page.locator('[data-testid="submit-button"], button[type="submit"], button:has-text("Login"), button:has-text("Sign In")').first();
         await submitButton.click();
 
-        await page.waitForURL(/dashboard|profile|home/, { timeout: 10000 });
+        await page.waitForURL(/chat/, { timeout: 10000 });
       }
 
-      // Now log out
+      // Now log out - first open the profile menu
+      const profileMenuToggle = page.locator('[data-testid="profile-menu-toggle"]');
+      await profileMenuToggle.click();
+
+      // Wait for profile menu to open and then click logout
       const logoutButton = page.locator('[data-testid="logout-button"], button:has-text("Logout"), button:has-text("Sign Out")').first();
       await logoutButton.click();
 
@@ -217,7 +221,7 @@ test.describe('Authentication Flow', () => {
       await expect(page).toHaveURL(/login|signin|auth|^\/$/, { timeout: 5000 });
 
       // Should not be able to access protected routes
-      await page.goto('/dashboard');
+      await page.goto('/chat');
       await expect(page).toHaveURL(/login|signin|auth/, { timeout: 5000 });
     });
   });

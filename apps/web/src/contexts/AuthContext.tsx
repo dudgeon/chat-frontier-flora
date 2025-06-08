@@ -51,6 +51,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+  // Flag to prevent race condition during signup
+  const [isSigningUp, setIsSigningUp] = useState(false);
 
   /**
    * 🔄 loadUserProfile - CRITICAL FUNCTION
@@ -64,105 +66,248 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
    * - Altering state updates breaks UI updates
    *
    * @param userId - Supabase auth user ID (must match user_profiles.id)
+   * @param retryCount - Number of retries for profile loading (default: 0)
    */
-  const loadUserProfile = async (userId: string) => {
+  const loadUserProfile = async (userId: string, retryCount: number = 0, authUser?: any) => {
     try {
-      // ⚠️ CRITICAL QUERY: Must match database schema exactly
-      const { data: profile, error: profileError } = await supabase
+      console.log(`🔄 Loading profile for user ${userId} (attempt ${retryCount + 1})`);
+
+      // Add timeout to prevent hanging queries
+      const queryPromise = supabase
         .from('user_profiles')
         .select('*')
         .eq('id', userId)
         .single();
 
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Profile query timeout')), 2000)
+      );
+
+      // ⚠️ CRITICAL QUERY: Must match database schema exactly
+      const { data: profile, error: profileError } = await Promise.race([
+        queryPromise,
+        timeoutPromise
+      ]) as any;
+
       if (profileError) {
-        console.error('Error loading user profile:', profileError);
+        console.error('Profile loading error:', profileError);
+
+        // If profile doesn't exist and we haven't retried much, wait and retry
+        if (profileError.code === 'PGRST116' && retryCount < 2) {
+          console.log(`Profile not found, retrying in ${(retryCount + 1) * 500}ms... (attempt ${retryCount + 1}/2)`);
+          await new Promise(resolve => setTimeout(resolve, (retryCount + 1) * 500));
+          return loadUserProfile(userId, retryCount + 1, authUser);
+        }
+
+        console.error('Error loading user profile after retries:', profileError);
         throw profileError;
       }
 
-      // ⚠️ CRITICAL: Get auth user for complete user object
-      const { data: { user: authUser } } = await supabase.auth.getUser();
+      // ⚠️ CRITICAL: Use provided authUser or get current user
+      let currentAuthUser = authUser;
+      if (!currentAuthUser) {
+        const { data: { user } } = await supabase.auth.getUser();
+        currentAuthUser = user;
+      }
 
-      if (!authUser) {
+      if (!currentAuthUser) {
         throw new Error('No authenticated user found');
       }
 
       // ⚠️ CRITICAL STATE UPDATE: This triggers UI re-renders
       // Create AuthUser object that extends Supabase User with profile
       const userWithProfile: AuthUser = {
-        ...authUser,
+        ...currentAuthUser,
         profile: profile as UserProfile,
       };
 
       setUser(userWithProfile);
       setError(null);
+      setLoading(false);
+      console.log('User profile loaded successfully:', userWithProfile.profile);
+      console.log('🔄 User state updated, should trigger routing re-render');
     } catch (err) {
       console.error('Failed to load user profile:', err);
       setError(err instanceof Error ? err : new Error('Failed to load user profile'));
-      setUser(null);
+
+      // ⚠️ CRITICAL: Always set loading to false to prevent infinite loading
+      setLoading(false);
+
+      // Use provided authUser if available, otherwise try to get session
+      if (authUser) {
+        console.log('Using provided auth user despite profile error');
+        setUser({
+          ...authUser,
+          profile: null as any,
+        } as AuthUser);
+      } else {
+        try {
+          // Add timeout to session check too
+          const sessionPromise = supabase.auth.getSession();
+          const sessionTimeout = new Promise((_, reject) =>
+            setTimeout(() => reject(new Error('Session check timeout')), 1000)
+          );
+
+          const { data: { session } } = await Promise.race([
+            sessionPromise,
+            sessionTimeout
+          ]) as any;
+
+          if (session?.user) {
+            console.log('Keeping auth user despite profile error, user can still access app');
+            setUser({
+              ...session.user,
+              profile: null as any,
+            } as AuthUser);
+          } else {
+            setUser(null);
+          }
+        } catch (sessionErr) {
+          console.error('Session check also failed:', sessionErr);
+          // If everything fails, just clear the user
+          setUser(null);
+        }
+      }
     }
   };
 
   /**
-   * 🔐 signUp - CRITICAL AUTHENTICATION FUNCTION
+   * 🔐 signUp - HYBRID AUTHENTICATION FUNCTION
    *
-   * Creates new user account with Supabase Auth and user profile.
-   * This is the main registration function used by SignUpForm.
-   *
-   * ⚠️ BREAKING CHANGES RISK:
-   * - Changing function signature breaks SignUpForm component
-   * - Modifying profile creation breaks user data
-   * - Altering error handling breaks form feedback
-   *
-   * PROCESS:
-   * 1. Create auth user with Supabase
-   * 2. Create user profile in database (manual + trigger backup)
-   * 3. Load profile into context state
+   * Tries Edge Function first, falls back to improved client-side approach.
+   * This ensures authentication works while Edge Function is being set up.
    *
    * @param email - User email address
-   * @param password - User password (hashed by Supabase)
-   * @param displayName - Optional display name
+   * @param password - User password
+   * @param fullName - User's full name (PRD requirement)
    * @param role - User role ('primary' or 'child')
+   * @param ageVerification - Age verification consent (PRD requirement)
+   * @param developmentConsent - Development data usage consent (PRD requirement)
    */
-  const signUp = async (email: string, password: string, displayName?: string, role: 'primary' | 'child' = 'primary') => {
+  const signUp = async (
+    email: string,
+    password: string,
+    fullName: string,
+    role: 'primary' | 'child' = 'primary',
+    ageVerification: boolean = false,
+    developmentConsent: boolean = false
+  ) => {
     try {
-      // ⚠️ CRITICAL: Supabase auth user creation
-      const { data: { user: authUser }, error } = await supabase.auth.signUp({
+      setIsSigningUp(true);
+      console.log('🔐 Starting signup for:', email);
+
+      // Try Edge Function first
+      try {
+        console.log('🌐 Attempting Edge Function signup...');
+        const response = await fetch('/api/signup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email,
+            password,
+            fullName,
+            ageVerification,
+            developmentConsent,
+            role,
+          }),
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          if (result.success) {
+            console.log('✅ Edge Function signup successful');
+
+            // Sign in the user with the created credentials
+            const { data: { user: authUser }, error: signInError } = await supabase.auth.signInWithPassword({
+              email,
+              password,
+            });
+
+            if (signInError) throw signInError;
+            if (!authUser?.id) throw new Error('No user ID returned from sign in');
+
+            await loadUserProfile(authUser.id, 0, authUser);
+            console.log('🎉 Edge Function signup flow completed');
+            return;
+          }
+        }
+
+        console.log('⚠️ Edge Function not available, falling back to client-side approach');
+      } catch (edgeError) {
+        console.log('⚠️ Edge Function failed, falling back to client-side approach:', edgeError);
+      }
+
+      // Fallback: Improved client-side approach
+      console.log('🔄 Using improved client-side signup...');
+
+      // Create auth user
+      console.log('📝 About to create auth user...');
+      const { data: { user: authUser }, error: authError } = await supabase.auth.signUp({
         email,
         password,
         options: {
           data: {
-            display_name: displayName || 'User',
+            full_name: fullName,
             user_role: role,
           }
         }
       });
 
-      if (error) throw error;
-      if (!authUser?.id) throw new Error('No user ID returned from signup');
-
-      // ⚠️ CRITICAL: Manual profile creation (backup for trigger)
-      // This ensures profile exists even if database trigger fails
-      try {
-        const { error: profileError } = await supabase
-          .from('user_profiles')
-          .insert({
-            id: authUser.id,
-            display_name: displayName || 'User',
-            user_role: role,
-          });
-
-        if (profileError) {
-          console.warn('Profile creation error (might be handled by trigger):', profileError);
-        }
-      } catch (profileErr) {
-        console.warn('Profile creation failed (might be handled by trigger):', profileErr);
+      console.log('📝 Auth signup response received');
+      if (authError) {
+        console.error('❌ Auth error:', authError);
+        throw authError;
+      }
+      if (!authUser?.id) {
+        console.error('❌ No user ID in response');
+        throw new Error('No user ID returned from signup');
       }
 
-      // ⚠️ CRITICAL: Load profile to complete registration
-      await loadUserProfile(authUser.id);
+      console.log('✅ Auth user created:', authUser.id);
+
+      // Small delay to ensure auth user is fully committed to database
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      // Create profile with all PRD fields
+      console.log('📝 About to create user profile...');
+      const { error: profileError } = await supabase
+        .from('user_profiles')
+        .insert({
+          id: authUser.id,
+          full_name: fullName,
+          user_role: role,
+          age_verification: ageVerification,
+          development_consent: developmentConsent,
+          consent_timestamp: new Date().toISOString(),
+        });
+
+      console.log('📝 Profile creation response received');
+      if (profileError) {
+        console.error('❌ Profile creation failed:', profileError);
+        throw profileError;
+      }
+
+      console.log('✅ Profile created successfully');
+
+            // Load profile to complete registration
+      console.log('📝 About to load user profile...');
+      await loadUserProfile(authUser.id, 0, authUser);
+      console.log('🎉 Client-side signup flow completed successfully');
+
+      // Navigate to chat page after successful signup
+      console.log('🔄 Navigating to /chat after successful signup');
+      // Use a small delay to ensure state updates are processed
+      setTimeout(() => {
+        window.location.href = '/chat';
+      }, 100);
+
     } catch (err) {
-      console.error('Error during sign up:', err);
+      console.error('❌ Error during sign up:', err);
       throw err;
+    } finally {
+      setIsSigningUp(false);
     }
   };
 
@@ -184,7 +329,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       if (error) throw error;
       if (!authUser?.id) throw new Error('No user ID returned from sign in');
 
-      await loadUserProfile(authUser.id);
+      await loadUserProfile(authUser.id, 0, authUser);
     } catch (err) {
       console.error('Error during sign in:', err);
       throw err;
@@ -270,9 +415,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     // ⚠️ CRITICAL: Check for existing session on app start
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) {
-        loadUserProfile(session.user.id);
+        loadUserProfile(session.user.id, 0, session.user);
+      } else {
+        setLoading(false);
       }
-      setLoading(false);
     });
 
     // ⚠️ CRITICAL: Listen for auth state changes
@@ -280,19 +426,44 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       async (event, session) => {
         console.log('Auth state changed:', event, session?.user?.id);
 
-        if (session?.user) {
-          await loadUserProfile(session.user.id);
-        } else {
-          setUser(null);
+        // Skip profile loading during signup to prevent race conditions
+        if (isSigningUp) {
+          console.log('🔄 Skipping profile loading during signup process');
+          return;
         }
 
-        setLoading(false);
+        if (session?.user) {
+          console.log('🔄 Loading profile after auth state change');
+          try {
+            // Add timeout to prevent infinite loading
+            const timeoutPromise = new Promise((_, reject) =>
+              setTimeout(() => reject(new Error('Profile loading timeout')), 10000)
+            );
+
+            await Promise.race([
+              loadUserProfile(session.user.id, 0, session.user),
+              timeoutPromise
+            ]);
+          } catch (error) {
+            console.error('Profile loading failed in auth state change:', error);
+
+            // Even if profile loading fails, set a minimal user so app works
+            setUser({
+              ...session.user,
+              profile: null as any,
+            } as AuthUser);
+            setLoading(false);
+          }
+        } else {
+          setUser(null);
+          setLoading(false);
+        }
       }
     );
 
     // ⚠️ CRITICAL: Cleanup subscription to prevent memory leaks
     return () => subscription.unsubscribe();
-  }, []);
+  }, [isSigningUp]); // Include isSigningUp to prevent race conditions during signup
 
   // ⚠️ CRITICAL: Context value object - changing this breaks all consumers
   const value: AuthContextType = {
@@ -308,9 +479,30 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     isChildUser,
   };
 
+  // Debug log when user state changes
+  React.useEffect(() => {
+    console.log('🔄 AuthContext user state changed:', user ? 'authenticated' : 'not authenticated');
+  }, [user]);
+
   return (
     <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );
+};
+
+/**
+ * 🪝 useAuth Hook
+ *
+ * Custom hook to access authentication context.
+ * Provides type-safe access to auth state and methods.
+ *
+ * @throws Error if used outside AuthProvider
+ */
+export const useAuth = (): AuthContextType => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
 };

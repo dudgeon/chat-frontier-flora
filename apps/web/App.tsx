@@ -1,17 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { AuthProvider } from './src/contexts/AuthContext';
-import { SignUpForm } from './src/components/auth/SignUpForm';
+import { AuthFlow } from './src/components/auth/AuthFlow';
 
 export default function App() {
   return (
     <AuthProvider>
-      <View style={styles.container}>
-        <Text style={styles.title}>Chat Frontier Flora</Text>
-        <Text style={styles.subtitle}>Authentication Demo</Text>
-        <View style={styles.formContainer}>
-          <SignUpForm />
-        </View>
+      <View style={styles.container} role="main">
+        <Text style={styles.title} role="heading" aria-level={1}>
+          Chat Frontier Flora
+        </Text>
+        <AuthFlow />
       </View>
     </AuthProvider>
   );
@@ -30,14 +29,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 8,
     marginTop: 40,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-    marginBottom: 40,
-  },
-  formContainer: {
-    width: '100%',
-    maxWidth: 400,
   },
 });

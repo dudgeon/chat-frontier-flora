@@ -1,48 +1,229 @@
-<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="13.507778">
-<testsuite name="auth-flow.spec.ts" timestamp="2025-06-07T16:40:36.406Z" hostname="chromium" tests="1" failures="1" skipped="0" time="7.796" errors="0">
-<testcase name="Authentication Flow › Initial App State › should load the app and show authentication UI" classname="auth-flow.spec.ts" time="7.796">
-<failure message="auth-flow.spec.ts:24:9 should load the app and show authentication UI" type="FAILURE">
-<![CDATA[  [chromium] › auth-flow.spec.ts:24:9 › Authentication Flow › Initial App State › should load the app and show authentication UI 
-
-    Error: Timed out 5000ms waiting for expect(locator).toHaveTitle(expected)
-
-    Locator: locator(':root')
-    Expected pattern: /Chat Frontier Flora/
-    Received string:  "web"
-    Call log:
-      - expect.toHaveTitle with timeout 5000ms
-      - waiting for locator(':root')
-        9 × locator resolved to <html lang="en">…</html>
-          - unexpected value "web"
-
-
-      24 |     test('should load the app and show authentication UI', async ({ page }) => {
-      25 |       // Wait for the app to load
-    > 26 |       await expect(page).toHaveTitle(/Chat Frontier Flora/);
-         |                          ^
-      27 |
-      28 |       // Should show some form of authentication UI
-      29 |       // This will depend on your app's initial state
-        at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/auth-flow.spec.ts:26:26
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    test-results/auth-flow-Authentication-F-d0c45--and-show-authentication-UI-chromium/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    test-results/auth-flow-Authentication-F-d0c45--and-show-authentication-UI-chromium/video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../test-results/auth-flow-Authentication-F-d0c45--and-show-authentication-UI-chromium/error-context.md
-]]>
-</failure>
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="18.029453999999998">
+<testsuite name="debug-existing-auth.spec.ts" timestamp="2025-06-08T11:01:23.788Z" hostname="chromium" tests="1" failures="0" skipped="0" time="16.612" errors="0">
+<testcase name="Existing Auth Debug › debug what happens with existing auth session" classname="debug-existing-auth.spec.ts" time="16.612">
 <system-out>
-<![CDATA[
-[[ATTACHMENT|auth-flow-Authentication-F-d0c45--and-show-authentication-UI-chromium/test-failed-1.png]]
+<![CDATA[=== STARTING EXISTING AUTH DEBUG ===
+BROWSER LOG: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+BROWSER LOG: Environment variables check:
+BROWSER LOG: EXPO_PUBLIC_SUPABASE_URL: https://djtunsxmzhxffehkclre.supabase.co
+BROWSER LOG: EXPO_PUBLIC_SUPABASE_ANON_KEY: SET
+BROWSER LOG: All env vars: []
+BROWSER LOG: "shadow*" style props are deprecated. Use "boxShadow".
+BROWSER LOG: Starting app initialization...
+BROWSER LOG: Running application "main" with appParams:
+ {rootTag: #root, hydrate: false} 
+Development-level warnings: ON.
+Performance optimizations: OFF.
+BROWSER LOG: App component rendering
+BROWSER LOG: Checking environment variables: {supabaseUrl: set, supabaseKey: set}
+BROWSER LOG: 🔄 AppRouter rendering
+BROWSER LOG: 🔄 AuthContext user state changed: not authenticated
+BROWSER LOG: props.pointerEvents is deprecated. Use style.pointerEvents
+BROWSER LOG: Auth state changed: INITIAL_SESSION undefined
+BROWSER LOG: [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
+BROWSER LOG: [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
+BROWSER LOG: 🔐 Starting signup for: test1749380486464@example.com
+BROWSER LOG: 🌐 Attempting Edge Function signup...
+BROWSER LOG: Auth state changed: INITIAL_SESSION undefined
+BROWSER LOG: 🔄 Skipping profile loading during signup process
+BROWSER LOG: Failed to load resource: the server responded with a status of 404 (Not Found)
+1. Submitted signup form
+BROWSER LOG: ⚠️ Edge Function not available, falling back to client-side approach
+BROWSER LOG: 🔄 Using improved client-side signup...
+BROWSER LOG: 📝 About to create auth user...
+BROWSER LOG: Auth state changed: SIGNED_IN 1e052e32-ed55-422a-b8f4-02cacb0555de
+BROWSER LOG: 🔄 Skipping profile loading during signup process
+BROWSER LOG: 📝 Auth signup response received
+BROWSER LOG: ✅ Auth user created: 1e052e32-ed55-422a-b8f4-02cacb0555de
+BROWSER LOG: 📝 About to create user profile...
+BROWSER LOG: 📝 Profile creation response received
+BROWSER LOG: ✅ Profile created successfully
+BROWSER LOG: 📝 About to load user profile...
+BROWSER LOG: 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)
+BROWSER LOG: User profile loaded successfully: {id: 1e052e32-ed55-422a-b8f4-02cacb0555de, user_role: primary, display_name: null, parent_user_id: null, created_at: 2025-06-08T11:01:31.896808+00:00}
+BROWSER LOG: 🔄 User state updated, should trigger routing re-render
+BROWSER LOG: 🎉 Client-side signup flow completed successfully
+BROWSER LOG: 🔄 Navigating to /chat after successful signup
+BROWSER LOG: 🔄 AuthContext user state changed: authenticated
+BROWSER LOG: 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)
+BROWSER LOG: Auth state changed: INITIAL_SESSION 1e052e32-ed55-422a-b8f4-02cacb0555de
+BROWSER LOG: 🔄 Loading profile after auth state change
+BROWSER LOG: 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)
+BROWSER LOG: User profile loaded successfully: {id: 1e052e32-ed55-422a-b8f4-02cacb0555de, user_role: primary, display_name: null, parent_user_id: null, created_at: 2025-06-08T11:01:31.896808+00:00}
+BROWSER LOG: 🔄 User state updated, should trigger routing re-render
+BROWSER LOG: 🔄 AuthContext user state changed: authenticated
+BROWSER LOG: User profile loaded successfully: {id: 1e052e32-ed55-422a-b8f4-02cacb0555de, user_role: primary, display_name: null, parent_user_id: null, created_at: 2025-06-08T11:01:31.896808+00:00}
+BROWSER LOG: 🔄 User state updated, should trigger routing re-render
+BROWSER LOG: 🔄 AuthContext user state changed: authenticated
+BROWSER LOG: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+BROWSER LOG: Environment variables check:
+BROWSER LOG: EXPO_PUBLIC_SUPABASE_URL: https://djtunsxmzhxffehkclre.supabase.co
+BROWSER LOG: EXPO_PUBLIC_SUPABASE_ANON_KEY: SET
+BROWSER LOG: All env vars: []
+BROWSER LOG: "shadow*" style props are deprecated. Use "boxShadow".
+BROWSER LOG: Starting app initialization...
+BROWSER LOG: Running application "main" with appParams:
+ {rootTag: #root, hydrate: false} 
+Development-level warnings: ON.
+Performance optimizations: OFF.
+2. Redirected to /chat
+BROWSER LOG: App component rendering
+BROWSER LOG: Checking environment variables: {supabaseUrl: set, supabaseKey: set}
+BROWSER LOG: 🔄 AppRouter rendering
+BROWSER LOG: 🔄 AuthContext user state changed: not authenticated
+BROWSER LOG: Auth state changed: SIGNED_IN 1e052e32-ed55-422a-b8f4-02cacb0555de
+BROWSER LOG: 🔄 Loading profile after auth state change
+BROWSER LOG: 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)
+3. Page loaded after redirect
+4. Body text after auth: 
+    Loading...
+  
 
-[[ATTACHMENT|auth-flow-Authentication-F-d0c45--and-show-authentication-UI-chromium/video.webm]]
+...
+5. Loading elements found: [33m1[39m
+6. Chat elements found: [33m0[39m
+=== SIMULATING PAGE REFRESH ===
+BROWSER LOG: %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+BROWSER LOG: Environment variables check:
+BROWSER LOG: EXPO_PUBLIC_SUPABASE_URL: https://djtunsxmzhxffehkclre.supabase.co
+BROWSER LOG: EXPO_PUBLIC_SUPABASE_ANON_KEY: SET
+BROWSER LOG: All env vars: []
+BROWSER LOG: "shadow*" style props are deprecated. Use "boxShadow".
+BROWSER LOG: Starting app initialization...
+BROWSER LOG: Running application "main" with appParams:
+ {rootTag: #root, hydrate: false} 
+Development-level warnings: ON.
+Performance optimizations: OFF.
+BROWSER LOG: App component rendering
+BROWSER LOG: Checking environment variables: {supabaseUrl: set, supabaseKey: set}
+BROWSER LOG: 🔄 AppRouter rendering
+BROWSER LOG: 🔄 AuthContext user state changed: not authenticated
+BROWSER LOG: Auth state changed: SIGNED_IN 1e052e32-ed55-422a-b8f4-02cacb0555de
+BROWSER LOG: 🔄 Loading profile after auth state change
+BROWSER LOG: 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)
+BROWSER LOG: Failed to load user profile: Error: Profile query timeout
+    at http://localhost:19006/static/js/bundle.js:83769:27
+BROWSER LOG: Using provided auth user despite profile error
+BROWSER LOG: 🔄 AuthContext user state changed: authenticated
+BROWSER LOG: 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)
+BROWSER LOG: Auth state changed: INITIAL_SESSION 1e052e32-ed55-422a-b8f4-02cacb0555de
+BROWSER LOG: 🔄 Loading profile after auth state change
+BROWSER LOG: 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)
+BROWSER LOG: User profile loaded successfully: {id: 1e052e32-ed55-422a-b8f4-02cacb0555de, user_role: primary, display_name: null, parent_user_id: null, created_at: 2025-06-08T11:01:31.896808+00:00}
+BROWSER LOG: 🔄 User state updated, should trigger routing re-render
+BROWSER LOG: 🔄 AuthContext user state changed: authenticated
+BROWSER LOG: User profile loaded successfully: {id: 1e052e32-ed55-422a-b8f4-02cacb0555de, user_role: primary, display_name: null, parent_user_id: null, created_at: 2025-06-08T11:01:31.896808+00:00}
+BROWSER LOG: 🔄 User state updated, should trigger routing re-render
+BROWSER LOG: 🔄 AuthContext user state changed: authenticated
+7. Body text after refresh: 
+    Chat Frontier Flora☰Chat Feature Coming Soon!We're working hard to bring you an amazing chat experience.Welcome, test1749380486464@example.com!
+  
 
-[[ATTACHMENT|auth-flow-Authentication-F-d0c45--and-show-authentication-UI-chromium/error-context.md]]
+...
+8. Loading elements after refresh: [33m0[39m
+✅ Loading resolved after refresh
+=== FINAL CONSOLE LOGS ===
+1. %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+2. Environment variables check:
+3. EXPO_PUBLIC_SUPABASE_URL: https://djtunsxmzhxffehkclre.supabase.co
+4. EXPO_PUBLIC_SUPABASE_ANON_KEY: SET
+5. All env vars: []
+6. "shadow*" style props are deprecated. Use "boxShadow".
+7. Starting app initialization...
+8. Running application "main" with appParams:
+ {rootTag: #root, hydrate: false} 
+Development-level warnings: ON.
+Performance optimizations: OFF.
+9. App component rendering
+10. Checking environment variables: {supabaseUrl: set, supabaseKey: set}
+11. 🔄 AppRouter rendering
+12. 🔄 AuthContext user state changed: not authenticated
+13. props.pointerEvents is deprecated. Use style.pointerEvents
+14. Auth state changed: INITIAL_SESSION undefined
+15. [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
+16. [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o
+17. 🔐 Starting signup for: test1749380486464@example.com
+18. 🌐 Attempting Edge Function signup...
+19. Auth state changed: INITIAL_SESSION undefined
+20. 🔄 Skipping profile loading during signup process
+21. Failed to load resource: the server responded with a status of 404 (Not Found)
+22. ⚠️ Edge Function not available, falling back to client-side approach
+23. 🔄 Using improved client-side signup...
+24. 📝 About to create auth user...
+25. Auth state changed: SIGNED_IN 1e052e32-ed55-422a-b8f4-02cacb0555de
+26. 🔄 Skipping profile loading during signup process
+27. 📝 Auth signup response received
+28. ✅ Auth user created: 1e052e32-ed55-422a-b8f4-02cacb0555de
+29. 📝 About to create user profile...
+30. 📝 Profile creation response received
+31. ✅ Profile created successfully
+32. 📝 About to load user profile...
+33. 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)
+34. User profile loaded successfully: {id: 1e052e32-ed55-422a-b8f4-02cacb0555de, user_role: primary, display_name: null, parent_user_id: null, created_at: 2025-06-08T11:01:31.896808+00:00}
+35. 🔄 User state updated, should trigger routing re-render
+36. 🎉 Client-side signup flow completed successfully
+37. 🔄 Navigating to /chat after successful signup
+38. 🔄 AuthContext user state changed: authenticated
+39. 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)
+40. Auth state changed: INITIAL_SESSION 1e052e32-ed55-422a-b8f4-02cacb0555de
+41. 🔄 Loading profile after auth state change
+42. 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)
+43. User profile loaded successfully: {id: 1e052e32-ed55-422a-b8f4-02cacb0555de, user_role: primary, display_name: null, parent_user_id: null, created_at: 2025-06-08T11:01:31.896808+00:00}
+44. 🔄 User state updated, should trigger routing re-render
+45. 🔄 AuthContext user state changed: authenticated
+46. User profile loaded successfully: {id: 1e052e32-ed55-422a-b8f4-02cacb0555de, user_role: primary, display_name: null, parent_user_id: null, created_at: 2025-06-08T11:01:31.896808+00:00}
+47. 🔄 User state updated, should trigger routing re-render
+48. 🔄 AuthContext user state changed: authenticated
+49. %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+50. Environment variables check:
+51. EXPO_PUBLIC_SUPABASE_URL: https://djtunsxmzhxffehkclre.supabase.co
+52. EXPO_PUBLIC_SUPABASE_ANON_KEY: SET
+53. All env vars: []
+54. "shadow*" style props are deprecated. Use "boxShadow".
+55. Starting app initialization...
+56. Running application "main" with appParams:
+ {rootTag: #root, hydrate: false} 
+Development-level warnings: ON.
+Performance optimizations: OFF.
+57. App component rendering
+58. Checking environment variables: {supabaseUrl: set, supabaseKey: set}
+59. 🔄 AppRouter rendering
+60. 🔄 AuthContext user state changed: not authenticated
+61. Auth state changed: SIGNED_IN 1e052e32-ed55-422a-b8f4-02cacb0555de
+62. 🔄 Loading profile after auth state change
+63. 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)
+64. %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+65. Environment variables check:
+66. EXPO_PUBLIC_SUPABASE_URL: https://djtunsxmzhxffehkclre.supabase.co
+67. EXPO_PUBLIC_SUPABASE_ANON_KEY: SET
+68. All env vars: []
+69. "shadow*" style props are deprecated. Use "boxShadow".
+70. Starting app initialization...
+71. Running application "main" with appParams:
+ {rootTag: #root, hydrate: false} 
+Development-level warnings: ON.
+Performance optimizations: OFF.
+72. App component rendering
+73. Checking environment variables: {supabaseUrl: set, supabaseKey: set}
+74. 🔄 AppRouter rendering
+75. 🔄 AuthContext user state changed: not authenticated
+76. Auth state changed: SIGNED_IN 1e052e32-ed55-422a-b8f4-02cacb0555de
+77. 🔄 Loading profile after auth state change
+78. 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)
+79. Failed to load user profile: Error: Profile query timeout
+    at http://localhost:19006/static/js/bundle.js:83769:27
+80. Using provided auth user despite profile error
+81. 🔄 AuthContext user state changed: authenticated
+82. 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)
+83. Auth state changed: INITIAL_SESSION 1e052e32-ed55-422a-b8f4-02cacb0555de
+84. 🔄 Loading profile after auth state change
+85. 🔄 Loading profile for user 1e052e32-ed55-422a-b8f4-02cacb0555de (attempt 1)
+86. User profile loaded successfully: {id: 1e052e32-ed55-422a-b8f4-02cacb0555de, user_role: primary, display_name: null, parent_user_id: null, created_at: 2025-06-08T11:01:31.896808+00:00}
+87. 🔄 User state updated, should trigger routing re-render
+88. 🔄 AuthContext user state changed: authenticated
+89. User profile loaded successfully: {id: 1e052e32-ed55-422a-b8f4-02cacb0555de, user_role: primary, display_name: null, parent_user_id: null, created_at: 2025-06-08T11:01:31.896808+00:00}
+90. 🔄 User state updated, should trigger routing re-render
+91. 🔄 AuthContext user state changed: authenticated
 ]]>
 </system-out>
 </testcase>

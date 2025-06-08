@@ -26,7 +26,7 @@ import { ValidationError, ValidationResult, SignUpFormData, LoginFormData, Profi
 
 // ⚠️ CRITICAL CONSTANTS: These define validation rules
 // DO NOT CHANGE without updating backend and documentation
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const PASSWORD_MIN_LENGTH = 8;
 
 /**

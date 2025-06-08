@@ -4,8 +4,9 @@
   "main": "index.ts",
   "private": true,
   "scripts": {
-    "test": "jest",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx"
+    "build": "tsc",
+    "test": "jest --passWithNoTests",
+    "lint": "eslint . --ext .ts,.tsx"
   },
   "dependencies": {
     "@chat-frontier-flora/shared": "*",

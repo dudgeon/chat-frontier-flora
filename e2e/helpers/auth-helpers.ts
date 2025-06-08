@@ -95,7 +95,7 @@ export class AuthHelpers {
     await this.submitForm();
 
     // Wait for successful registration
-    await expect(this.page).toHaveURL(/dashboard|profile|home/, { timeout: 10000 });
+    await expect(this.page).toHaveURL(/chat/, { timeout: 10000 });
   }
 
   /**
@@ -107,7 +107,7 @@ export class AuthHelpers {
     await this.submitForm();
 
     // Wait for successful login
-    await expect(this.page).toHaveURL(/dashboard|profile|home/, { timeout: 10000 });
+    await expect(this.page).toHaveURL(/chat/, { timeout: 10000 });
   }
 
   /**
@@ -125,10 +125,10 @@ export class AuthHelpers {
    * Check if user is authenticated by trying to access a protected route
    */
   async isAuthenticated(): Promise<boolean> {
-    await this.page.goto('/dashboard');
+    await this.page.goto('/chat');
 
     try {
-      await expect(this.page).toHaveURL(/dashboard/, { timeout: 3000 });
+      await expect(this.page).toHaveURL(/chat/, { timeout: 3000 });
       return true;
     } catch {
       return false;
