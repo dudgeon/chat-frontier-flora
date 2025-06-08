@@ -11,7 +11,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 2
+      "actualWorkers": 3
     },
     "preserveOutput": "always",
     "reporter": [
@@ -43,7 +43,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 2
+          "actualWorkers": 3
         },
         "id": "chromium",
         "name": "chromium",
@@ -59,7 +59,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 2
+          "actualWorkers": 3
         },
         "id": "firefox",
         "name": "firefox",
@@ -75,7 +75,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 2
+          "actualWorkers": 3
         },
         "id": "webkit",
         "name": "webkit",
@@ -91,7 +91,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 2
+          "actualWorkers": 3
         },
         "id": "Mobile Chrome",
         "name": "Mobile Chrome",
@@ -107,7 +107,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 2
+          "actualWorkers": 3
         },
         "id": "Mobile Safari",
         "name": "Mobile Safari",
@@ -133,21 +133,21 @@
   },
   "suites": [
     {
-      "title": "stagehand-auth-test.spec.ts",
-      "file": "stagehand-auth-test.spec.ts",
+      "title": "stagehand-production-auth.spec.ts",
+      "file": "stagehand-production-auth.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Stagehand Authentication Flow",
-          "file": "stagehand-auth-test.spec.ts",
-          "line": 17,
+          "title": "Stagehand Production Authentication",
+          "file": "stagehand-production-auth.spec.ts",
+          "line": 18,
           "column": 6,
           "specs": [
             {
-              "title": "should complete signup flow with natural language actions",
-              "ok": true,
+              "title": "should complete full authentication flow on preview deployment",
+              "ok": false,
               "tags": [],
               "tests": [
                 {
@@ -160,34 +160,59 @@
                     {
                       "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "skipped",
-                      "duration": 0,
-                      "errors": [],
-                      "stdout": [
+                      "status": "timedOut",
+                      "duration": 31176,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
                         {
-                          "text": "🎭 Testing Stagehand-powered authentication flow...\n"
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
                         },
                         {
-                          "text": "📝 Creating account for: test-1749383303745@stagehand-demo.com\n"
+                          "message": "StagehandDefaultError: \nHey! We're sorry you ran into an error. \nIf you need help, please open a Github issue or reach out to us on Slack: https://stagehand.dev/slack\n\nFull error:\npage.evaluate: Target page, context or browser has been closed\n\u001b[2m    at _StagehandPage.<anonymous> (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/@browserbasehq/stagehand/dist/index.js:3437:15)\u001b[22m\n\u001b[2m    at rejected (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/@browserbasehq/stagehand/dist/index.js:73:29)\u001b[22m"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🎭 Testing complete authentication flow with Stagehand on preview...\n"
+                        },
+                        {
+                          "text": "📄 Initial page state: {\n  isSignupPage: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  pageTitle: \u001b[32m'Chat Frontier Flora'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "👤 Creating test user: stagehand-test-1749383485416@example.com\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-06-08T11:48:15.152Z",
+                      "startTime": "2025-06-08T11:51:17.000Z",
                       "annotations": [],
-                      "attachments": []
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results/stagehand-production-auth--f58a0--flow-on-preview-deployment-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "_error-context-1",
+                          "contentType": "text/markdown",
+                          "path": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results/stagehand-production-auth--f58a0--flow-on-preview-deployment-chromium/error-context.md"
+                        }
+                      ]
                     }
                   ],
-                  "status": "skipped"
+                  "status": "unexpected"
                 }
               ],
-              "id": "23d705daed2e8844e6a8-1b234d6ddf3e165316f4",
-              "file": "stagehand-auth-test.spec.ts",
-              "line": 38,
+              "id": "8ccf6718ab6a9cbf060b-d39b5fd954d270b8022a",
+              "file": "stagehand-production-auth.spec.ts",
+              "line": 39,
               "column": 7
             },
             {
-              "title": "should handle form validation with natural language",
+              "title": "should handle form validation errors gracefully",
               "ok": true,
               "tags": [],
               "tests": [
@@ -202,22 +227,22 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 16798,
+                      "duration": 16000,
                       "errors": [],
                       "stdout": [
                         {
                           "text": "🔍 Testing form validation with Stagehand...\n"
                         },
                         {
-                          "text": "🔐 Password validation: {\n  passwordStrength: \u001b[32m''\u001b[39m,\n  validationMessages: [],\n  isPasswordAcceptable: \u001b[33mfalse\u001b[39m\n}\n"
+                          "text": "⚠️ Validation state: {\n  emailError: \u001b[32m'Please enter a valid email address'\u001b[39m,\n  passwordError: \u001b[32m'At least 8 characters, At least one uppercase letter, At least one lowercase letter, At least one number, At least one special character (!@#$%^&*)'\u001b[39m,\n  submitButtonEnabled: \u001b[33mfalse\u001b[39m,\n  overallFormValid: \u001b[33mfalse\u001b[39m\n}\n"
                         },
                         {
-                          "text": "💪 Strong password validation: { passwordStrength: \u001b[32m'Strong'\u001b[39m, isPasswordAcceptable: \u001b[33mtrue\u001b[39m }\n"
+                          "text": "💪 Improved validation: { passwordStrength: \u001b[32m'Strong'\u001b[39m, passwordAccepted: \u001b[33mtrue\u001b[39m }\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-06-08T11:48:15.153Z",
+                      "startTime": "2025-06-08T11:51:17.000Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -225,9 +250,53 @@
                   "status": "expected"
                 }
               ],
-              "id": "23d705daed2e8844e6a8-a170476c38dadaf4df91",
-              "file": "stagehand-auth-test.spec.ts",
-              "line": 145,
+              "id": "8ccf6718ab6a9cbf060b-c41f2f70c8f5714e0e4c",
+              "file": "stagehand-production-auth.spec.ts",
+              "line": 182,
+              "column": 7
+            },
+            {
+              "title": "should work on production deployment",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 8053,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🌐 Testing production deployment with Stagehand...\n"
+                        },
+                        {
+                          "text": "🏭 Production state: {\n  siteLoaded: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  isResponsive: \u001b[33mtrue\u001b[39m,\n  noErrors: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "✅ Production site verification passed!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-08T11:51:16.998Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "8ccf6718ab6a9cbf060b-9f7a2085720312178bae",
+              "file": "stagehand-production-auth.spec.ts",
+              "line": 221,
               "column": 7
             }
           ]
@@ -237,11 +306,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-06-08T11:48:14.077Z",
-    "duration": 22556.59,
-    "expected": 1,
-    "skipped": 1,
-    "unexpected": 0,
+    "startTime": "2025-06-08T11:51:15.622Z",
+    "duration": 32982.572,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 1,
     "flaky": 0
   }
 }

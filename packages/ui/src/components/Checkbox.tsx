@@ -20,6 +20,16 @@ export const Checkbox: React.FC<CheckboxProps> = ({
         style={styles.row}
         onPress={onPress}
         activeOpacity={0.7}
+        accessible={true}
+        accessibilityRole="checkbox"
+        accessibilityState={{ checked }}
+        tabIndex={0}
+        onKeyDown={e => {
+          if (e.nativeEvent.key === ' ' || e.nativeEvent.key === 'Enter') {
+            e.preventDefault();
+            onPress();
+          }
+        }}
       >
         <View style={[styles.box, checked && styles.checked, error && styles.error]}>
           {checked && <View style={styles.checkmark} />}

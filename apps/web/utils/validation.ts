@@ -118,7 +118,7 @@ export const validatePassword = (password: string): ValidationError | null => {
  * - Email format and presence
  * - Password strength requirements
  * - Password confirmation match
- * - Terms agreement requirement
+ * - Age verification requirement
  *
  * BREAKING CHANGES RISK:
  * - Removing any validation allows invalid data
@@ -160,15 +160,6 @@ export const validateSignUpForm = (data: SignUpFormData): ValidationResult => {
         errors.push({
             field: 'ageVerification',
             message: 'You must verify that you are 18 years of age or older'
-        });
-    }
-
-    // ⚠️ CRITICAL: Terms agreement validation
-    // Users MUST agree to terms before account creation
-    if (!data.agreeToTerms) {
-        errors.push({
-            field: 'agreeToTerms',
-            message: 'You must agree to the terms and conditions'
         });
     }
 

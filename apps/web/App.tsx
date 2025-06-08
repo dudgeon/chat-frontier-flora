@@ -8,7 +8,7 @@ export default function App() {
     <AuthProvider>
       <View style={styles.container} role="main">
         <Text style={styles.title} role="heading" aria-level={1}>
-          Chat Frontier Flora
+          Frontier.Family
         </Text>
         <AuthFlow />
       </View>

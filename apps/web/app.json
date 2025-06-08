@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Chat Frontier Flora",
+    "name": "Frontier.Family",
     "slug": "chat-frontier-flora",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -24,8 +24,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png",
-      "name": "Chat Frontier Flora",
-      "shortName": "Chat Flora",
+      "name": "Frontier.Family",
+      "shortName": "Frontier.Family",
       "description": "AI-powered family communication platform",
       "themeColor": "#ffffff",
       "backgroundColor": "#ffffff",

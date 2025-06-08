@@ -6,8 +6,8 @@ const isApiConfigured = !!OPENAI_API_KEY;
 
 document.querySelector('#app').innerHTML = `
   <div>
-    <h1>Chat Frontier Flora</h1>
-    <p>Welcome to the Chat Frontier Flora project!</p>
+    <h1>Frontier.Family</h1>
+    <p>Welcome to the Frontier.Family project!</p>
     ${!isApiConfigured ? `
       <div class="warning">
         <p>⚠️ OpenAI API key not configured!</p>
@@ -31,4 +31,4 @@ document.querySelector('#app').innerHTML = `
       border-radius: 4px;
     }
   </style>
-` 
+`
