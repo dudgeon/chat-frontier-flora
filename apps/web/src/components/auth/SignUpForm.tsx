@@ -182,7 +182,7 @@ export const SignUpForm: React.FC = () => {
   };
 
   return (
-    <ScrollView style={styles.container} testID="signup-form">
+    <ScrollView style={styles.container}>
       <Text style={styles.title}>Create Account</Text>
 
       {/* ⚠️ CRITICAL: Full Name Input Field (PRD Requirement) */}
