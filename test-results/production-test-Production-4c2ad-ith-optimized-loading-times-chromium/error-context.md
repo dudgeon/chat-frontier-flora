@@ -6,26 +6,26 @@
 # Error details
 
 ```
-Error: page.fill: Test timeout of 30000ms exceeded.
+Error: page.click: Test timeout of 30000ms exceeded.
 Call log:
-  - waiting for locator('input[name="fullName"]')
+  - waiting for locator('button[type="submit"]')
 
-    at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/production-test.spec.ts:50:16
+    at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/production-test.spec.ts:62:16
 ```
 
 # Page snapshot
 
 ```yaml
 - text: Create Account Full Name *
-- textbox "Enter your first and last name"
+- textbox "Enter your first and last name": Production Test User 1749408702808
 - text: Email Address *
-- textbox "Enter your email address"
+- textbox "Enter your email address": test-prod-1749408702808@example.com
 - text: Password *
-- textbox "Enter your password"
-- text: Confirm Password *
+- textbox "Enter your password": TestPassword123!
+- text: Password StrengthStrong 96% strength ✓At least 8 characters ✓At least one uppercase letter ✓At least one lowercase letter ✓At least one number ✓At least one special character (!@#$%^&*) ✓ All requirements met Confirm Password *
 - textbox "Confirm your password"
-- checkbox "I verify that I am 18 years of age or older"
-- checkbox "I consent to the use of my data for development and improvement purposes"
+- checkbox "I verify that I am 18 years of age or older" [checked]
+- checkbox "I consent to the use of my data for development and improvement purposes" [checked]
 - text: Create Account Already have an account? Sign In
 ```
 
@@ -59,9 +59,9 @@ Call log:
    25 |     await expect(page.locator('[data-testid="signup-form"]')).toBeVisible({ timeout: 10000 });
    26 |
    27 |     // Check that we have the optimized form fields
-   28 |     await expect(page.locator('input[name="fullName"]')).toBeVisible();
-   29 |     await expect(page.locator('input[name="email"]')).toBeVisible();
-   30 |     await expect(page.locator('input[name="password"]')).toBeVisible();
+   28 |     await expect(page.locator('[data-testid="full-name"]')).toBeVisible();
+   29 |     await expect(page.locator('[data-testid="email"]')).toBeVisible();
+   30 |     await expect(page.locator('[data-testid="password"]')).toBeVisible();
    31 |
    32 |     console.log('✅ Homepage loaded successfully with signup form');
    33 |   });
@@ -81,20 +81,20 @@ Call log:
    47 |     console.log(`📝 Creating test user: ${testEmail}`);
    48 |
    49 |     // Fill out the signup form
->  50 |     await page.fill('input[name="fullName"]', testName);
-      |                ^ Error: page.fill: Test timeout of 30000ms exceeded.
-   51 |     await page.fill('input[name="email"]', testEmail);
-   52 |     await page.fill('input[name="password"]', testPassword);
+   50 |     await page.fill('[data-testid="full-name"]', testName);
+   51 |     await page.fill('[data-testid="email"]', testEmail);
+   52 |     await page.fill('[data-testid="password"]', testPassword);
    53 |
    54 |     // Check age verification and development consent
-   55 |     await page.check('input[name="ageVerification"]');
-   56 |     await page.check('input[name="developmentConsent"]');
+   55 |     await page.check('[data-testid="age-verification"]');
+   56 |     await page.check('[data-testid="development-consent"]');
    57 |
    58 |     // Start timing the signup process
    59 |     const startTime = Date.now();
    60 |
    61 |     // Submit the form
-   62 |     await page.click('button[type="submit"]');
+>  62 |     await page.click('button[type="submit"]');
+      |                ^ Error: page.click: Test timeout of 30000ms exceeded.
    63 |
    64 |     // Wait for loading state with optimized message
    65 |     const loadingElement = page.locator('text=Setting up your account...');
@@ -159,11 +159,11 @@ Call log:
   124 |     const testName = `Reload Test User ${timestamp}`;
   125 |
   126 |     // Quick signup
-  127 |     await page.fill('input[name="fullName"]', testName);
-  128 |     await page.fill('input[name="email"]', testEmail);
-  129 |     await page.fill('input[name="password"]', testPassword);
-  130 |     await page.check('input[name="ageVerification"]');
-  131 |     await page.check('input[name="developmentConsent"]');
+  127 |     await page.fill('[data-testid="full-name"]', testName);
+  128 |     await page.fill('[data-testid="email"]', testEmail);
+  129 |     await page.fill('[data-testid="password"]', testPassword);
+  130 |     await page.check('[data-testid="age-verification"]');
+  131 |     await page.check('[data-testid="development-consent"]');
   132 |     await page.click('button[type="submit"]');
   133 |
   134 |     // Wait for chat page
@@ -183,4 +183,16 @@ Call log:
   148 |       await loadingElement.waitFor({ state: 'hidden', timeout: 3000 });
   149 |     }
   150 |
+  151 |     const reloadEndTime = Date.now();
+  152 |     const reloadTime = reloadEndTime - reloadStartTime;
+  153 |
+  154 |     // Should still be on chat page and functional
+  155 |     await expect(page).toHaveURL(/.*\/chat/);
+  156 |     await expect(page.locator('[data-testid="chat-page"]')).toBeVisible({ timeout: 5000 });
+  157 |     await expect(page.locator('[data-testid="profile-menu-button"]')).toBeVisible({ timeout: 5000 });
+  158 |
+  159 |     console.log(`⏱️ Page reload and auth restoration time: ${reloadTime}ms`);
+  160 |     console.log('✅ Authentication state persisted correctly after reload');
+  161 |
+  162 |     // Verify reload time is within optimized range
 ```

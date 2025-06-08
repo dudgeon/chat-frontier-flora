@@ -6,37 +6,32 @@
 # Error details
 
 ```
-Error: page.fill: Test timeout of 30000ms exceeded.
+Error: page.click: Test timeout of 30000ms exceeded.
 Call log:
-  - waiting for locator('input[name="fullName"]')
+  - waiting for locator('button[type="submit"]')
 
-    at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/production-test.spec.ts:127:16
+    at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/production-test.spec.ts:132:16
 ```
 
 # Page snapshot
 
 ```yaml
 - text: Create Account Full Name *
-- textbox "Enter your first and last name"
+- textbox "Enter your first and last name": Reload Test User 1749408705499
 - text: Email Address *
-- textbox "Enter your email address"
+- textbox "Enter your email address": test-reload-1749408705499@example.com
 - text: Password *
-- textbox "Enter your password"
-- text: Confirm Password *
+- textbox "Enter your password": TestPassword123!
+- text: Password StrengthStrong 96% strength ✓At least 8 characters ✓At least one uppercase letter ✓At least one lowercase letter ✓At least one number ✓At least one special character (!@#$%^&*) ✓ All requirements met Confirm Password *
 - textbox "Confirm your password"
-- checkbox "I verify that I am 18 years of age or older"
-- checkbox "I consent to the use of my data for development and improvement purposes"
+- checkbox "I verify that I am 18 years of age or older" [checked]
+- checkbox "I consent to the use of my data for development and improvement purposes" [checked]
 - text: Create Account Already have an account? Sign In
 ```
 
 # Test source
 
 ```ts
-   27 |     // Check that we have the optimized form fields
-   28 |     await expect(page.locator('input[name="fullName"]')).toBeVisible();
-   29 |     await expect(page.locator('input[name="email"]')).toBeVisible();
-   30 |     await expect(page.locator('input[name="password"]')).toBeVisible();
-   31 |
    32 |     console.log('✅ Homepage loaded successfully with signup form');
    33 |   });
    34 |
@@ -55,13 +50,13 @@ Call log:
    47 |     console.log(`📝 Creating test user: ${testEmail}`);
    48 |
    49 |     // Fill out the signup form
-   50 |     await page.fill('input[name="fullName"]', testName);
-   51 |     await page.fill('input[name="email"]', testEmail);
-   52 |     await page.fill('input[name="password"]', testPassword);
+   50 |     await page.fill('[data-testid="full-name"]', testName);
+   51 |     await page.fill('[data-testid="email"]', testEmail);
+   52 |     await page.fill('[data-testid="password"]', testPassword);
    53 |
    54 |     // Check age verification and development consent
-   55 |     await page.check('input[name="ageVerification"]');
-   56 |     await page.check('input[name="developmentConsent"]');
+   55 |     await page.check('[data-testid="age-verification"]');
+   56 |     await page.check('[data-testid="development-consent"]');
    57 |
    58 |     // Start timing the signup process
    59 |     const startTime = Date.now();
@@ -132,13 +127,13 @@ Call log:
   124 |     const testName = `Reload Test User ${timestamp}`;
   125 |
   126 |     // Quick signup
-> 127 |     await page.fill('input[name="fullName"]', testName);
-      |                ^ Error: page.fill: Test timeout of 30000ms exceeded.
-  128 |     await page.fill('input[name="email"]', testEmail);
-  129 |     await page.fill('input[name="password"]', testPassword);
-  130 |     await page.check('input[name="ageVerification"]');
-  131 |     await page.check('input[name="developmentConsent"]');
-  132 |     await page.click('button[type="submit"]');
+  127 |     await page.fill('[data-testid="full-name"]', testName);
+  128 |     await page.fill('[data-testid="email"]', testEmail);
+  129 |     await page.fill('[data-testid="password"]', testPassword);
+  130 |     await page.check('[data-testid="age-verification"]');
+  131 |     await page.check('[data-testid="development-consent"]');
+> 132 |     await page.click('button[type="submit"]');
+      |                ^ Error: page.click: Test timeout of 30000ms exceeded.
   133 |
   134 |     // Wait for chat page
   135 |     await page.waitForURL('**/chat', { timeout: 10000 });
@@ -180,9 +175,9 @@ Call log:
   171 |     await page.waitForSelector('[data-testid="signup-form"]', { timeout: 10000 });
   172 |
   173 |     // Try to signup with invalid email
-  174 |     await page.fill('input[name="fullName"]', 'Test User');
-  175 |     await page.fill('input[name="email"]', 'invalid-email');
-  176 |     await page.fill('input[name="password"]', 'weak');
+  174 |     await page.fill('[data-testid="full-name"]', 'Test User');
+  175 |     await page.fill('[data-testid="email"]', 'invalid-email');
+  176 |     await page.fill('[data-testid="password"]', 'weak');
   177 |
   178 |     // Submit should be disabled or show validation errors
   179 |     const submitButton = page.locator('button[type="submit"]');

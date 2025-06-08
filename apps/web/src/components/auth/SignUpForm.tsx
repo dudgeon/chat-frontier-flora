@@ -28,6 +28,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ScrollView } from 'react-native';
 import { useAuth } from '../../hooks/useAuth';
 import { useFormValidation, FieldConfig } from '../../hooks/useFormValidation';
+import { useSubmitButton, getSubmitButtonStyles, getSubmitButtonTextStyles } from '../../hooks/useSubmitButton';
 import { PasswordValidation } from './PasswordValidation';
 import { validateEmail, validatePassword } from '../../../utils/validation';
 import { Checkbox } from '../Checkbox';
@@ -131,6 +132,26 @@ export const SignUpForm: React.FC = () => {
 
   // ⚠️ CRITICAL: Form validation hook for real-time state management
   const formValidation = useFormValidation(formConfig);
+
+  // ⚠️ CRITICAL: Submit button state management with comprehensive validation
+  const submitButtonState = useSubmitButton({
+    isFormValid: formValidation.isFormValid,
+    isFormTouched: formValidation.isFormTouched,
+    isFormCompleted: formValidation.isFormCompleted,
+    isLoading: loading,
+    defaultText: 'Create Account',
+    loadingText: 'Creating Account...',
+    disabledText: 'Complete Form to Continue',
+    requireCompletion: true, // Require all fields to be completed
+    requireTouched: false, // Don't require form to be touched
+    minCompletionPercentage: 100, // Require 100% completion
+    currentCompletionPercentage: formValidation.completionPercentage,
+    customValidation: () => {
+      // Additional custom validation can be added here
+      // For now, rely on form validation
+      return true;
+    },
+  });
 
   /**
    * 🚀 handleSubmit - CRITICAL SUBMISSION FUNCTION
@@ -246,6 +267,7 @@ export const SignUpForm: React.FC = () => {
         <PasswordValidation
           password={formValidation.getFieldProps('password').value}
           showRules={showPasswordValidation}
+          style={styles.passwordValidation}
         />
       </View>
 
@@ -291,25 +313,41 @@ export const SignUpForm: React.FC = () => {
         error={formValidation.getFieldProps('developmentConsent').touched && formValidation.getFieldProps('developmentConsent').error ? formValidation.getFieldProps('developmentConsent').error || undefined : undefined}
       />
 
-      {/* ⚠️ CRITICAL: Submit Button with Real-time State Control */}
+      {/* ⚠️ CRITICAL: Submit Button with Enhanced State Management */}
       <TouchableOpacity
         testID="submit-button"
-        style={[
+        style={getSubmitButtonStyles(
+          submitButtonState,
           styles.button,
-          // ⚠️ CRITICAL: Button disabled when form invalid OR loading
-          (!formValidation.isFormValid || loading) && styles.buttonDisabled
-        ]}
+          styles.buttonDisabled,
+          styles.buttonLoading
+        )}
         onPress={handleSubmit}
-        // ⚠️ CRITICAL: Prevent submission when form invalid or loading
-        disabled={!formValidation.isFormValid || loading}
+        disabled={submitButtonState.isDisabled}
+        accessibilityLabel={submitButtonState.accessibilityLabel}
+        accessibilityHint={submitButtonState.accessibilityHint}
+        accessibilityRole="button"
+        accessibilityState={{
+          disabled: submitButtonState.isDisabled,
+          busy: loading,
+        }}
       >
-        <Text style={[
+        <Text style={getSubmitButtonTextStyles(
+          submitButtonState,
           styles.buttonText,
-          (!formValidation.isFormValid || loading) && styles.buttonTextDisabled
-        ]}>
-          {loading ? 'Creating Account...' : 'Create Account'}
+          styles.buttonTextDisabled,
+          styles.buttonTextLoading
+        )}>
+          {submitButtonState.buttonText}
         </Text>
       </TouchableOpacity>
+
+      {/* ⚠️ HELPFUL: Submit Button Status Feedback */}
+      {submitButtonState.isDisabled && submitButtonState.disabledReason && (
+        <Text style={styles.submitHintText}>
+          {submitButtonState.disabledReason}
+        </Text>
+      )}
 
       {/* Form Status Indicator for Development */}
       {__DEV__ && (
@@ -320,6 +358,20 @@ export const SignUpForm: React.FC = () => {
           <Text style={styles.debugText}>
             Form Touched: {formValidation.isFormTouched ? 'Yes' : 'No'}
           </Text>
+          <Text style={styles.debugText}>
+            Form Completed: {formValidation.isFormCompleted ? 'Yes' : 'No'}
+          </Text>
+          <Text style={styles.debugText}>
+            Completion: {formValidation.completedFieldsCount}/{formValidation.totalRequiredFieldsCount} ({formValidation.completionPercentage}%)
+          </Text>
+          <Text style={styles.debugText}>
+            Submit Button: {submitButtonState.buttonStyle} - {submitButtonState.isDisabled ? 'Disabled' : 'Enabled'}
+          </Text>
+          {submitButtonState.disabledReason && (
+            <Text style={styles.debugText}>
+              Disabled Reason: {submitButtonState.disabledReason}
+            </Text>
+          )}
         </View>
       )}
     </ScrollView>
@@ -374,6 +426,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginTop: 4,
   },
+  passwordValidation: {
+    // Additional styling for password validation component if needed
+  },
   checkboxContainer: {
     flexDirection: 'row',
     alignItems: 'flex-start',
@@ -426,6 +481,11 @@ const styles = StyleSheet.create({
   buttonDisabled: {
     backgroundColor: '#ccc',
   },
+  // Loading button style for visual feedback
+  buttonLoading: {
+    backgroundColor: '#0056b3',
+    opacity: 0.8,
+  },
   buttonText: {
     color: '#fff',
     fontSize: 16,
@@ -433,6 +493,18 @@ const styles = StyleSheet.create({
   },
   buttonTextDisabled: {
     color: '#999',
+  },
+  buttonTextLoading: {
+    color: '#fff',
+    opacity: 0.9,
+  },
+  // Submit button status hint text
+  submitHintText: {
+    fontSize: 12,
+    color: '#666',
+    textAlign: 'center',
+    marginTop: 8,
+    fontStyle: 'italic',
   },
   debugContainer: {
     marginTop: 20,

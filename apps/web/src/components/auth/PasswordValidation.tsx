@@ -1,4 +1,5 @@
 import React from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 
 export interface PasswordRule {
   id: string;
@@ -43,14 +44,19 @@ export const PASSWORD_RULES: PasswordRule[] = [
 export interface PasswordValidationProps {
   password: string;
   showRules?: boolean;
-  className?: string;
+  style?: any;
 }
 
 export const PasswordValidation: React.FC<PasswordValidationProps> = ({
   password,
   showRules = true,
-  className = '',
+  style,
 }) => {
+  // Get screen dimensions for responsive design
+  const { width: screenWidth } = Dimensions.get('window');
+  const isSmallScreen = screenWidth < 768; // Mobile breakpoint
+  const isVerySmallScreen = screenWidth < 480; // Very small mobile screens
+
   // Calculate which rules are met
   const ruleResults = PASSWORD_RULES.map(rule => ({
     ...rule,
@@ -80,20 +86,20 @@ export const PasswordValidation: React.FC<PasswordValidationProps> = ({
 
   if (strengthScore < 40) {
     strengthLabel = 'Weak';
-    strengthColor = 'text-red-600';
-    progressColor = 'bg-red-500';
+    strengthColor = '#dc2626'; // red-600
+    progressColor = '#ef4444'; // red-500
   } else if (strengthScore < 60) {
     strengthLabel = 'Fair';
-    strengthColor = 'text-orange-600';
-    progressColor = 'bg-orange-500';
+    strengthColor = '#ea580c'; // orange-600
+    progressColor = '#f97316'; // orange-500
   } else if (strengthScore < 80) {
     strengthLabel = 'Good';
-    strengthColor = 'text-yellow-600';
-    progressColor = 'bg-yellow-500';
+    strengthColor = '#ca8a04'; // yellow-600
+    progressColor = '#eab308'; // yellow-500
   } else {
     strengthLabel = 'Strong';
-    strengthColor = 'text-green-600';
-    progressColor = 'bg-green-500';
+    strengthColor = '#16a34a'; // green-600
+    progressColor = '#22c55e'; // green-500
   }
 
   const allRequiredRulesPassed = requiredRulesPassed === totalRequiredRules;
@@ -102,72 +108,285 @@ export const PasswordValidation: React.FC<PasswordValidationProps> = ({
     return null;
   }
 
+  // Responsive styles
+  const containerStyle = [
+    styles.container,
+    isSmallScreen && styles.containerMobile,
+    style,
+  ];
+
+  const rulesGridStyle = [
+    styles.rulesGrid,
+    isSmallScreen && styles.rulesGridMobile,
+    isVerySmallScreen && styles.rulesGridVerySmall,
+  ];
+
+  const ruleTextStyle = [
+    styles.ruleText,
+    isSmallScreen && styles.ruleTextMobile,
+  ];
+
+  // Accessibility: Generate comprehensive screen reader descriptions
+  const strengthDescription = `Password strength is ${strengthLabel.toLowerCase()}, ${Math.round(strengthScore)} percent complete`;
+
+  const rulesDescription = ruleResults.map(rule =>
+    `${rule.label}: ${rule.passed ? 'satisfied' : 'not satisfied'}`
+  ).join(', ');
+
+  const overallDescription = allRequiredRulesPassed
+    ? 'All password requirements have been met'
+    : `${requiredRulesPassed} of ${totalRequiredRules} password requirements have been met`;
+
+  const fullAccessibilityDescription = `${strengthDescription}. Password requirements: ${rulesDescription}. ${overallDescription}`;
+
   return (
-    <div className={`mt-3 ${className}`} data-testid="password-validation">
+        <View
+      style={containerStyle}
+      testID="password-validation"
+      accessible={true}
+      accessibilityRole="none"
+      accessibilityLabel="Password validation feedback"
+      accessibilityHint="Shows password strength and requirement status"
+      accessibilityValue={{ text: fullAccessibilityDescription }}
+    >
       {/* Password Strength Indicator */}
-      <div className="mb-3">
-        <div className="flex justify-between items-center mb-1">
-          <span className="text-sm font-medium text-gray-700">Password Strength</span>
-          <span className={`text-sm font-medium ${strengthColor}`} data-testid="strength-label">
+      <View
+        style={styles.strengthSection}
+        accessible={true}
+        accessibilityRole="progressbar"
+        accessibilityLabel={`Password strength indicator: ${strengthLabel}`}
+        accessibilityValue={{
+          min: 0,
+          max: 100,
+          now: Math.round(strengthScore),
+          text: strengthDescription
+        }}
+      >
+        <View style={styles.strengthHeader}>
+          <Text
+            style={styles.strengthTitle}
+            accessible={true}
+            accessibilityRole="text"
+            accessibilityLabel="Password strength section"
+          >
+            Password Strength
+          </Text>
+          <Text
+            style={[styles.strengthLabel, { color: strengthColor }]}
+            testID="strength-label"
+            accessible={true}
+            accessibilityRole="text"
+            accessibilityLabel={`Current password strength: ${strengthLabel}`}
+          >
             {strengthLabel}
-          </span>
-        </div>
+          </Text>
+        </View>
 
         {/* Progress Bar */}
-        <div className="w-full bg-gray-200 rounded-full h-2" data-testid="strength-progress-container">
-          <div
-            className={`h-2 rounded-full transition-all duration-300 ${progressColor}`}
-            style={{ width: `${strengthScore}%` }}
-            data-testid="strength-progress-bar"
+        <View
+          style={styles.progressContainer}
+          testID="strength-progress-container"
+          accessible={true}
+          accessibilityRole="progressbar"
+          accessibilityLabel="Password strength progress bar"
+          accessibilityValue={{
+            min: 0,
+            max: 100,
+            now: Math.round(strengthScore),
+            text: `${Math.round(strengthScore)} percent strength`
+          }}
+        >
+          <View
+            style={[
+              styles.progressBar,
+              {
+                width: `${strengthScore}%`,
+                backgroundColor: progressColor,
+              }
+            ]}
+            testID="strength-progress-bar"
+            accessible={false} // Parent handles accessibility
           />
-        </div>
+        </View>
 
-        <div className="text-xs text-gray-500 mt-1">
+        <Text
+          style={styles.strengthPercentage}
+          accessible={true}
+          accessibilityRole="text"
+          accessibilityLabel={`Password strength percentage: ${Math.round(strengthScore)} percent`}
+        >
           {Math.round(strengthScore)}% strength
-        </div>
-      </div>
+        </Text>
+      </View>
 
-      {/* Password Rules - Compact Grid Layout */}
-      <div className="grid grid-cols-1 gap-1 mt-2 mb-1" style={{ fontSize: 11 }}>
-        {ruleResults.map((rule) => (
-          <div
+      {/* Password Rules - Responsive Grid Layout */}
+      <View
+        style={rulesGridStyle}
+        accessible={true}
+        accessibilityRole="list"
+        accessibilityLabel="Password requirements list"
+        accessibilityHint="List of password requirements and their current status"
+      >
+        {ruleResults.map((rule, index) => (
+          <View
             key={rule.id}
-            className="flex items-center"
-            data-testid={`rule-${rule.id}`}
+            style={styles.ruleItem}
+            testID={`rule-${rule.id}`}
+                        accessible={true}
+            accessibilityRole="none"
+            accessibilityLabel={`Requirement ${index + 1}: ${rule.label}`}
+            accessibilityValue={{ text: rule.passed ? 'satisfied' : 'not satisfied' }}
+            accessibilityState={{
+              checked: rule.passed,
+              disabled: false
+            }}
           >
-            {rule.passed ? (
-              <span className="text-green-500 mr-2" data-testid={`rule-${rule.id}-check`}>✓</span>
-            ) : (
-              <span className="text-gray-400 mr-2" data-testid={`rule-${rule.id}-x`}>○</span>
-            )}
-            <span className={rule.passed ? 'text-green-700' : 'text-gray-600'} data-testid={`rule-${rule.id}-label`} style={{ fontSize: 11 }}>
+            <Text
+              style={[
+                styles.ruleIcon,
+                { color: rule.passed ? '#22c55e' : '#9ca3af' }
+              ]}
+              testID={`rule-${rule.id}-${rule.passed ? 'check' : 'x'}`}
+              accessible={false} // Parent handles accessibility
+            >
+              {rule.passed ? '✓' : '○'}
+            </Text>
+            <Text
+              style={[
+                ruleTextStyle,
+                { color: rule.passed ? '#15803d' : '#6b7280' }
+              ]}
+              testID={`rule-${rule.id}-label`}
+              accessible={false} // Parent handles accessibility
+            >
               {rule.label}
-            </span>
-          </div>
+            </Text>
+          </View>
         ))}
-      </div>
+      </View>
 
-      {/* Overall Status - Compact */}
+      {/* Overall Status */}
       {password.length > 0 && (
-        <div className="mt-2 pt-2 border-t border-gray-200">
-          <div
-            className={`text-xs ${
-              allRequiredRulesPassed ? 'text-green-600' : 'text-gray-600'
-            }`}
-            data-testid="overall-status"
+        <View
+          style={styles.statusSection}
+          accessible={true}
+          accessibilityRole="none"
+          accessibilityLabel="Password requirements summary"
+          accessibilityLiveRegion="polite"
+        >
+          <Text
+            style={[
+              styles.statusText,
+              { color: allRequiredRulesPassed ? '#16a34a' : '#6b7280' }
+            ]}
+            testID="overall-status"
+            accessible={true}
+            accessibilityRole="text"
+            accessibilityLabel={overallDescription}
           >
             {allRequiredRulesPassed ? (
-              <span>✓ All requirements met</span>
+              '✓ All requirements met'
             ) : (
-              <span>
-                {requiredRulesPassed} of {totalRequiredRules} requirements met
-              </span>
+              `${requiredRulesPassed} of ${totalRequiredRules} requirements met`
             )}
-          </div>
-        </div>
+          </Text>
+        </View>
       )}
-    </div>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 12,
+    paddingHorizontal: 4,
+  },
+  containerMobile: {
+    marginTop: 8,
+    paddingHorizontal: 2,
+  },
+
+  // Strength Section
+  strengthSection: {
+    marginBottom: 12,
+  },
+  strengthHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  strengthTitle: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#374151', // gray-700
+  },
+  strengthLabel: {
+    fontSize: 14,
+    fontWeight: '500',
+  },
+  progressContainer: {
+    width: '100%',
+    height: 8,
+    backgroundColor: '#e5e7eb', // gray-200
+    borderRadius: 4,
+    overflow: 'hidden',
+  },
+  progressBar: {
+    height: '100%',
+    borderRadius: 4,
+    // Smooth transition effect would be handled by Animated in React Native
+  },
+  strengthPercentage: {
+    fontSize: 11,
+    color: '#6b7280', // gray-500
+    marginTop: 4,
+  },
+
+  // Rules Section
+  rulesGrid: {
+    marginTop: 8,
+    marginBottom: 4,
+  },
+  rulesGridMobile: {
+    marginTop: 6,
+  },
+  rulesGridVerySmall: {
+    // On very small screens, stack rules more compactly
+  },
+  ruleItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 4,
+    paddingVertical: 1,
+  },
+  ruleIcon: {
+    fontSize: 12,
+    marginRight: 8,
+    width: 12,
+    textAlign: 'center',
+  },
+  ruleText: {
+    fontSize: 11,
+    flex: 1,
+    lineHeight: 16,
+  },
+  ruleTextMobile: {
+    fontSize: 10,
+    lineHeight: 14,
+  },
+
+  // Status Section
+  statusSection: {
+    marginTop: 8,
+    paddingTop: 8,
+    borderTopWidth: 1,
+    borderTopColor: '#e5e7eb', // gray-200
+  },
+  statusText: {
+    fontSize: 11,
+    fontWeight: '400',
+  },
+});
 
 export default PasswordValidation;

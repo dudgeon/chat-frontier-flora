@@ -24,6 +24,27 @@ export const Button: React.FC<ButtonProps> = ({
   disabled,
   ...props
 }) => {
+  // NativeWind classes
+  const baseClasses = "h-10 rounded-md px-4 justify-center items-center";
+  const variantClasses = {
+    primary: "bg-primary-600",
+    secondary: "bg-gray-500",
+    outline: "bg-transparent border border-primary-600"
+  };
+  const fullWidthClass = fullWidth ? "w-full" : "";
+  const disabledClass = disabled ? "opacity-50" : "";
+
+  const buttonClassName = `${baseClasses} ${variantClasses[variant]} ${fullWidthClass} ${disabledClass}`.trim();
+
+  const textClasses = {
+    primary: "text-white text-base font-medium",
+    secondary: "text-white text-base font-medium",
+    outline: "text-primary-600 text-base font-medium"
+  };
+  const disabledTextClass = disabled ? "text-gray-400" : "";
+  const textClassName = `${textClasses[variant]} ${disabledTextClass}`.trim();
+
+  // Fallback StyleSheet styles
   const buttonStyles = [
     styles.button,
     styles[variant],
@@ -40,6 +61,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <TouchableOpacity
+      className={buttonClassName}
       style={buttonStyles}
       disabled={disabled || loading}
       {...props}
@@ -50,12 +72,13 @@ export const Button: React.FC<ButtonProps> = ({
           size="small"
         />
       ) : (
-        <Text style={textStyles}>{title}</Text>
+        <Text className={textClassName} style={textStyles}>{title}</Text>
       )}
     </TouchableOpacity>
   );
 };
 
+// Keep StyleSheet as fallback
 const styles = StyleSheet.create({
   button: {
     height: 40,
