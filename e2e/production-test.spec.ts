@@ -25,9 +25,9 @@ test.describe('Production Authentication Flow', () => {
     await expect(page.locator('[data-testid="signup-form"]')).toBeVisible({ timeout: 10000 });
 
     // Check that we have the optimized form fields
-    await expect(page.locator('input[name="fullName"]')).toBeVisible();
-    await expect(page.locator('input[name="email"]')).toBeVisible();
-    await expect(page.locator('input[name="password"]')).toBeVisible();
+    await expect(page.locator('[data-testid="full-name"]')).toBeVisible();
+    await expect(page.locator('[data-testid="email"]')).toBeVisible();
+    await expect(page.locator('[data-testid="password"]')).toBeVisible();
 
     console.log('✅ Homepage loaded successfully with signup form');
   });
@@ -47,13 +47,13 @@ test.describe('Production Authentication Flow', () => {
     console.log(`📝 Creating test user: ${testEmail}`);
 
     // Fill out the signup form
-    await page.fill('input[name="fullName"]', testName);
-    await page.fill('input[name="email"]', testEmail);
-    await page.fill('input[name="password"]', testPassword);
+    await page.fill('[data-testid="full-name"]', testName);
+    await page.fill('[data-testid="email"]', testEmail);
+    await page.fill('[data-testid="password"]', testPassword);
 
     // Check age verification and development consent
-    await page.check('input[name="ageVerification"]');
-    await page.check('input[name="developmentConsent"]');
+    await page.check('[data-testid="age-verification"]');
+    await page.check('[data-testid="development-consent"]');
 
     // Start timing the signup process
     const startTime = Date.now();
@@ -124,11 +124,11 @@ test.describe('Production Authentication Flow', () => {
     const testName = `Reload Test User ${timestamp}`;
 
     // Quick signup
-    await page.fill('input[name="fullName"]', testName);
-    await page.fill('input[name="email"]', testEmail);
-    await page.fill('input[name="password"]', testPassword);
-    await page.check('input[name="ageVerification"]');
-    await page.check('input[name="developmentConsent"]');
+    await page.fill('[data-testid="full-name"]', testName);
+    await page.fill('[data-testid="email"]', testEmail);
+    await page.fill('[data-testid="password"]', testPassword);
+    await page.check('[data-testid="age-verification"]');
+    await page.check('[data-testid="development-consent"]');
     await page.click('button[type="submit"]');
 
     // Wait for chat page
@@ -171,9 +171,9 @@ test.describe('Production Authentication Flow', () => {
     await page.waitForSelector('[data-testid="signup-form"]', { timeout: 10000 });
 
     // Try to signup with invalid email
-    await page.fill('input[name="fullName"]', 'Test User');
-    await page.fill('input[name="email"]', 'invalid-email');
-    await page.fill('input[name="password"]', 'weak');
+    await page.fill('[data-testid="full-name"]', 'Test User');
+    await page.fill('[data-testid="email"]', 'invalid-email');
+    await page.fill('[data-testid="password"]', 'weak');
 
     // Submit should be disabled or show validation errors
     const submitButton = page.locator('button[type="submit"]');

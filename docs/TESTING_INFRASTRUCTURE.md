@@ -652,3 +652,237 @@ npm run test:e2e -- --grep-invert "Production"
 6. Only AFTER all verification passes, ask developer to inspect
 
 **Violation of this protocol wastes developer time and is unacceptable.**
+
+## CRITICAL: Production Deployment Monitoring
+
+**⚠️ CRITICAL: Production deployments take time and AI cannot assume they're ready immediately after merge.**
+
+### Production Deployment Process:
+1. **PR Merge to Main** - Triggers production build
+2. **Netlify Build Process** - Can take 2-10 minutes depending on changes
+3. **Deployment Propagation** - Additional time for CDN updates
+
+### MANDATORY: Check Deployment Status Before Testing
+
+**❌ NEVER assume production is ready immediately after merge**
+
+**✅ ALWAYS verify deployment status before running production tests:**
+
+```bash
+# Check if production shows updated content
+curl -s https://frontier-family-flora.netlify.app/ | grep -o '<title>[^<]*</title>'
+
+# If still shows old content, deployment is not complete
+```
+
+### Required Protocol:
+1. **After merging to main** - Wait for user confirmation that production deployment is complete
+2. **Ask user**: "Is the production deployment complete? I can see [old/new] content at the production URL"
+3. **Only proceed with production testing** after user confirms deployment is ready
+4. **Alternative**: Use Netlify MCP to check deployment status programmatically
+
+### Netlify MCP Integration:
+If available, use Netlify MCP tools to:
+- Check deployment status
+- Get deployment logs
+- Verify build completion
+- Monitor deployment progress
+
+**Never run production tests against stale deployments - this wastes time and gives false results.**
+
+## CRITICAL: Understanding Webpack Compilation Status
+
+**This is the #1 source of wasted time and false test results:**
+
+### Compilation Status Guide:
+- **"web compiled with 1 warning"** = ✅ SUCCESS - Page will work
+- **"web compiled with 1 error"** = ❌ BROKEN - Page will NOT work
+- **"ERROR in ..."** = ❌ Blocking compilation failure - MUST fix
+- **"WARNING in ..."** = ⚠️ Non-blocking - Usually safe to ignore
+
+### Common Compilation Errors and Solutions:
+1. **"Module not found: Can't resolve"** - Missing import or file
+2. **"Module parse failed"** - Webpack can't understand the file (often TypeScript in wrong location)
+3. **"The keyword 'interface' is reserved"** - TypeScript file in non-TypeScript configured directory
+
+**NEVER proceed with testing if you see "compiled with X error(s)"**
+
+**To prevent regressions and ensure maximum reliability, follow this protocol for ALL changes:**
+
+## Phase 1: Local Development & Testing
+
+### 1.1 Code Changes
+- Make changes on a feature branch
+- Commit frequently with clear messages
+- Keep changes focused and minimal
+
+### 1.2 Pre-Test Verification (MANDATORY)
+- Complete the **MANDATORY PRE-FLIGHT CHECKLIST** above
+- Fix any compilation errors before proceeding
+- Ensure server is running on localhost:19006
+
+### 1.3 Automated Testing
+```bash
+# Unit tests first
+npm test
+
+# E2E tests - LOCAL ONLY
+npm run test:e2e:local  # NOT npm run test:e2e!
+```
+
+### 1.4 AI Verification (MANDATORY)
+**AI must verify ALL of the following before asking developer to inspect:**
+1. ✅ Webpack shows "compiled with X warning(s)" NOT "error(s)"
+2. ✅ Server responds with HTML: `curl -s http://localhost:19006 | grep "<html"`
+3. ✅ JavaScript bundle loads: `curl -s http://localhost:19006/static/js/bundle.js | head -1`
+4. ✅ No console errors in terminal output
+5. ✅ Can access expected UI elements via curl
+
+**If ANY verification fails, AI must fix it before proceeding.**
+
+### 1.5 Developer Visual Inspection
+**Only after AI verification passes:**
+- Verify UI changes appear correctly
+- Test all interactive elements
+- Check keyboard navigation
+- Verify responsive design
+- Test complete user flows
+
+## Phase 2: Pull Request & Preview Deploy
+
+### 2.1 Create Pull Request
+- Push feature branch
+- Create PR with clear description
+- Wait for Netlify preview deploy
+
+### 2.2 Preview Testing
+```bash
+# Set preview URL
+export DEPLOY_PREVIEW_URL=https://deploy-preview-XXX--frontier-family-flora.netlify.app
+
+# Run preview tests
+npm run test:preview
+```
+
+### 2.3 Manual Preview Verification
+- Test all changed features in preview
+- Verify no regressions
+- Check performance metrics
+
+## Phase 3: Production Deployment
+
+### 3.1 Merge to Main
+- Only after ALL preview tests pass
+- Squash commits if needed
+- Use clear merge commit message
+
+### 3.2 Production Verification
+```bash
+# Run production tests
+npm run test:production
+```
+
+### 3.3 Post-Deploy Monitoring
+- Check error logs
+- Monitor performance metrics
+- Be ready to rollback if issues arise
+
+**Note:** This conservative, over-testing approach is required due to past regression issues. Never skip regression testing, even for "small" changes.
+
+## LESSONS LEARNED: Common Pitfalls That Waste Hours
+
+Based on actual failures, NEVER do these:
+
+### 1. ❌ Ignoring Compilation Errors
+- **Wrong**: "Let me check if it works" when seeing "compiled with 1 error"
+- **Right**: Stop immediately and fix the error first
+
+### 2. ❌ Running Wrong Test Commands
+- **Wrong**: `npm run test:e2e` during local development
+- **Right**: `npm run test:e2e:local` for local testing only
+
+### 3. ❌ Claiming Success Without Verification
+- **Wrong**: "The page should be working now"
+- **Right**: Run the verification checklist and show evidence
+
+### 4. ❌ Testing in Wrong Environment
+- **Wrong**: Running tests without checking DEPLOY_PREVIEW_URL
+- **Right**: Always verify test target matches development phase
+
+### 5. ❌ Asking Developer to Check Broken Code
+- **Wrong**: "Please check localhost" without AI verification
+- **Right**: Complete ALL verification steps first
+
+### 6. ❌ Making Multiple Changes at Once
+- **Wrong**: Fix 5 things then test
+- **Right**: Fix one thing, verify it works, then proceed
+
+### 7. ❌ Contradicting Own Verification
+- **Wrong**: "✅ Working" then immediately "❓ Unknown"
+- **Right**: Stick to evidence-based status reporting
+
+## CRITICAL: Test Environment Verification
+
+**Before running ANY tests, AI must verify the correct test environment:**
+
+### Environment Verification Protocol:
+1. **Identify Development Phase**:
+   - Local development = Test against `localhost:19006`
+   - Preview testing = Test against deploy preview URL
+   - Production testing = Test against production URL
+
+2. **Check Test Configuration**:
+   - Verify `playwright.config.ts` baseURL setting
+   - Check package.json test scripts for target URLs
+   - Confirm environment variables match intended target
+
+3. **Verify Server Status**:
+   - For localhost testing: Confirm local server is running on correct port
+   - For preview testing: Confirm preview URL is accessible
+   - For production testing: Confirm production URL is live
+
+4. **Document Test Target**:
+   - Always state which environment tests are targeting
+   - Never assume test environment - always verify first
+
+### Test Environment Rules:
+- **Local Development**: Tests MUST run against `localhost:19006`
+  - **EXCLUDE production tests**: Use `npm run test:e2e -- --grep-invert "Production"` or test specific files
+  - **NEVER run** `npm run test:e2e` without filtering during local development
+- **Preview Testing**: Tests run against Netlify deploy preview URL
+  - Use `npm run test:preview` for preview-specific tests
+- **Production Testing**: Tests run against production URL
+  - Use `playwright test production-test.spec.ts` for production-only tests
+- **NEVER mix environments** - this leads to false results and wasted time
+
+### CRITICAL: Local Development E2E Testing Commands
+```bash
+# ❌ WRONG - This runs ALL tests including production tests
+npm run test:e2e
+
+# ✅ CORRECT - Run only local development tests
+playwright test auth-flow.spec.ts accessibility.spec.ts
+# OR
+npm run test:e2e -- --grep-invert "Production"
+```
+
+## CRITICAL: AI Verification Requirements
+
+**The AI must NEVER ask the developer to inspect something without first verifying it works. This includes:**
+
+### Common Failure Patterns to Check:
+1. **Server responds with JSON instead of HTML** - Always check response content, not just HTTP status
+2. **Compilation errors** - Check terminal output for "Module not found", "ERROR in", etc.
+3. **Wrong port assumptions** - Verify the actual port the server is running on
+4. **App not loading despite server running** - Test actual UI functionality, not just server status
+5. **Testing wrong environment** - Verify tests target correct environment (localhost vs preview vs production)
+
+### Required AI Verification Steps:
+1. **Verify test environment matches development phase**
+2. Check terminal output for any ERROR messages
+3. Verify server responds with actual HTML content (not JSON)
+4. Confirm no compilation failures
+5. Test that the UI actually loads and renders
+6. Only AFTER all verification passes, ask developer to inspect
+
+**Violation of this protocol wastes developer time and is unacceptable.**
