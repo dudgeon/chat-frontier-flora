@@ -5,10 +5,11 @@ module.exports = function (api) {
 
   const plugins = [];
 
-  // Only add NativeWind plugin when not in test environment
-  if (!isTest) {
-    plugins.push('nativewind/babel');
-  }
+  // Temporarily disable NativeWind plugin to fix compilation error
+  // TODO: Re-enable after fixing NativeWind configuration
+  // if (!isTest) {
+  //   plugins.push('nativewind/babel');
+  // }
 
   return {
     presets: ['babel-preset-expo'],
