@@ -22,7 +22,7 @@ export const ChatPage: React.FC<ChatPageProps> = ({
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="chat-page">
       {/* Main Chat Area */}
       <View style={styles.chatContainer}>
         <View style={styles.header}>
@@ -30,7 +30,7 @@ export const ChatPage: React.FC<ChatPageProps> = ({
           <TouchableOpacity
             style={styles.profileButton}
             onPress={onToggleProfileMenu}
-            testID="profile-menu-toggle"
+            testID="profile-menu-button"
           >
             <Text style={styles.profileButtonText}>☰</Text>
           </TouchableOpacity>

@@ -182,7 +182,7 @@ export const SignUpForm: React.FC = () => {
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} testID="signup-form">
       <Text style={styles.title}>Create Account</Text>
 
       {/* ⚠️ CRITICAL: Full Name Input Field (PRD Requirement) */}
@@ -269,6 +269,7 @@ export const SignUpForm: React.FC = () => {
 
       {/* ⚠️ CRITICAL: Age Verification Checkbox (PRD Requirement) */}
       <Checkbox
+        testID="age-verification"
         label="I verify that I am 18 years of age or older"
         checked={formValidation.getFieldProps('ageVerification').value === 'true'}
         onPress={() => {
@@ -280,6 +281,7 @@ export const SignUpForm: React.FC = () => {
 
       {/* ⚠️ CRITICAL: Development Consent Checkbox (PRD Requirement) */}
       <Checkbox
+        testID="development-consent"
         label="I consent to the use of my data for development and improvement purposes"
         checked={formValidation.getFieldProps('developmentConsent').value === 'true'}
         onPress={() => {

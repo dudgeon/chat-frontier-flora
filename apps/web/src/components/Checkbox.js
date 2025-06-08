@@ -6,6 +6,7 @@ export const Checkbox = ({
   checked,
   onPress,
   error,
+  testID,
 }) => {
   const handleKeyDown = (e) => {
     if (e.key === ' ' || e.key === 'Enter') {
@@ -26,6 +27,7 @@ export const Checkbox = ({
         aria-checked={checked}
         focusable={true}
         onKeyDown={handleKeyDown}
+        testID={testID}
       >
         <View style={[styles.box, checked && styles.checked, error && styles.error]}>
           {checked && <View style={styles.checkmark} />}
