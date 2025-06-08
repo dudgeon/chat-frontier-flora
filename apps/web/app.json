@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "web",
-    "slug": "web",
+    "name": "Chat Frontier Flora",
+    "slug": "chat-frontier-flora",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -23,7 +23,13 @@
       "edgeToEdgeEnabled": true
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "name": "Chat Frontier Flora",
+      "shortName": "Chat Flora",
+      "description": "AI-powered family communication platform",
+      "themeColor": "#ffffff",
+      "backgroundColor": "#ffffff",
+      "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no"
     }
   }
 }

@@ -13,24 +13,36 @@ export interface Database {
         Row: {
           id: string;
           user_role: 'primary' | 'child';
+          full_name: string;
           display_name: string | null;
           parent_user_id: string | null;
+          development_consent: boolean;
+          age_verification: boolean;
+          consent_timestamp: string;
           created_at: string;
           updated_at: string;
         };
         Insert: {
           id: string;
           user_role?: 'primary' | 'child';
+          full_name: string;
           display_name?: string | null;
           parent_user_id?: string | null;
+          development_consent: boolean;
+          age_verification: boolean;
+          consent_timestamp?: string;
           created_at?: string;
           updated_at?: string;
         };
         Update: {
           id?: string;
           user_role?: 'primary' | 'child';
+          full_name?: string;
           display_name?: string | null;
           parent_user_id?: string | null;
+          development_consent?: boolean;
+          age_verification?: boolean;
+          consent_timestamp?: string;
           created_at?: string;
           updated_at?: string;
         };

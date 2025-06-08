@@ -52,7 +52,8 @@ describe('validateSignUpForm', () => {
         email: 'test@example.com',
         password: 'Test123!',
         confirmPassword: 'Test123!',
-        displayName: 'Test User',
+        fullName: 'Test User',
+        ageVerification: true,
         agreeToTerms: true
     };
 
@@ -65,6 +66,24 @@ describe('validateSignUpForm', () => {
         const errors = validateSignUpForm(data);
         expect(errors).not.toBeNull();
         expect(errors?.find(e => e.field === 'confirmPassword')).toBeTruthy();
+    });
+
+    it('should return error for empty full name', () => {
+        const data = { ...validData, fullName: '' };
+        const errors = validateSignUpForm(data);
+        expect(errors?.find(e => e.field === 'fullName')).toBeTruthy();
+    });
+
+    it('should return error for whitespace-only full name', () => {
+        const data = { ...validData, fullName: '   ' };
+        const errors = validateSignUpForm(data);
+        expect(errors?.find(e => e.field === 'fullName')).toBeTruthy();
+    });
+
+    it('should return error when age verification not checked', () => {
+        const data = { ...validData, ageVerification: false };
+        const errors = validateSignUpForm(data);
+        expect(errors?.find(e => e.field === 'ageVerification')).toBeTruthy();
     });
 
     it('should return error when terms not agreed', () => {
@@ -94,7 +113,8 @@ describe('validateLoginForm', () => {
 
 describe('validateProfileUpdate', () => {
     const validData: ProfileUpdateData = {
-        displayName: 'New Name',
+        fullName: 'New Name',
+        displayName: 'New Display Name',
         currentPassword: 'OldPass123!',
         newPassword: 'NewPass123!',
         confirmNewPassword: 'NewPass123!'
@@ -104,8 +124,14 @@ describe('validateProfileUpdate', () => {
         expect(validateProfileUpdate(validData)).toBeNull();
     });
 
-    it('should return error for short display name', () => {
-        const data = { ...validData, displayName: 'A' };
+    it('should return error for empty full name', () => {
+        const data = { ...validData, fullName: '' };
+        const errors = validateProfileUpdate(data);
+        expect(errors?.find(e => e.field === 'fullName')).toBeTruthy();
+    });
+
+    it('should return error for empty display name', () => {
+        const data = { ...validData, displayName: '' };
         const errors = validateProfileUpdate(data);
         expect(errors?.find(e => e.field === 'displayName')).toBeTruthy();
     });

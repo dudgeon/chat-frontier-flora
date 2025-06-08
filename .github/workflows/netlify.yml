@@ -39,5 +39,5 @@ jobs:
           overwrites-pull-request-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.nfp_aPt5hqzRdVrpLeUW9fHWL6qNfm1u3u5X1d5b }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        timeout-minutes: 1 
+          NETLIFY_SITE_ID: ${{ secrets.a2e3354b-f93c-4875-9c4d-0afb9dbdf6b9 }}
+        timeout-minutes: 1

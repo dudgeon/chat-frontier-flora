@@ -34,5 +34,5 @@
     Content-Security-Policy = "default-src 'self' https://api.openai.com https://*.supabase.co; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; font-src 'self' data:;"
 
 [[edge_functions]]
-  path = "/api/*"
-  function = "api"
+  path = "/api/signup"
+  function = "signup"

@@ -26,7 +26,7 @@ import { ValidationError, ValidationResult, SignUpFormData, LoginFormData, Profi
 
 // ⚠️ CRITICAL CONSTANTS: These define validation rules
 // DO NOT CHANGE without updating backend and documentation
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const PASSWORD_MIN_LENGTH = 8;
 
 /**
@@ -63,8 +63,10 @@ export const validateEmail = (email: string): ValidationError | null => {
  *
  * ⚠️ CRITICAL REQUIREMENTS (DO NOT CHANGE):
  * - Minimum 8 characters
+ * - At least one uppercase letter
+ * - At least one lowercase letter
  * - At least one number
- * - At least one letter
+ * - At least one special character
  *
  * SECURITY NOTE: These are minimum requirements for user safety.
  * Relaxing these requirements weakens account security.
@@ -83,14 +85,24 @@ export const validatePassword = (password: string): ValidationError | null => {
         return { field: 'password', message: `Password must be at least ${PASSWORD_MIN_LENGTH} characters` };
     }
 
+    // ⚠️ CRITICAL: Must contain at least one uppercase letter
+    if (!/[A-Z]/.test(password)) {
+        return { field: 'password', message: 'Password must contain at least one uppercase letter' };
+    }
+
+    // ⚠️ CRITICAL: Must contain at least one lowercase letter
+    if (!/[a-z]/.test(password)) {
+        return { field: 'password', message: 'Password must contain at least one lowercase letter' };
+    }
+
     // ⚠️ CRITICAL: Must contain at least one number
     if (!/\d/.test(password)) {
         return { field: 'password', message: 'Password must contain at least one number' };
     }
 
-    // ⚠️ CRITICAL: Must contain at least one letter
-    if (!/[a-zA-Z]/.test(password)) {
-        return { field: 'password', message: 'Password must contain at least one letter' };
+    // ⚠️ CRITICAL: Must contain at least one special character
+    if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+        return { field: 'password', message: 'Password must contain at least one special character' };
     }
 
     return null;
@@ -132,6 +144,22 @@ export const validateSignUpForm = (data: SignUpFormData): ValidationResult => {
         errors.push({
             field: 'confirmPassword',
             message: 'Passwords do not match'
+        });
+    }
+
+    // ⚠️ CRITICAL: Full name validation (required by PRD)
+    if (!data.fullName || data.fullName.trim().length === 0) {
+        errors.push({
+            field: 'fullName',
+            message: 'Full name is required'
+        });
+    }
+
+    // ⚠️ CRITICAL: Age verification validation (required by PRD)
+    if (!data.ageVerification) {
+        errors.push({
+            field: 'ageVerification',
+            message: 'You must verify that you are 18 years of age or older'
         });
     }
 
@@ -187,7 +215,15 @@ export const validateLoginForm = (data: LoginFormData): ValidationResult => {
 export const validateProfileUpdate = (data: ProfileUpdateData): ValidationResult => {
     const errors: ValidationError[] = [];
 
-    // Display name validation (optional)
+    // Full name validation (optional but cannot be empty if provided)
+    if (data.fullName !== undefined && data.fullName.trim().length === 0) {
+        errors.push({
+            field: 'fullName',
+            message: 'Full name cannot be empty'
+        });
+    }
+
+    // Display name validation (optional, kept for backward compatibility)
     if (data.displayName !== undefined && data.displayName.trim().length === 0) {
         errors.push({
             field: 'displayName',

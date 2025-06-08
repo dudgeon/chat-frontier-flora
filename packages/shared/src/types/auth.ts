@@ -5,8 +5,12 @@ export type UserRole = 'primary' | 'child';
 export interface UserProfile {
     id: string;
     user_role: UserRole;
+    full_name: string;
     display_name: string | null;
     parent_user_id: string | null;
+    development_consent: boolean;
+    age_verification: boolean;
+    consent_timestamp: string;
     created_at: string;
     updated_at: string;
 }
@@ -22,11 +26,18 @@ export interface AuthState {
 }
 
 export interface AuthContextType extends AuthState {
-    signUp: (email: string, password: string, displayName?: string, role?: UserRole) => Promise<void>;
+    signUp: (
+        email: string,
+        password: string,
+        fullName: string,
+        role?: UserRole,
+        ageVerification?: boolean,
+        developmentConsent?: boolean
+    ) => Promise<void>;
     signIn: (email: string, password: string) => Promise<void>;
     signOut: () => Promise<void>;
     updateProfile: (profile: Partial<UserProfile>) => Promise<void>;
-    createChildAccount: (email: string, password: string, displayName: string) => Promise<void>;
+    createChildAccount: (email: string, password: string, fullName: string) => Promise<void>;
     isPrimaryUser: () => boolean;
     isChildUser: () => boolean;
 }
@@ -35,7 +46,8 @@ export interface SignUpFormData {
     email: string;
     password: string;
     confirmPassword: string;
-    displayName?: string;
+    fullName: string;
+    ageVerification: boolean;
     agreeToTerms: boolean;
 }
 
@@ -46,6 +58,7 @@ export interface LoginFormData {
 }
 
 export interface ProfileUpdateData {
+    fullName?: string;
     displayName?: string;
     currentPassword?: string;
     newPassword?: string;

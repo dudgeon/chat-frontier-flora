@@ -29,6 +29,16 @@ This is a monorepo containing:
 └── package.json         # Root workspace config
 ```
 
+## 📚 Documentation
+
+Comprehensive project documentation is organized in the `/docs` directory:
+
+- **[docs/README.md](./docs/README.md)** - Documentation index and navigation
+- **Architecture & Design** - Routing behavior, project context
+- **Authentication** - Complete auth flow documentation and quick reference
+- **Testing** - Testing infrastructure, strategy, and protocols
+- **Deployment** - Environment setup and deployment guides
+
 ## 🔐 Authentication System
 
 This project includes a comprehensive authentication system with user registration, login, and profile management. **The authentication flow was extremely complex to implement correctly.**

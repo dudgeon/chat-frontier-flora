@@ -1,0 +1,207 @@
+name: Test Deploy Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  # Allow manual triggering with custom URL
+  workflow_dispatch:
+    inputs:
+      deploy_url:
+        description: 'Deploy preview URL to test'
+        required: true
+        type: string
+
+jobs:
+  wait-for-netlify:
+    name: Wait for Netlify Deploy Preview
+    runs-on: ubuntu-latest
+    outputs:
+      preview-url: ${{ steps.get-preview-url.outputs.preview-url }}
+    steps:
+      - name: Wait for Netlify Deploy Preview
+        uses: jakepartusch/wait-for-netlify-action@v1.4
+        id: wait-for-netlify
+        with:
+          site_name: "chat-frontier-flora" # Replace with your actual Netlify site name
+          max_timeout: 600 # 10 minutes
+        env:
+          NETLIFY_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
+
+      - name: Get Preview URL
+        id: get-preview-url
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "preview-url=${{ github.event.inputs.deploy_url }}" >> $GITHUB_OUTPUT
+          else
+            echo "preview-url=${{ steps.wait-for-netlify.outputs.url }}" >> $GITHUB_OUTPUT
+          fi
+
+  test-deploy-preview:
+    name: Test Deploy Preview with Playwright
+    runs-on: ubuntu-latest
+    needs: wait-for-netlify
+    strategy:
+      matrix:
+        browser: [chromium, firefox, webkit]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps ${{ matrix.browser }}
+
+      - name: Run Playwright tests against deploy preview
+        run: npm run test:preview
+        env:
+          DEPLOY_PREVIEW_URL: ${{ needs.wait-for-netlify.outputs.preview-url }}
+          PRODUCTION_URL: https://chat-frontier-flora.netlify.app # Replace with your production URL
+          CI: true
+        continue-on-error: false
+
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report-${{ matrix.browser }}
+          path: playwright-report/
+          retention-days: 30
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results-${{ matrix.browser }}
+          path: test-results/
+          retention-days: 30
+
+  accessibility-audit:
+    name: Accessibility Audit
+    runs-on: ubuntu-latest
+    needs: wait-for-netlify
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run accessibility tests
+        run: npm run test:a11y
+        env:
+          DEPLOY_PREVIEW_URL: ${{ needs.wait-for-netlify.outputs.preview-url }}
+          CI: true
+
+      - name: Upload accessibility report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: accessibility-report
+          path: playwright-report/
+          retention-days: 30
+
+  performance-audit:
+    name: Performance Audit
+    runs-on: ubuntu-latest
+    needs: wait-for-netlify
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli@0.12.x
+
+      - name: Run Lighthouse CI
+        run: |
+          lhci autorun --upload.target=temporary-public-storage --collect.url="${{ needs.wait-for-netlify.outputs.preview-url }}"
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+  comment-results:
+    name: Comment Test Results
+    runs-on: ubuntu-latest
+    needs: [test-deploy-preview, accessibility-audit, performance-audit]
+    if: always() && github.event_name == 'pull_request'
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+
+      - name: Comment PR with test results
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            let comment = `## 🎭 Deploy Preview Test Results\n\n`;
+            comment += `**Deploy Preview URL:** ${{ needs.wait-for-netlify.outputs.preview-url }}\n\n`;
+
+            // Check test results
+            const testResults = ['chromium', 'firefox', 'webkit'].map(browser => {
+              try {
+                const resultsPath = `test-results-${browser}/results.json`;
+                if (fs.existsSync(resultsPath)) {
+                  const results = JSON.parse(fs.readFileSync(resultsPath, 'utf8'));
+                  const passed = results.suites?.reduce((acc, suite) => acc + (suite.specs?.filter(spec => spec.ok).length || 0), 0) || 0;
+                  const total = results.suites?.reduce((acc, suite) => acc + (suite.specs?.length || 0), 0) || 0;
+                  const status = passed === total ? '✅' : '❌';
+                  return `${status} **${browser}**: ${passed}/${total} tests passed`;
+                }
+                return `⚠️ **${browser}**: No results found`;
+              } catch (error) {
+                return `❌ **${browser}**: Error reading results`;
+              }
+            });
+
+            comment += `### Browser Test Results\n${testResults.join('\n')}\n\n`;
+
+            // Add accessibility results
+            comment += `### Accessibility Audit\n`;
+            try {
+              const a11yPath = 'accessibility-report/index.html';
+              if (fs.existsSync(a11yPath)) {
+                comment += `✅ Accessibility tests completed - check artifacts for detailed report\n\n`;
+              } else {
+                comment += `⚠️ Accessibility report not found\n\n`;
+              }
+            } catch (error) {
+              comment += `❌ Error checking accessibility results\n\n`;
+            }
+
+            comment += `### Performance Audit\n`;
+            comment += `📊 Lighthouse audit completed - check the Lighthouse CI results above\n\n`;
+
+            comment += `---\n*This comment was automatically generated by the Deploy Preview Test workflow*`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
