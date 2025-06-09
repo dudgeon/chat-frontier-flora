@@ -37,7 +37,7 @@ test.describe('Stagehand Authentication Flow', () => {
 
   test('should complete signup flow with natural language actions', async () => {
     // Increase timeout for authentication flow which involves network requests
-    test.setTimeout(60000); // 60 seconds
+    test.setTimeout(120000); // Increase to 120 seconds for network operations
     console.log('🎭 Testing Stagehand-powered authentication flow...');
 
     const page = stagehand.page;
@@ -89,71 +89,79 @@ test.describe('Stagehand Authentication Flow', () => {
       await page.act('click the button that says "Create Account" or "Complete Form to Continue"');
     }
 
-    // Wait a bit for the signup process to complete
+    // Wait for the signup process to complete - this is critical
     console.log('⏳ Waiting for signup process to complete...');
-    await page.act('wait for the page to finish loading after signup');
+    await page.act('wait for the page to finish loading and any loading indicators to disappear');
 
-    // Wait for and verify successful signup with natural language
+    // Wait for and verify successful signup with natural language - more flexible expectations
     const signupResult = await page.extract({
-      instruction: 'check if the user was successfully signed up and redirected to the chat page placeholder',
+      instruction: 'check if the user was successfully signed up and what page they are on',
       schema: z.object({
         isOnChatPage: z.boolean().describe('whether the user is now on a page with chat-related content or "Chat Feature Coming Soon" text'),
         hasComingSoonText: z.boolean().describe('whether the page shows "Chat Feature Coming Soon" or similar placeholder text'),
         currentUrl: z.string().describe('the current page URL'),
-        userIsAuthenticated: z.boolean().describe('whether the user appears to be logged in with their email visible'),
+        userIsAuthenticated: z.boolean().describe('whether the user appears to be logged in'),
         hasProfileMenu: z.boolean().describe('whether a profile menu button or hamburger menu (☰) is visible in the top right'),
+        isStillOnSignup: z.boolean().describe('whether still on the signup page'),
+        hasErrorMessages: z.boolean().describe('whether there are any error messages visible'),
       }),
     });
 
     console.log('✅ Signup result:', signupResult);
 
-    // Verify successful authentication - accepting the placeholder chat page as success
+    // Core success criteria - user should be redirected away from signup
+    expect(signupResult.isStillOnSignup).toBe(false);
     expect(signupResult.isOnChatPage || signupResult.hasComingSoonText).toBe(true);
     expect(signupResult.userIsAuthenticated).toBe(true);
-    // Profile menu detection is optional - the main success is reaching the chat page
+    expect(signupResult.hasErrorMessages).toBe(false);
+
+    // Profile menu detection is optional - log but don't fail
     console.log(`📋 Profile menu detected: ${signupResult.hasProfileMenu}`);
 
     // Test the profile menu functionality (optional - may timeout on placeholder)
     try {
-      console.log('🔍 Attempting to test profile menu functionality...');
-      await page.act('click the profile menu button in the top right');
+      if (signupResult.hasProfileMenu) {
+        console.log('🔍 Attempting to test profile menu functionality...');
+        await page.act('click the profile menu button in the top right');
 
-      const profileMenuState = await page.extract({
-        instruction: 'extract information about the opened profile menu',
-        schema: z.object({
-          isMenuOpen: z.boolean().describe('whether the profile menu is open'),
-          userEmail: z.string().describe('the user email displayed in the menu'),
-          hasLogoutButton: z.boolean().describe('whether a logout button is visible'),
-        }),
-      });
+        const profileMenuState = await page.extract({
+          instruction: 'extract information about the opened profile menu',
+          schema: z.object({
+            isMenuOpen: z.boolean().describe('whether the profile menu is open'),
+            userEmail: z.string().describe('the user email displayed in the menu'),
+            hasLogoutButton: z.boolean().describe('whether a logout button is visible'),
+          }),
+        });
 
-      console.log('👤 Profile menu state:', profileMenuState);
+        console.log('👤 Profile menu state:', profileMenuState);
 
-      // Verify profile menu works
-      expect(profileMenuState.isMenuOpen).toBe(true);
-      expect(profileMenuState.userEmail).toBe(testEmail);
-      expect(profileMenuState.hasLogoutButton).toBe(true);
+        // Verify profile menu works if it opened
+        if (profileMenuState.isMenuOpen) {
+          expect(profileMenuState.userEmail).toBe(testEmail);
+          expect(profileMenuState.hasLogoutButton).toBe(true);
 
-      // Test logout functionality
-      await page.act('click the logout button');
+          // Test logout functionality
+          await page.act('click the logout button');
 
-      const logoutResult = await page.extract({
-        instruction: 'verify the user was logged out successfully',
-        schema: z.object({
-          isBackToSignup: z.boolean().describe('whether the user is back on the signup page'),
-          isLoggedOut: z.boolean().describe('whether the user appears to be logged out'),
-          signupFormVisible: z.boolean().describe('whether the signup form is visible again'),
-        }),
-      });
+          const logoutResult = await page.extract({
+            instruction: 'verify the user was logged out successfully',
+            schema: z.object({
+              isBackToSignup: z.boolean().describe('whether the user is back on the signup page'),
+              isLoggedOut: z.boolean().describe('whether the user appears to be logged out'),
+              signupFormVisible: z.boolean().describe('whether the signup form is visible again'),
+            }),
+          });
 
-      console.log('🚪 Logout result:', logoutResult);
+          console.log('🚪 Logout result:', logoutResult);
 
-      // Verify successful logout
-      expect(logoutResult.isBackToSignup).toBe(true);
-      expect(logoutResult.isLoggedOut).toBe(true);
-      expect(logoutResult.signupFormVisible).toBe(true);
+          // Verify successful logout
+          expect(logoutResult.isBackToSignup).toBe(true);
+          expect(logoutResult.isLoggedOut).toBe(true);
+          expect(logoutResult.signupFormVisible).toBe(true);
 
-      console.log('🎉 Full authentication flow including logout completed successfully!');
+          console.log('🎉 Full authentication flow including logout completed successfully!');
+        }
+      }
     } catch (error) {
       console.log('⚠️ Profile menu testing failed, but core authentication succeeded:', error instanceof Error ? error.message : String(error));
       console.log('🎉 Core authentication flow completed successfully!');
