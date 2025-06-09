@@ -1,6 +1,6 @@
-<testsuites id="" name="" tests="15" failures="5" skipped="5" errors="0" time="101.133321">
-<testsuite name="stagehand-auth-test.spec.ts" timestamp="2025-06-09T18:45:37.208Z" hostname="chromium" tests="1" failures="1" skipped="0" time="60.263" errors="0">
-<testcase name="Stagehand Authentication Flow › should complete signup flow with natural language actions" classname="stagehand-auth-test.spec.ts" time="60.263">
+<testsuites id="" name="" tests="15" failures="5" skipped="5" errors="0" time="96.86622200000001">
+<testsuite name="stagehand-auth-test.spec.ts" timestamp="2025-06-09T19:37:27.811Z" hostname="chromium" tests="1" failures="1" skipped="0" time="60.339" errors="0">
+<testcase name="Stagehand Authentication Flow › should complete signup flow with natural language actions" classname="stagehand-auth-test.spec.ts" time="60.339">
 <failure message="stagehand-auth-test.spec.ts:38:7 should complete signup flow with natural language actions" type="FAILURE">
 <![CDATA[  [chromium] › stagehand-auth-test.spec.ts:38:7 › Stagehand Authentication Flow › should complete signup flow with natural language actions 
 
@@ -13,7 +13,7 @@
 </failure>
 <system-out>
 <![CDATA[🎭 Testing Stagehand-powered authentication flow...
-📝 Creating account for: test-1749494748135@stagehand-demo.com
+📝 Creating account for: test-1749497857505@stagehand-demo.com
 📊 Form state: {
   isFormValid: [33mtrue[39m,
   submitButtonEnabled: [33mtrue[39m,
@@ -31,7 +31,7 @@
 🔍 Attempting to test profile menu functionality...
 👤 Profile menu state: {
   isMenuOpen: [33mtrue[39m,
-  userEmail: [32m'test-1749494748135@stagehand-demo.com'[39m,
+  userEmail: [32m'test-1749497857505@stagehand-demo.com'[39m,
   hasLogoutButton: [33mtrue[39m
 }
 ⚠️ Profile menu testing failed, but core authentication succeeded: 
@@ -48,8 +48,8 @@ page.evaluate: Target page, context or browser has been closed
 </system-out>
 </testcase>
 </testsuite>
-<testsuite name="stagehand-production-auth.spec.ts" timestamp="2025-06-09T18:45:37.208Z" hostname="chromium" tests="2" failures="0" skipped="1" time="19.525" errors="0">
-<testcase name="Stagehand Production Authentication › should complete full authentication flow on preview deployment" classname="stagehand-production-auth.spec.ts" time="6.6">
+<testsuite name="stagehand-production-auth.spec.ts" timestamp="2025-06-09T19:37:27.811Z" hostname="chromium" tests="2" failures="0" skipped="1" time="18.166" errors="0">
+<testcase name="Stagehand Production Authentication › should complete full authentication flow on preview deployment" classname="stagehand-production-auth.spec.ts" time="5.615">
 <properties>
 <property name="skip" value="No DEPLOY_PREVIEW_URL set - this test requires a deploy preview">
 </property>
@@ -57,7 +57,7 @@ page.evaluate: Target page, context or browser has been closed
 <skipped>
 </skipped>
 </testcase>
-<testcase name="Stagehand Production Authentication › should work on production deployment" classname="stagehand-production-auth.spec.ts" time="12.925">
+<testcase name="Stagehand Production Authentication › should work on production deployment" classname="stagehand-production-auth.spec.ts" time="12.551">
 <system-out>
 <![CDATA[🌐 Testing production deployment with Stagehand...
 🏭 Production state: {
@@ -74,8 +74,8 @@ page.evaluate: Target page, context or browser has been closed
 </system-out>
 </testcase>
 </testsuite>
-<testsuite name="stagehand-auth-test.spec.ts" timestamp="2025-06-09T18:45:37.208Z" hostname="firefox" tests="1" failures="1" skipped="0" time="60.262" errors="0">
-<testcase name="Stagehand Authentication Flow › should complete signup flow with natural language actions" classname="stagehand-auth-test.spec.ts" time="60.262">
+<testsuite name="stagehand-auth-test.spec.ts" timestamp="2025-06-09T19:37:27.811Z" hostname="firefox" tests="1" failures="1" skipped="0" time="60.369" errors="0">
+<testcase name="Stagehand Authentication Flow › should complete signup flow with natural language actions" classname="stagehand-auth-test.spec.ts" time="60.369">
 <failure message="stagehand-auth-test.spec.ts:38:7 should complete signup flow with natural language actions" type="FAILURE">
 <![CDATA[  [firefox] › stagehand-auth-test.spec.ts:38:7 › Stagehand Authentication Flow › should complete signup flow with natural language actions 
 
@@ -88,7 +88,7 @@ page.evaluate: Target page, context or browser has been closed
 </failure>
 <system-out>
 <![CDATA[🎭 Testing Stagehand-powered authentication flow...
-📝 Creating account for: test-1749494749100@stagehand-demo.com
+📝 Creating account for: test-1749497857496@stagehand-demo.com
 📊 Form state: {
   isFormValid: [33mtrue[39m,
   submitButtonEnabled: [33mtrue[39m,
@@ -106,7 +106,7 @@ page.evaluate: Target page, context or browser has been closed
 🔍 Attempting to test profile menu functionality...
 👤 Profile menu state: {
   isMenuOpen: [33mtrue[39m,
-  userEmail: [32m'test-1749494749100@stagehand-demo.com'[39m,
+  userEmail: [32m'test-1749497857496@stagehand-demo.com'[39m,
   hasLogoutButton: [33mtrue[39m
 }
 ⚠️ Profile menu testing failed, but core authentication succeeded: 
@@ -123,8 +123,8 @@ page.evaluate: Target page, context or browser has been closed
 </system-out>
 </testcase>
 </testsuite>
-<testsuite name="stagehand-production-auth.spec.ts" timestamp="2025-06-09T18:45:37.208Z" hostname="firefox" tests="2" failures="0" skipped="1" time="23.2" errors="0">
-<testcase name="Stagehand Production Authentication › should complete full authentication flow on preview deployment" classname="stagehand-production-auth.spec.ts" time="3.798">
+<testsuite name="stagehand-production-auth.spec.ts" timestamp="2025-06-09T19:37:27.811Z" hostname="firefox" tests="2" failures="0" skipped="1" time="15.331" errors="0">
+<testcase name="Stagehand Production Authentication › should complete full authentication flow on preview deployment" classname="stagehand-production-auth.spec.ts" time="5.863">
 <properties>
 <property name="skip" value="No DEPLOY_PREVIEW_URL set - this test requires a deploy preview">
 </property>
@@ -132,7 +132,7 @@ page.evaluate: Target page, context or browser has been closed
 <skipped>
 </skipped>
 </testcase>
-<testcase name="Stagehand Production Authentication › should work on production deployment" classname="stagehand-production-auth.spec.ts" time="19.402">
+<testcase name="Stagehand Production Authentication › should work on production deployment" classname="stagehand-production-auth.spec.ts" time="9.468">
 <system-out>
 <![CDATA[🌐 Testing production deployment with Stagehand...
 🏭 Production state: {
@@ -149,8 +149,8 @@ page.evaluate: Target page, context or browser has been closed
 </system-out>
 </testcase>
 </testsuite>
-<testsuite name="stagehand-auth-test.spec.ts" timestamp="2025-06-09T18:45:37.208Z" hostname="webkit" tests="1" failures="1" skipped="0" time="60.366" errors="0">
-<testcase name="Stagehand Authentication Flow › should complete signup flow with natural language actions" classname="stagehand-auth-test.spec.ts" time="60.366">
+<testsuite name="stagehand-auth-test.spec.ts" timestamp="2025-06-09T19:37:27.811Z" hostname="webkit" tests="1" failures="1" skipped="0" time="60.357" errors="0">
+<testcase name="Stagehand Authentication Flow › should complete signup flow with natural language actions" classname="stagehand-auth-test.spec.ts" time="60.357">
 <failure message="stagehand-auth-test.spec.ts:38:7 should complete signup flow with natural language actions" type="FAILURE">
 <![CDATA[  [webkit] › stagehand-auth-test.spec.ts:38:7 › Stagehand Authentication Flow › should complete signup flow with natural language actions 
 
@@ -163,7 +163,7 @@ page.evaluate: Target page, context or browser has been closed
 </failure>
 <system-out>
 <![CDATA[🎭 Testing Stagehand-powered authentication flow...
-📝 Creating account for: test-1749494753467@stagehand-demo.com
+📝 Creating account for: test-1749497860111@stagehand-demo.com
 📊 Form state: {
   isFormValid: [33mtrue[39m,
   submitButtonEnabled: [33mtrue[39m,
@@ -181,7 +181,7 @@ page.evaluate: Target page, context or browser has been closed
 🔍 Attempting to test profile menu functionality...
 👤 Profile menu state: {
   isMenuOpen: [33mtrue[39m,
-  userEmail: [32m'test-1749494753467@stagehand-demo.com'[39m,
+  userEmail: [32m'test-1749497860111@stagehand-demo.com'[39m,
   hasLogoutButton: [33mtrue[39m
 }
 ⚠️ Profile menu testing failed, but core authentication succeeded: 
@@ -198,8 +198,8 @@ page.evaluate: Target page, context or browser has been closed
 </system-out>
 </testcase>
 </testsuite>
-<testsuite name="stagehand-production-auth.spec.ts" timestamp="2025-06-09T18:45:37.208Z" hostname="webkit" tests="2" failures="0" skipped="1" time="7.379" errors="0">
-<testcase name="Stagehand Production Authentication › should complete full authentication flow on preview deployment" classname="stagehand-production-auth.spec.ts" time="1.363">
+<testsuite name="stagehand-production-auth.spec.ts" timestamp="2025-06-09T19:37:27.811Z" hostname="webkit" tests="2" failures="0" skipped="1" time="9.831" errors="0">
+<testcase name="Stagehand Production Authentication › should complete full authentication flow on preview deployment" classname="stagehand-production-auth.spec.ts" time="1.998">
 <properties>
 <property name="skip" value="No DEPLOY_PREVIEW_URL set - this test requires a deploy preview">
 </property>
@@ -207,7 +207,7 @@ page.evaluate: Target page, context or browser has been closed
 <skipped>
 </skipped>
 </testcase>
-<testcase name="Stagehand Production Authentication › should work on production deployment" classname="stagehand-production-auth.spec.ts" time="6.016">
+<testcase name="Stagehand Production Authentication › should work on production deployment" classname="stagehand-production-auth.spec.ts" time="7.833">
 <system-out>
 <![CDATA[🌐 Testing production deployment with Stagehand...
 🏭 Production state: {
@@ -224,8 +224,8 @@ page.evaluate: Target page, context or browser has been closed
 </system-out>
 </testcase>
 </testsuite>
-<testsuite name="stagehand-auth-test.spec.ts" timestamp="2025-06-09T18:45:37.208Z" hostname="Mobile Chrome" tests="1" failures="1" skipped="0" time="60.237" errors="0">
-<testcase name="Stagehand Authentication Flow › should complete signup flow with natural language actions" classname="stagehand-auth-test.spec.ts" time="60.237">
+<testsuite name="stagehand-auth-test.spec.ts" timestamp="2025-06-09T19:37:27.811Z" hostname="Mobile Chrome" tests="1" failures="1" skipped="0" time="60.232" errors="0">
+<testcase name="Stagehand Authentication Flow › should complete signup flow with natural language actions" classname="stagehand-auth-test.spec.ts" time="60.232">
 <failure message="stagehand-auth-test.spec.ts:38:7 should complete signup flow with natural language actions" type="FAILURE">
 <![CDATA[  [Mobile Chrome] › stagehand-auth-test.spec.ts:38:7 › Stagehand Authentication Flow › should complete signup flow with natural language actions 
 
@@ -238,7 +238,7 @@ page.evaluate: Target page, context or browser has been closed
 </failure>
 <system-out>
 <![CDATA[🎭 Testing Stagehand-powered authentication flow...
-📝 Creating account for: test-1749494765553@stagehand-demo.com
+📝 Creating account for: test-1749497872220@stagehand-demo.com
 📊 Form state: {
   isFormValid: [33mtrue[39m,
   submitButtonEnabled: [33mtrue[39m,
@@ -248,7 +248,7 @@ page.evaluate: Target page, context or browser has been closed
 ✅ Signup result: {
   isOnChatPage: [33mtrue[39m,
   hasComingSoonText: [33mtrue[39m,
-  currentUrl: [32m'null'[39m,
+  currentUrl: [32m''[39m,
   userIsAuthenticated: [33mtrue[39m,
   hasProfileMenu: [33mtrue[39m
 }
@@ -256,7 +256,7 @@ page.evaluate: Target page, context or browser has been closed
 🔍 Attempting to test profile menu functionality...
 👤 Profile menu state: {
   isMenuOpen: [33mtrue[39m,
-  userEmail: [32m'test-1749494765553@stagehand-demo.com'[39m,
+  userEmail: [32m'test-1749497872220@stagehand-demo.com'[39m,
   hasLogoutButton: [33mtrue[39m
 }
 ⚠️ Profile menu testing failed, but core authentication succeeded: 
@@ -273,8 +273,8 @@ page.evaluate: Target page, context or browser has been closed
 </system-out>
 </testcase>
 </testsuite>
-<testsuite name="stagehand-production-auth.spec.ts" timestamp="2025-06-09T18:45:37.208Z" hostname="Mobile Chrome" tests="2" failures="0" skipped="1" time="12.47" errors="0">
-<testcase name="Stagehand Production Authentication › should complete full authentication flow on preview deployment" classname="stagehand-production-auth.spec.ts" time="1.366">
+<testsuite name="stagehand-production-auth.spec.ts" timestamp="2025-06-09T19:37:27.811Z" hostname="Mobile Chrome" tests="2" failures="0" skipped="1" time="7.584" errors="0">
+<testcase name="Stagehand Production Authentication › should complete full authentication flow on preview deployment" classname="stagehand-production-auth.spec.ts" time="1.581">
 <properties>
 <property name="skip" value="No DEPLOY_PREVIEW_URL set - this test requires a deploy preview">
 </property>
@@ -282,25 +282,25 @@ page.evaluate: Target page, context or browser has been closed
 <skipped>
 </skipped>
 </testcase>
-<testcase name="Stagehand Production Authentication › should work on production deployment" classname="stagehand-production-auth.spec.ts" time="11.104">
+<testcase name="Stagehand Production Authentication › should work on production deployment" classname="stagehand-production-auth.spec.ts" time="6.003">
 <system-out>
 <![CDATA[🌐 Testing production deployment with Stagehand...
 🏭 Production state: {
   siteLoaded: [33mtrue[39m,
   hasSignupForm: [33mtrue[39m,
-  isResponsive: [33mfalse[39m,
+  isResponsive: [33mtrue[39m,
   hasTitle: [33mfalse[39m,
   formFieldsVisible: [33mtrue[39m
 }
-📱 Responsive: false
+📱 Responsive: true
 📄 Has Title: false
 ✅ Production site verification passed!
 ]]>
 </system-out>
 </testcase>
 </testsuite>
-<testsuite name="stagehand-auth-test.spec.ts" timestamp="2025-06-09T18:45:37.208Z" hostname="Mobile Safari" tests="1" failures="1" skipped="0" time="60.242" errors="0">
-<testcase name="Stagehand Authentication Flow › should complete signup flow with natural language actions" classname="stagehand-auth-test.spec.ts" time="60.242">
+<testsuite name="stagehand-auth-test.spec.ts" timestamp="2025-06-09T19:37:27.811Z" hostname="Mobile Safari" tests="1" failures="1" skipped="0" time="60.24" errors="0">
+<testcase name="Stagehand Authentication Flow › should complete signup flow with natural language actions" classname="stagehand-auth-test.spec.ts" time="60.24">
 <failure message="stagehand-auth-test.spec.ts:38:7 should complete signup flow with natural language actions" type="FAILURE">
 <![CDATA[  [Mobile Safari] › stagehand-auth-test.spec.ts:38:7 › Stagehand Authentication Flow › should complete signup flow with natural language actions 
 
@@ -313,7 +313,7 @@ page.evaluate: Target page, context or browser has been closed
 </failure>
 <system-out>
 <![CDATA[🎭 Testing Stagehand-powered authentication flow...
-📝 Creating account for: test-1749494781540@stagehand-demo.com
+📝 Creating account for: test-1749497887610@stagehand-demo.com
 📊 Form state: {
   isFormValid: [33mtrue[39m,
   submitButtonEnabled: [33mtrue[39m,
@@ -323,7 +323,7 @@ page.evaluate: Target page, context or browser has been closed
 ✅ Signup result: {
   isOnChatPage: [33mtrue[39m,
   hasComingSoonText: [33mtrue[39m,
-  currentUrl: [32m'/chat'[39m,
+  currentUrl: [32m''[39m,
   userIsAuthenticated: [33mtrue[39m,
   hasProfileMenu: [33mtrue[39m
 }
@@ -331,7 +331,7 @@ page.evaluate: Target page, context or browser has been closed
 🔍 Attempting to test profile menu functionality...
 👤 Profile menu state: {
   isMenuOpen: [33mtrue[39m,
-  userEmail: [32m'test-1749494781540@stagehand-demo.com'[39m,
+  userEmail: [32m'test-1749497887610@stagehand-demo.com'[39m,
   hasLogoutButton: [33mtrue[39m
 }
 ⚠️ Profile menu testing failed, but core authentication succeeded: 
@@ -348,8 +348,8 @@ page.evaluate: Target page, context or browser has been closed
 </system-out>
 </testcase>
 </testsuite>
-<testsuite name="stagehand-production-auth.spec.ts" timestamp="2025-06-09T18:45:37.208Z" hostname="Mobile Safari" tests="2" failures="0" skipped="1" time="9.719" errors="0">
-<testcase name="Stagehand Production Authentication › should complete full authentication flow on preview deployment" classname="stagehand-production-auth.spec.ts" time="1.969">
+<testsuite name="stagehand-production-auth.spec.ts" timestamp="2025-06-09T19:37:27.811Z" hostname="Mobile Safari" tests="2" failures="0" skipped="1" time="9.045" errors="0">
+<testcase name="Stagehand Production Authentication › should complete full authentication flow on preview deployment" classname="stagehand-production-auth.spec.ts" time="1.986">
 <properties>
 <property name="skip" value="No DEPLOY_PREVIEW_URL set - this test requires a deploy preview">
 </property>
@@ -357,7 +357,7 @@ page.evaluate: Target page, context or browser has been closed
 <skipped>
 </skipped>
 </testcase>
-<testcase name="Stagehand Production Authentication › should work on production deployment" classname="stagehand-production-auth.spec.ts" time="7.75">
+<testcase name="Stagehand Production Authentication › should work on production deployment" classname="stagehand-production-auth.spec.ts" time="7.059">
 <system-out>
 <![CDATA[🌐 Testing production deployment with Stagehand...
 🏭 Production state: {

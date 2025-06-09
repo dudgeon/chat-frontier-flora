@@ -33,3 +33,40 @@ If the AI attempts to merge to main without preview testing, it must:
 - Make minimal changes - don't touch unrelated files
 - Stop immediately if the AI starts making unrelated changes
 - Document expensive mistakes to prevent repetition
+
+## PRODUCTION DEPLOYMENT PROTOCOL
+
+### ABSOLUTE RULES:
+1. **NEVER `git push origin main` without PR and preview testing**
+2. **ALWAYS run Expo commands from `apps/web` directory**
+3. **ALWAYS verify "web compiled with 1 warning" (not error)**
+4. **ALWAYS test preview deployment before merging**
+5. **ALWAYS verify production deployment status after merge**
+
+### MANDATORY 5-STEP WORKFLOW:
+1. **Local Testing**: `cd apps/web && npm run web` + verification
+2. **Feature Branch**: Create branch, commit, push to feature branch
+3. **Preview Testing**: Create PR, test preview URL thoroughly
+4. **CI Verification**: All automated checks must pass
+5. **Production Deploy**: Merge only after preview success, then verify production
+
+### PROHIBITED ACTIONS:
+- ❌ Direct push to main branch
+- ❌ Running Expo from root directory
+- ❌ Merging without preview testing
+- ❌ Claiming success without evidence
+- ❌ Ignoring compilation errors
+
+### STATUS INDICATORS:
+- ✅ VERIFIED WORKING (all steps completed with evidence)
+- ⚠️ PARTIALLY WORKING (specify what works/doesn't)
+- ❌ BROKEN (compilation errors, failures)
+- 🔄 IN PROGRESS (making changes)
+- ❓ UNKNOWN (need to investigate)
+
+### EMERGENCY ROLLBACK:
+```bash
+git revert HEAD -m 1 && git push origin main
+```
+
+**See docs/PRODUCTION_DEPLOYMENT_PROTOCOL.md for complete procedures**

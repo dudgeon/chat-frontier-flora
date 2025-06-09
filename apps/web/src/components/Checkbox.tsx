@@ -1,5 +1,48 @@
 import React from 'react';
-import { TouchableOpacity, Text, View, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, View } from 'react-native';
+
+// Design system constants (matching other components)
+const designSystem = {
+  colors: {
+    white: '#FFFFFF',
+    gray50: '#F9FAFB',
+    gray200: '#E5E7EB',
+    gray300: '#D1D5DB',
+    gray500: '#6B7280',
+    gray600: '#4B5563',
+    gray700: '#374151',
+    gray900: '#111827',
+    blue600: '#2563EB',
+    red500: '#EF4444',
+  },
+  spacing: {
+    xs: 4,
+    sm: 8,
+    md: 16,
+    lg: 24,
+    xl: 32,
+  },
+  borderRadius: {
+    sm: 4,
+    md: 6,
+    lg: 8,
+  },
+  fontSize: {
+    sm: 14,
+    base: 16,
+    lg: 18,
+  },
+  fontWeight: {
+    normal: '400' as const,
+    medium: '500' as const,
+    semibold: '600' as const,
+    bold: '700' as const,
+  },
+  lineHeight: {
+    tight: 20,
+    normal: 24,
+  },
+};
 
 interface CheckboxProps {
   label: string;
@@ -9,6 +52,28 @@ interface CheckboxProps {
   testID?: string;
 }
 
+/**
+ * Checkbox component with inline styles using design system constants.
+ *
+ * This component has been converted from StyleSheet to inline styles as part of the
+ * NativeWind implementation project. It uses a centralized design system for consistent
+ * styling across the application.
+ *
+ * Design System Features:
+ * - Consistent color palette (gray scale, blue primary, red error)
+ * - Standardized spacing system (xs: 4px, sm: 8px, md: 16px, etc.)
+ * - Unified border radius values (sm: 4px, md: 6px, lg: 8px)
+ * - Typography scale with consistent font sizes and weights
+ *
+ * Styling Approach:
+ * - Container: Uses design system spacing for margins and overflow handling
+ * - Checkbox box: Dynamic border and background colors based on state (checked/error)
+ * - Label: Flexible text with proper wrapping and responsive behavior
+ * - Error text: Consistent error styling with design system colors
+ *
+ * @param props - The checkbox component props
+ * @returns A styled checkbox component with label and optional error message
+ */
 export const Checkbox: React.FC<CheckboxProps> = ({
   label,
   checked,
@@ -17,9 +82,19 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   testID,
 }) => {
   return (
-    <View style={styles.container}>
+    <View style={{
+      marginBottom: designSystem.spacing.md,
+      maxWidth: '100%',
+      overflow: 'hidden',
+    }}>
       <TouchableOpacity
-        style={styles.row}
+        style={{
+          flexDirection: 'row',
+          alignItems: 'flex-start',
+          flexWrap: 'wrap',
+          maxWidth: '100%',
+          overflow: 'hidden',
+        }}
         onPress={onPress}
         activeOpacity={0.7}
         accessible={true}
@@ -27,66 +102,45 @@ export const Checkbox: React.FC<CheckboxProps> = ({
         accessibilityState={{ checked }}
         testID={testID}
       >
-        <View style={[styles.box, checked && styles.checked, error ? styles.error : null]}>
-          {checked && <View style={styles.checkmark} />}
+        <View style={{
+          width: 20,
+          height: 20,
+          borderWidth: 2,
+          borderColor: error ? designSystem.colors.red500 : (checked ? designSystem.colors.blue600 : designSystem.colors.gray300),
+          borderRadius: designSystem.borderRadius.sm,
+          marginRight: designSystem.spacing.sm,
+          marginTop: 2,
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexShrink: 0,
+          backgroundColor: checked ? designSystem.colors.blue600 : 'transparent',
+        }}>
+          {checked && (
+            <View style={{
+              width: 10,
+              height: 10,
+              backgroundColor: designSystem.colors.white,
+              borderRadius: 2,
+            }} />
+          )}
         </View>
-        <Text style={styles.label}>{label}</Text>
+        <Text style={{
+          fontSize: designSystem.fontSize.sm,
+          color: designSystem.colors.gray900,
+          flex: 1,
+          lineHeight: designSystem.lineHeight.tight,
+          flexShrink: 1,
+          flexWrap: 'wrap',
+          minWidth: 0,
+        }}>{label}</Text>
       </TouchableOpacity>
-      {error && <Text style={styles.errorText}>{error}</Text>}
+      {error && (
+        <Text style={{
+          color: designSystem.colors.red500,
+          fontSize: designSystem.fontSize.sm,
+          marginTop: designSystem.spacing.xs,
+        }}>{error}</Text>
+      )}
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    marginBottom: 16,
-    maxWidth: '100%',
-    overflow: 'hidden',
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    flexWrap: 'wrap',
-    maxWidth: '100%',
-    overflow: 'hidden',
-  },
-  box: {
-    width: 20,
-    height: 20,
-    borderWidth: 2,
-    borderColor: '#D1D5DB',
-    borderRadius: 4,
-    marginRight: 8,
-    marginTop: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexShrink: 0,
-  },
-  checked: {
-    backgroundColor: '#3B82F6',
-    borderColor: '#3B82F6',
-  },
-  error: {
-    borderColor: '#EF4444',
-  },
-  checkmark: {
-    width: 10,
-    height: 10,
-    backgroundColor: '#FFFFFF',
-    borderRadius: 2,
-  },
-  label: {
-    fontSize: 14,
-    color: '#1F2937',
-    flex: 1,
-    lineHeight: 20,
-    flexShrink: 1,
-    flexWrap: 'wrap',
-    minWidth: 0,
-  },
-  errorText: {
-    color: '#EF4444',
-    fontSize: 14,
-    marginTop: 4,
-  },
-});
