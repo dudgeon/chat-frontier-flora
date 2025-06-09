@@ -1,43 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, Text } from 'react-native';
 import { AuthProvider } from './src/contexts/AuthContext';
 import { AuthFlow } from './src/components/auth/AuthFlow';
 
 export default function App() {
   return (
     <AuthProvider>
-      <View
-        className="flex-1 bg-white items-center justify-start p-5"
-        style={styles.container}
-        role="main"
-      >
-        <Text
-          className="text-2xl font-bold mb-2 mt-10 text-gray-800"
-          style={styles.title}
-          role="heading"
-          aria-level={1}
-        >
+      <View className="flex-1 bg-gray-100 p-5 sm:p-6 lg:p-8">
+        <Text className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-blue-600 mt-10 sm:mt-12 lg:mt-16">
           Frontier.Family
         </Text>
+
+        {/* Test NativeWind styling */}
+        <View className="bg-red-500 p-4 m-2 rounded-lg">
+          <Text className="text-white text-center">NativeWind Test - Red Background</Text>
+        </View>
+
         <AuthFlow />
       </View>
     </AuthProvider>
   );
 }
-
-// Keep StyleSheet as fallback for now
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 8,
-    marginTop: 40,
-  },
-});

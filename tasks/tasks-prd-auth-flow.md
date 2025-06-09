@@ -107,14 +107,7 @@
   - [x] 5.19 Test complete form validation flow with all new requirements
   - [x] 5.20 Test submit button state changes with various input combinations
 
-SPECIAL BONUS NEW TASKS
 
-  - [x] 5.21 Run comprehensive checks including UI and visual regression tests
-  - [x] 5.22 **REQUIRES USER VISUAL INSPECTION** - Inspect localhost:19006 for visual/functional verification (✅ VERIFIED WORKING)
-  - [x] 5.23 Run comprehensive test suite (unit, integration, E2E) - (✅ ALL TESTS PASSING - 147 tests, 10 suites)
-  - [ ] 5.23 **REQUIRES USER APPROVAL** - Create PR for preview deployment after localhost approval -- follow @progression-workflow.mdc to a tee
-  - [ ] 5.24 **REQUIRES USER VISUAL INSPECTION** - Inspect preview deployment URL
-  - [ ] 5.25 **REQUIRES USER APPROVAL** - Merge to production after preview approval
 
 - [ ] 6.0 Enhanced UI Components
   - [ ] 6.1 Update Button component to support clear disabled/enabled states

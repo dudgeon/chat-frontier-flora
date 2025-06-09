@@ -1,0 +1,101 @@
+{
+  "timestamp": "2025-06-08T22:23:45.259Z",
+  "comparisons": [
+    {
+      "filename": "homepage-mobile.png",
+      "page": "homepage",
+      "viewport": "mobile",
+      "baselineSize": 54898,
+      "currentSize": 54898,
+      "sizeDifference": 0,
+      "passed": true,
+      "diffPath": "visual-regression/diff/homepage-mobile.png"
+    },
+    {
+      "filename": "chat-page-mobile.png",
+      "page": "chat-page",
+      "viewport": "mobile",
+      "baselineSize": 54898,
+      "currentSize": 54898,
+      "sizeDifference": 0,
+      "passed": true,
+      "diffPath": "visual-regression/diff/chat-page-mobile.png"
+    },
+    {
+      "filename": "debug-page-mobile.png",
+      "page": "debug-page",
+      "viewport": "mobile",
+      "baselineSize": 18129,
+      "currentSize": 18129,
+      "sizeDifference": 0,
+      "passed": true,
+      "diffPath": "visual-regression/diff/debug-page-mobile.png"
+    },
+    {
+      "filename": "homepage-tablet.png",
+      "page": "homepage",
+      "viewport": "tablet",
+      "baselineSize": 63002,
+      "currentSize": 63002,
+      "sizeDifference": 0,
+      "passed": true,
+      "diffPath": "visual-regression/diff/homepage-tablet.png"
+    },
+    {
+      "filename": "chat-page-tablet.png",
+      "page": "chat-page",
+      "viewport": "tablet",
+      "baselineSize": 63002,
+      "currentSize": 63002,
+      "sizeDifference": 0,
+      "passed": true,
+      "diffPath": "visual-regression/diff/chat-page-tablet.png"
+    },
+    {
+      "filename": "debug-page-tablet.png",
+      "page": "debug-page",
+      "viewport": "tablet",
+      "baselineSize": 21108,
+      "currentSize": 21108,
+      "sizeDifference": 0,
+      "passed": true,
+      "diffPath": "visual-regression/diff/debug-page-tablet.png"
+    },
+    {
+      "filename": "homepage-desktop.png",
+      "page": "homepage",
+      "viewport": "desktop",
+      "baselineSize": 64494,
+      "currentSize": 64494,
+      "sizeDifference": 0,
+      "passed": true,
+      "diffPath": "visual-regression/diff/homepage-desktop.png"
+    },
+    {
+      "filename": "chat-page-desktop.png",
+      "page": "chat-page",
+      "viewport": "desktop",
+      "baselineSize": 64494,
+      "currentSize": 64494,
+      "sizeDifference": 0,
+      "passed": true,
+      "diffPath": "visual-regression/diff/chat-page-desktop.png"
+    },
+    {
+      "filename": "debug-page-desktop.png",
+      "page": "debug-page",
+      "viewport": "desktop",
+      "baselineSize": 21665,
+      "currentSize": 21665,
+      "sizeDifference": 0,
+      "passed": true,
+      "diffPath": "visual-regression/diff/debug-page-desktop.png"
+    }
+  ],
+  "summary": {
+    "total": 9,
+    "passed": 9,
+    "failed": 0,
+    "threshold": 0.2
+  }
+}

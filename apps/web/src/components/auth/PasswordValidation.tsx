@@ -1,5 +1,53 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, Dimensions } from 'react-native';
+
+/**
+ * 🎨 DESIGN SYSTEM - NativeWind Compatible Values
+ *
+ * These values align with Tailwind CSS for easy NativeWind conversion
+ */
+const designSystem = {
+  // Colors (Tailwind equivalent)
+  colors: {
+    gray200: '#e5e7eb',   // bg-gray-200
+    gray500: '#6b7280',   // text-gray-500
+    gray600: '#4b5563',   // text-gray-600
+    gray700: '#374151',   // text-gray-700
+    green500: '#22c55e',  // text-green-500
+    green600: '#16a34a',  // text-green-600
+    green700: '#15803d',  // text-green-700
+    red500: '#ef4444',    // text-red-500
+    red600: '#dc2626',    // text-red-600
+    orange500: '#f97316', // text-orange-500
+    orange600: '#ea580c', // text-orange-600
+    yellow500: '#eab308', // text-yellow-500
+    yellow600: '#ca8a04', // text-yellow-600
+  },
+
+  // Spacing (Tailwind equivalent)
+  spacing: {
+    1: 4,    // space-1
+    2: 8,    // space-2
+    3: 12,   // space-3
+    4: 16,   // space-4
+    6: 24,   // space-6
+    8: 32,   // space-8
+  },
+
+  // Typography (Tailwind equivalent)
+  text: {
+    xs: 11,   // text-xs
+    sm: 14,   // text-sm
+    base: 16, // text-base
+  },
+
+  // Border radius (Tailwind equivalent)
+  radius: {
+    sm: 4,    // rounded-sm
+    md: 6,    // rounded-md
+    lg: 8,    // rounded-lg
+  },
+};
 
 export interface PasswordRule {
   id: string;
@@ -108,22 +156,40 @@ export const PasswordValidation: React.FC<PasswordValidationProps> = ({
     return null;
   }
 
-  // Responsive styles
+  // Responsive styles using design system
   const containerStyle = [
-    styles.container,
-    isSmallScreen && styles.containerMobile,
+    {
+      marginTop: 12,
+      paddingHorizontal: 4,
+    },
+    isSmallScreen && {
+      marginTop: 8,
+      paddingHorizontal: 2,
+    },
     style,
   ];
 
   const rulesGridStyle = [
-    styles.rulesGrid,
-    isSmallScreen && styles.rulesGridMobile,
-    isVerySmallScreen && styles.rulesGridVerySmall,
+    {
+      marginTop: 8,
+      marginBottom: 4,
+    },
+    isSmallScreen && {
+      marginTop: 6,
+    },
+    // isVerySmallScreen styles would go here if needed
   ];
 
   const ruleTextStyle = [
-    styles.ruleText,
-    isSmallScreen && styles.ruleTextMobile,
+    {
+      fontSize: 11,
+      flex: 1,
+      lineHeight: 16,
+    },
+    isSmallScreen && {
+      fontSize: 10,
+      lineHeight: 14,
+    },
   ];
 
   // Accessibility: Generate comprehensive screen reader descriptions
@@ -151,7 +217,7 @@ export const PasswordValidation: React.FC<PasswordValidationProps> = ({
     >
       {/* Password Strength Indicator */}
       <View
-        style={styles.strengthSection}
+        style={{ marginBottom: 12 }}
         accessible={true}
         accessibilityRole="progressbar"
         accessibilityLabel={`Password strength indicator: ${strengthLabel}`}
@@ -162,9 +228,18 @@ export const PasswordValidation: React.FC<PasswordValidationProps> = ({
           text: strengthDescription
         }}
       >
-        <View style={styles.strengthHeader}>
+        <View style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: 4,
+        }}>
           <Text
-            style={styles.strengthTitle}
+            style={{
+              fontSize: 14,
+              fontWeight: '500' as const,
+              color: '#374151', // gray-700
+            }}
             accessible={true}
             accessibilityRole="text"
             accessibilityLabel="Password strength section"
@@ -172,7 +247,11 @@ export const PasswordValidation: React.FC<PasswordValidationProps> = ({
             Password Strength
           </Text>
           <Text
-            style={[styles.strengthLabel, { color: strengthColor }]}
+            style={{
+              fontSize: 14,
+              fontWeight: '500' as const,
+              color: strengthColor,
+            }}
             testID="strength-label"
             accessible={true}
             accessibilityRole="text"
@@ -184,7 +263,13 @@ export const PasswordValidation: React.FC<PasswordValidationProps> = ({
 
         {/* Progress Bar */}
         <View
-          style={styles.progressContainer}
+          style={{
+            width: '100%',
+            height: 8,
+            backgroundColor: '#e5e7eb', // gray-200
+            borderRadius: 4,
+            overflow: 'hidden',
+          }}
           testID="strength-progress-container"
           accessible={true}
           accessibilityRole="progressbar"
@@ -197,20 +282,23 @@ export const PasswordValidation: React.FC<PasswordValidationProps> = ({
           }}
         >
           <View
-            style={[
-              styles.progressBar,
-              {
-                width: `${strengthScore}%`,
-                backgroundColor: progressColor,
-              }
-            ]}
+            style={{
+              height: '100%',
+              borderRadius: 4,
+              width: `${strengthScore}%`,
+              backgroundColor: progressColor,
+            }}
             testID="strength-progress-bar"
             accessible={false} // Parent handles accessibility
           />
         </View>
 
         <Text
-          style={styles.strengthPercentage}
+          style={{
+            fontSize: 11,
+            color: '#6b7280', // gray-500
+            marginTop: 4,
+          }}
           accessible={true}
           accessibilityRole="text"
           accessibilityLabel={`Password strength percentage: ${Math.round(strengthScore)} percent`}
@@ -230,7 +318,12 @@ export const PasswordValidation: React.FC<PasswordValidationProps> = ({
         {ruleResults.map((rule, index) => (
           <View
             key={rule.id}
-            style={styles.ruleItem}
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginBottom: 4,
+              paddingVertical: 1,
+            }}
             testID={`rule-${rule.id}`}
                         accessible={true}
             accessibilityRole="none"
@@ -242,10 +335,13 @@ export const PasswordValidation: React.FC<PasswordValidationProps> = ({
             }}
           >
             <Text
-              style={[
-                styles.ruleIcon,
-                { color: rule.passed ? '#22c55e' : '#9ca3af' }
-              ]}
+              style={{
+                fontSize: 12,
+                marginRight: 8,
+                width: 12,
+                textAlign: 'center' as const,
+                color: rule.passed ? '#22c55e' : '#9ca3af',
+              }}
               testID={`rule-${rule.id}-${rule.passed ? 'check' : 'x'}`}
               accessible={false} // Parent handles accessibility
             >
@@ -268,17 +364,23 @@ export const PasswordValidation: React.FC<PasswordValidationProps> = ({
       {/* Overall Status */}
       {password.length > 0 && (
         <View
-          style={styles.statusSection}
+          style={{
+            marginTop: 8,
+            paddingTop: 8,
+            borderTopWidth: 1,
+            borderTopColor: '#e5e7eb', // gray-200
+          }}
           accessible={true}
           accessibilityRole="none"
           accessibilityLabel="Password requirements summary"
           accessibilityLiveRegion="polite"
         >
           <Text
-            style={[
-              styles.statusText,
-              { color: allRequiredRulesPassed ? '#16a34a' : '#6b7280' }
-            ]}
+            style={{
+              fontSize: 11,
+              fontWeight: '400' as const,
+              color: allRequiredRulesPassed ? '#16a34a' : '#6b7280',
+            }}
             testID="overall-status"
             accessible={true}
             accessibilityRole="text"
@@ -295,98 +397,5 @@ export const PasswordValidation: React.FC<PasswordValidationProps> = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 12,
-    paddingHorizontal: 4,
-  },
-  containerMobile: {
-    marginTop: 8,
-    paddingHorizontal: 2,
-  },
-
-  // Strength Section
-  strengthSection: {
-    marginBottom: 12,
-  },
-  strengthHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 4,
-  },
-  strengthTitle: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#374151', // gray-700
-  },
-  strengthLabel: {
-    fontSize: 14,
-    fontWeight: '500',
-  },
-  progressContainer: {
-    width: '100%',
-    height: 8,
-    backgroundColor: '#e5e7eb', // gray-200
-    borderRadius: 4,
-    overflow: 'hidden',
-  },
-  progressBar: {
-    height: '100%',
-    borderRadius: 4,
-    // Smooth transition effect would be handled by Animated in React Native
-  },
-  strengthPercentage: {
-    fontSize: 11,
-    color: '#6b7280', // gray-500
-    marginTop: 4,
-  },
-
-  // Rules Section
-  rulesGrid: {
-    marginTop: 8,
-    marginBottom: 4,
-  },
-  rulesGridMobile: {
-    marginTop: 6,
-  },
-  rulesGridVerySmall: {
-    // On very small screens, stack rules more compactly
-  },
-  ruleItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 4,
-    paddingVertical: 1,
-  },
-  ruleIcon: {
-    fontSize: 12,
-    marginRight: 8,
-    width: 12,
-    textAlign: 'center',
-  },
-  ruleText: {
-    fontSize: 11,
-    flex: 1,
-    lineHeight: 16,
-  },
-  ruleTextMobile: {
-    fontSize: 10,
-    lineHeight: 14,
-  },
-
-  // Status Section
-  statusSection: {
-    marginTop: 8,
-    paddingTop: 8,
-    borderTopWidth: 1,
-    borderTopColor: '#e5e7eb', // gray-200
-  },
-  statusText: {
-    fontSize: 11,
-    fontWeight: '400',
-  },
-});
 
 export default PasswordValidation;

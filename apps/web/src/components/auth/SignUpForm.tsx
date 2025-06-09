@@ -25,13 +25,86 @@
  */
 
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { useAuth } from '../../hooks/useAuth';
 import { useFormValidation, FieldConfig } from '../../hooks/useFormValidation';
 import { useSubmitButton, getSubmitButtonStyles, getSubmitButtonTextStyles } from '../../hooks/useSubmitButton';
 import { PasswordValidation } from './PasswordValidation';
 import { validateEmail, validatePassword } from '../../../utils/validation';
 import { Checkbox } from '../Checkbox';
+
+/**
+ * 🎨 DESIGN SYSTEM - NativeWind Compatible Values
+ *
+ * These values align with Tailwind CSS for easy NativeWind conversion
+ */
+const styles = {
+  // Colors (Tailwind equivalent)
+  colors: {
+    gray50: '#f9fafb',    // bg-gray-50
+    gray100: '#f3f4f6',   // bg-gray-100
+    gray300: '#d1d5db',   // border-gray-300
+    gray400: '#9ca3af',   // bg-gray-400
+    gray600: '#4b5563',   // text-gray-600
+    gray700: '#374151',   // text-gray-700
+    gray900: '#1f2937',   // text-gray-900
+    blue500: '#3b82f6',   // bg-blue-500
+    blue600: '#2563eb',   // bg-blue-600
+    red500: '#ef4444',    // text-red-500
+    white: '#ffffff',     // bg-white
+  },
+
+  // Spacing (Tailwind equivalent)
+  spacing: {
+    1: 4,    // space-1
+    2: 8,    // space-2
+    3: 12,   // space-3
+    4: 16,   // space-4
+    6: 24,   // space-6
+    8: 32,   // space-8
+  },
+
+  // Typography (Tailwind equivalent)
+  text: {
+    sm: 14,   // text-sm
+    base: 16, // text-base
+    lg: 18,   // text-lg
+    xl: 20,   // text-xl
+    '2xl': 24, // text-2xl
+    '3xl': 30, // text-3xl
+  },
+
+  // Border radius (Tailwind equivalent)
+  radius: {
+    md: 6,    // rounded-md
+    lg: 8,    // rounded-lg
+    xl: 12,   // rounded-xl
+  },
+
+  // Common input styles
+  input: {
+    borderWidth: 1,
+    borderRadius: 12, // rounded-xl
+    padding: 12,      // p-3
+    fontSize: 16,     // text-base
+    backgroundColor: '#ffffff', // bg-white
+  },
+
+  // Common label styles
+  label: {
+    fontSize: 16,     // text-base
+    fontWeight: '500' as const, // font-medium
+    marginBottom: 8,   // mb-2
+    color: '#374151',  // text-gray-700
+  },
+
+  // Error text styles
+  error: {
+    color: '#ef4444',  // text-red-500
+    fontSize: 14,      // text-sm
+    marginTop: 4,      // mt-1
+  },
+};
 
 /**
  * 📋 Form Data Interface - PRD Compliant
@@ -203,319 +276,218 @@ export const SignUpForm: React.FC = () => {
   };
 
   return (
-    <ScrollView style={styles.container} testID="signup-form">
-      <Text style={styles.title}>Create Account</Text>
-
-      {/* ⚠️ CRITICAL: Full Name Input Field (PRD Requirement) */}
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Full Name *</Text>
-        <TextInput
-          testID="full-name"
-          style={formValidation.getFieldProps('fullName').error ? [styles.input, styles.inputError] : styles.input}
-          value={formValidation.getFieldProps('fullName').value}
-          onChangeText={(text) => formValidation.updateField('fullName', text)}
-          onBlur={() => formValidation.touchField('fullName')}
-          placeholder="Enter your first and last name"
-          autoComplete="name"
-        />
-        {formValidation.getFieldProps('fullName').touched && formValidation.getFieldProps('fullName').error && (
-          <Text style={styles.errorText}>{formValidation.getFieldProps('fullName').error}</Text>
-        )}
-      </View>
-
-      {/* ⚠️ CRITICAL: Email Input Field */}
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Email Address *</Text>
-        <TextInput
-          testID="email"
-          style={formValidation.getFieldProps('email').error ? [styles.input, styles.inputError] : styles.input}
-          value={formValidation.getFieldProps('email').value}
-          onChangeText={(text) => formValidation.updateField('email', text)}
-          onBlur={() => formValidation.touchField('email')}
-          placeholder="Enter your email address"
-          keyboardType="email-address"
-          autoCapitalize="none"
-          autoComplete="email"
-        />
-        {formValidation.getFieldProps('email').touched && formValidation.getFieldProps('email').error && (
-          <Text style={styles.errorText}>{formValidation.getFieldProps('email').error}</Text>
-        )}
-      </View>
-
-      {/* ⚠️ CRITICAL: Password Input Field with Real-time Validation */}
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Password *</Text>
-        <TextInput
-          testID="password"
-          style={formValidation.getFieldProps('password').error ? [styles.input, styles.inputError] : styles.input}
-          value={formValidation.getFieldProps('password').value}
-          onChangeText={(text) => {
-            formValidation.updateField('password', text);
-            setShowPasswordValidation(text.length > 0);
-          }}
-          onBlur={() => formValidation.touchField('password')}
-          onFocus={() => setShowPasswordValidation(true)}
-          placeholder="Enter your password"
-          secureTextEntry
-          autoComplete="new-password"
-        />
-        {formValidation.getFieldProps('password').touched && formValidation.getFieldProps('password').error && (
-          <Text style={styles.errorText}>{formValidation.getFieldProps('password').error}</Text>
-        )}
-
-        {/* ⚠️ CRITICAL: Real-time Password Validation Component */}
-        <PasswordValidation
-          password={formValidation.getFieldProps('password').value}
-          showRules={showPasswordValidation}
-          style={styles.passwordValidation}
-        />
-      </View>
-
-      {/* ⚠️ CRITICAL: Password Confirmation Field */}
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Confirm Password *</Text>
-        <TextInput
-          testID="confirm-password"
-          style={formValidation.getFieldProps('confirmPassword').error ? [styles.input, styles.inputError] : styles.input}
-          value={formValidation.getFieldProps('confirmPassword').value}
-          onChangeText={(text) => formValidation.updateField('confirmPassword', text)}
-          onBlur={() => formValidation.touchField('confirmPassword')}
-          placeholder="Confirm your password"
-          secureTextEntry
-          autoComplete="new-password"
-        />
-        {formValidation.getFieldProps('confirmPassword').touched && formValidation.getFieldProps('confirmPassword').error && (
-          <Text style={styles.errorText}>{formValidation.getFieldProps('confirmPassword').error}</Text>
-        )}
-      </View>
-
-      {/* ⚠️ CRITICAL: Age Verification Checkbox (PRD Requirement) */}
-      <Checkbox
-        testID="age-verification"
-        label="I verify that I am 18 years of age or older"
-        checked={formValidation.getFieldProps('ageVerification').value === 'true'}
-        onPress={() => {
-          const currentValue = formValidation.getFieldProps('ageVerification').value === 'true';
-          formValidation.updateField('ageVerification', (!currentValue).toString());
-        }}
-        error={formValidation.getFieldProps('ageVerification').touched && formValidation.getFieldProps('ageVerification').error ? formValidation.getFieldProps('ageVerification').error || undefined : undefined}
-      />
-
-      {/* ⚠️ CRITICAL: Development Consent Checkbox (PRD Requirement) */}
-      <Checkbox
-        testID="development-consent"
-        label="I consent to the use of my data for development and improvement purposes"
-        checked={formValidation.getFieldProps('developmentConsent').value === 'true'}
-        onPress={() => {
-          const currentValue = formValidation.getFieldProps('developmentConsent').value === 'true';
-          formValidation.updateField('developmentConsent', (!currentValue).toString());
-        }}
-        error={formValidation.getFieldProps('developmentConsent').touched && formValidation.getFieldProps('developmentConsent').error ? formValidation.getFieldProps('developmentConsent').error || undefined : undefined}
-      />
-
-      {/* ⚠️ CRITICAL: Submit Button with Enhanced State Management */}
-      <TouchableOpacity
-        testID="submit-button"
-        style={getSubmitButtonStyles(
-          submitButtonState,
-          styles.button,
-          styles.buttonDisabled,
-          styles.buttonLoading
-        )}
-        onPress={handleSubmit}
-        disabled={submitButtonState.isDisabled}
-        accessibilityLabel={submitButtonState.accessibilityLabel}
-        accessibilityHint={submitButtonState.accessibilityHint}
-        accessibilityRole="button"
-        accessibilityState={{
-          disabled: submitButtonState.isDisabled,
-          busy: loading,
-        }}
-      >
-        <Text style={getSubmitButtonTextStyles(
-          submitButtonState,
-          styles.buttonText,
-          styles.buttonTextDisabled,
-          styles.buttonTextLoading
-        )}>
-          {submitButtonState.buttonText}
+    <View style={{ flex: 1, width: '100%', alignItems: 'center', justifyContent: 'center', backgroundColor: '#f9fafb' }}>
+      <View style={{ paddingHorizontal: 16, width: '100%', maxWidth: 384 }}>
+        <Text style={{ fontSize: 32, fontWeight: 'bold', marginBottom: 32, textAlign: 'center', color: '#1f2937' }}>
+          Create Account
         </Text>
-      </TouchableOpacity>
 
-      {/* ⚠️ HELPFUL: Submit Button Status Feedback */}
-      {submitButtonState.isDisabled && submitButtonState.disabledReason && (
-        <Text style={styles.submitHintText}>
-          {submitButtonState.disabledReason}
-        </Text>
-      )}
+        <View style={{ flexDirection: 'column', gap: 24 }}>
+          {/* ⚠️ CRITICAL: Full Name Input Field (PRD Requirement) */}
+          <View>
+            <Text style={styles.label}>Full Name *</Text>
+            <TextInput
+              testID="full-name"
+              style={{
+                ...styles.input,
+                borderColor: formValidation.getFieldProps('fullName').error ? styles.colors.red500 : styles.colors.gray300
+              }}
+              value={formValidation.getFieldProps('fullName').value}
+              onChangeText={(text) => formValidation.updateField('fullName', text)}
+              onBlur={() => formValidation.touchField('fullName')}
+              placeholder="Enter your first and last name"
+              autoComplete="name"
+              autoCapitalize="sentences"
+              autoCorrect={true}
+            />
+            {formValidation.getFieldProps('fullName').error && (
+              <Text style={styles.error}>
+                {formValidation.getFieldProps('fullName').error}
+              </Text>
+            )}
+          </View>
 
-      {/* Form Status Indicator for Development */}
-      {__DEV__ && (
-        <View style={styles.debugContainer}>
-          <Text style={styles.debugText}>
-            Form Valid: {formValidation.isFormValid ? 'Yes' : 'No'}
-          </Text>
-          <Text style={styles.debugText}>
-            Form Touched: {formValidation.isFormTouched ? 'Yes' : 'No'}
-          </Text>
-          <Text style={styles.debugText}>
-            Form Completed: {formValidation.isFormCompleted ? 'Yes' : 'No'}
-          </Text>
-          <Text style={styles.debugText}>
-            Completion: {formValidation.completedFieldsCount}/{formValidation.totalRequiredFieldsCount} ({formValidation.completionPercentage}%)
-          </Text>
-          <Text style={styles.debugText}>
-            Submit Button: {submitButtonState.buttonStyle} - {submitButtonState.isDisabled ? 'Disabled' : 'Enabled'}
-          </Text>
-          {submitButtonState.disabledReason && (
-            <Text style={styles.debugText}>
-              Disabled Reason: {submitButtonState.disabledReason}
+          {/* ⚠️ CRITICAL: Email Input Field (PRD Requirement) */}
+          <View>
+            <Text style={styles.label}>Email Address *</Text>
+            <TextInput
+              testID="email"
+              style={{
+                ...styles.input,
+                borderColor: formValidation.getFieldProps('email').error ? styles.colors.red500 : styles.colors.gray300
+              }}
+              value={formValidation.getFieldProps('email').value}
+              onChangeText={(text) => formValidation.updateField('email', text)}
+              onBlur={() => formValidation.touchField('email')}
+              placeholder="Enter your email address"
+              autoComplete="email"
+              autoCapitalize="none"
+              autoCorrect={false}
+              keyboardType="email-address"
+            />
+            {formValidation.getFieldProps('email').error && (
+              <Text style={styles.error}>
+                {formValidation.getFieldProps('email').error}
+              </Text>
+            )}
+          </View>
+
+          {/* ⚠️ CRITICAL: Password Input Field (PRD Requirement) */}
+          <View>
+            <Text style={styles.label}>Password *</Text>
+            <TextInput
+              testID="password"
+              style={{
+                ...styles.input,
+                borderColor: formValidation.getFieldProps('password').error ? styles.colors.red500 : styles.colors.gray300
+              }}
+              value={formValidation.getFieldProps('password').value}
+              onChangeText={(text) => {
+                formValidation.updateField('password', text);
+                setShowPasswordValidation(text.length > 0);
+              }}
+              onBlur={() => formValidation.touchField('password')}
+              onFocus={() => setShowPasswordValidation(true)}
+              placeholder="Enter your password"
+              secureTextEntry={true}
+              autoComplete="new-password"
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+            {formValidation.getFieldProps('password').error && (
+              <Text style={styles.error}>
+                {formValidation.getFieldProps('password').error}
+              </Text>
+            )}
+          </View>
+
+          {/* ⚠️ CRITICAL: Password Validation Component */}
+          {showPasswordValidation && (
+            <PasswordValidation
+              password={formValidation.getFieldProps('password').value}
+            />
+          )}
+
+          {/* ⚠️ CRITICAL: Confirm Password Input Field (PRD Requirement) */}
+          <View>
+            <Text style={styles.label}>Confirm Password *</Text>
+            <TextInput
+              testID="confirm-password"
+              style={{
+                ...styles.input,
+                borderColor: formValidation.getFieldProps('confirmPassword').error ? styles.colors.red500 : styles.colors.gray300
+              }}
+              value={formValidation.getFieldProps('confirmPassword').value}
+              onChangeText={(text) => formValidation.updateField('confirmPassword', text)}
+              onBlur={() => formValidation.touchField('confirmPassword')}
+              placeholder="Confirm your password"
+              secureTextEntry={true}
+              autoComplete="new-password"
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+            {formValidation.getFieldProps('confirmPassword').error && (
+              <Text style={styles.error}>
+                {formValidation.getFieldProps('confirmPassword').error}
+              </Text>
+            )}
+          </View>
+
+          {/* ⚠️ CRITICAL: Age Verification Checkbox (PRD Requirement) */}
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
+            <Checkbox
+              testID="age-verification"
+              label="I verify that I am 18 years of age or older"
+              checked={formValidation.getFieldProps('ageVerification').value === 'true'}
+              onPress={() => {
+                const currentValue = formValidation.getFieldProps('ageVerification').value === 'true';
+                formValidation.updateField('ageVerification', (!currentValue).toString());
+              }}
+            />
+          </View>
+          {formValidation.getFieldProps('ageVerification').error && (
+            <Text style={styles.error}>
+              {formValidation.getFieldProps('ageVerification').error}
+            </Text>
+          )}
+
+          {/* ⚠️ CRITICAL: Development Consent Checkbox (PRD Requirement) */}
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 8 }}>
+            <Checkbox
+              testID="development-consent"
+              label="I consent to the use of my data for development and improvement purposes"
+              checked={formValidation.getFieldProps('developmentConsent').value === 'true'}
+              onPress={() => {
+                const currentValue = formValidation.getFieldProps('developmentConsent').value === 'true';
+                formValidation.updateField('developmentConsent', (!currentValue).toString());
+              }}
+            />
+          </View>
+          {formValidation.getFieldProps('developmentConsent').error && (
+            <Text style={styles.error}>
+              {formValidation.getFieldProps('developmentConsent').error}
             </Text>
           )}
         </View>
-      )}
-    </ScrollView>
+
+        {/* ⚠️ CRITICAL: Submit Button with proper spacing */}
+        <View style={{ marginTop: 32, marginBottom: 24 }}>
+          <TouchableOpacity
+            testID="submit-button"
+            accessibilityLabel="Create Account Button"
+            accessibilityHint={submitButtonState.isDisabled ? "Complete all form fields to enable" : "Submit the form to create your account"}
+            accessibilityRole="button"
+            style={{
+              backgroundColor: submitButtonState.isDisabled ? styles.colors.gray400 : styles.colors.blue500,
+              paddingVertical: 16,
+              paddingHorizontal: 24,
+              borderRadius: 12,
+              alignItems: 'center',
+              opacity: submitButtonState.isDisabled ? 0.6 : 1
+            }}
+            onPress={handleSubmit}
+            disabled={submitButtonState.isDisabled}
+          >
+            <Text style={{
+              color: styles.colors.white,
+              fontSize: 16,
+              fontWeight: '600' as const
+            }}>
+              {submitButtonState.buttonText}
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* ⚠️ CRITICAL: Form Status Debug Information */}
+        <View style={{ marginTop: 16, padding: 16, backgroundColor: '#f3f4f6', borderRadius: 8 }}>
+          <Text style={{ fontSize: 14, fontWeight: '600', marginBottom: 8, color: '#374151' }}>
+            Complete Form to Continue
+          </Text>
+          <Text style={{ fontSize: 12, color: '#6b7280', marginBottom: 4 }}>
+            Please fix all form errors
+          </Text>
+          <Text style={{ fontSize: 12, color: '#6b7280', marginBottom: 4 }}>
+            Form Valid: {formValidation.isFormValid ? 'Yes' : 'No'}
+          </Text>
+          <Text style={{ fontSize: 12, color: '#6b7280', marginBottom: 4 }}>
+            Form Touched: {formValidation.isFormTouched ? 'Yes' : 'No'}
+          </Text>
+          <Text style={{ fontSize: 12, color: '#6b7280', marginBottom: 4 }}>
+            Form Completed: {formValidation.isFormCompleted ? 'Yes' : 'No'}
+          </Text>
+          <Text style={{ fontSize: 12, color: '#6b7280', marginBottom: 4 }}>
+            Completion: {formValidation.completionPercentage}/6 ({Math.round((formValidation.completionPercentage / 6) * 100)}%)
+          </Text>
+          <Text style={{ fontSize: 12, color: '#6b7280', marginBottom: 4 }}>
+            Submit Button: {submitButtonState.isDisabled ? 'disabled' : 'enabled'} - {submitButtonState.isDisabled ? 'Disabled' : 'Enabled'}
+          </Text>
+          <Text style={{ fontSize: 12, color: '#6b7280' }}>
+            Disabled Reason: {submitButtonState.disabledReason}
+          </Text>
+        </View>
+      </View>
+    </View>
   );
 };
-
-/**
- * 🎨 COMPONENT STYLES
- *
- * ⚠️ SAFE TO MODIFY: These styles can be changed without breaking functionality.
- * However, ensure disabled button states remain visually distinct.
- */
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    maxWidth: 400,
-    width: '100%',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    textAlign: 'center',
-    color: '#333',
-  },
-  inputContainer: {
-    marginBottom: 16,
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: '500',
-    marginBottom: 8,
-    color: '#333',
-  },
-  required: {
-    color: '#ff4444',
-    fontWeight: 'bold',
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 8,
-    padding: 12,
-    fontSize: 16,
-    backgroundColor: '#fff',
-  },
-  inputError: {
-    borderColor: '#ff4444',
-  },
-  errorText: {
-    color: '#ff4444',
-    fontSize: 14,
-    marginTop: 4,
-  },
-  passwordValidation: {
-    // Additional styling for password validation component if needed
-  },
-  checkboxContainer: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    marginBottom: 16,
-    paddingHorizontal: 4,
-  },
-  checkbox: {
-    width: 20,
-    height: 20,
-    borderWidth: 2,
-    borderColor: '#ddd',
-    borderRadius: 4,
-    marginRight: 12,
-    marginTop: 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexShrink: 0,
-  },
-  checkboxChecked: {
-    backgroundColor: '#0056b3',
-    borderColor: '#0056b3',
-  },
-  checkmark: {
-    color: '#fff',
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-  checkboxLabel: {
-    fontSize: 14,
-    color: '#333',
-    lineHeight: 20,
-  },
-  consentTextContainer: {
-    flex: 1,
-  },
-  consentDetails: {
-    fontSize: 12,
-    color: '#666',
-    marginTop: 4,
-    lineHeight: 16,
-  },
-  button: {
-    backgroundColor: '#0056b3',
-    borderRadius: 8,
-    padding: 16,
-    alignItems: 'center',
-    marginTop: 8,
-  },
-  // ⚠️ CRITICAL: Disabled button style must be visually distinct
-  buttonDisabled: {
-    backgroundColor: '#ccc',
-  },
-  // Loading button style for visual feedback
-  buttonLoading: {
-    backgroundColor: '#0056b3',
-    opacity: 0.8,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  buttonTextDisabled: {
-    color: '#999',
-  },
-  buttonTextLoading: {
-    color: '#fff',
-    opacity: 0.9,
-  },
-  // Submit button status hint text
-  submitHintText: {
-    fontSize: 12,
-    color: '#666',
-    textAlign: 'center',
-    marginTop: 8,
-    fontStyle: 'italic',
-  },
-  debugContainer: {
-    marginTop: 20,
-    padding: 10,
-    backgroundColor: '#f0f0f0',
-    borderRadius: 4,
-  },
-  debugText: {
-    fontSize: 12,
-    color: '#666',
-  },
-});
 
 export default SignUpForm;

@@ -88,17 +88,32 @@ cat .env | head -5
 
 ## Development
 
+### Prerequisites Check
+- Node.js >= 18.18 (IMPORTANT: 18.17 will not work)
+- npm >= 9.0.0
+- Expo CLI: `npm install -g expo-cli`
+- OpenAI API key (for E2E testing)
+
+### Getting Started
+
 1. Install dependencies:
 ```bash
 npm install
 ```
 
-2. Start the web application:
+2. **ALWAYS verify environment before starting**:
 ```bash
-npm run dev:web
+npm run status:check
+npm run verify:test-env
 ```
 
-3. Start the mobile application:
+3. Start the web application safely:
+```bash
+npm run dev:safe
+# OR manually: cd apps/web && npm run web
+```
+
+4. Start the mobile application:
 ```bash
 # For iOS
 npm run dev:mobile -- --ios
@@ -106,6 +121,26 @@ npm run dev:mobile -- --ios
 # For Android
 npm run dev:mobile -- --android
 ```
+
+5. Run tests safely:
+```bash
+npm run test:safe
+# OR for specific environments:
+npm run test:localhost    # Local testing only
+npm run test:production   # Production verification only
+```
+
+### 🚨 Critical Development Rules
+
+- **NEVER merge to main without preview testing**
+- **ALWAYS run from apps/web directory for Expo commands**
+- **ALWAYS verify "web compiled with 1 warning" not "1 error"**
+- **ALWAYS check environment with `npm run status:check` when in doubt**
+
+### Quick References
+- 📋 **Workflow**: See `docs/DEVELOPMENT_WORKFLOW_CHECKLIST.md`
+- 🚀 **Commands**: See `docs/QUICK_REFERENCE.md`
+- 🧪 **Testing**: See `docs/CURRENT_TEST_INVENTORY.md`
 
 ### Common Development Issues and Solutions
 
@@ -240,10 +275,12 @@ graph TD
 
 This project uses Netlify for CI/CD deployment. The deployment process was complex to configure correctly due to React Native Web dependencies.
 
-### Key Deployment Documentation
+### Key Documentation
 
+- [📋 NativeWind Component Audit](docs/NATIVEWIND_COMPONENT_AUDIT.md) - **NEW**: Complete catalogue of component NativeWind compliance status
 - [📋 Deployment Lessons Learned](./DEPLOYMENT_LESSONS_LEARNED.md) - **Comprehensive troubleshooting guide**
 - [🔧 Netlify Development Rules](./.cursor/rules/netlify-development.md) - Platform-specific guidance
+- [📋 NativeWind Compatibility Guide](docs/NATIVEWIND_COMPATIBILITY.md) - Essential guidelines for maintaining NativeWind v4.1+ compatibility
 
 ### Critical Deployment Requirements
 

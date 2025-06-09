@@ -3,6 +3,9 @@ import { View, StyleSheet } from 'react-native';
 import { AuthProvider } from './contexts/AuthContext';
 import { AppRouter } from './components/AppRouter';
 
+// Import CSS for web
+import './index.css';
+
 console.log('Starting app initialization...');
 
 function App() {

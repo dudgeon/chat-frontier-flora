@@ -1,0 +1,8 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+When the ai encounters an error that is preventable, the ai must propose and with approval, implement a detective control in the project documentation, cursor files, config, etc to prevent reoccurence, especially in cases where the ai's context is reset and the memory of the error cause and remediation will be lost.
+
+We backed out the gluestack changes; you can ignore gluestack errors in terminal; they are ancient ant not relevant.

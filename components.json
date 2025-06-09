@@ -1,0 +1,12 @@
+{
+  "$schema": "https://gluestack.io/registry/schema.json",
+  "style": "default",
+  "tailwind": {
+    "config": "tailwind.config.js",
+    "css": "src/global.css"
+  },
+  "aliases": {
+    "components": "./src/components",
+    "utils": "./src/lib/utils"
+  }
+}

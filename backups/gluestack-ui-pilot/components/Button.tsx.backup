@@ -1,0 +1,55 @@
+import React from 'react';
+import type { TouchableOpacityProps } from 'react-native';
+import { Button as GluestackButton, ButtonText, ButtonSpinner } from '../../../../apps/web/src/components/ui/button';
+
+interface ButtonProps extends Omit<TouchableOpacityProps, 'onPress'> {
+  title: string;
+  variant?: 'primary' | 'secondary' | 'outline';
+  loading?: boolean;
+  fullWidth?: boolean;
+  onPress?: () => void;
+}
+
+export const Button: React.FC<ButtonProps> = ({
+  title,
+  variant = 'primary',
+  loading = false,
+  fullWidth = false,
+  disabled,
+  onPress,
+  style,
+  ...props
+}) => {
+  // Map our variants to Gluestack UI variants
+  const getGluestackVariant = () => {
+    switch (variant) {
+      case 'outline':
+        return { variant: 'outline' as const, action: 'primary' as const };
+      case 'secondary':
+        return { variant: 'solid' as const, action: 'secondary' as const };
+      case 'primary':
+      default:
+        return { variant: 'solid' as const, action: 'primary' as const };
+    }
+  };
+
+  const { variant: gluestackVariant, action } = getGluestackVariant();
+
+  return (
+    <GluestackButton
+      variant={gluestackVariant}
+      action={action}
+      size="md"
+      isDisabled={disabled || loading}
+      onPress={onPress}
+      className={fullWidth ? 'w-full' : ''}
+      {...props}
+    >
+      {loading ? (
+        <ButtonSpinner color={variant === 'outline' ? '#3B82F6' : '#FFFFFF'} />
+      ) : (
+        <ButtonText>{title}</ButtonText>
+      )}
+    </GluestackButton>
+  );
+};

@@ -1,0 +1,463 @@
+/**
+ * 📝 SIGN-UP FORM COMPONENT - CRITICAL USER REGISTRATION
+ *
+ * ⚠️ WARNING: This component handles user account creation.
+ * DO NOT MODIFY without reading AUTHENTICATION_FLOW_DOCUMENTATION.md
+ *
+ * This form manages:
+ * - User input validation with real-time feedback
+ * - Submit button state control based on form validation
+ * - Authentication flow integration
+ * - Error handling and display
+ * - PRD-compliant data collection (age verification, development consent)
+ *
+ * CRITICAL DEPENDENCIES:
+ * - useAuth hook (AuthContext)
+ * - useFormValidation hook for form state management
+ * - PasswordValidation component for real-time password feedback
+ * - Form validation utilities
+ *
+ * REGRESSION RISKS:
+ * - Changing validation breaks form submission
+ * - Modifying submit logic breaks account creation
+ * - Altering field names breaks backend integration
+ * - Removing age verification violates PRD requirements
+ */
+
+import React, { useState, useEffect } from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
+  Alert,
+  ActivityIndicator,
+} from 'react-native';
+import { useAuth } from '../../contexts/AuthContext';
+import { PasswordValidation } from './PasswordValidation';
+import { useFormValidation } from '../../hooks/useFormValidation';
+
+interface SignUpFormProps {
+  onSuccess?: () => void;
+  onSwitchToLogin?: () => void;
+}
+
+export const SignUpForm: React.FC<SignUpFormProps> = ({
+  onSuccess,
+  onSwitchToLogin,
+}) => {
+  const { signUp, loading } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [submitAttempted, setSubmitAttempted] = useState(false);
+
+  const {
+    values,
+    errors,
+    isValid,
+    handleChange,
+    validateField,
+    validateForm,
+  } = useFormValidation({
+    initialValues: {
+      email: '',
+      password: '',
+      confirmPassword: '',
+      firstName: '',
+      lastName: '',
+      age: '',
+      agreeToTerms: false,
+      agreeToDataCollection: false,
+      agreeToMarketing: false,
+    },
+    validationRules: {
+      email: {
+        required: true,
+        pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        message: 'Please enter a valid email address',
+      },
+      password: {
+        required: true,
+        minLength: 8,
+        pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
+        message: 'Password must be at least 8 characters with uppercase, lowercase, number, and special character',
+      },
+      confirmPassword: {
+        required: true,
+        custom: (value: string) => {
+          if (value !== values.password) {
+            return 'Passwords do not match';
+          }
+          return null;
+        },
+      },
+      firstName: {
+        required: true,
+        minLength: 2,
+        message: 'First name must be at least 2 characters',
+      },
+      lastName: {
+        required: true,
+        minLength: 2,
+        message: 'Last name must be at least 2 characters',
+      },
+      age: {
+        required: true,
+        custom: (value: string) => {
+          const ageNum = parseInt(value);
+          if (isNaN(ageNum) || ageNum < 13 || ageNum > 120) {
+            return 'Age must be between 13 and 120';
+          }
+          return null;
+        },
+      },
+      agreeToTerms: {
+        required: true,
+        custom: (value: boolean) => {
+          if (!value) {
+            return 'You must agree to the Terms of Service';
+          }
+          return null;
+        },
+      },
+      agreeToDataCollection: {
+        required: true,
+        custom: (value: boolean) => {
+          if (!value) {
+            return 'You must agree to data collection for development purposes';
+          }
+          return null;
+        },
+      },
+    },
+  });
+
+  const handleSubmit = async () => {
+    setSubmitAttempted(true);
+
+    if (!validateForm()) {
+      Alert.alert('Validation Error', 'Please fix the errors below and try again.');
+      return;
+    }
+
+    try {
+      await signUp({
+        email: values.email,
+        password: values.password,
+        firstName: values.firstName,
+        lastName: values.lastName,
+        age: parseInt(values.age),
+        agreeToTerms: values.agreeToTerms,
+        agreeToDataCollection: values.agreeToDataCollection,
+        agreeToMarketing: values.agreeToMarketing,
+      });
+
+      onSuccess?.();
+    } catch (error) {
+      console.error('Sign up error:', error);
+      Alert.alert(
+        'Sign Up Failed',
+        error instanceof Error ? error.message : 'An unexpected error occurred. Please try again.'
+      );
+    }
+  };
+
+  const renderTextInput = (
+    key: string,
+    placeholder: string,
+    secureTextEntry = false,
+    keyboardType: 'default' | 'email-address' | 'numeric' = 'default'
+  ) => {
+    const hasError = submitAttempted && errors[key];
+
+    return (
+      <View className="mb-4">
+        <TextInput
+          className={`
+            w-full px-4 py-3 rounded-lg border-2 text-base
+            ${hasError
+              ? 'border-red-500 bg-red-50'
+              : 'border-gray-300 bg-white focus:border-blue-500 focus:bg-blue-50'
+            }
+            text-gray-900 placeholder-gray-500
+          `}
+          placeholder={placeholder}
+          value={values[key]}
+          onChangeText={(text) => handleChange(key, text)}
+          onBlur={() => validateField(key)}
+          secureTextEntry={secureTextEntry}
+          keyboardType={keyboardType}
+          autoCapitalize={keyboardType === 'email-address' ? 'none' : 'words'}
+          autoCorrect={false}
+          placeholderTextColor="#6B7280"
+        />
+        {hasError && (
+          <Text className="text-red-600 text-sm mt-1 ml-1">
+            {errors[key]}
+          </Text>
+        )}
+      </View>
+    );
+  };
+
+  const renderCheckbox = (
+    key: string,
+    label: string,
+    required = false
+  ) => {
+    const hasError = submitAttempted && errors[key];
+
+    return (
+      <View className="mb-4">
+        <TouchableOpacity
+          className="flex-row items-start"
+          onPress={() => handleChange(key, !values[key])}
+        >
+          <View className={`
+            w-5 h-5 mr-3 mt-0.5 rounded border-2 items-center justify-center
+            ${values[key]
+              ? 'bg-blue-500 border-blue-500'
+              : hasError
+                ? 'border-red-500 bg-red-50'
+                : 'border-gray-300 bg-white'
+            }
+          `}>
+            {values[key] && (
+              <Text className="text-white text-xs font-bold">✓</Text>
+            )}
+          </View>
+          <Text className={`
+            flex-1 text-sm leading-5
+            ${hasError ? 'text-red-600' : 'text-gray-700'}
+          `}>
+            {label}
+            {required && <Text className="text-red-500"> *</Text>}
+          </Text>
+        </TouchableOpacity>
+        {hasError && (
+          <Text className="text-red-600 text-sm mt-1 ml-8">
+            {errors[key]}
+          </Text>
+        )}
+      </View>
+    );
+  };
+
+  return (
+    <ScrollView className="flex-1 bg-white">
+      <View className="px-6 py-8">
+        {/* Header */}
+        <View className="mb-8">
+          <Text className="text-3xl font-bold text-gray-900 text-center mb-2">
+            Create Account
+          </Text>
+          <Text className="text-base text-gray-600 text-center">
+            Join our family development community
+          </Text>
+        </View>
+
+        {/* Form Fields */}
+        <View className="mb-6">
+          {/* Name Fields */}
+          <View className="flex-row mb-4">
+            <View className="flex-1 mr-2">
+              <TextInput
+                className={`
+                  w-full px-4 py-3 rounded-lg border-2 text-base
+                  ${submitAttempted && errors.firstName
+                    ? 'border-red-500 bg-red-50'
+                    : 'border-gray-300 bg-white focus:border-blue-500 focus:bg-blue-50'
+                  }
+                  text-gray-900 placeholder-gray-500
+                `}
+                placeholder="First Name"
+                value={values.firstName}
+                onChangeText={(text) => handleChange('firstName', text)}
+                onBlur={() => validateField('firstName')}
+                autoCapitalize="words"
+                autoCorrect={false}
+                placeholderTextColor="#6B7280"
+              />
+              {submitAttempted && errors.firstName && (
+                <Text className="text-red-600 text-sm mt-1 ml-1">
+                  {errors.firstName}
+                </Text>
+              )}
+            </View>
+            <View className="flex-1 ml-2">
+              <TextInput
+                className={`
+                  w-full px-4 py-3 rounded-lg border-2 text-base
+                  ${submitAttempted && errors.lastName
+                    ? 'border-red-500 bg-red-50'
+                    : 'border-gray-300 bg-white focus:border-blue-500 focus:bg-blue-50'
+                  }
+                  text-gray-900 placeholder-gray-500
+                `}
+                placeholder="Last Name"
+                value={values.lastName}
+                onChangeText={(text) => handleChange('lastName', text)}
+                onBlur={() => validateField('lastName')}
+                autoCapitalize="words"
+                autoCorrect={false}
+                placeholderTextColor="#6B7280"
+              />
+              {submitAttempted && errors.lastName && (
+                <Text className="text-red-600 text-sm mt-1 ml-1">
+                  {errors.lastName}
+                </Text>
+              )}
+            </View>
+          </View>
+
+          {/* Email */}
+          {renderTextInput('email', 'Email Address', false, 'email-address')}
+
+          {/* Age */}
+          {renderTextInput('age', 'Age', false, 'numeric')}
+
+          {/* Password */}
+          <View className="mb-4">
+            <View className="relative">
+              <TextInput
+                className={`
+                  w-full px-4 py-3 pr-12 rounded-lg border-2 text-base
+                  ${submitAttempted && errors.password
+                    ? 'border-red-500 bg-red-50'
+                    : 'border-gray-300 bg-white focus:border-blue-500 focus:bg-blue-50'
+                  }
+                  text-gray-900 placeholder-gray-500
+                `}
+                placeholder="Password"
+                value={values.password}
+                onChangeText={(text) => handleChange('password', text)}
+                onBlur={() => validateField('password')}
+                secureTextEntry={!showPassword}
+                autoCapitalize="none"
+                autoCorrect={false}
+                placeholderTextColor="#6B7280"
+              />
+              <TouchableOpacity
+                className="absolute right-3 top-3 p-1"
+                onPress={() => setShowPassword(!showPassword)}
+              >
+                <Text className="text-blue-500 text-sm font-medium">
+                  {showPassword ? 'Hide' : 'Show'}
+                </Text>
+              </TouchableOpacity>
+            </View>
+            {submitAttempted && errors.password && (
+              <Text className="text-red-600 text-sm mt-1 ml-1">
+                {errors.password}
+              </Text>
+            )}
+          </View>
+
+          {/* Password Validation Component */}
+          <PasswordValidation
+            password={values.password}
+            className="mb-4"
+          />
+
+          {/* Confirm Password */}
+          <View className="mb-6">
+            <View className="relative">
+              <TextInput
+                className={`
+                  w-full px-4 py-3 pr-12 rounded-lg border-2 text-base
+                  ${submitAttempted && errors.confirmPassword
+                    ? 'border-red-500 bg-red-50'
+                    : 'border-gray-300 bg-white focus:border-blue-500 focus:bg-blue-50'
+                  }
+                  text-gray-900 placeholder-gray-500
+                `}
+                placeholder="Confirm Password"
+                value={values.confirmPassword}
+                onChangeText={(text) => handleChange('confirmPassword', text)}
+                onBlur={() => validateField('confirmPassword')}
+                secureTextEntry={!showConfirmPassword}
+                autoCapitalize="none"
+                autoCorrect={false}
+                placeholderTextColor="#6B7280"
+              />
+              <TouchableOpacity
+                className="absolute right-3 top-3 p-1"
+                onPress={() => setShowConfirmPassword(!showConfirmPassword)}
+              >
+                <Text className="text-blue-500 text-sm font-medium">
+                  {showConfirmPassword ? 'Hide' : 'Show'}
+                </Text>
+              </TouchableOpacity>
+            </View>
+            {submitAttempted && errors.confirmPassword && (
+              <Text className="text-red-600 text-sm mt-1 ml-1">
+                {errors.confirmPassword}
+              </Text>
+            )}
+          </View>
+        </View>
+
+        {/* Agreements */}
+        <View className="mb-8">
+          <Text className="text-lg font-semibold text-gray-900 mb-4">
+            Required Agreements
+          </Text>
+
+          {renderCheckbox(
+            'agreeToTerms',
+            'I agree to the Terms of Service and Privacy Policy',
+            true
+          )}
+
+          {renderCheckbox(
+            'agreeToDataCollection',
+            'I consent to data collection for family development research and app improvement purposes',
+            true
+          )}
+
+          {renderCheckbox(
+            'agreeToMarketing',
+            'I would like to receive updates about new features and family development tips (optional)'
+          )}
+        </View>
+
+        {/* Submit Button */}
+        <TouchableOpacity
+          className={`
+            w-full py-4 rounded-lg items-center justify-center mb-4
+            ${isValid && !loading
+              ? 'bg-blue-500 active:bg-blue-600'
+              : 'bg-gray-300'
+            }
+          `}
+          onPress={handleSubmit}
+          disabled={!isValid || loading}
+        >
+          {loading ? (
+            <ActivityIndicator color="white" size="small" />
+          ) : (
+            <Text className={`
+              text-lg font-semibold
+              ${isValid ? 'text-white' : 'text-gray-500'}
+            `}>
+              Create Account
+            </Text>
+          )}
+        </TouchableOpacity>
+
+        {/* Switch to Login */}
+        <View className="flex-row justify-center items-center">
+          <Text className="text-gray-600 text-base">
+            Already have an account?{' '}
+          </Text>
+          <TouchableOpacity onPress={onSwitchToLogin}>
+            <Text className="text-blue-500 text-base font-medium">
+              Sign In
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ScrollView>
+  );
+};

@@ -13,7 +13,7 @@
     "build:web": "cd apps/web && npx expo export:web",
     "build:mobile": "cd apps/mobile && eas build",
     "test": "npm run test --workspaces --if-present",
-    "test:e2e": "playwright test",
+    "test:e2e": "playwright test e2e/stagehand-auth-test.spec.ts e2e/stagehand-production-auth.spec.ts",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:debug": "playwright test --debug",
@@ -23,7 +23,13 @@
     "test:preview:headed": "playwright test deploy-preview.spec.ts --headed",
     "test:all": "npm test && npm run test:e2e",
     "lint": "npm run lint --workspaces --if-present",
-    "postinstall": "npm run build -w @chat-frontier-flora/shared"
+    "postinstall": "npm run build -w @chat-frontier-flora/shared",
+    "verify:test-env": "./scripts/verify-test-status.sh",
+    "test:safe": "./scripts/verify-test-status.sh && npm run test:e2e",
+    "test:localhost": "unset DEPLOY_PREVIEW_URL && npm run test:e2e",
+    "test:production": "unset DEPLOY_PREVIEW_URL && playwright test e2e/stagehand-production-auth.spec.ts",
+    "dev:safe": "./scripts/verify-test-status.sh && cd apps/web && npm run web",
+    "status:check": "echo 'Directory:' && pwd && echo 'Expo processes:' && ps aux | grep expo | grep -v grep || echo 'None' && echo 'Environment:' && echo \"DEPLOY_PREVIEW_URL: $DEPLOY_PREVIEW_URL\" && echo \"OPENAI_API_KEY: $([ -n \"$OPENAI_API_KEY\" ] && echo 'Set' || echo 'Not set')\""
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
@@ -41,6 +47,7 @@
     "@browserbasehq/stagehand": "^2.3.0",
     "@react-navigation/native": "^7.1.10",
     "@react-navigation/stack": "^7.1.1",
+    "react-native-reanimated": "^3.18.0",
     "react-native-safe-area-context": "^5.4.1",
     "react-native-screens": "^4.11.1",
     "react-native-web": "^0.19.13",

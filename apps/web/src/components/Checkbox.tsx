@@ -1,20 +1,21 @@
 import React from 'react';
 import { TouchableOpacity, Text, View, StyleSheet } from 'react-native';
 
-export const Checkbox = ({
+interface CheckboxProps {
+  label: string;
+  checked: boolean;
+  onPress: () => void;
+  error?: string;
+  testID?: string;
+}
+
+export const Checkbox: React.FC<CheckboxProps> = ({
   label,
   checked,
   onPress,
   error,
   testID,
 }) => {
-  const handleKeyDown = (e) => {
-    if (e.key === ' ' || e.key === 'Enter') {
-      e.preventDefault();
-      onPress();
-    }
-  };
-
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -24,12 +25,9 @@ export const Checkbox = ({
         accessible={true}
         accessibilityRole="checkbox"
         accessibilityState={{ checked }}
-        aria-checked={checked}
-        focusable={true}
-        onKeyDown={handleKeyDown}
         testID={testID}
       >
-        <View style={[styles.box, checked && styles.checked, error && styles.error]}>
+        <View style={[styles.box, checked && styles.checked, error ? styles.error : null]}>
           {checked && <View style={styles.checkmark} />}
         </View>
         <Text style={styles.label}>{label}</Text>
@@ -42,10 +40,15 @@ export const Checkbox = ({
 const styles = StyleSheet.create({
   container: {
     marginBottom: 16,
+    maxWidth: '100%',
+    overflow: 'hidden',
   },
   row: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
+    flexWrap: 'wrap',
+    maxWidth: '100%',
+    overflow: 'hidden',
   },
   box: {
     width: 20,
@@ -54,8 +57,10 @@ const styles = StyleSheet.create({
     borderColor: '#D1D5DB',
     borderRadius: 4,
     marginRight: 8,
+    marginTop: 2,
     justifyContent: 'center',
     alignItems: 'center',
+    flexShrink: 0,
   },
   checked: {
     backgroundColor: '#3B82F6',
@@ -73,6 +78,11 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     color: '#1F2937',
+    flex: 1,
+    lineHeight: 20,
+    flexShrink: 1,
+    flexWrap: 'wrap',
+    minWidth: 0,
   },
   errorText: {
     color: '#EF4444',

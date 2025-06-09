@@ -1,0 +1,390 @@
+/**
+ * 📝 SIGN-UP FORM COMPONENT - CRITICAL USER REGISTRATION
+ *
+ * ⚠️ WARNING: This component handles user account creation.
+ * DO NOT MODIFY without reading AUTHENTICATION_FLOW_DOCUMENTATION.md
+ *
+ * This form manages:
+ * - User input validation with real-time feedback
+ * - Submit button state control based on form validation
+ * - Authentication flow integration
+ * - Error handling and display
+ * - PRD-compliant data collection (age verification, development consent)
+ *
+ * CRITICAL DEPENDENCIES:
+ * - useAuth hook (AuthContext)
+ * - useFormValidation hook for form state management
+ * - PasswordValidation component for real-time password feedback
+ * - Form validation utilities
+ *
+ * REGRESSION RISKS:
+ * - Changing validation breaks form submission
+ * - Modifying submit logic breaks account creation
+ * - Altering button state breaks user experience
+ * - Breaking error handling confuses users
+ */
+
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, Alert, ScrollView } from 'react-native';
+import { useAuth } from '../../hooks/useAuth';
+import { useFormValidation, FieldConfig } from '../../hooks/useFormValidation';
+import { useSubmitButton, getSubmitButtonStyles, getSubmitButtonTextStyles } from '../../hooks/useSubmitButton';
+import { PasswordValidation } from './PasswordValidation';
+import { validateEmail, validatePassword } from '../../../utils/validation';
+import { Checkbox } from '../Checkbox';
+
+/**
+ * 📋 Form Data Interface - PRD Compliant
+ *
+ * ⚠️ CRITICAL: This interface defines the form structure per PRD requirements.
+ * Changing field names breaks form logic and validation.
+ */
+interface SignUpFormData {
+  email: string;
+  password: string;
+  confirmPassword: string;
+  fullName: string; // PRD requires full_name, not displayName
+  ageVerification: boolean; // PRD requirement: 18+ verification
+  developmentConsent: boolean; // PRD requirement: development data usage consent
+}
+
+/**
+ * 📝 SignUpForm Component - PRD Compliant
+ *
+ * CRITICAL FUNCTIONALITY:
+ * 1. Collects user registration data per PRD requirements
+ * 2. Validates all inputs in real-time with visual feedback
+ * 3. Controls submit button state based on complete form validation
+ * 4. Handles authentication errors with user-friendly messages
+ * 5. Records consent timestamps for compliance
+ *
+ * ⚠️ DO NOT MODIFY without understanding all validation logic and PRD requirements
+ */
+export const SignUpForm: React.FC = () => {
+  // ⚠️ CRITICAL: Auth hook provides signUp function
+  const { signUp } = useAuth();
+
+  // ⚠️ CRITICAL STATE: Controls form behavior and UI
+  const [loading, setLoading] = useState(false);
+  const [showPasswordValidation, setShowPasswordValidation] = useState(false);
+
+  // ⚠️ CRITICAL: Form validation configuration per PRD requirements
+  const formConfig: Record<string, FieldConfig> = {
+    email: {
+      rules: {
+        required: true,
+        custom: (value: string) => {
+          const result = validateEmail(value);
+          return result ? result.message : null;
+        },
+      },
+    },
+    password: {
+      rules: {
+        required: true,
+        custom: (value: string) => {
+          const result = validatePassword(value);
+          return result ? result.message : null;
+        },
+      },
+    },
+    confirmPassword: {
+      rules: {
+        required: true,
+        custom: (value: string) => {
+          if (value !== formValidation.formState.password?.value) {
+            return 'Passwords do not match';
+          }
+          return null;
+        },
+      },
+    },
+    fullName: {
+      rules: {
+        required: true,
+        custom: (value: string) => {
+          if (!value.trim()) return 'Full name is required';
+          if (value.trim().length < 2) return 'Full name must be at least 2 characters';
+          if (!value.trim().includes(' ')) return 'Please enter your first and last name';
+          return null;
+        },
+      },
+    },
+    ageVerification: {
+      rules: {
+        required: true,
+        custom: (value: string) => {
+          if (value !== 'true') return 'You must be 18 or older to create an account';
+          return null;
+        },
+      },
+    },
+    developmentConsent: {
+      rules: {
+        required: true,
+        custom: (value: string) => {
+          if (value !== 'true') return 'You must consent to data usage for development purposes';
+          return null;
+        },
+      },
+    },
+  };
+
+  // ⚠️ CRITICAL: Form validation hook for real-time state management
+  const formValidation = useFormValidation(formConfig);
+
+  // ⚠️ CRITICAL: Submit button state management with comprehensive validation
+  const submitButtonState = useSubmitButton({
+    isFormValid: formValidation.isFormValid,
+    isFormTouched: formValidation.isFormTouched,
+    isFormCompleted: formValidation.isFormCompleted,
+    isLoading: loading,
+    defaultText: 'Create Account',
+    loadingText: 'Creating Account...',
+    disabledText: 'Complete Form to Continue',
+    requireCompletion: true, // Require all fields to be completed
+    requireTouched: false, // Don't require form to be touched
+    minCompletionPercentage: 100, // Require 100% completion
+    currentCompletionPercentage: formValidation.completionPercentage,
+    customValidation: () => {
+      // Additional custom validation can be added here
+      // For now, rely on form validation
+      return true;
+    },
+  });
+
+  /**
+   * 🚀 handleSubmit - CRITICAL SUBMISSION FUNCTION
+   *
+   * This function handles the account creation process with PRD compliance.
+   * It validates the form and calls the auth context signUp function.
+   *
+   * ⚠️ BREAKING CHANGES RISK:
+   * - Changing validation check breaks form security
+   * - Modifying signUp call breaks account creation
+   * - Altering error handling breaks user feedback
+   *
+   * PROCESS:
+   * 1. Validate complete form data
+   * 2. Set loading state
+   * 3. Call AuthContext.signUp() with PRD-compliant data
+   * 4. Handle success/error feedback
+   * 5. Reset loading state
+   */
+  const handleSubmit = async () => {
+    // ⚠️ CRITICAL: Form validation gate - prevents invalid submissions
+    if (!formValidation.validateForm()) {
+      Alert.alert('Validation Error', 'Please fix all form errors before submitting.');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const formData = formValidation.formState;
+
+      // ⚠️ CRITICAL: Auth context signUp call with ALL PRD-compliant data
+      // This creates the user account and profile with all required fields
+      await signUp(
+        formData.email.value,
+        formData.password.value,
+        formData.fullName.value,
+        'primary', // Default role
+        formData.ageVerification.value === 'true', // Convert string to boolean
+        formData.developmentConsent.value === 'true' // Convert string to boolean
+      );
+      Alert.alert('Success', 'Account created successfully!');
+    } catch (error) {
+      // ⚠️ CRITICAL: Error handling for user feedback
+      Alert.alert('Error', error instanceof Error ? error.message : 'An error occurred');
+    } finally {
+      // ⚠️ CRITICAL: Always reset loading state
+      setLoading(false);
+    }
+  };
+
+  return (
+    <ScrollView className="p-5 max-w-sm w-full" testID="signup-form">
+      <Text className="text-2xl font-bold mb-5 text-center text-gray-800">Create Account</Text>
+
+      {/* ⚠️ CRITICAL: Full Name Input Field (PRD Requirement) */}
+      <View className="mb-4">
+        <Text className="text-base font-medium mb-2 text-gray-800">Full Name *</Text>
+        <TextInput
+          testID="full-name"
+          className={`border rounded-lg p-3 text-base bg-white ${
+            formValidation.getFieldProps('fullName').error ? 'border-red-500' : 'border-gray-300'
+          }`}
+          value={formValidation.getFieldProps('fullName').value}
+          onChangeText={(text) => formValidation.updateField('fullName', text)}
+          onBlur={() => formValidation.touchField('fullName')}
+          placeholder="Enter your first and last name"
+          autoComplete="name"
+        />
+        {formValidation.getFieldProps('fullName').touched && formValidation.getFieldProps('fullName').error && (
+          <Text className="text-red-500 text-sm mt-1">{formValidation.getFieldProps('fullName').error}</Text>
+        )}
+      </View>
+
+      {/* ⚠️ CRITICAL: Email Input Field */}
+      <View className="mb-4">
+        <Text className="text-base font-medium mb-2 text-gray-800">Email Address *</Text>
+        <TextInput
+          testID="email"
+          className={`border rounded-lg p-3 text-base bg-white ${
+            formValidation.getFieldProps('email').error ? 'border-red-500' : 'border-gray-300'
+          }`}
+          value={formValidation.getFieldProps('email').value}
+          onChangeText={(text) => formValidation.updateField('email', text)}
+          onBlur={() => formValidation.touchField('email')}
+          placeholder="Enter your email address"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          autoComplete="email"
+        />
+        {formValidation.getFieldProps('email').touched && formValidation.getFieldProps('email').error && (
+          <Text className="text-red-500 text-sm mt-1">{formValidation.getFieldProps('email').error}</Text>
+        )}
+      </View>
+
+      {/* ⚠️ CRITICAL: Password Input Field with Real-time Validation */}
+      <View className="mb-4">
+        <Text className="text-base font-medium mb-2 text-gray-800">Password *</Text>
+        <TextInput
+          testID="password"
+          className={`border rounded-lg p-3 text-base bg-white ${
+            formValidation.getFieldProps('password').error ? 'border-red-500' : 'border-gray-300'
+          }`}
+          value={formValidation.getFieldProps('password').value}
+          onChangeText={(text) => {
+            formValidation.updateField('password', text);
+            setShowPasswordValidation(text.length > 0);
+          }}
+          onBlur={() => formValidation.touchField('password')}
+          onFocus={() => setShowPasswordValidation(true)}
+          placeholder="Enter your password"
+          secureTextEntry
+          autoComplete="new-password"
+        />
+        {formValidation.getFieldProps('password').touched && formValidation.getFieldProps('password').error && (
+          <Text className="text-red-500 text-sm mt-1">{formValidation.getFieldProps('password').error}</Text>
+        )}
+
+        {/* ⚠️ CRITICAL: Real-time Password Validation Component */}
+        <PasswordValidation
+          password={formValidation.getFieldProps('password').value}
+          showRules={showPasswordValidation}
+        />
+      </View>
+
+      {/* ⚠️ CRITICAL: Password Confirmation Field */}
+      <View className="mb-4">
+        <Text className="text-base font-medium mb-2 text-gray-800">Confirm Password *</Text>
+        <TextInput
+          testID="confirm-password"
+          className={`border rounded-lg p-3 text-base bg-white ${
+            formValidation.getFieldProps('confirmPassword').error ? 'border-red-500' : 'border-gray-300'
+          }`}
+          value={formValidation.getFieldProps('confirmPassword').value}
+          onChangeText={(text) => formValidation.updateField('confirmPassword', text)}
+          onBlur={() => formValidation.touchField('confirmPassword')}
+          placeholder="Confirm your password"
+          secureTextEntry
+          autoComplete="new-password"
+        />
+        {formValidation.getFieldProps('confirmPassword').touched && formValidation.getFieldProps('confirmPassword').error && (
+          <Text className="text-red-500 text-sm mt-1">{formValidation.getFieldProps('confirmPassword').error}</Text>
+        )}
+      </View>
+
+      {/* ⚠️ CRITICAL: Age Verification Checkbox (PRD Requirement) */}
+      <Checkbox
+        testID="age-verification"
+        label="I verify that I am 18 years of age or older"
+        checked={formValidation.getFieldProps('ageVerification').value === 'true'}
+        onPress={() => {
+          const currentValue = formValidation.getFieldProps('ageVerification').value === 'true';
+          formValidation.updateField('ageVerification', (!currentValue).toString());
+        }}
+        error={formValidation.getFieldProps('ageVerification').touched && formValidation.getFieldProps('ageVerification').error ? formValidation.getFieldProps('ageVerification').error || undefined : undefined}
+      />
+
+      {/* ⚠️ CRITICAL: Development Consent Checkbox (PRD Requirement) */}
+      <Checkbox
+        testID="development-consent"
+        label="I consent to the use of my data for development and improvement purposes"
+        checked={formValidation.getFieldProps('developmentConsent').value === 'true'}
+        onPress={() => {
+          const currentValue = formValidation.getFieldProps('developmentConsent').value === 'true';
+          formValidation.updateField('developmentConsent', (!currentValue).toString());
+        }}
+        error={formValidation.getFieldProps('developmentConsent').touched && formValidation.getFieldProps('developmentConsent').error ? formValidation.getFieldProps('developmentConsent').error || undefined : undefined}
+      />
+
+      {/* ⚠️ CRITICAL: Submit Button with Enhanced State Management */}
+      <TouchableOpacity
+        testID="submit-button"
+        className={`rounded-lg p-4 items-center mt-2 transition-all duration-200 ${
+          submitButtonState.isDisabled
+            ? 'bg-gray-300'
+            : loading
+              ? 'bg-blue-700 opacity-80'
+              : 'bg-blue-700 active:bg-blue-800 hover:bg-blue-800'
+        }`}
+        onPress={handleSubmit}
+        disabled={submitButtonState.isDisabled}
+        accessibilityLabel={submitButtonState.accessibilityLabel}
+        accessibilityHint={submitButtonState.accessibilityHint}
+        accessibilityRole="button"
+        accessibilityState={{
+          disabled: submitButtonState.isDisabled,
+          busy: loading,
+        }}
+      >
+        <Text className={`text-base font-semibold ${
+          submitButtonState.isDisabled
+            ? 'text-gray-600'
+            : loading
+              ? 'text-white opacity-90'
+              : 'text-white'
+        }`}>
+          {submitButtonState.buttonText}
+        </Text>
+      </TouchableOpacity>
+
+      {/* ⚠️ HELPFUL: Submit Button Status Feedback */}
+      {submitButtonState.isDisabled && submitButtonState.disabledReason && (
+        <Text className="text-xs text-gray-600 text-center mt-2 italic">
+          {submitButtonState.disabledReason}
+        </Text>
+      )}
+
+      {/* Form Status Indicator for Development */}
+      {__DEV__ && (
+        <View className="mt-5 p-2.5 bg-gray-100 rounded">
+          <Text className="text-xs text-gray-600">
+            Form Valid: {formValidation.isFormValid ? 'Yes' : 'No'}
+          </Text>
+          <Text className="text-xs text-gray-600">
+            Form Touched: {formValidation.isFormTouched ? 'Yes' : 'No'}
+          </Text>
+          <Text className="text-xs text-gray-600">
+            Form Completed: {formValidation.isFormCompleted ? 'Yes' : 'No'}
+          </Text>
+          <Text className="text-xs text-gray-600">
+            Completion: {formValidation.completedFieldsCount}/{formValidation.totalRequiredFieldsCount} ({formValidation.completionPercentage}%)
+          </Text>
+          <Text className="text-xs text-gray-600">
+            Submit Button: {submitButtonState.buttonStyle} - {submitButtonState.isDisabled ? 'Disabled' : 'Enabled'}
+          </Text>
+          {submitButtonState.disabledReason && (
+            <Text className="text-xs text-gray-600">
+              Disabled Reason: {submitButtonState.disabledReason}
+            </Text>
+          )}
+        </View>
+      )}
+    </ScrollView>
+  );
+};
+
+export default SignUpForm;

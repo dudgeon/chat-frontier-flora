@@ -65,5 +65,38 @@ module.exports = async function (env, argv) {
     })
   );
 
+  // Modify existing CSS rules to include PostCSS processing for Tailwind
+  config.module.rules.forEach(rule => {
+    if (rule.test && rule.test.toString().includes('.css')) {
+      // Find CSS rules and add PostCSS loader
+      if (rule.use && Array.isArray(rule.use)) {
+        // Check if postcss-loader is already present
+        const hasPostCSS = rule.use.some(use =>
+          (typeof use === 'string' && use.includes('postcss-loader')) ||
+          (use.loader && use.loader.includes('postcss-loader'))
+        );
+
+        if (!hasPostCSS) {
+          // Add postcss-loader after css-loader
+          const cssLoaderIndex = rule.use.findIndex(use =>
+            (typeof use === 'string' && use.includes('css-loader')) ||
+            (use.loader && use.loader.includes('css-loader'))
+          );
+
+          if (cssLoaderIndex !== -1) {
+            rule.use.splice(cssLoaderIndex + 1, 0, {
+              loader: 'postcss-loader',
+              options: {
+                postcssOptions: {
+                  config: path.resolve(__dirname, 'postcss.config.js'),
+                },
+              },
+            });
+          }
+        }
+      }
+    }
+  });
+
   return config;
 };

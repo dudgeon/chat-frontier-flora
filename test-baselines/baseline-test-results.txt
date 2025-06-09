@@ -1,0 +1,970 @@
+
+> test
+> npm run test --workspaces --if-present
+
+
+> @chat-frontier-flora/web@1.0.0 test
+> jest
+
+PASS src/hooks/useSubmitButton.test.ts
+PASS src/hooks/useFormValidation.test.ts
+PASS utils/validation.test.ts
+PASS src/components/auth/ProtectedRoute.test.tsx
+  ● Console
+
+    console.log
+      Environment variables check:
+
+      at Object.<anonymous> (src/lib/supabase.ts:5:9)
+
+    console.log
+      EXPO_PUBLIC_SUPABASE_URL: undefined
+
+      at Object.<anonymous> (src/lib/supabase.ts:6:9)
+
+    console.log
+      EXPO_PUBLIC_SUPABASE_ANON_KEY: NOT SET
+
+      at Object.<anonymous> (src/lib/supabase.ts:7:9)
+
+    console.log
+      All env vars: [ 'SUPABASE_ACCESS_TOKEN' ]
+
+      at Object.<anonymous> (src/lib/supabase.ts:8:9)
+
+    console.error
+      Missing Supabase environment variables.
+
+      15 | const createSupabaseClient = () => {
+      16 |   if (!supabaseUrl || !supabaseAnonKey) {
+    > 17 |     console.error('Missing Supabase environment variables.');
+         |             ^
+      18 |     console.error('Available env vars:', Object.keys(process.env));
+      19 |
+      20 |     // Use placeholder values to prevent app crash during development
+
+      at createSupabaseClient (src/lib/supabase.ts:17:13)
+      at Object.<anonymous> (src/lib/supabase.ts:30:25)
+      at Object.<anonymous> (src/contexts/AuthContext.tsx:29:1)
+      at Object.<anonymous> (src/hooks/useAuth.ts:2:1)
+      at Object.<anonymous> (src/components/auth/ProtectedRoute.tsx:42:1)
+      at Object.<anonymous> (src/components/auth/ProtectedRoute.test.tsx:14:1)
+
+    console.error
+      Available env vars: [
+        'NVM_INC',
+        'npm_config_legacy_peer_deps',
+        'TERM_PROGRAM',
+        'NODE',
+        'NVM_CD_FLAGS',
+        'INIT_CWD',
+        'SHELL',
+        'TERM',
+        'TMPDIR',
+        'npm_config_metrics_registry',
+        'CONDA_SHLVL',
+        'npm_config_global_prefix',
+        'CONDA_PROMPT_MODIFIER',
+        'TERM_PROGRAM_VERSION',
+        'MallocNanoZone',
+        'ORIGINAL_XDG_CURRENT_DESKTOP',
+        'CURSOR_TRACE_ID',
+        'COLOR',
+        'npm_config_noproxy',
+        'npm_config_local_prefix',
+        'USER',
+        'NVM_DIR',
+        'COMMAND_MODE',
+        'CONDA_EXE',
+        'npm_config_globalconfig',
+        'SSH_AUTH_SOCK',
+        '__CF_USER_TEXT_ENCODING',
+        'npm_execpath',
+        'PAGER',
+        'PYDEVD_DISABLE_FILE_VALIDATION',
+        '_CE_CONDA',
+        'PATH',
+        '_',
+        'npm_package_json',
+        '__CFBundleIdentifier',
+        'CONDA_PREFIX',
+        'npm_config_init_module',
+        'npm_config_userconfig',
+        'PWD',
+        'npm_command',
+        'DISABLE_AUTO_UPDATE',
+        'EDITOR',
+        'npm_lifecycle_event',
+        'LANG',
+        'npm_package_name',
+        'BUNDLED_DEBUGPY_PATH',
+        'XPC_FLAGS',
+        'VSCODE_GIT_ASKPASS_EXTRA_ARGS',
+        'npm_config_node_gyp',
+        'npm_package_version',
+        'XPC_SERVICE_NAME',
+        '_CE_M',
+        'npm_config_yes',
+        'VSCODE_DEBUGPY_ADAPTER_ENDPOINTS',
+        'HOME',
+        'SHLVL',
+        'VSCODE_GIT_ASKPASS_MAIN',
+        'SUPABASE_ACCESS_TOKEN',
+        'PIP_NO_INPUT',
+        'LOGNAME',
+        'CONDA_PYTHON_EXE',
+        'npm_config_cache',
+        'npm_lifecycle_script',
+        'COMPOSER_NO_INTERACTION',
+        'VSCODE_GIT_IPC_HANDLE',
+        'CONDA_DEFAULT_ENV',
+        'NVM_BIN',
+        'npm_config_user_agent',
+        'GIT_ASKPASS',
+        'VSCODE_GIT_ASKPASS_NODE',
+        'COLORTERM',
+        'npm_config_prefix',
+        'npm_node_execpath',
+        'NODE_ENV',
+        'TS_JEST',
+        'JEST_WORKER_ID'
+      ]
+
+      16 |   if (!supabaseUrl || !supabaseAnonKey) {
+      17 |     console.error('Missing Supabase environment variables.');
+    > 18 |     console.error('Available env vars:', Object.keys(process.env));
+         |             ^
+      19 |
+      20 |     // Use placeholder values to prevent app crash during development
+      21 |     const placeholderUrl = 'https://placeholder.supabase.co';
+
+      at createSupabaseClient (src/lib/supabase.ts:18:13)
+      at Object.<anonymous> (src/lib/supabase.ts:30:25)
+      at Object.<anonymous> (src/contexts/AuthContext.tsx:29:1)
+      at Object.<anonymous> (src/hooks/useAuth.ts:2:1)
+      at Object.<anonymous> (src/components/auth/ProtectedRoute.tsx:42:1)
+      at Object.<anonymous> (src/components/auth/ProtectedRoute.test.tsx:14:1)
+
+PASS src/components/auth/PasswordValidation.integration.test.tsx
+PASS src/components/auth/PasswordValidation.test.tsx
+PASS src/components/auth/SignUpForm.test.tsx
+  ● Console
+
+    console.warn
+      props.pointerEvents is deprecated. Use style.pointerEvents
+
+      25 |
+      26 |   it('renders all form fields', () => {
+    > 27 |     render(<SignUpForm />);
+         |           ^
+      28 |
+      29 |     // Check for field labels
+      30 |     expect(screen.getByText('Full Name *')).toBeInTheDocument();
+
+      at warn (../../node_modules/react-native-web/dist/cjs/modules/warnOnce/index.js:28:13)
+      at createDOMProps (../../node_modules/react-native-web/dist/cjs/modules/createDOMProps/index.js:809:27)
+      at createElement (../../node_modules/react-native-web/dist/cjs/exports/createElement/index.js:27:45)
+      at ../../node_modules/react-native-web/dist/cjs/exports/View/index.js:116:36
+      at renderWithHooks (../../node_modules/react-dom/cjs/react-dom.development.js:16305:18)
+      at updateForwardRef (../../node_modules/react-dom/cjs/react-dom.development.js:19226:20)
+      at beginWork (../../node_modules/react-dom/cjs/react-dom.development.js:21636:16)
+      at beginWork$1 (../../node_modules/react-dom/cjs/react-dom.development.js:27426:14)
+      at performUnitOfWork (../../node_modules/react-dom/cjs/react-dom.development.js:26560:12)
+      at workLoopSync (../../node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (../../node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at Object.<anonymous> (src/components/auth/SignUpForm.test.tsx:27:11)
+
+PASS src/components/auth/SignUpForm.integration.test.tsx
+  ● Console
+
+    console.warn
+      props.pointerEvents is deprecated. Use style.pointerEvents
+
+      34 |   describe('Initial Form State', () => {
+      35 |     it('should start with all fields empty and submit button disabled', () => {
+    > 36 |       render(<SignUpForm />);
+         |             ^
+      37 |
+      38 |       // Check all fields are empty
+      39 |       expect(screen.getByTestId('full-name')).toHaveValue('');
+
+      at warn (../../node_modules/react-native-web/dist/cjs/modules/warnOnce/index.js:28:13)
+      at createDOMProps (../../node_modules/react-native-web/dist/cjs/modules/createDOMProps/index.js:809:27)
+      at createElement (../../node_modules/react-native-web/dist/cjs/exports/createElement/index.js:27:45)
+      at ../../node_modules/react-native-web/dist/cjs/exports/View/index.js:116:36
+      at renderWithHooks (../../node_modules/react-dom/cjs/react-dom.development.js:16305:18)
+      at updateForwardRef (../../node_modules/react-dom/cjs/react-dom.development.js:19226:20)
+      at beginWork (../../node_modules/react-dom/cjs/react-dom.development.js:21636:16)
+      at beginWork$1 (../../node_modules/react-dom/cjs/react-dom.development.js:27426:14)
+      at performUnitOfWork (../../node_modules/react-dom/cjs/react-dom.development.js:26560:12)
+      at workLoopSync (../../node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (../../node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at Object.<anonymous> (src/components/auth/SignUpForm.integration.test.tsx:36:13)
+
+PASS src/components/auth/SignUpForm.submitButton.test.tsx
+  ● Console
+
+    console.warn
+      props.pointerEvents is deprecated. Use style.pointerEvents
+
+      29 |   describe('Initial State', () => {
+      30 |     it('should start with disabled submit button and appropriate text', () => {
+    > 31 |       render(<SignUpForm />);
+         |             ^
+      32 |
+      33 |       const submitButton = screen.getByTestId('submit-button');
+      34 |       expect(submitButton).toBeDisabled();
+
+      at warn (../../node_modules/react-native-web/dist/cjs/modules/warnOnce/index.js:28:13)
+      at createDOMProps (../../node_modules/react-native-web/dist/cjs/modules/createDOMProps/index.js:809:27)
+      at createElement (../../node_modules/react-native-web/dist/cjs/exports/createElement/index.js:27:45)
+      at ../../node_modules/react-native-web/dist/cjs/exports/View/index.js:116:36
+      at renderWithHooks (../../node_modules/react-dom/cjs/react-dom.development.js:16305:18)
+      at updateForwardRef (../../node_modules/react-dom/cjs/react-dom.development.js:19226:20)
+      at beginWork (../../node_modules/react-dom/cjs/react-dom.development.js:21636:16)
+      at beginWork$1 (../../node_modules/react-dom/cjs/react-dom.development.js:27426:14)
+      at performUnitOfWork (../../node_modules/react-dom/cjs/react-dom.development.js:26560:12)
+      at workLoopSync (../../node_modules/react-dom/cjs/react-dom.development.js:26466:5)
+      at renderRootSync (../../node_modules/react-dom/cjs/react-dom.development.js:26434:7)
+      at performConcurrentWorkOnRoot (../../node_modules/react-dom/cjs/react-dom.development.js:25738:74)
+      at flushActQueue (../../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../../node_modules/react/cjs/react.development.js:2582:11)
+      at ../../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../../node_modules/@testing-library/react/dist/pure.js:180:26)
+      at render (../../node_modules/@testing-library/react/dist/pure.js:271:10)
+      at Object.<anonymous> (src/components/auth/SignUpForm.submitButton.test.tsx:31:13)
+
+PASS src/contexts/AuthContext.test.tsx
+  ● Console
+
+    console.log
+      🔄 AuthContext user state changed: not authenticated
+
+      at src/contexts/AuthContext.tsx:484:13
+
+    console.error
+      Warning: An update to AuthProvider inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+          at AuthProvider (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/apps/web/src/contexts/AuthContext.tsx:49:61)
+
+      418 |         loadUserProfile(session.user.id, 0, session.user);
+      419 |       } else {
+    > 420 |         setLoading(false);
+          |         ^
+      421 |       }
+      422 |     });
+      423 |
+
+      at printWarning (../../node_modules/react-dom/cjs/react-dom.development.js:86:30)
+      at error (../../node_modules/react-dom/cjs/react-dom.development.js:60:7)
+      at warnIfUpdatesNotWrappedWithActDEV (../../node_modules/react-dom/cjs/react-dom.development.js:27589:9)
+      at scheduleUpdateOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:25508:5)
+      at dispatchSetState (../../node_modules/react-dom/cjs/react-dom.development.js:17527:7)
+      at src/contexts/AuthContext.tsx:420:9
+
+    console.log
+      🔄 AuthContext user state changed: not authenticated
+
+      at src/contexts/AuthContext.tsx:484:13
+
+    console.log
+      🔄 AuthContext user state changed: not authenticated
+
+      at src/contexts/AuthContext.tsx:484:13
+
+    console.log
+      🔐 Starting signup for: test@example.com
+
+      at Object.signUp (src/contexts/AuthContext.tsx:197:15)
+
+    console.log
+      🌐 Attempting Edge Function signup...
+
+      at Object.signUp (src/contexts/AuthContext.tsx:201:17)
+
+    console.log
+      ⚠️ Edge Function failed, falling back to client-side approach: ReferenceError: fetch is not defined
+          at Object.signUp (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/apps/web/src/contexts/AuthContext.tsx:202:26)
+          at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/apps/web/src/contexts/AuthContext.test.tsx:197:27
+          at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/@testing-library/react/dist/act-compat.js:48:24
+          at act (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/react/cjs/react.development.js:2512:16)
+          at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/@testing-library/react/dist/act-compat.js:47:25
+          at Object.<anonymous> (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/apps/web/src/contexts/AuthContext.test.tsx:196:16)
+
+      at Object.signUp (src/contexts/AuthContext.tsx:239:17)
+
+    console.log
+      🔄 Using improved client-side signup...
+
+      at Object.signUp (src/contexts/AuthContext.tsx:243:15)
+
+    console.log
+      📝 About to create auth user...
+
+      at Object.signUp (src/contexts/AuthContext.tsx:246:15)
+
+    console.log
+      📝 Auth signup response received
+
+      at Object.signUp (src/contexts/AuthContext.tsx:258:15)
+
+    console.log
+      ✅ Auth user created: user-1
+
+      at Object.signUp (src/contexts/AuthContext.tsx:268:15)
+
+    console.log
+      📝 About to create user profile...
+
+      at Object.signUp (src/contexts/AuthContext.tsx:274:15)
+
+    console.log
+      📝 Profile creation response received
+
+      at Object.signUp (src/contexts/AuthContext.tsx:286:15)
+
+    console.log
+      ✅ Profile created successfully
+
+      at Object.signUp (src/contexts/AuthContext.tsx:292:15)
+
+    console.log
+      📝 About to load user profile...
+
+      at Object.signUp (src/contexts/AuthContext.tsx:295:15)
+
+    console.log
+      🔄 Loading profile for user user-1 (attempt 1)
+
+      at loadUserProfile (src/contexts/AuthContext.tsx:73:15)
+
+    console.log
+      User profile loaded successfully: {
+        id: 'user-1',
+        user_role: 'primary',
+        full_name: 'Primary User',
+        display_name: 'Primary User',
+        parent_user_id: null,
+        development_consent: true,
+        age_verification: true,
+        consent_timestamp: '2024-01-01T00:00:00Z',
+        created_at: '2024-01-01T00:00:00Z',
+        updated_at: '2024-01-01T00:00:00Z'
+      }
+
+      at loadUserProfile (src/contexts/AuthContext.tsx:127:15)
+
+    console.log
+      🔄 User state updated, should trigger routing re-render
+
+      at loadUserProfile (src/contexts/AuthContext.tsx:128:15)
+
+    console.log
+      🎉 Client-side signup flow completed successfully
+
+      at Object.signUp (src/contexts/AuthContext.tsx:297:15)
+
+    console.log
+      🔄 Navigating to /chat after successful signup
+
+      at Object.signUp (src/contexts/AuthContext.tsx:300:15)
+
+    console.log
+      🔄 AuthContext user state changed: authenticated
+
+      at src/contexts/AuthContext.tsx:484:13
+
+    console.log
+      🔄 AuthContext user state changed: not authenticated
+
+      at src/contexts/AuthContext.tsx:484:13
+
+    console.error
+      Warning: An update to AuthProvider inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+          at AuthProvider (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/apps/web/src/contexts/AuthContext.tsx:49:61)
+
+      194 |   ) => {
+      195 |     try {
+    > 196 |       setIsSigningUp(true);
+          |       ^
+      197 |       console.log('🔐 Starting signup for:', email);
+      198 |
+      199 |       // Try Edge Function first
+
+      at printWarning (../../node_modules/react-dom/cjs/react-dom.development.js:86:30)
+      at error (../../node_modules/react-dom/cjs/react-dom.development.js:60:7)
+      at warnIfUpdatesNotWrappedWithActDEV (../../node_modules/react-dom/cjs/react-dom.development.js:27589:9)
+      at scheduleUpdateOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:25508:5)
+      at dispatchSetState (../../node_modules/react-dom/cjs/react-dom.development.js:17527:7)
+      at Object.signUp (src/contexts/AuthContext.tsx:196:7)
+      at Object.<anonymous> (src/contexts/AuthContext.test.tsx:237:21)
+
+    console.log
+      🔐 Starting signup for: test@example.com
+
+      at Object.signUp (src/contexts/AuthContext.tsx:197:15)
+
+    console.log
+      🌐 Attempting Edge Function signup...
+
+      at Object.signUp (src/contexts/AuthContext.tsx:201:17)
+
+    console.log
+      ⚠️ Edge Function failed, falling back to client-side approach: ReferenceError: fetch is not defined
+          at Object.signUp (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/apps/web/src/contexts/AuthContext.tsx:202:26)
+          at Object.<anonymous> (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/apps/web/src/contexts/AuthContext.test.tsx:237:21)
+
+      at Object.signUp (src/contexts/AuthContext.tsx:239:17)
+
+    console.log
+      🔄 Using improved client-side signup...
+
+      at Object.signUp (src/contexts/AuthContext.tsx:243:15)
+
+    console.log
+      📝 About to create auth user...
+
+      at Object.signUp (src/contexts/AuthContext.tsx:246:15)
+
+    console.log
+      📝 Auth signup response received
+
+      at Object.signUp (src/contexts/AuthContext.tsx:258:15)
+
+    console.error
+      ❌ Auth error: Error: Signup failed
+          at Object.<anonymous> (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/apps/web/src/contexts/AuthContext.test.tsx:217:16)
+          at Promise.then.completed (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/utils.js:298:28)
+          at new Promise (<anonymous>)
+          at callAsyncCircusFn (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/utils.js:231:10)
+          at _callCircusTest (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:316:40)
+          at _runTest (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:252:3)
+          at _runTestsForDescribeBlock (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:126:9)
+          at _runTestsForDescribeBlock (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:121:9)
+          at _runTestsForDescribeBlock (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:121:9)
+          at run (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:71:3)
+          at runAndTransformResultsToJestFormat (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+          at jestAdapter (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+          at runTestInternal (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-runner/build/runTest.js:367:16)
+          at runTest (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-runner/build/runTest.js:444:34)
+          at Object.worker (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-runner/build/testWorker.js:106:12)
+
+      258 |       console.log('📝 Auth signup response received');
+      259 |       if (authError) {
+    > 260 |         console.error('❌ Auth error:', authError);
+          |                 ^
+      261 |         throw authError;
+      262 |       }
+      263 |       if (!authUser?.id) {
+
+      at Object.signUp (src/contexts/AuthContext.tsx:260:17)
+      at Object.<anonymous> (src/contexts/AuthContext.test.tsx:236:7)
+
+    console.error
+      ❌ Error during sign up: Error: Signup failed
+          at Object.<anonymous> (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/apps/web/src/contexts/AuthContext.test.tsx:217:16)
+          at Promise.then.completed (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/utils.js:298:28)
+          at new Promise (<anonymous>)
+          at callAsyncCircusFn (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/utils.js:231:10)
+          at _callCircusTest (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:316:40)
+          at _runTest (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:252:3)
+          at _runTestsForDescribeBlock (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:126:9)
+          at _runTestsForDescribeBlock (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:121:9)
+          at _runTestsForDescribeBlock (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:121:9)
+          at run (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:71:3)
+          at runAndTransformResultsToJestFormat (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+          at jestAdapter (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+          at runTestInternal (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-runner/build/runTest.js:367:16)
+          at runTest (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-runner/build/runTest.js:444:34)
+          at Object.worker (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-runner/build/testWorker.js:106:12)
+
+      305 |
+      306 |     } catch (err) {
+    > 307 |       console.error('❌ Error during sign up:', err);
+          |               ^
+      308 |       throw err;
+      309 |     } finally {
+      310 |       setIsSigningUp(false);
+
+      at Object.signUp (src/contexts/AuthContext.tsx:307:15)
+      at Object.<anonymous> (src/contexts/AuthContext.test.tsx:236:7)
+
+    console.error
+      Warning: An update to AuthProvider inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+          at AuthProvider (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/apps/web/src/contexts/AuthContext.tsx:49:61)
+
+      308 |       throw err;
+      309 |     } finally {
+    > 310 |       setIsSigningUp(false);
+          |       ^
+      311 |     }
+      312 |   };
+      313 |
+
+      at printWarning (../../node_modules/react-dom/cjs/react-dom.development.js:86:30)
+      at error (../../node_modules/react-dom/cjs/react-dom.development.js:60:7)
+      at warnIfUpdatesNotWrappedWithActDEV (../../node_modules/react-dom/cjs/react-dom.development.js:27589:9)
+      at scheduleUpdateOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:25508:5)
+      at dispatchSetState (../../node_modules/react-dom/cjs/react-dom.development.js:17527:7)
+      at Object.signUp (src/contexts/AuthContext.tsx:310:7)
+      at Object.<anonymous> (src/contexts/AuthContext.test.tsx:236:7)
+
+    console.log
+      🔄 AuthContext user state changed: not authenticated
+
+      at src/contexts/AuthContext.tsx:484:13
+
+    console.log
+      🔄 Loading profile for user user-1 (attempt 1)
+
+      at loadUserProfile (src/contexts/AuthContext.tsx:73:15)
+
+    console.log
+      User profile loaded successfully: {
+        id: 'user-1',
+        user_role: 'primary',
+        full_name: 'Primary User',
+        display_name: 'Primary User',
+        parent_user_id: null,
+        development_consent: true,
+        age_verification: true,
+        consent_timestamp: '2024-01-01T00:00:00Z',
+        created_at: '2024-01-01T00:00:00Z',
+        updated_at: '2024-01-01T00:00:00Z'
+      }
+
+      at loadUserProfile (src/contexts/AuthContext.tsx:127:15)
+
+    console.log
+      🔄 User state updated, should trigger routing re-render
+
+      at loadUserProfile (src/contexts/AuthContext.tsx:128:15)
+
+    console.log
+      🔄 AuthContext user state changed: authenticated
+
+      at src/contexts/AuthContext.tsx:484:13
+
+    console.log
+      🔄 AuthContext user state changed: not authenticated
+
+      at src/contexts/AuthContext.tsx:484:13
+
+    console.error
+      Error during sign in: Error: Invalid credentials
+          at Object.<anonymous> (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/apps/web/src/contexts/AuthContext.test.tsx:300:16)
+          at Promise.then.completed (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/utils.js:298:28)
+          at new Promise (<anonymous>)
+          at callAsyncCircusFn (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/utils.js:231:10)
+          at _callCircusTest (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:316:40)
+          at _runTest (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:252:3)
+          at _runTestsForDescribeBlock (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:126:9)
+          at _runTestsForDescribeBlock (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:121:9)
+          at _runTestsForDescribeBlock (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:121:9)
+          at run (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:71:3)
+          at runAndTransformResultsToJestFormat (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+          at jestAdapter (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+          at runTestInternal (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-runner/build/runTest.js:367:16)
+          at runTest (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-runner/build/runTest.js:444:34)
+          at Object.worker (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-runner/build/testWorker.js:106:12)
+
+      332 |       await loadUserProfile(authUser.id, 0, authUser);
+      333 |     } catch (err) {
+    > 334 |       console.error('Error during sign in:', err);
+          |               ^
+      335 |       throw err;
+      336 |     }
+      337 |   };
+
+      at Object.signIn (src/contexts/AuthContext.tsx:334:15)
+      at Object.<anonymous> (src/contexts/AuthContext.test.tsx:319:7)
+
+    console.log
+      🔄 AuthContext user state changed: not authenticated
+
+      at src/contexts/AuthContext.tsx:484:13
+
+    console.log
+      🔄 AuthContext user state changed: not authenticated
+
+      at src/contexts/AuthContext.tsx:484:13
+
+    console.error
+      Error during sign out: Error: Signout failed
+          at Object.<anonymous> (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/apps/web/src/contexts/AuthContext.test.tsx:354:16)
+          at Promise.then.completed (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/utils.js:298:28)
+          at new Promise (<anonymous>)
+          at callAsyncCircusFn (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/utils.js:231:10)
+          at _callCircusTest (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:316:40)
+          at _runTest (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:252:3)
+          at _runTestsForDescribeBlock (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:126:9)
+          at _runTestsForDescribeBlock (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:121:9)
+          at _runTestsForDescribeBlock (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:121:9)
+          at run (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:71:3)
+          at runAndTransformResultsToJestFormat (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+          at jestAdapter (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+          at runTestInternal (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-runner/build/runTest.js:367:16)
+          at runTest (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-runner/build/runTest.js:444:34)
+          at Object.worker (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-runner/build/testWorker.js:106:12)
+
+      348 |       setUser(null);
+      349 |     } catch (err) {
+    > 350 |       console.error('Error during sign out:', err);
+          |               ^
+      351 |       throw err;
+      352 |     }
+      353 |   };
+
+      at Object.signOut (src/contexts/AuthContext.tsx:350:15)
+      at Object.<anonymous> (src/contexts/AuthContext.test.tsx:373:7)
+
+    console.log
+      🔄 AuthContext user state changed: not authenticated
+
+      at src/contexts/AuthContext.tsx:484:13
+
+    console.log
+      🔄 AuthContext user state changed: not authenticated
+
+      at src/contexts/AuthContext.tsx:484:13
+
+    console.log
+      🔄 AuthContext user state changed: not authenticated
+
+      at src/contexts/AuthContext.tsx:484:13
+
+    console.log
+      🔄 AuthContext user state changed: not authenticated
+
+      at src/contexts/AuthContext.tsx:484:13
+
+    console.log
+      🔄 Loading profile for user user-1 (attempt 1)
+
+      at loadUserProfile (src/contexts/AuthContext.tsx:73:15)
+
+    console.log
+      User profile loaded successfully: {
+        id: 'user-1',
+        user_role: 'primary',
+        full_name: 'Primary User',
+        display_name: 'Primary User',
+        parent_user_id: null,
+        development_consent: true,
+        age_verification: true,
+        consent_timestamp: '2024-01-01T00:00:00Z',
+        created_at: '2024-01-01T00:00:00Z',
+        updated_at: '2024-01-01T00:00:00Z'
+      }
+
+      at loadUserProfile (src/contexts/AuthContext.tsx:127:15)
+
+    console.log
+      🔄 User state updated, should trigger routing re-render
+
+      at loadUserProfile (src/contexts/AuthContext.tsx:128:15)
+
+    console.log
+      🔄 AuthContext user state changed: authenticated
+
+      at src/contexts/AuthContext.tsx:484:13
+
+    console.log
+      🔐 Starting signup for: child@example.com
+
+      at signUp (src/contexts/AuthContext.tsx:197:15)
+
+    console.log
+      🌐 Attempting Edge Function signup...
+
+      at signUp (src/contexts/AuthContext.tsx:201:17)
+
+    console.log
+      ⚠️ Edge Function failed, falling back to client-side approach: ReferenceError: fetch is not defined
+          at signUp (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/apps/web/src/contexts/AuthContext.tsx:202:26)
+          at Object.createChildAccount (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/apps/web/src/contexts/AuthContext.tsx:394:11)
+          at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/apps/web/src/contexts/AuthContext.test.tsx:534:27
+          at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/@testing-library/react/dist/act-compat.js:48:24
+          at act (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/react/cjs/react.development.js:2512:16)
+          at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/@testing-library/react/dist/act-compat.js:47:25
+          at Object.<anonymous> (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/apps/web/src/contexts/AuthContext.test.tsx:533:16)
+
+      at signUp (src/contexts/AuthContext.tsx:239:17)
+
+    console.log
+      🔄 Using improved client-side signup...
+
+      at signUp (src/contexts/AuthContext.tsx:243:15)
+
+    console.log
+      📝 About to create auth user...
+
+      at signUp (src/contexts/AuthContext.tsx:246:15)
+
+    console.log
+      📝 Auth signup response received
+
+      at signUp (src/contexts/AuthContext.tsx:258:15)
+
+    console.log
+      ✅ Auth user created: user-2
+
+      at signUp (src/contexts/AuthContext.tsx:268:15)
+
+    console.error
+      Error: Not implemented: navigation (except hash changes)
+          at module.exports (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jsdom/lib/jsdom/browser/not-implemented.js:9:17)
+          at navigateFetch (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jsdom/lib/jsdom/living/window/navigation.js:77:3)
+          at exports.navigate (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jsdom/lib/jsdom/living/window/navigation.js:55:3)
+          at LocationImpl._locationObjectNavigate (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jsdom/lib/jsdom/living/window/Location-impl.js:31:5)
+          at LocationImpl._locationObjectSetterNavigate (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jsdom/lib/jsdom/living/window/Location-impl.js:25:17)
+          at LocationImpl.set href [as href] (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jsdom/lib/jsdom/living/window/Location-impl.js:47:10)
+          at Location.set href [as href] (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jsdom/lib/jsdom/living/generated/Location.js:125:37)
+          at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/apps/web/src/contexts/AuthContext.tsx:303:29
+          at Timeout.task [as _onTimeout] (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jsdom/lib/jsdom/browser/Window.js:520:19)
+          at listOnTimeout (node:internal/timers:569:17)
+          at processTimers (node:internal/timers:512:7) {
+        type: 'not implemented'
+      }
+
+      301 |       // Use a small delay to ensure state updates are processed
+      302 |       setTimeout(() => {
+    > 303 |         window.location.href = '/chat';
+          |                             ^
+      304 |       }, 100);
+      305 |
+      306 |     } catch (err) {
+
+      at VirtualConsole.<anonymous> (../../node_modules/jest-environment-jsdom/build/index.js:63:23)
+      at module.exports (../../node_modules/jsdom/lib/jsdom/browser/not-implemented.js:12:26)
+      at navigateFetch (../../node_modules/jsdom/lib/jsdom/living/window/navigation.js:77:3)
+      at exports.navigate (../../node_modules/jsdom/lib/jsdom/living/window/navigation.js:55:3)
+      at LocationImpl._locationObjectNavigate (../../node_modules/jsdom/lib/jsdom/living/window/Location-impl.js:31:5)
+      at LocationImpl._locationObjectSetterNavigate (../../node_modules/jsdom/lib/jsdom/living/window/Location-impl.js:25:17)
+      at LocationImpl.set href [as href] (../../node_modules/jsdom/lib/jsdom/living/window/Location-impl.js:47:10)
+      at Location.set href [as href] (../../node_modules/jsdom/lib/jsdom/living/generated/Location.js:125:37)
+      at src/contexts/AuthContext.tsx:303:29
+      at Timeout.task [as _onTimeout] (../../node_modules/jsdom/lib/jsdom/browser/Window.js:520:19)
+
+    console.log
+      📝 About to create user profile...
+
+      at signUp (src/contexts/AuthContext.tsx:274:15)
+
+    console.log
+      📝 Profile creation response received
+
+      at signUp (src/contexts/AuthContext.tsx:286:15)
+
+    console.log
+      ✅ Profile created successfully
+
+      at signUp (src/contexts/AuthContext.tsx:292:15)
+
+    console.log
+      📝 About to load user profile...
+
+      at signUp (src/contexts/AuthContext.tsx:295:15)
+
+    console.log
+      🔄 Loading profile for user user-2 (attempt 1)
+
+      at loadUserProfile (src/contexts/AuthContext.tsx:73:15)
+
+    console.log
+      User profile loaded successfully: {
+        id: 'user-1',
+        user_role: 'primary',
+        full_name: 'Primary User',
+        display_name: 'Primary User',
+        parent_user_id: null,
+        development_consent: true,
+        age_verification: true,
+        consent_timestamp: '2024-01-01T00:00:00Z',
+        created_at: '2024-01-01T00:00:00Z',
+        updated_at: '2024-01-01T00:00:00Z'
+      }
+
+      at loadUserProfile (src/contexts/AuthContext.tsx:127:15)
+
+    console.log
+      🔄 User state updated, should trigger routing re-render
+
+      at loadUserProfile (src/contexts/AuthContext.tsx:128:15)
+
+    console.log
+      🎉 Client-side signup flow completed successfully
+
+      at signUp (src/contexts/AuthContext.tsx:297:15)
+
+    console.log
+      🔄 Navigating to /chat after successful signup
+
+      at signUp (src/contexts/AuthContext.tsx:300:15)
+
+    console.log
+      🔄 AuthContext user state changed: authenticated
+
+      at src/contexts/AuthContext.tsx:484:13
+
+    console.log
+      🔄 AuthContext user state changed: not authenticated
+
+      at src/contexts/AuthContext.tsx:484:13
+
+    console.error
+      Error during sign in: Error: Invalid credentials
+          at Object.<anonymous> (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/apps/web/src/contexts/AuthContext.test.tsx:300:16)
+          at Promise.then.completed (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/utils.js:298:28)
+          at new Promise (<anonymous>)
+          at callAsyncCircusFn (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/utils.js:231:10)
+          at _callCircusTest (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:316:40)
+          at _runTest (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:252:3)
+          at _runTestsForDescribeBlock (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:126:9)
+          at _runTestsForDescribeBlock (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:121:9)
+          at _runTestsForDescribeBlock (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:121:9)
+          at run (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/run.js:71:3)
+          at runAndTransformResultsToJestFormat (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:122:21)
+          at jestAdapter (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:79:19)
+          at runTestInternal (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-runner/build/runTest.js:367:16)
+          at runTest (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-runner/build/runTest.js:444:34)
+          at Object.worker (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/node_modules/jest-runner/build/testWorker.js:106:12)
+
+      332 |       await loadUserProfile(authUser.id, 0, authUser);
+      333 |     } catch (err) {
+    > 334 |       console.error('Error during sign in:', err);
+          |               ^
+      335 |       throw err;
+      336 |     }
+      337 |   };
+
+      at Object.signIn (src/contexts/AuthContext.tsx:334:15)
+      at loadProfile (src/contexts/AuthContext.test.tsx:577:15)
+
+    console.log
+      🔄 AuthContext user state changed: not authenticated
+
+      at src/contexts/AuthContext.tsx:484:13
+
+    console.error
+      Warning: An update to AuthProvider inside a test was not wrapped in act(...).
+      
+      When testing, code that causes React state updates should be wrapped into act(...):
+      
+      act(() => {
+        /* fire events that update state */
+      });
+      /* assert on the output */
+      
+      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+          at AuthProvider (/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/apps/web/src/contexts/AuthContext.tsx:49:61)
+
+      418 |         loadUserProfile(session.user.id, 0, session.user);
+      419 |       } else {
+    > 420 |         setLoading(false);
+          |         ^
+      421 |       }
+      422 |     });
+      423 |
+
+      at printWarning (../../node_modules/react-dom/cjs/react-dom.development.js:86:30)
+      at error (../../node_modules/react-dom/cjs/react-dom.development.js:60:7)
+      at warnIfUpdatesNotWrappedWithActDEV (../../node_modules/react-dom/cjs/react-dom.development.js:27589:9)
+      at scheduleUpdateOnFiber (../../node_modules/react-dom/cjs/react-dom.development.js:25508:5)
+      at dispatchSetState (../../node_modules/react-dom/cjs/react-dom.development.js:17527:7)
+      at src/contexts/AuthContext.tsx:420:9
+
+    console.log
+      🔄 AuthContext user state changed: not authenticated
+
+      at src/contexts/AuthContext.tsx:484:13
+
+
+Test Suites: 10 passed, 10 total
+Tests:       147 passed, 147 total
+Snapshots:   0 total
+Time:        3.854 s
+Ran all test suites.
+
+> @chat-frontier-flora/shared@1.0.0 test
+> jest --passWithNoTests
+
+PASS src/types/validation.test.ts
+  Validation Types
+    ValidationError
+      ✓ should create a basic validation error (1 ms)
+      ✓ should create a validation error with severity and code
+    ValidationResult
+      ✓ should handle null result for valid input (1 ms)
+      ✓ should handle array of errors for invalid input
+    ValidationStatus
+      ✓ should accept all valid status values
+    ValidationRule
+      ✓ should create a required field rule (1 ms)
+      ✓ should create a pattern validation rule
+      ✓ should create a custom validation rule
+    FieldState
+      ✓ should create a complete field state (1 ms)
+      ✓ should handle field state with errors
+    FormValidationState
+      ✓ should create a complete form validation state
+    SubmitButtonState
+      ✓ should create a submit button state
+    SubmitButtonConfig
+      ✓ should create a submit button configuration
+    ValidatorFunction
+      ✓ should create a validator function
+    FormSchema
+      ✓ should create a form schema
+    Type Safety
+      ✓ should enforce correct ValidationStatus values
+      ✓ should enforce correct button style values (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       17 passed, 17 total
+Snapshots:   0 total
+Time:        1.044 s
+Ran all test suites.
+
+> @chat-frontier-flora/ui@1.0.0 test
+> jest --passWithNoTests
+
+No tests found, exiting with code 0
