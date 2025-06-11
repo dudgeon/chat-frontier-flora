@@ -1,0 +1,59 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+file pattern matches: apps/web/**,package.json,package-lock.json
+title: start-localhost-server
+description: Deterministic procedure for Cursor to spin up the Expo-web dev server for chat-frontier-flora (npm workspaces).
+---
+# 🟢 PURPOSE
+Always launch the local web server the same way, from the correct directory, with clear recovery steps.
+
+## 0️⃣  One-time (first run on a fresh clone)
+```bash
+npm ci                 # install ALL workspace deps from repo root
+```
+
+## 1️⃣  Change into the web workspace
+```bash
+cd apps/web
+pwd                    # must end with /apps/web
+```
+
+## 2️⃣  Ensure local deps exist (idempotent)
+```bash
+[ -d node_modules ] || npm ci
+```
+
+## 3️⃣  Launch the Expo web server
+```bash
+npm run web            # runs: cp ../../.env .env || true && expo start --web
+# wait for “Expo web server running” (or QR code) in the terminal
+```
+
+## 4️⃣  Open the app
+* Copy the URL shown by Expo (default **http://localhost:19006**).
+* The root now serves HTML automatically—no `/index.html` suffix required.
+
+## 5️⃣  Troubleshooting table
+| Symptom | Fix |
+| --- | --- |
+| **Port in use (EADDRINUSE)** | Stop the other dev server (`Ctrl-C`) or set `EXPO_DEV_SERVER_PORT`; re-run **3**. |
+| **Blank page / vite.svg 404 / MIME octet-stream** | Clear cache then restart:<br>`expo start -c --web`. |
+| **Root returns JSON (old Expo behaviour)** | You’re on an old Expo cache—run the cache clear command above. |
+| **Env vars missing in console** | Verify `.env` and `app.config.*` expose `EXPO_PUBLIC_SUPABASE_URL` + `EXPO_PUBLIC_SUPABASE_ANON_KEY`. |
+
+## 6️⃣  Verification checklist
+- [ ] Terminal shows **“Compiled successfully”** (no red text)
+- [ ] Browser displays login ➜ sign-up flow (card UI)
+- [ ] DevTools console: **no 404s / MIME warnings**
+- [ ] Hot-reload updates when editing files under `apps/web/src`
+
+---
+
+### Rationale
+* Repo contains `package-lock.json`—it’s an **npm** project, not Yarn/pnpm.
+* Workspaces are declared at root; `npm ci` installs all packages in one go.
+* The **only** correct dev command (`npm run web`) lives in `apps/web` and already handles `.env` copying.
+* The rule enforces directory discipline, documents Expo quirks, and gives a concise fix table so Cursor won’t wander into unrelated paths or toolchains.

@@ -126,8 +126,9 @@ npm run dev:mobile -- --android
 ```bash
 npm run test:safe
 # OR for specific environments:
-npm run test:localhost    # Local testing only
-npm run test:production   # Production verification only
+npm run test:e2e                    # Local testing (localhost:19006)
+DEPLOY_PREVIEW_URL=<url> npm run test:e2e  # Preview deployment testing
+TEST_PRODUCTION=true npm run test:e2e      # Production verification
 ```
 
 ### 🚨 Critical Development Rules
@@ -139,6 +140,7 @@ npm run test:production   # Production verification only
 
 ### Quick References
 - 📋 **Workflow**: See `docs/DEVELOPMENT_WORKFLOW_CHECKLIST.md`
+- 📦 **Import Guidelines**: See `docs/MONOREPO_IMPORT_GUIDELINES.md` - **CRITICAL for avoiding import errors**
 - 🚀 **Commands**: See `docs/QUICK_REFERENCE.md`
 - 🧪 **Testing**: See `docs/CURRENT_TEST_INVENTORY.md`
 
