@@ -167,5 +167,122 @@ test.describe('Authentication Flow', () => {
     }
   });
 
+  test('should complete full user journey successfully', async () => {
+    const targetUrl = getTargetUrl();
+    console.log(`🎭 Testing complete user journey on ${targetUrl}...`);
+
+    // Increase timeout for production/preview testing
+    if (IS_PRODUCTION || PREVIEW_URL) {
+      test.setTimeout(300000); // 5 minutes for production/preview
+    } else {
+      test.setTimeout(120000); // 2 minutes for local
+    }
+
+    const page = stagehand.page;
+    let finalState = null;
+
+    try {
+      // 1. SIGNUP FLOW
+      await page.goto(targetUrl);
+      await page.act('wait for the signup form to be visible');
+
+      // Generate test user data
+      const testEmail = `test-${Date.now()}@stagehand-demo.com`;
+      const testPassword = 'StagehandTest123!';
+      const testName = 'Stagehand Tester';
+      console.log('📝 Creating account for:', testEmail);
+
+      // Fill out the form using natural language
+      await page.act(`fill in the full name field with "${testName}"`);
+      await page.act(`fill in the email field with "${testEmail}"`);
+      await page.act(`fill in the password field with "${testPassword}"`);
+      await page.act(`fill in the confirm password field with "${testPassword}"`);
+      await page.act('check the age verification checkbox');
+      await page.act('check the development consent checkbox');
+
+      // Verify form state before submission
+      const formState = await page.extract({
+        instruction: 'get the form state',
+        schema: z.object({
+          isFormValid: z.boolean(),
+          submitButtonEnabled: z.boolean(),
+          passwordStrength: z.string().nullable()
+        })
+      });
+      console.log('📊 Form state:', formState);
+      expect(formState.isFormValid).toBe(true);
+      expect(formState.submitButtonEnabled).toBe(true);
+
+      // Submit the form
+      await page.act('click the submit button to create the account');
+      console.log('⏳ Waiting for signup process to complete...');
+      await page.act('wait for the page to finish loading and any loading indicators to disappear');
+
+      // 2. VERIFY CORE FUNCTIONALITY
+      const chatPageState = await page.extract({
+        instruction: 'verify chat page state',
+        schema: z.object({
+          isOnChatPage: z.boolean(),
+          userIsAuthenticated: z.boolean(),
+          hasWelcomeMessage: z.boolean(),
+          hasComingSoonMessage: z.boolean(),
+          hasProfileMenu: z.boolean()
+        })
+      });
+      console.log('💬 Chat page state:', chatPageState);
+
+      // Core functionality assertions
+      expect(chatPageState.isOnChatPage).toBe(true);
+      expect(chatPageState.userIsAuthenticated).toBe(true);
+      expect(chatPageState.hasWelcomeMessage).toBe(true);
+      expect(chatPageState.hasComingSoonMessage).toBe(true);
+      expect(chatPageState.hasProfileMenu).toBe(true);
+
+      // Mark core functionality as verified
+      console.log('✅ Core functionality verified successful');
+
+      // 3. SECONDARY FEATURES (Non-critical)
+      try {
+        // Profile menu interaction (non-critical)
+        const menuState = await page.extract({
+          instruction: 'check profile menu state',
+          schema: z.object({
+            isMenuOpen: z.boolean(),
+            userEmail: z.string(),
+            hasLogoutButton: z.boolean()
+          })
+        });
+        console.log('👤 Profile menu state:', menuState);
+      } catch (error) {
+        // Log but don't fail test - profile menu is secondary
+        console.log('ℹ️ Profile menu check skipped:', (error as Error).message);
+      }
+
+      // 4. FINAL STATE CAPTURE (Non-critical)
+      try {
+        const finalState = await page.extract({
+          instruction: 'get final page state',
+          schema: z.object({
+            currentUrl: z.string().nullable(),
+            isAuthenticated: z.boolean(),
+            visibleContent: z.string()
+          })
+        });
+        console.log('📸 Final page state:', finalState);
+      } catch (error) {
+        // Log but don't fail test - final state capture is for debugging only
+        console.log('ℹ️ Final state capture skipped:', (error as Error).message);
+      }
+
+      // Test is considered successful after core functionality verification
+      console.log('✅ Test completed successfully - core functionality verified');
+
+    } catch (error: unknown) {
+      const testError = error as Error;
+      console.error('❌ Test failed:', testError.message);
+      throw error;
+    }
+  });
+
   // Additional test cases can be added here - they'll automatically run against the right environment
 });
