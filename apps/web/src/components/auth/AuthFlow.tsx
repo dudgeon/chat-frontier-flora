@@ -23,7 +23,13 @@ export const AuthFlow: React.FC = () => {
   return (
     <View style={styles.container}>
       <View style={styles.formContainer}>
-        {authMode === 'signup' ? <SignUpForm /> : <LoginForm />}
+        {authMode === 'signup' ? (
+          <SignUpForm />
+        ) : (
+          <LoginForm
+            onSignUpRedirect={() => setAuthMode('signup')}
+          />
+        )}
       </View>
 
       <View style={styles.switchContainer}>

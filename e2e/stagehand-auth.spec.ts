@@ -3,31 +3,40 @@ import { Stagehand } from '@browserbasehq/stagehand';
 import { z } from 'zod';
 
 /**
- * 🎭 STAGEHAND AUTHENTICATION PROOF-OF-CONCEPT
+ * 🎭 STAGEHAND AUTHENTICATION TESTS
  *
- * This test demonstrates how Stagehand would solve our authentication testing issues:
- * - No more brittle selectors that break when UI changes
- * - Natural language actions that adapt to page changes
- * - Structured data extraction with validation
- * - Self-healing tests that work even when elements move
+ * Unified test suite that runs against any environment (local/preview/production)
+ * controlled by environment variables:
+ *
+ * - No env vars = local testing (localhost:19006)
+ * - DEPLOY_PREVIEW_URL = preview deployment testing
+ * - TEST_PRODUCTION = production testing (frontier-family-flora.netlify.app)
  */
 
-// Use Playwright's baseURL which handles environment detection automatically
+// Environment detection
+const PRODUCTION_URL = 'https://frontier-family-flora.netlify.app';
+const PREVIEW_URL = process.env.DEPLOY_PREVIEW_URL;
+const IS_PRODUCTION = process.env.TEST_PRODUCTION === 'true';
 
-test.describe('Stagehand Authentication Flow', () => {
+// Determine target URL based on environment
+function getTargetUrl(): string {
+  if (IS_PRODUCTION) return PRODUCTION_URL;
+  if (PREVIEW_URL) return PREVIEW_URL;
+  return '/'; // Local development (uses Playwright's baseURL)
+}
+
+test.describe('Authentication Flow', () => {
   let stagehand: Stagehand;
 
   test.beforeEach(async () => {
-    // Initialize Stagehand with our OpenAI API key
     stagehand = new Stagehand({
-      env: 'LOCAL',
+      env: 'LOCAL', // Stagehand only supports 'LOCAL' or 'BROWSERBASE'
       apiKey: process.env.OPENAI_API_KEY,
-      modelName: 'gpt-4o-mini', // Cost-effective model for testing
+      modelName: 'gpt-4o-mini',
       modelClientOptions: {
-        apiKey: process.env.OPENAI_API_KEY,
-      },
+        apiKey: process.env.OPENAI_API_KEY
+      }
     });
-
     await stagehand.init();
   });
 
@@ -45,8 +54,8 @@ test.describe('Stagehand Authentication Flow', () => {
 
       console.log('📸 Final page state before cleanup:', finalState);
 
-      // If we're on the chat page and authenticated, the core flow succeeded
-      if (finalState.currentUrl.includes('/chat') && finalState.isAuthenticated) {
+      // If we're authenticated with no errors, core flow succeeded
+      if (finalState.isAuthenticated) {
         console.log('✅ Core authentication flow verified successful');
       }
     } catch (error) {
@@ -57,15 +66,22 @@ test.describe('Stagehand Authentication Flow', () => {
     await stagehand.close();
   });
 
-  test('should complete signup flow with natural language actions', async () => {
-    test.setTimeout(120000);
-    console.log('🎭 Testing Stagehand-powered authentication flow...');
+  test('should complete signup flow successfully', async () => {
+    const targetUrl = getTargetUrl();
+    console.log(`🎭 Testing authentication flow on ${targetUrl}...`);
+
+    // Increase timeout for production/preview testing
+    if (IS_PRODUCTION || PREVIEW_URL) {
+      test.setTimeout(300000); // 5 minutes for production/preview
+    } else {
+      test.setTimeout(120000); // 2 minutes for local
+    }
 
     const page = stagehand.page;
     let finalState = null;
 
     try {
-      await page.goto('/');
+      await page.goto(targetUrl);
       await page.act('wait for the signup form to be visible');
 
       // Generate test user data
@@ -102,24 +118,26 @@ test.describe('Stagehand Authentication Flow', () => {
       const signupResult = await page.extract({
         instruction: 'get the signup result',
         schema: z.object({
-          isOnChatPage: z.boolean(),
-          hasComingSoonText: z.boolean(),
-          currentUrl: z.string(),
           userIsAuthenticated: z.boolean(),
+          hasErrorMessages: z.boolean(),
           hasProfileMenu: z.boolean(),
-          isStillOnSignup: z.boolean(),
-          hasErrorMessages: z.boolean()
+          pageContent: z.string()
         })
       });
       finalState = signupResult;
       console.log('✅ Signup result:', finalState);
 
-      // Only proceed with profile menu if core auth succeeded
-      if (finalState && finalState.userIsAuthenticated && finalState.hasProfileMenu) {
-        console.log('📋 Profile menu detected:', finalState.hasProfileMenu);
+      // Core success criteria - same across all environments
+      if (finalState.userIsAuthenticated && !finalState.hasErrorMessages) {
+        console.log('🎉 Core authentication flow completed successfully!');
+      } else {
+        throw new Error('Core authentication failed - see finalState for details');
+      }
 
+      // Optional: Test profile menu if available
+      if (finalState.hasProfileMenu) {
         try {
-          console.log('🔍 Attempting to test profile menu functionality...');
+          console.log('🔍 Testing profile menu functionality...');
           const menuState = await page.extract({
             instruction: 'get profile menu state',
             schema: z.object({
@@ -127,46 +145,13 @@ test.describe('Stagehand Authentication Flow', () => {
               userEmail: z.string(),
               hasLogoutButton: z.boolean()
             })
-          }) as { isMenuOpen: boolean; userEmail: string; hasLogoutButton: boolean };
+          });
           console.log('👤 Profile menu state:', menuState);
         } catch (error: unknown) {
           // Don't fail test for menu issues if core auth worked
           const menuError = error as Error;
-          if (menuError.message.includes('context has been closed')) {
-            console.log('ℹ️ Profile menu testing skipped during cleanup');
-          } else {
-            console.log('⚠️ Non-critical profile menu error:', menuError.message);
-          }
+          console.log('⚠️ Non-critical profile menu error:', menuError.message);
         }
-      }
-
-      // Capture final page state
-      try {
-        const pageState = await page.extract({
-          instruction: 'get the current page state',
-          schema: z.object({
-            currentUrl: z.string(),
-            isAuthenticated: z.boolean(),
-            visibleContent: z.string()
-          })
-        }) as { currentUrl: string; isAuthenticated: boolean; visibleContent: string };
-        console.log('📸 Final page state before cleanup:', pageState);
-      } catch (error: unknown) {
-        // Don't fail if we can't get final state during cleanup
-        const stateError = error as Error;
-        if (stateError.message.includes('context has been closed')) {
-          console.log('ℹ️ Final state capture skipped during cleanup');
-        } else {
-          console.log('⚠️ Non-critical state capture error:', stateError.message);
-        }
-      }
-
-      // Determine test success based on core functionality
-      if (finalState && finalState.userIsAuthenticated && !finalState.hasErrorMessages) {
-        console.log('🎉 Core authentication flow completed successfully!');
-        console.log('🎉 Stagehand authentication flow test completed successfully!');
-      } else {
-        throw new Error('Core authentication failed - see finalState for details');
       }
     } catch (error: unknown) {
       const testError = error as Error;
@@ -181,4 +166,6 @@ test.describe('Stagehand Authentication Flow', () => {
       }
     }
   });
+
+  // Additional test cases can be added here - they'll automatically run against the right environment
 });
