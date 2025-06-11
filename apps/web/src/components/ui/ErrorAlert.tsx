@@ -94,7 +94,7 @@ export const ErrorAlert: React.FC<ErrorAlertProps> = ({
             style={{
               fontSize: 14,
               lineHeight: 20,
-              color: type === 'error' ? '#b91c1c' : type === 'warning' ? '#a16207' : '#2563eb',
+              color: type === 'error' ? '#7f1d1d' : type === 'warning' ? '#854d0e' : '#1e40af',
             }}
           >
             {message}
