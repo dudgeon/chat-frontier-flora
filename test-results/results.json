@@ -129,14 +129,14 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 43289,
+                      "duration": 39399,
                       "errors": [],
                       "stdout": [
                         {
                           "text": "🎭 Testing authentication flow on /...\n"
                         },
                         {
-                          "text": "📝 Creating account for: test-1749647984335@stagehand-demo.com\n"
+                          "text": "📝 Creating account for: test-1749648334279@stagehand-demo.com\n"
                         },
                         {
                           "text": "📊 Form state: { isFormValid: \u001b[33mtrue\u001b[39m, submitButtonEnabled: \u001b[33mtrue\u001b[39m, passwordStrength: \u001b[32m''\u001b[39m }\n"
@@ -145,7 +145,7 @@
                           "text": "⏳ Waiting for signup process to complete...\n"
                         },
                         {
-                          "text": "✅ Signup result: {\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  pageContent: \u001b[32m'Welcome,\\ntest-1749647984335@stagehand-demo.com\\n!'\u001b[39m\n}\n"
+                          "text": "✅ Signup result: {\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  pageContent: \u001b[32m'Welcome,\\ntest-1749648334279@stagehand-demo.com\\n!'\u001b[39m\n}\n"
                         },
                         {
                           "text": "🎉 Core authentication flow completed successfully!\n"
@@ -154,10 +154,10 @@
                           "text": "🔍 Testing profile menu functionality...\n"
                         },
                         {
-                          "text": "👤 Profile menu state: {\n  isMenuOpen: \u001b[33mfalse\u001b[39m,\n  userEmail: \u001b[32m'test-1749647984335@stagehand-demo.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mfalse\u001b[39m\n}\n"
+                          "text": "👤 Profile menu state: {\n  isMenuOpen: \u001b[33mfalse\u001b[39m,\n  userEmail: \u001b[32m'test-1749648334279@stagehand-demo.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mfalse\u001b[39m\n}\n"
                         },
                         {
-                          "text": "📸 Final page state before cleanup: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  isAuthenticated: \u001b[33mtrue\u001b[39m,\n  visibleContent: \u001b[32m'Frontier.Family\\n'\u001b[39m +\n    \u001b[32m'👤\\n'\u001b[39m +\n    \u001b[32m'Chat Feature Coming Soon!\\n'\u001b[39m +\n    \u001b[32m\"We're working hard to bring you an amazing chat experience.\\n\"\u001b[39m +\n    \u001b[32m'Welcome,\\n'\u001b[39m +\n    \u001b[32m'test-1749647984335@stagehand-demo.com\\n'\u001b[39m +\n    \u001b[32m'!'\u001b[39m\n}\n"
+                          "text": "📸 Final page state before cleanup: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  isAuthenticated: \u001b[33mtrue\u001b[39m,\n  visibleContent: \u001b[32m'Frontier.Family\\n'\u001b[39m +\n    \u001b[32m'👤\\n'\u001b[39m +\n    \u001b[32m'Chat Feature Coming Soon!\\n'\u001b[39m +\n    \u001b[32m\"We're working hard to bring you an amazing chat experience.\\n\"\u001b[39m +\n    \u001b[32m'Welcome,\\n'\u001b[39m +\n    \u001b[32m'test-1749648334279@stagehand-demo.com\\n'\u001b[39m +\n    \u001b[32m'!'\u001b[39m\n}\n"
                         },
                         {
                           "text": "✅ Core authentication flow verified successful\n"
@@ -165,7 +165,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-06-11T13:19:36.892Z",
+                      "startTime": "2025-06-11T13:25:28.204Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -194,14 +194,14 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 37123,
+                      "duration": 36234,
                       "errors": [],
                       "stdout": [
                         {
                           "text": "🎭 Testing authentication flow on /...\n"
                         },
                         {
-                          "text": "📝 Creating account for: test-1749648025725@stagehand-demo.com\n"
+                          "text": "📝 Creating account for: test-1749648373218@stagehand-demo.com\n"
                         },
                         {
                           "text": "📊 Form state: { isFormValid: \u001b[33mtrue\u001b[39m, submitButtonEnabled: \u001b[33mtrue\u001b[39m, passwordStrength: \u001b[32m''\u001b[39m }\n"
@@ -210,7 +210,7 @@
                           "text": "⏳ Waiting for signup process to complete...\n"
                         },
                         {
-                          "text": "✅ Signup result: {\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  pageContent: \u001b[32m'Welcome,\\ntest-1749648025725@stagehand-demo.com\\n!'\u001b[39m\n}\n"
+                          "text": "✅ Signup result: {\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  pageContent: \u001b[32m'Welcome,\\ntest-1749648373218@stagehand-demo.com\\n!'\u001b[39m\n}\n"
                         },
                         {
                           "text": "🎉 Core authentication flow completed successfully!\n"
@@ -219,10 +219,10 @@
                           "text": "🔍 Testing profile menu functionality...\n"
                         },
                         {
-                          "text": "👤 Profile menu state: {\n  isMenuOpen: \u001b[33mfalse\u001b[39m,\n  userEmail: \u001b[32m'test-1749648025725@stagehand-demo.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mfalse\u001b[39m\n}\n"
+                          "text": "👤 Profile menu state: {\n  isMenuOpen: \u001b[33mfalse\u001b[39m,\n  userEmail: \u001b[32m'test-1749648373218@stagehand-demo.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mfalse\u001b[39m\n}\n"
                         },
                         {
-                          "text": "📸 Final page state before cleanup: {\n  currentUrl: \u001b[32m'/'\u001b[39m,\n  isAuthenticated: \u001b[33mtrue\u001b[39m,\n  visibleContent: \u001b[32m'Frontier.Family\\n'\u001b[39m +\n    \u001b[32m'👤\\n'\u001b[39m +\n    \u001b[32m'Chat Feature Coming Soon!\\n'\u001b[39m +\n    \u001b[32m\"We're working hard to bring you an amazing chat experience.\\n\"\u001b[39m +\n    \u001b[32m'Welcome,\\n'\u001b[39m +\n    \u001b[32m'test-1749648025725@stagehand-demo.com\\n'\u001b[39m +\n    \u001b[32m'!'\u001b[39m\n}\n"
+                          "text": "📸 Final page state before cleanup: {\n  currentUrl: \u001b[32m'/'\u001b[39m,\n  isAuthenticated: \u001b[33mtrue\u001b[39m,\n  visibleContent: \u001b[32m'Frontier.Family\\n'\u001b[39m +\n    \u001b[32m'👤\\n'\u001b[39m +\n    \u001b[32m'Chat Feature Coming Soon!\\n'\u001b[39m +\n    \u001b[32m\"We're working hard to bring you an amazing chat experience.\\n\"\u001b[39m +\n    \u001b[32m'Welcome,\\n'\u001b[39m +\n    \u001b[32m'test-1749648373218@stagehand-demo.com\\n'\u001b[39m +\n    \u001b[32m'!'\u001b[39m\n}\n"
                         },
                         {
                           "text": "✅ Core authentication flow verified successful\n"
@@ -230,7 +230,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-06-11T13:20:21.715Z",
+                      "startTime": "2025-06-11T13:26:09.182Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -259,14 +259,14 @@
                       "workerIndex": 2,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 35974,
+                      "duration": 34677,
                       "errors": [],
                       "stdout": [
                         {
                           "text": "🎭 Testing authentication flow on /...\n"
                         },
                         {
-                          "text": "📝 Creating account for: test-1749648066122@stagehand-demo.com\n"
+                          "text": "📝 Creating account for: test-1749648411977@stagehand-demo.com\n"
                         },
                         {
                           "text": "📊 Form state: { isFormValid: \u001b[33mtrue\u001b[39m, submitButtonEnabled: \u001b[33mtrue\u001b[39m, passwordStrength: \u001b[32m''\u001b[39m }\n"
@@ -275,7 +275,7 @@
                           "text": "⏳ Waiting for signup process to complete...\n"
                         },
                         {
-                          "text": "✅ Signup result: {\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  pageContent: \u001b[32m'Welcome,\\ntest-1749648066122@stagehand-demo.com\\n!'\u001b[39m\n}\n"
+                          "text": "✅ Signup result: {\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  pageContent: \u001b[32m'Welcome,\\ntest-1749648411977@stagehand-demo.com\\n!'\u001b[39m\n}\n"
                         },
                         {
                           "text": "🎉 Core authentication flow completed successfully!\n"
@@ -284,10 +284,10 @@
                           "text": "🔍 Testing profile menu functionality...\n"
                         },
                         {
-                          "text": "👤 Profile menu state: {\n  isMenuOpen: \u001b[33mfalse\u001b[39m,\n  userEmail: \u001b[32m'test-1749648066122@stagehand-demo.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mfalse\u001b[39m\n}\n"
+                          "text": "👤 Profile menu state: {\n  isMenuOpen: \u001b[33mfalse\u001b[39m,\n  userEmail: \u001b[32m'test-1749648411977@stagehand-demo.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mfalse\u001b[39m\n}\n"
                         },
                         {
-                          "text": "📸 Final page state before cleanup: {\n  currentUrl: \u001b[32m'/'\u001b[39m,\n  isAuthenticated: \u001b[33mtrue\u001b[39m,\n  visibleContent: \u001b[32m'Frontier.Family\\n'\u001b[39m +\n    \u001b[32m'👤\\n'\u001b[39m +\n    \u001b[32m'Chat Feature Coming Soon!\\n'\u001b[39m +\n    \u001b[32m\"We're working hard to bring you an amazing chat experience.\\n\"\u001b[39m +\n    \u001b[32m'Welcome,\\n'\u001b[39m +\n    \u001b[32m'test-1749648066122@stagehand-demo.com\\n'\u001b[39m +\n    \u001b[32m'!'\u001b[39m\n}\n"
+                          "text": "📸 Final page state before cleanup: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  isAuthenticated: \u001b[33mtrue\u001b[39m,\n  visibleContent: \u001b[32m'Frontier.Family\\n'\u001b[39m +\n    \u001b[32m'👤\\n'\u001b[39m +\n    \u001b[32m'Chat Feature Coming Soon!\\n'\u001b[39m +\n    \u001b[32m\"We're working hard to bring you an amazing chat experience.\\n\"\u001b[39m +\n    \u001b[32m'Welcome,\\n'\u001b[39m +\n    \u001b[32m'test-1749648411977@stagehand-demo.com\\n'\u001b[39m +\n    \u001b[32m'!'\u001b[39m\n}\n"
                         },
                         {
                           "text": "✅ Core authentication flow verified successful\n"
@@ -295,7 +295,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-06-11T13:21:00.786Z",
+                      "startTime": "2025-06-11T13:26:47.097Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -315,8 +315,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-06-11T13:19:36.114Z",
-    "duration": 120928.702,
+    "startTime": "2025-06-11T13:25:27.553Z",
+    "duration": 114877.869,
     "expected": 3,
     "skipped": 0,
     "unexpected": 0,

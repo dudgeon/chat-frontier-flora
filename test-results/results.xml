@@ -1,22 +1,22 @@
-<testsuites id="" name="" tests="3" failures="0" skipped="0" errors="0" time="120.928702">
-<testsuite name="stagehand-auth.spec.ts" timestamp="2025-06-11T13:19:36.383Z" hostname="chromium" tests="1" failures="0" skipped="0" time="43.289" errors="0">
-<testcase name="Authentication Flow › should complete signup flow successfully" classname="stagehand-auth.spec.ts" time="43.289">
+<testsuites id="" name="" tests="3" failures="0" skipped="0" errors="0" time="114.877869">
+<testsuite name="stagehand-auth.spec.ts" timestamp="2025-06-11T13:25:27.791Z" hostname="chromium" tests="1" failures="0" skipped="0" time="39.399" errors="0">
+<testcase name="Authentication Flow › should complete signup flow successfully" classname="stagehand-auth.spec.ts" time="39.399">
 <system-out>
 <![CDATA[🎭 Testing authentication flow on /...
-📝 Creating account for: test-1749647984335@stagehand-demo.com
+📝 Creating account for: test-1749648334279@stagehand-demo.com
 📊 Form state: { isFormValid: [33mtrue[39m, submitButtonEnabled: [33mtrue[39m, passwordStrength: [32m''[39m }
 ⏳ Waiting for signup process to complete...
 ✅ Signup result: {
   userIsAuthenticated: [33mtrue[39m,
   hasErrorMessages: [33mfalse[39m,
   hasProfileMenu: [33mtrue[39m,
-  pageContent: [32m'Welcome,\ntest-1749647984335@stagehand-demo.com\n!'[39m
+  pageContent: [32m'Welcome,\ntest-1749648334279@stagehand-demo.com\n!'[39m
 }
 🎉 Core authentication flow completed successfully!
 🔍 Testing profile menu functionality...
 👤 Profile menu state: {
   isMenuOpen: [33mfalse[39m,
-  userEmail: [32m'test-1749647984335@stagehand-demo.com'[39m,
+  userEmail: [32m'test-1749648334279@stagehand-demo.com'[39m,
   hasLogoutButton: [33mfalse[39m
 }
 📸 Final page state before cleanup: {
@@ -27,7 +27,7 @@
     [32m'Chat Feature Coming Soon!\n'[39m +
     [32m"We're working hard to bring you an amazing chat experience.\n"[39m +
     [32m'Welcome,\n'[39m +
-    [32m'test-1749647984335@stagehand-demo.com\n'[39m +
+    [32m'test-1749648334279@stagehand-demo.com\n'[39m +
     [32m'!'[39m
 }
 ✅ Core authentication flow verified successful
@@ -35,24 +35,24 @@
 </system-out>
 </testcase>
 </testsuite>
-<testsuite name="stagehand-auth.spec.ts" timestamp="2025-06-11T13:19:36.383Z" hostname="Mobile Chrome" tests="1" failures="0" skipped="0" time="37.123" errors="0">
-<testcase name="Authentication Flow › should complete signup flow successfully" classname="stagehand-auth.spec.ts" time="37.123">
+<testsuite name="stagehand-auth.spec.ts" timestamp="2025-06-11T13:25:27.791Z" hostname="Mobile Chrome" tests="1" failures="0" skipped="0" time="36.234" errors="0">
+<testcase name="Authentication Flow › should complete signup flow successfully" classname="stagehand-auth.spec.ts" time="36.234">
 <system-out>
 <![CDATA[🎭 Testing authentication flow on /...
-📝 Creating account for: test-1749648025725@stagehand-demo.com
+📝 Creating account for: test-1749648373218@stagehand-demo.com
 📊 Form state: { isFormValid: [33mtrue[39m, submitButtonEnabled: [33mtrue[39m, passwordStrength: [32m''[39m }
 ⏳ Waiting for signup process to complete...
 ✅ Signup result: {
   userIsAuthenticated: [33mtrue[39m,
   hasErrorMessages: [33mfalse[39m,
   hasProfileMenu: [33mtrue[39m,
-  pageContent: [32m'Welcome,\ntest-1749648025725@stagehand-demo.com\n!'[39m
+  pageContent: [32m'Welcome,\ntest-1749648373218@stagehand-demo.com\n!'[39m
 }
 🎉 Core authentication flow completed successfully!
 🔍 Testing profile menu functionality...
 👤 Profile menu state: {
   isMenuOpen: [33mfalse[39m,
-  userEmail: [32m'test-1749648025725@stagehand-demo.com'[39m,
+  userEmail: [32m'test-1749648373218@stagehand-demo.com'[39m,
   hasLogoutButton: [33mfalse[39m
 }
 📸 Final page state before cleanup: {
@@ -63,7 +63,7 @@
     [32m'Chat Feature Coming Soon!\n'[39m +
     [32m"We're working hard to bring you an amazing chat experience.\n"[39m +
     [32m'Welcome,\n'[39m +
-    [32m'test-1749648025725@stagehand-demo.com\n'[39m +
+    [32m'test-1749648373218@stagehand-demo.com\n'[39m +
     [32m'!'[39m
 }
 ✅ Core authentication flow verified successful
@@ -71,35 +71,35 @@
 </system-out>
 </testcase>
 </testsuite>
-<testsuite name="stagehand-auth.spec.ts" timestamp="2025-06-11T13:19:36.383Z" hostname="Mobile Safari" tests="1" failures="0" skipped="0" time="35.974" errors="0">
-<testcase name="Authentication Flow › should complete signup flow successfully" classname="stagehand-auth.spec.ts" time="35.974">
+<testsuite name="stagehand-auth.spec.ts" timestamp="2025-06-11T13:25:27.791Z" hostname="Mobile Safari" tests="1" failures="0" skipped="0" time="34.677" errors="0">
+<testcase name="Authentication Flow › should complete signup flow successfully" classname="stagehand-auth.spec.ts" time="34.677">
 <system-out>
 <![CDATA[🎭 Testing authentication flow on /...
-📝 Creating account for: test-1749648066122@stagehand-demo.com
+📝 Creating account for: test-1749648411977@stagehand-demo.com
 📊 Form state: { isFormValid: [33mtrue[39m, submitButtonEnabled: [33mtrue[39m, passwordStrength: [32m''[39m }
 ⏳ Waiting for signup process to complete...
 ✅ Signup result: {
   userIsAuthenticated: [33mtrue[39m,
   hasErrorMessages: [33mfalse[39m,
   hasProfileMenu: [33mtrue[39m,
-  pageContent: [32m'Welcome,\ntest-1749648066122@stagehand-demo.com\n!'[39m
+  pageContent: [32m'Welcome,\ntest-1749648411977@stagehand-demo.com\n!'[39m
 }
 🎉 Core authentication flow completed successfully!
 🔍 Testing profile menu functionality...
 👤 Profile menu state: {
   isMenuOpen: [33mfalse[39m,
-  userEmail: [32m'test-1749648066122@stagehand-demo.com'[39m,
+  userEmail: [32m'test-1749648411977@stagehand-demo.com'[39m,
   hasLogoutButton: [33mfalse[39m
 }
 📸 Final page state before cleanup: {
-  currentUrl: [32m'/'[39m,
+  currentUrl: [32m'null'[39m,
   isAuthenticated: [33mtrue[39m,
   visibleContent: [32m'Frontier.Family\n'[39m +
     [32m'👤\n'[39m +
     [32m'Chat Feature Coming Soon!\n'[39m +
     [32m"We're working hard to bring you an amazing chat experience.\n"[39m +
     [32m'Welcome,\n'[39m +
-    [32m'test-1749648066122@stagehand-demo.com\n'[39m +
+    [32m'test-1749648411977@stagehand-demo.com\n'[39m +
     [32m'!'[39m
 }
 ✅ Core authentication flow verified successful
