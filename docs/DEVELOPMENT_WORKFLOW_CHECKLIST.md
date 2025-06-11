@@ -20,6 +20,15 @@
 - [ ] Environment variables loaded (check with `echo $OPENAI_API_KEY`)
 - [ ] No conflicting Expo processes running (`ps aux | grep expo`)
 - [ ] Git status clean or changes properly staged
+- [ ] Ensure you're in the correct directory (`apps/web`)
+- [ ] Verify .env file is present and contains required variables
+
+### Port Management
+- [ ] Default ports used: 8081 (Metro), 19006 (Web)
+- [ ] If port conflicts occur:
+  - The `npm run web` script will automatically kill existing processes
+  - If manual intervention needed: `npx kill-port 8081 19006`
+  - For other ports: `npx kill-port <port_number>`
 
 ### Test Environment Verification
 - [ ] Run `./scripts/verify-test-status.sh` before any testing
@@ -42,12 +51,19 @@
 - [ ] Make ONE change at a time
 - [ ] Wait for webpack recompilation after each change
 - [ ] Verify change works before proceeding to next
+- [ ] **Follow import guidelines**: Check `docs/MONOREPO_IMPORT_GUIDELINES.md` for correct import patterns
+- [ ] **Avoid deep package imports**: Never use `../../../../../../packages/` paths
+- [ ] **Use established patterns**: Follow SignUpForm pattern for authentication components
 - [ ] Document successful changes before moving forward
 
 ### Testing Protocol
-- [ ] **Localhost testing**: Unset `DEPLOY_PREVIEW_URL` environment variable
-- [ ] **Preview testing**: Set `DEPLOY_PREVIEW_URL` to preview URL
-- [ ] **Production testing**: Unset `DEPLOY_PREVIEW_URL`, tests auto-target production
+- [ ] **Environment-based testing using unified test suite**:
+  - Local testing: `npm run test:e2e` (no env vars)
+  - Preview testing: `DEPLOY_PREVIEW_URL=<url> npm run test:e2e`
+  - Production testing: `TEST_PRODUCTION=true npm run test:e2e`
+- [ ] **Verify test environment** with `./scripts/verify-test-status.sh`
+- [ ] **Check test results** for all environments before proceeding
+- [ ] **Document any environment-specific failures** for investigation
 
 ---
 
@@ -80,6 +96,7 @@
 
 ### Common Failure Patterns
 - [ ] **Directory errors**: Always check `pwd` before Expo commands
+- [ ] **Import path errors**: Follow `docs/MONOREPO_IMPORT_GUIDELINES.md` to avoid FormInput-style import failures
 - [ ] **Test framework confusion**: Never run Playwright tests (quarantined)
 - [ ] **Environment mixing**: Verify test target environment before running
 - [ ] **Compilation errors**: Fix "1 error" before claiming success

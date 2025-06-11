@@ -38,14 +38,7 @@ const designSystem = {
     md: 6,
     lg: 8,
   },
-  shadow: {
-    sm: {
-      shadowColor: '#000',
-      shadowOffset: { width: -2, height: 0 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
-    },
-  },
+
 };
 
 interface ChatPageProps {
@@ -165,18 +158,21 @@ export const ChatPage: React.FC<ChatPageProps> = ({
           />
 
           {/* Profile Menu */}
-          <View style={{
-            position: 'absolute' as const,
-            top: 0,
-            right: 0,
-            bottom: 0,
-            width: 300,
-            backgroundColor: designSystem.colors.white,
-            borderLeftWidth: 1,
-            borderLeftColor: designSystem.colors.gray200,
-            zIndex: 2,
-            ...designSystem.shadow.sm,
-          }} testID="profile-menu">
+          <View
+            className="shadow-sm"
+            style={{
+              position: 'absolute' as const,
+              top: 0,
+              right: 0,
+              bottom: 0,
+              width: 300,
+              backgroundColor: designSystem.colors.white,
+              borderLeftWidth: 1,
+              borderLeftColor: designSystem.colors.gray200,
+              zIndex: 2,
+            }}
+            testID="profile-menu"
+          >
             <View style={{
               flexDirection: 'row',
               justifyContent: 'space-between',

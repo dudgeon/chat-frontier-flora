@@ -100,6 +100,8 @@ export const Checkbox: React.FC<CheckboxProps> = ({
         accessible={true}
         accessibilityRole="checkbox"
         accessibilityState={{ checked }}
+        accessibilityLabel={`${label}, checkbox ${checked ? 'checked' : 'unchecked'}`}
+        accessibilityHint="Toggle checkbox selection"
         testID={testID}
       >
         <View style={{

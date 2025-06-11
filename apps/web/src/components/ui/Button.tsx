@@ -1,114 +1,98 @@
 import React from 'react';
-import {
-  TouchableOpacity,
-  Text,
-  ActivityIndicator,
-} from 'react-native';
-import type { TouchableOpacityProps } from 'react-native';
+import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { Text } from './text';
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
   variant?: 'primary' | 'secondary' | 'outline';
-  size?: 'small' | 'medium' | 'large';
+  size?: 'sm' | 'md' | 'lg';
   loading?: boolean;
-  fullWidth?: boolean;
 }
 
-export const Button: React.FC<ButtonProps> = ({
-  title,
-  variant = 'primary',
-  size = 'medium',
-  loading = false,
-  fullWidth = false,
-  disabled,
-  ...props
-}) => {
-  // Base button classes with responsive design
-  const baseClasses = "flex justify-center items-center rounded-lg font-medium transition-colors duration-200";
+export const Button = React.forwardRef<TouchableOpacity, ButtonProps>(
+  ({ title, variant = 'primary', size = 'md', loading = false, style, disabled, ...props }, ref) => {
+    const getButtonStyles = () => {
+      const baseStyles = {
+        borderRadius: 12,
+        alignItems: 'center' as const,
+        justifyContent: 'center' as const,
+        flexDirection: 'row' as const,
+      };
 
-  // Size classes with responsive breakpoints
-  const sizeClasses = {
-    small: "h-8 px-3 text-sm sm:h-9 sm:px-4",
-    medium: "h-10 px-4 text-base sm:h-11 sm:px-6",
-    large: "h-12 px-6 text-lg sm:h-14 sm:px-8"
-  };
+      const sizeStyles = {
+        sm: { paddingHorizontal: 16, paddingVertical: 8 },
+        md: { paddingHorizontal: 24, paddingVertical: 12 },
+        lg: { paddingHorizontal: 32, paddingVertical: 16 },
+      };
 
-  // Variant classes with hover and active states
-  const variantClasses = {
-    primary: "bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white",
-    secondary: "bg-gray-500 hover:bg-gray-600 active:bg-gray-700 text-white",
-    outline: "bg-transparent border border-blue-600 hover:bg-blue-50 active:bg-blue-100 text-blue-600"
-  };
+      const variantStyles = {
+        primary: {
+          backgroundColor: disabled ? '#9CA3AF' : '#3B82F6', // blue-500 or gray-400
+          borderWidth: 0,
+        },
+        secondary: {
+          backgroundColor: disabled ? '#F3F4F6' : '#F3F4F6', // gray-100
+          borderWidth: 1,
+          borderColor: disabled ? '#E5E7EB' : '#D1D5DB', // gray-300 or gray-400
+        },
+        outline: {
+          backgroundColor: 'transparent',
+          borderWidth: 1,
+          borderColor: disabled ? '#E5E7EB' : '#3B82F6', // gray-300 or blue-500
+        },
+      };
 
-  // Width classes
-  const widthClass = fullWidth ? "w-full" : "";
-
-  // Disabled state classes
-  const disabledClasses = disabled || loading
-    ? "opacity-50 cursor-not-allowed"
-    : "";
-
-  // Combine all button classes
-  const buttonClassName = [
-    baseClasses,
-    sizeClasses[size],
-    variantClasses[variant],
-    widthClass,
-    disabledClasses
-  ].filter(Boolean).join(' ');
-
-  // Text classes for different variants and states
-  const getTextClasses = () => {
-    const baseTextClasses = "font-medium";
-
-    // Size-specific text classes
-    const textSizeClasses = {
-      small: "text-sm",
-      medium: "text-base",
-      large: "text-lg"
+      return {
+        ...baseStyles,
+        ...sizeStyles[size],
+        ...variantStyles[variant],
+        opacity: loading ? 0.7 : 1,
+      };
     };
 
-    // Variant-specific text colors (already included in button variant classes)
-    const textColorClasses = {
-      primary: "text-white",
-      secondary: "text-white",
-      outline: "text-blue-600"
+    const getTextStyles = () => {
+      const sizeStyles = {
+        sm: { fontSize: 14 },
+        md: { fontSize: 16 },
+        lg: { fontSize: 18 },
+      };
+
+      const variantStyles = {
+        primary: {
+          color: disabled ? '#FFFFFF' : '#FFFFFF',
+          fontWeight: '600' as const,
+        },
+        secondary: {
+          color: disabled ? '#9CA3AF' : '#374151', // gray-400 or gray-700
+          fontWeight: '500' as const,
+        },
+        outline: {
+          color: disabled ? '#9CA3AF' : '#3B82F6', // gray-400 or blue-500
+          fontWeight: '500' as const,
+        },
+      };
+
+      return {
+        ...sizeStyles[size],
+        ...variantStyles[variant],
+        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      };
     };
 
-    // Disabled text color override
-    const disabledTextClass = disabled || loading ? "text-gray-400" : "";
-
-    return [
-      baseTextClasses,
-      textSizeClasses[size],
-      !disabled && !loading ? textColorClasses[variant] : "",
-      disabledTextClass
-    ].filter(Boolean).join(' ');
-  };
-
-  // Loading spinner color based on variant
-  const getSpinnerColor = () => {
-    if (variant === 'outline') return '#3B82F6'; // blue-600
-    return '#FFFFFF'; // white
-  };
-
-  return (
-    <TouchableOpacity
-      className={buttonClassName}
-      disabled={disabled || loading}
-      {...props}
-    >
-      {loading ? (
-        <ActivityIndicator
-          color={getSpinnerColor()}
-          size="small"
-          className="w-4 h-4"
-        />
-      ) : (
-        <Text className={getTextClasses()}>
-          {title}
+    return (
+      <TouchableOpacity
+        ref={ref}
+        style={[getButtonStyles(), style]}
+        disabled={disabled || loading}
+        activeOpacity={0.8}
+        {...props}
+      >
+        <Text style={getTextStyles()}>
+          {loading ? 'Loading...' : title}
         </Text>
-      )}
-    </TouchableOpacity>
-  );
-};
+      </TouchableOpacity>
+    );
+  }
+);
+
+Button.displayName = 'Button';

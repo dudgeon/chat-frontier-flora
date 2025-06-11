@@ -30,7 +30,7 @@ curl -s http://localhost:19006 | head -5
 
 # Run E2E tests for localhost ONLY
 cd ../../
-npm run test:localhost
+npm run test:local  # No env vars = tests localhost:19006
 ```
 
 **VERIFICATION CHECKLIST:**
@@ -64,8 +64,8 @@ gh pr create --title "Feature: Description" --body "Detailed description and tes
 # Test preview deployment thoroughly
 curl -s https://deploy-preview-X--frontier-family-flora.netlify.app/ | head -5
 
-# Run E2E tests against preview (if configured)
-DEPLOY_PREVIEW_URL=https://deploy-preview-X--frontier-family-flora.netlify.app/ npm run test:preview
+# Run E2E tests against preview
+DEPLOY_PREVIEW_URL=https://deploy-preview-X--frontier-family-flora.netlify.app/ npm run test:e2e
 ```
 
 **PREVIEW VERIFICATION CHECKLIST:**
@@ -107,7 +107,7 @@ netlify api listSiteDeploys --data='{"site_id":"a2e3354b-f93c-4875-9c4d-0afb9dbd
 curl -s https://frontier-family-flora.netlify.app/ | head -5
 
 # Run production verification tests
-npm run test:production
+TEST_PRODUCTION=true npm run test:e2e
 ```
 
 **PRODUCTION VERIFICATION CHECKLIST:**
