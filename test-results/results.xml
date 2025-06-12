@@ -1,32 +1,343 @@
-<testsuites id="" name="" tests="5" failures="0" skipped="5" errors="0" time="0.18117999999999995">
-<testsuite name="stagehand-auth-test.spec.ts" timestamp="2025-06-11T16:03:40.638Z" hostname="chromium" tests="1" failures="0" skipped="1" time="0" errors="0">
-<testcase name="🏠 Stagehand Authentication Flow [Localhost] › 🏠 Complete signup and authentication flow on Localhost" classname="stagehand-auth-test.spec.ts" time="0">
-<skipped>
-</skipped>
+<testsuites id="" name="" tests="5" failures="1" skipped="0" errors="0" time="301.22497100000004">
+<testsuite name="stagehand-production-auth.spec.ts" timestamp="2025-06-12T01:55:55.531Z" hostname="chromium" tests="1" failures="0" skipped="0" time="48.422" errors="0">
+<testcase name="🔍 Stagehand Preview Authentication › 🔍 Complete authentication flow on Preview deployment" classname="stagehand-production-auth.spec.ts" time="48.422">
+<system-out>
+<![CDATA[🎭 Initializing Stagehand for Preview environment (https://deploy-preview-14--frontier-family-flora.netlify.app/)
+🎭 Testing complete authentication flow with Stagehand on preview...
+📄 Initial page state: {
+  isSignupPage: [33mtrue[39m,
+  hasSignupForm: [33mtrue[39m,
+  pageTitle: [32m'Create Account'[39m,
+  isLoading: [33mfalse[39m
+}
+👤 Creating test user: stagehand-preview-1749693361976@example.com
+✅ Form validation state: {
+  allFieldsFilled: [33mtrue[39m,
+  passwordStrength: [32m''[39m,
+  submitButtonEnabled: [33mtrue[39m,
+  validationErrors: []
+}
+🚀 Submitting signup form...
+🔍 Button state before interaction on Preview: {
+  isVisible: [33mtrue[39m,
+  isEnabled: [33mtrue[39m,
+  buttonText: [32m'Create Account'[39m,
+  isLoading: [33mfalse[39m
+}
+🎯 Attempting button interaction strategy 1/6 on Preview
+✅ Button interaction successful with strategy 1 on Preview
+✅ Button click successfully triggered form submission on Preview
+⏳ Waiting for signup process to complete...
+📊 Signup result: {
+  currentUrl: [32m'null'[39m,
+  isOnChatPage: [33mtrue[39m,
+  isStillOnSignup: [33mfalse[39m,
+  hasSuccessIndicator: [33mtrue[39m,
+  hasErrorMessages: [33mfalse[39m,
+  pageContent: [32m'Chat Feature Coming Soon!\n'[39m +
+    [32m"We're working hard to bring you an amazing chat experience.\n"[39m +
+    [32m'Welcome,\n'[39m +
+    [32m'stagehand-preview-1749693361976@example.com!'[39m,
+  showsWelcomeMessage: [33mtrue[39m,
+  showsChatContent: [33mtrue[39m
+}
+👤 Authenticated state: {
+  userIsLoggedIn: [33mtrue[39m,
+  hasProfileMenu: [33mtrue[39m,
+  hasLogoutOption: [33mtrue[39m,
+  mainContent: [32m'Chat Feature Coming Soon!\n'[39m +
+    [32m"We're working hard to bring you an amazing chat experience.\n"[39m +
+    [32m'Welcome,\n'[39m +
+    [32m'stagehand-preview-1749693361976@example.com\n'[39m +
+    [32m'!\n'[39m +
+    [32m'Profile\n'[39m +
+    [32m'×\n'[39m +
+    [32m'stagehand-preview-1749693361976@example.com\n'[39m +
+    [32m'EMAIL\n'[39m +
+    [32m'ACCOUNT\n'[39m +
+    [32m'Settings\n'[39m +
+    [32m'Preferences\n'[39m +
+    [32m'Sign Out'[39m
+}
+🔍 Testing profile menu...
+📋 Profile menu state: { isMenuOpen: [33mtrue[39m, hasLogoutButton: [33mfalse[39m }
+🎉 Complete authentication flow test passed on Preview!
+]]>
+</system-out>
 </testcase>
 </testsuite>
-<testsuite name="stagehand-auth-test.spec.ts" timestamp="2025-06-11T16:03:40.638Z" hostname="firefox" tests="1" failures="0" skipped="1" time="0" errors="0">
-<testcase name="🏠 Stagehand Authentication Flow [Localhost] › 🏠 Complete signup and authentication flow on Localhost" classname="stagehand-auth-test.spec.ts" time="0">
-<skipped>
-</skipped>
+<testsuite name="stagehand-production-auth.spec.ts" timestamp="2025-06-12T01:55:55.531Z" hostname="firefox" tests="1" failures="0" skipped="0" time="48.379" errors="0">
+<testcase name="🔍 Stagehand Preview Authentication › 🔍 Complete authentication flow on Preview deployment" classname="stagehand-production-auth.spec.ts" time="48.379">
+<system-out>
+<![CDATA[🎭 Initializing Stagehand for Preview environment (https://deploy-preview-14--frontier-family-flora.netlify.app/)
+🎭 Testing complete authentication flow with Stagehand on preview...
+📄 Initial page state: {
+  isSignupPage: [33mtrue[39m,
+  hasSignupForm: [33mtrue[39m,
+  pageTitle: [32m'Create Account'[39m,
+  isLoading: [33mfalse[39m
+}
+👤 Creating test user: stagehand-preview-1749693363239@example.com
+✅ Form validation state: {
+  allFieldsFilled: [33mtrue[39m,
+  passwordStrength: [32m''[39m,
+  submitButtonEnabled: [33mtrue[39m,
+  validationErrors: []
+}
+🚀 Submitting signup form...
+🔍 Button state before interaction on Preview: {
+  isVisible: [33mtrue[39m,
+  isEnabled: [33mtrue[39m,
+  buttonText: [32m'Create Account'[39m,
+  isLoading: [33mfalse[39m
+}
+🎯 Attempting button interaction strategy 1/6 on Preview
+✅ Button interaction successful with strategy 1 on Preview
+✅ Button click successfully triggered form submission on Preview
+⏳ Waiting for signup process to complete...
+📊 Signup result: {
+  currentUrl: [32m'null'[39m,
+  isOnChatPage: [33mtrue[39m,
+  isStillOnSignup: [33mfalse[39m,
+  hasSuccessIndicator: [33mtrue[39m,
+  hasErrorMessages: [33mfalse[39m,
+  pageContent: [32m'Chat Feature Coming Soon!\n'[39m +
+    [32m"We're working hard to bring you an amazing chat experience.\n"[39m +
+    [32m'Welcome,\n'[39m +
+    [32m'stagehand-preview-1749693363239@example.com!'[39m,
+  showsWelcomeMessage: [33mtrue[39m,
+  showsChatContent: [33mtrue[39m
+}
+👤 Authenticated state: {
+  userIsLoggedIn: [33mtrue[39m,
+  hasProfileMenu: [33mtrue[39m,
+  hasLogoutOption: [33mtrue[39m,
+  mainContent: [32m'Chat Feature Coming Soon!\n'[39m +
+    [32m"We're working hard to bring you an amazing chat experience.\n"[39m +
+    [32m'Welcome,\n'[39m +
+    [32m'stagehand-preview-1749693363239@example.com\n'[39m +
+    [32m'!\n'[39m +
+    [32m'Profile\n'[39m +
+    [32m'×\n'[39m +
+    [32m'stagehand-preview-1749693363239@example.com\n'[39m +
+    [32m'EMAIL\n'[39m +
+    [32m'ACCOUNT\n'[39m +
+    [32m'Settings\n'[39m +
+    [32m'Preferences\n'[39m +
+    [32m'Sign Out'[39m
+}
+🔍 Testing profile menu...
+📋 Profile menu state: { isMenuOpen: [33mtrue[39m, hasLogoutButton: [33mfalse[39m }
+🎉 Complete authentication flow test passed on Preview!
+]]>
+</system-out>
 </testcase>
 </testsuite>
-<testsuite name="stagehand-auth-test.spec.ts" timestamp="2025-06-11T16:03:40.638Z" hostname="webkit" tests="1" failures="0" skipped="1" time="0" errors="0">
-<testcase name="🏠 Stagehand Authentication Flow [Localhost] › 🏠 Complete signup and authentication flow on Localhost" classname="stagehand-auth-test.spec.ts" time="0">
-<skipped>
-</skipped>
+<testsuite name="stagehand-production-auth.spec.ts" timestamp="2025-06-12T01:55:55.531Z" hostname="webkit" tests="1" failures="0" skipped="0" time="48.4" errors="0">
+<testcase name="🔍 Stagehand Preview Authentication › 🔍 Complete authentication flow on Preview deployment" classname="stagehand-production-auth.spec.ts" time="48.4">
+<system-out>
+<![CDATA[🎭 Initializing Stagehand for Preview environment (https://deploy-preview-14--frontier-family-flora.netlify.app/)
+🎭 Testing complete authentication flow with Stagehand on preview...
+📄 Initial page state: {
+  isSignupPage: [33mtrue[39m,
+  hasSignupForm: [33mtrue[39m,
+  pageTitle: [32m'Create Account'[39m,
+  isLoading: [33mfalse[39m
+}
+👤 Creating test user: stagehand-preview-1749693361848@example.com
+✅ Form validation state: {
+  allFieldsFilled: [33mtrue[39m,
+  passwordStrength: [32m''[39m,
+  submitButtonEnabled: [33mtrue[39m,
+  validationErrors: []
+}
+🚀 Submitting signup form...
+🔍 Button state before interaction on Preview: {
+  isVisible: [33mtrue[39m,
+  isEnabled: [33mtrue[39m,
+  buttonText: [32m'Create Account'[39m,
+  isLoading: [33mfalse[39m
+}
+🎯 Attempting button interaction strategy 1/6 on Preview
+✅ Button interaction successful with strategy 1 on Preview
+✅ Button click successfully triggered form submission on Preview
+⏳ Waiting for signup process to complete...
+📊 Signup result: {
+  currentUrl: [32m'null'[39m,
+  isOnChatPage: [33mtrue[39m,
+  isStillOnSignup: [33mfalse[39m,
+  hasSuccessIndicator: [33mtrue[39m,
+  hasErrorMessages: [33mfalse[39m,
+  pageContent: [32m'Chat Feature Coming Soon!\n'[39m +
+    [32m"We're working hard to bring you an amazing chat experience.\n"[39m +
+    [32m'Welcome,\n'[39m +
+    [32m'stagehand-preview-1749693361848@example.com!'[39m,
+  showsWelcomeMessage: [33mtrue[39m,
+  showsChatContent: [33mtrue[39m
+}
+👤 Authenticated state: {
+  userIsLoggedIn: [33mtrue[39m,
+  hasProfileMenu: [33mtrue[39m,
+  hasLogoutOption: [33mtrue[39m,
+  mainContent: [32m'Chat Feature Coming Soon!\n'[39m +
+    [32m"We're working hard to bring you an amazing chat experience.\n"[39m +
+    [32m'Welcome,\n'[39m +
+    [32m'stagehand-preview-1749693361848@example.com\n'[39m +
+    [32m'!\n'[39m +
+    [32m'Profile\n'[39m +
+    [32m'EMAIL\n'[39m +
+    [32m'ACCOUNT\n'[39m +
+    [32m'Settings\n'[39m +
+    [32m'Preferences\n'[39m +
+    [32m'Sign Out'[39m
+}
+🔍 Testing profile menu...
+📋 Profile menu state: { isMenuOpen: [33mtrue[39m, hasLogoutButton: [33mfalse[39m }
+🎉 Complete authentication flow test passed on Preview!
+]]>
+</system-out>
 </testcase>
 </testsuite>
-<testsuite name="stagehand-auth-test.spec.ts" timestamp="2025-06-11T16:03:40.638Z" hostname="Mobile Chrome" tests="1" failures="0" skipped="1" time="0" errors="0">
-<testcase name="🏠 Stagehand Authentication Flow [Localhost] › 🏠 Complete signup and authentication flow on Localhost" classname="stagehand-auth-test.spec.ts" time="0">
-<skipped>
-</skipped>
+<testsuite name="stagehand-production-auth.spec.ts" timestamp="2025-06-12T01:55:55.531Z" hostname="Mobile Chrome" tests="1" failures="0" skipped="0" time="48.456" errors="0">
+<testcase name="🔍 Stagehand Preview Authentication › 🔍 Complete authentication flow on Preview deployment" classname="stagehand-production-auth.spec.ts" time="48.456">
+<system-out>
+<![CDATA[🎭 Initializing Stagehand for Preview environment (https://deploy-preview-14--frontier-family-flora.netlify.app/)
+🎭 Testing complete authentication flow with Stagehand on preview...
+📄 Initial page state: {
+  isSignupPage: [33mtrue[39m,
+  hasSignupForm: [33mtrue[39m,
+  pageTitle: [32m'Create Account'[39m,
+  isLoading: [33mfalse[39m
+}
+👤 Creating test user: stagehand-preview-1749693363277@example.com
+✅ Form validation state: {
+  allFieldsFilled: [33mtrue[39m,
+  passwordStrength: [32m''[39m,
+  submitButtonEnabled: [33mtrue[39m,
+  validationErrors: []
+}
+🚀 Submitting signup form...
+🔍 Button state before interaction on Preview: {
+  isVisible: [33mtrue[39m,
+  isEnabled: [33mtrue[39m,
+  buttonText: [32m'Create Account'[39m,
+  isLoading: [33mfalse[39m
+}
+🎯 Attempting button interaction strategy 1/6 on Preview
+✅ Button interaction successful with strategy 1 on Preview
+✅ Button click successfully triggered form submission on Preview
+⏳ Waiting for signup process to complete...
+📊 Signup result: {
+  currentUrl: [32m'null'[39m,
+  isOnChatPage: [33mtrue[39m,
+  isStillOnSignup: [33mfalse[39m,
+  hasSuccessIndicator: [33mtrue[39m,
+  hasErrorMessages: [33mfalse[39m,
+  pageContent: [32m'Chat Feature Coming Soon!\n'[39m +
+    [32m"We're working hard to bring you an amazing chat experience.\n"[39m +
+    [32m'Welcome,\n'[39m +
+    [32m'stagehand-preview-1749693363277@example.com!'[39m,
+  showsWelcomeMessage: [33mtrue[39m,
+  showsChatContent: [33mtrue[39m
+}
+👤 Authenticated state: {
+  userIsLoggedIn: [33mtrue[39m,
+  hasProfileMenu: [33mtrue[39m,
+  hasLogoutOption: [33mtrue[39m,
+  mainContent: [32m'Chat Feature Coming Soon!\n'[39m +
+    [32m"We're working hard to bring you an amazing chat experience.\n"[39m +
+    [32m'Welcome,\n'[39m +
+    [32m'stagehand-preview-1749693363277@example.com\n'[39m +
+    [32m'!\n'[39m +
+    [32m'Profile\n'[39m +
+    [32m'EMAIL\n'[39m +
+    [32m'ACCOUNT\n'[39m +
+    [32m'Settings\n'[39m +
+    [32m'Preferences\n'[39m +
+    [32m'Sign Out'[39m
+}
+🔍 Testing profile menu...
+📋 Profile menu state: { isMenuOpen: [33mtrue[39m, hasLogoutButton: [33mfalse[39m }
+🎉 Complete authentication flow test passed on Preview!
+]]>
+</system-out>
 </testcase>
 </testsuite>
-<testsuite name="stagehand-auth-test.spec.ts" timestamp="2025-06-11T16:03:40.638Z" hostname="Mobile Safari" tests="1" failures="0" skipped="1" time="0" errors="0">
-<testcase name="🏠 Stagehand Authentication Flow [Localhost] › 🏠 Complete signup and authentication flow on Localhost" classname="stagehand-auth-test.spec.ts" time="0">
-<skipped>
-</skipped>
+<testsuite name="stagehand-production-auth.spec.ts" timestamp="2025-06-12T01:55:55.531Z" hostname="Mobile Safari" tests="1" failures="1" skipped="0" time="300.273" errors="0">
+<testcase name="🔍 Stagehand Preview Authentication › 🔍 Complete authentication flow on Preview deployment" classname="stagehand-production-auth.spec.ts" time="300.273">
+<failure message="stagehand-production-auth.spec.ts:82:9 🔍 Complete authentication flow on Preview deployment" type="FAILURE">
+<![CDATA[  [Mobile Safari] › stagehand-production-auth.spec.ts:82:9 › 🔍 Stagehand Preview Authentication › 🔍 Complete authentication flow on Preview deployment 
+
+    Test timeout of 300000ms exceeded.
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/stagehand-production-auth--f47f7--flow-on-Preview-deployment-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[🎭 Initializing Stagehand for Preview environment (https://deploy-preview-14--frontier-family-flora.netlify.app/)
+🎭 Testing complete authentication flow with Stagehand on preview...
+📄 Initial page state: {
+  isSignupPage: [33mtrue[39m,
+  hasSignupForm: [33mtrue[39m,
+  pageTitle: [32m'Create Account'[39m,
+  isLoading: [33mfalse[39m
+}
+👤 Creating test user: stagehand-preview-1749693361962@example.com
+✅ Form validation state: {
+  allFieldsFilled: [33mtrue[39m,
+  passwordStrength: [32m''[39m,
+  submitButtonEnabled: [33mtrue[39m,
+  validationErrors: []
+}
+🚀 Submitting signup form...
+🔍 Button state before interaction on Preview: {
+  isVisible: [33mtrue[39m,
+  isEnabled: [33mtrue[39m,
+  buttonText: [32m'Create Account'[39m,
+  isLoading: [33mfalse[39m
+}
+🎯 Attempting button interaction strategy 1/6 on Preview
+✅ Button interaction successful with strategy 1 on Preview
+✅ Button click successfully triggered form submission on Preview
+⏳ Waiting for signup process to complete...
+📊 Signup result: {
+  currentUrl: [32m'null'[39m,
+  isOnChatPage: [33mtrue[39m,
+  isStillOnSignup: [33mfalse[39m,
+  hasSuccessIndicator: [33mtrue[39m,
+  hasErrorMessages: [33mfalse[39m,
+  pageContent: [32m'Chat Feature Coming Soon!\n'[39m +
+    [32m"We're working hard to bring you an amazing chat experience.\n"[39m +
+    [32m'Welcome,\n'[39m +
+    [32m'stagehand-preview-1749693361962@example.com!'[39m,
+  showsWelcomeMessage: [33mtrue[39m,
+  showsChatContent: [33mtrue[39m
+}
+👤 Authenticated state: {
+  userIsLoggedIn: [33mtrue[39m,
+  hasProfileMenu: [33mtrue[39m,
+  hasLogoutOption: [33mfalse[39m,
+  mainContent: [32m'Chat Feature Coming Soon!\n'[39m +
+    [32m"We're working hard to bring you an amazing chat experience.\n"[39m +
+    [32m'Welcome,\n'[39m +
+    [32m'stagehand-preview-1749693361962@example.com!'[39m
+}
+🔍 Testing profile menu...
+📋 Profile menu state: { isMenuOpen: [33mtrue[39m, hasLogoutButton: [33mtrue[39m }
+🚪 Testing logout...
+⚠️ Profile menu testing encountered issues (non-blocking): 
+Hey! We're sorry you ran into an error. 
+If you need help, please open a Github issue or reach out to us on Slack: https://stagehand.dev/slack
+
+Full error:
+page.evaluate: Target page, context or browser has been closed
+🎉 Complete authentication flow test passed on Preview!
+
+[[ATTACHMENT|stagehand-production-auth--f47f7--flow-on-Preview-deployment-Mobile-Safari/test-failed-1.png]]
+]]>
+</system-out>
 </testcase>
 </testsuite>
 </testsuites>

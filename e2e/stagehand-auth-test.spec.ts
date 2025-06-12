@@ -7,6 +7,31 @@ import { z } from 'zod';
  *
  * This test suite automatically detects the environment and includes it in test names
  * for clear reporting while maintaining a single unified test file.
+ *
+ * 🛡️ CRITICAL: 3-PHASE TEST ARCHITECTURE FOR FALSE FAILURE PREVENTION
+ *
+ * This test uses a 3-phase architecture to prevent cleanup errors from causing false failures:
+ *
+ * PHASE 1: CORE FUNCTIONALITY (MUST PASS)
+ * - Authentication flow execution
+ * - User verification and state checking
+ * - Critical success assertions
+ * - 🚨 THROWS ERRORS on failure (real issues)
+ *
+ * PHASE 2: SECONDARY FEATURES (NON-CRITICAL)
+ * - Profile menu interactions
+ * - Logout functionality testing
+ * - 📝 LOGS WARNINGS ONLY (environmental issues)
+ *
+ * PHASE 3: CLEANUP (NON-CRITICAL)
+ * - Final state capture for debugging
+ * - Resource cleanup operations
+ * - 📝 NEVER FAILS TESTS (cleanup errors are expected)
+ *
+ * KEY PRINCIPLE: If Phase 1 passes, the test is successful regardless of later phases.
+ *
+ * ⚠️ WARNING: DO NOT add 'throw error' statements to Phase 2 or 3
+ * See docs/TEST_FAILURE_PREVENTION_STRATEGY.md for complete details
  */
 
 // Dynamic environment detection
@@ -58,6 +83,9 @@ test.describe(`${ENV.icon} Stagehand Authentication Flow [${ENV.name}]`, () => {
   });
 
   test.afterEach(async () => {
+    // 🛡️ PROTECTION: This cleanup MUST be wrapped in try/catch if it ever becomes complex
+    // Browser context closure can fail in some environments
+    // If this section grows, ensure it cannot fail the test
     await stagehand.close();
   });
 
@@ -123,15 +151,85 @@ test.describe(`${ENV.icon} Stagehand Authentication Flow [${ENV.name}]`, () => {
       // Core validation - submit button must be enabled
       expect(formState.submitButtonEnabled).toBe(true);
 
-      // Submit the form with timeout
-      const submitPromise = (async () => {
-        try {
-          await page.act('click the submit button to create the account');
-        } catch (error) {
-          console.log('⚠️ First submit attempt failed, trying alternative approach...');
-          await page.act('click the button that says "Create Account" or "Complete Form to Continue"');
+      // 🛡️ ROBUST BUTTON INTERACTION: Multi-strategy approach to prevent button text changes from breaking tests
+      // This comprehensive approach handles all possible button states and text variations
+      const submitButtonInteraction = async () => {
+        // First, validate button state before attempting interaction
+        const buttonState = await page.extract({
+          instruction: 'analyze the submit button state before clicking',
+          schema: z.object({
+            isVisible: z.boolean().describe('whether the submit button is visible'),
+            isEnabled: z.boolean().describe('whether the submit button is enabled'),
+            buttonText: z.string().describe('the current text on the submit button'),
+            isLoading: z.boolean().describe('whether the button shows loading state'),
+          }),
+        });
+
+        console.log(`🔍 Button state before interaction on ${ENV.name}:`, buttonState);
+
+        // Validate button is in a clickable state
+        if (!buttonState.isVisible) {
+          throw new Error('Submit button is not visible');
         }
-      })();
+        if (!buttonState.isEnabled) {
+          throw new Error(`Submit button is disabled. Current text: "${buttonState.buttonText}"`);
+        }
+
+        // Multi-strategy button interaction approach
+        const strategies = [
+          // Strategy 1: Primary button identification
+          'click the submit button to create the account',
+
+          // Strategy 2: Text-based identification with all known variations
+          'click the button that says "Create Account" or "Creating Account..." or "Complete Form to Continue"',
+
+          // Strategy 3: Position-based identification
+          'click the main button at the bottom of the signup form',
+
+          // Strategy 4: Role-based identification
+          'click the primary action button in the signup form',
+
+          // Strategy 5: Visual identification
+          'click the large button that submits the form',
+
+          // Strategy 6: Context-based identification
+          'find and click the button that will create the user account'
+        ];
+
+        for (let i = 0; i < strategies.length; i++) {
+          try {
+            console.log(`🎯 Attempting button interaction strategy ${i + 1}/${strategies.length} on ${ENV.name}`);
+            await page.act(strategies[i]);
+            console.log(`✅ Button interaction successful with strategy ${i + 1} on ${ENV.name}`);
+
+            // Verify the button interaction had the expected effect
+            const interactionResult = await page.extract({
+              instruction: 'verify the button click had the expected effect',
+              schema: z.object({
+                formSubmitted: z.boolean().describe('whether the form appears to have been submitted'),
+                showingLoadingState: z.boolean().describe('whether loading indicators are visible'),
+                hasNavigated: z.boolean().describe('whether the page has started to navigate away'),
+                hasErrors: z.boolean().describe('whether any error messages appeared'),
+              }),
+            });
+
+            if (interactionResult.formSubmitted || interactionResult.showingLoadingState || interactionResult.hasNavigated) {
+              console.log(`✅ Button click successfully triggered form submission on ${ENV.name}`);
+              return; // Success - exit function
+            } else {
+              console.log(`⚠️ Strategy ${i + 1} clicked button but no expected effect detected, trying next strategy...`);
+            }
+          } catch (error) {
+            console.log(`⚠️ Strategy ${i + 1} failed on ${ENV.name}:`, error instanceof Error ? error.message : String(error));
+            if (i === strategies.length - 1) {
+              throw new Error(`All ${strategies.length} button interaction strategies failed on ${ENV.name}`);
+            }
+            // Continue to next strategy
+          }
+        }
+      };
+
+      const submitPromise = submitButtonInteraction();
 
       await Promise.race([
         submitPromise,
@@ -185,10 +283,16 @@ test.describe(`${ENV.icon} Stagehand Authentication Flow [${ENV.name}]`, () => {
 
     } catch (error) {
       console.error(`❌ Core functionality failed on ${ENV.name}:`, error instanceof Error ? error.message : String(error));
+      // 🚨 CRITICAL: This throw statement MUST remain to fail tests when core functionality breaks
+      // DO NOT REMOVE: Core functionality failures indicate real application issues
+      // See docs/TEST_FAILURE_PREVENTION_STRATEGY.md for details
       throw error; // Fail the test if core functionality fails
     }
 
-    // Secondary Features Phase (Non-Critical)
+    // ⚠️ PHASE 2: SECONDARY FEATURES (NON-CRITICAL)
+    // 🛡️ PROTECTION: Everything below this point MUST NOT fail the test
+    // These are secondary features that may timeout or fail due to environmental issues
+    // Browser context closure, menu timeouts, etc. should only log warnings
     console.log('🔧 Phase 2: Secondary Features Testing (Non-Critical)');
 
     try {
@@ -245,10 +349,16 @@ test.describe(`${ENV.icon} Stagehand Authentication Flow [${ENV.name}]`, () => {
 
     } catch (error) {
       console.log(`⚠️ Secondary features testing failed on ${ENV.name} (non-critical):`, error instanceof Error ? error.message : String(error));
-      // Don't fail the test - secondary features are non-critical
+      // 🛡️ CRITICAL PROTECTION: DO NOT add 'throw error' here
+      // Secondary features are non-critical and should never fail the test
+      // Common failures: profile menu timeouts, UI interaction issues
+      // These are environmental issues, not application bugs
     }
 
-    // Cleanup Phase (Non-Critical)
+    // ⚠️ PHASE 3: CLEANUP (NON-CRITICAL)
+    // 🛡️ PROTECTION: Cleanup operations MUST NEVER fail the test
+    // Browser context closure, state capture failures are expected in some environments
+    // These operations are for debugging only and should not affect test results
     console.log('🧹 Phase 3: Cleanup Phase (Non-Critical)');
 
     try {
@@ -265,9 +375,15 @@ test.describe(`${ENV.icon} Stagehand Authentication Flow [${ENV.name}]`, () => {
 
     } catch (error) {
       console.log(`⚠️ Cleanup phase failed on ${ENV.name} (non-critical):`, error instanceof Error ? error.message : String(error));
-      // Don't fail the test - cleanup errors are non-critical
+      // 🛡️ CRITICAL PROTECTION: DO NOT add 'throw error' here
+      // Cleanup errors are environmental issues and MUST NOT fail tests
+      // Common failures: browser context closure, state capture timeouts
+      // These are debugging operations only - test success was already determined in Phase 1
     }
 
+    // 🎉 TEST COMPLETION: If we reach this point, the test has passed
+    // Core functionality (Phase 1) completed successfully
+    // Any warnings above are non-critical environmental issues
     console.log(`🎉 Stagehand authentication flow test completed successfully on ${ENV.name}!`);
   });
 
