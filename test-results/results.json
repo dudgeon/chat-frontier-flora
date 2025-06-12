@@ -124,29 +124,24 @@
     "updateSourceMethod": "patch",
     "version": "1.52.0",
     "workers": 5,
-    "webServer": {
-      "command": "cd apps/web && npm run web",
-      "port": 19006,
-      "reuseExistingServer": true,
-      "timeout": 120000
-    }
+    "webServer": null
   },
   "suites": [
     {
-      "title": "stagehand-auth-test.spec.ts",
-      "file": "stagehand-auth-test.spec.ts",
+      "title": "stagehand-production-auth.spec.ts",
+      "file": "stagehand-production-auth.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "🏠 Stagehand Authentication Flow [Localhost]",
-          "file": "stagehand-auth-test.spec.ts",
-          "line": 67,
+          "title": "🔍 Stagehand Preview Authentication",
+          "file": "stagehand-production-auth.spec.ts",
+          "line": 56,
           "column": 6,
           "specs": [
             {
-              "title": "🏠 Complete signup and authentication flow on Localhost",
+              "title": "🔍 Complete authentication flow on Preview deployment",
               "ok": true,
               "tags": [],
               "tests": [
@@ -161,70 +156,61 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 56509,
+                      "duration": 48422,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "🎭 Initializing Stagehand tests for Localhost environment (http://localhost:19006)\n"
+                          "text": "🎭 Initializing Stagehand for Preview environment (https://deploy-preview-14--frontier-family-flora.netlify.app/)\n"
                         },
                         {
-                          "text": "🎭 Testing Stagehand-powered authentication flow on Localhost...\n"
+                          "text": "🎭 Testing complete authentication flow with Stagehand on preview...\n"
                         },
                         {
-                          "text": "🎯 Phase 1: Core Functionality Testing\n"
+                          "text": "📄 Initial page state: {\n  isSignupPage: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  pageTitle: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
                         },
                         {
-                          "text": "📝 Creating account for: test-1749672807208@stagehand-localhost.com on Localhost\n"
+                          "text": "👤 Creating test user: stagehand-preview-1749693361976@example.com\n"
                         },
                         {
-                          "text": "📊 Localhost form state: { submitButtonEnabled: \u001b[33mtrue\u001b[39m, passwordStrength: \u001b[32m''\u001b[39m }\n"
+                          "text": "✅ Form validation state: {\n  allFieldsFilled: \u001b[33mtrue\u001b[39m,\n  passwordStrength: \u001b[32m''\u001b[39m,\n  submitButtonEnabled: \u001b[33mtrue\u001b[39m,\n  validationErrors: []\n}\n"
                         },
                         {
-                          "text": "🔍 Button state before interaction on Localhost: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mtrue\u001b[39m,\n  buttonText: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
+                          "text": "🚀 Submitting signup form...\n"
                         },
                         {
-                          "text": "🎯 Attempting button interaction strategy 1/6 on Localhost\n"
+                          "text": "🔍 Button state before interaction on Preview: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mtrue\u001b[39m,\n  buttonText: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
                         },
                         {
-                          "text": "✅ Button interaction successful with strategy 1 on Localhost\n"
+                          "text": "🎯 Attempting button interaction strategy 1/6 on Preview\n"
                         },
                         {
-                          "text": "✅ Button click successfully triggered form submission on Localhost\n"
+                          "text": "✅ Button interaction successful with strategy 1 on Preview\n"
                         },
                         {
-                          "text": "⏳ Waiting for signup process to complete on Localhost...\n"
+                          "text": "✅ Button click successfully triggered form submission on Preview\n"
                         },
                         {
-                          "text": "✅ Localhost signup result: {\n  isOnChatPage: \u001b[33mtrue\u001b[39m,\n  hasComingSoonText: \u001b[33mtrue\u001b[39m,\n  currentUrl: \u001b[32m'/'\u001b[39m,\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  isStillOnSignup: \u001b[33mfalse\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m\n}\n"
+                          "text": "⏳ Waiting for signup process to complete...\n"
                         },
                         {
-                          "text": "🎉 Core authentication flow completed successfully on Localhost!\n"
+                          "text": "📊 Signup result: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  isOnChatPage: \u001b[33mtrue\u001b[39m,\n  isStillOnSignup: \u001b[33mfalse\u001b[39m,\n  hasSuccessIndicator: \u001b[33mtrue\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m,\n  pageContent: \u001b[32m'Chat Feature Coming Soon!\\n'\u001b[39m +\n    \u001b[32m\"We're working hard to bring you an amazing chat experience.\\n\"\u001b[39m +\n    \u001b[32m'Welcome,\\n'\u001b[39m +\n    \u001b[32m'stagehand-preview-1749693361976@example.com!'\u001b[39m,\n  showsWelcomeMessage: \u001b[33mtrue\u001b[39m,\n  showsChatContent: \u001b[33mtrue\u001b[39m\n}\n"
                         },
                         {
-                          "text": "📊 Core functionality verified: {\n  environment: \u001b[32m'Localhost'\u001b[39m,\n  authenticated: \u001b[33mtrue\u001b[39m,\n  redirectedFromSignup: \u001b[33mtrue\u001b[39m,\n  hasExpectedContent: \u001b[33mtrue\u001b[39m\n}\n"
+                          "text": "👤 Authenticated state: {\n  userIsLoggedIn: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  hasLogoutOption: \u001b[33mtrue\u001b[39m,\n  mainContent: \u001b[32m'Chat Feature Coming Soon!\\n'\u001b[39m +\n    \u001b[32m\"We're working hard to bring you an amazing chat experience.\\n\"\u001b[39m +\n    \u001b[32m'Welcome,\\n'\u001b[39m +\n    \u001b[32m'stagehand-preview-1749693361976@example.com\\n'\u001b[39m +\n    \u001b[32m'!\\n'\u001b[39m +\n    \u001b[32m'Profile\\n'\u001b[39m +\n    \u001b[32m'×\\n'\u001b[39m +\n    \u001b[32m'stagehand-preview-1749693361976@example.com\\n'\u001b[39m +\n    \u001b[32m'EMAIL\\n'\u001b[39m +\n    \u001b[32m'ACCOUNT\\n'\u001b[39m +\n    \u001b[32m'Settings\\n'\u001b[39m +\n    \u001b[32m'Preferences\\n'\u001b[39m +\n    \u001b[32m'Sign Out'\u001b[39m\n}\n"
                         },
                         {
-                          "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
+                          "text": "🔍 Testing profile menu...\n"
                         },
                         {
-                          "text": "🔍 Testing profile menu on Localhost...\n"
+                          "text": "📋 Profile menu state: { isMenuOpen: \u001b[33mtrue\u001b[39m, hasLogoutButton: \u001b[33mfalse\u001b[39m }\n"
                         },
                         {
-                          "text": "👤 Localhost profile menu state: {\n  isMenuOpen: \u001b[33mtrue\u001b[39m,\n  userEmail: \u001b[32m'test-1749672807208@stagehand-localhost.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
-                        },
-                        {
-                          "text": "📋 Final Localhost test state: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  pageContent: \u001b[32m'Frontier.Family\\n'\u001b[39m +\n    \u001b[32m'👤\\n'\u001b[39m +\n    \u001b[32m'Chat Feature Coming Soon!\\n'\u001b[39m +\n    \u001b[32m\"We're working hard to bring you an amazing chat experience.\\n\"\u001b[39m +\n    \u001b[32m'Welcome,\\n'\u001b[39m +\n    \u001b[32m'test-1749672807208@stagehand-localhost.com\\n'\u001b[39m +\n    \u001b[32m'!'\u001b[39m,\n  testCompleted: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎉 Stagehand authentication flow test completed successfully on Localhost!\n"
+                          "text": "🎉 Complete authentication flow test passed on Preview!\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-06-11T20:13:21.039Z",
+                      "startTime": "2025-06-12T01:55:56.036Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -232,13 +218,13 @@
                   "status": "expected"
                 }
               ],
-              "id": "23d705daed2e8844e6a8-7df3e21364bfdeacab4e",
-              "file": "stagehand-auth-test.spec.ts",
-              "line": 93,
-              "column": 7
+              "id": "8ccf6718ab6a9cbf060b-1c91524c8cfbef5c7a82",
+              "file": "stagehand-production-auth.spec.ts",
+              "line": 82,
+              "column": 9
             },
             {
-              "title": "🏠 Complete signup and authentication flow on Localhost",
+              "title": "🔍 Complete authentication flow on Preview deployment",
               "ok": true,
               "tags": [],
               "tests": [
@@ -248,421 +234,66 @@
                   "expectedStatus": "passed",
                   "projectId": "firefox",
                   "projectName": "firefox",
-                  "results": [
-                    {
-                      "workerIndex": 2,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 54568,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "🎭 Initializing Stagehand tests for Localhost environment (http://localhost:19006)\n"
-                        },
-                        {
-                          "text": "🎭 Testing Stagehand-powered authentication flow on Localhost...\n"
-                        },
-                        {
-                          "text": "🎯 Phase 1: Core Functionality Testing\n"
-                        },
-                        {
-                          "text": "📝 Creating account for: test-1749672807188@stagehand-localhost.com on Localhost\n"
-                        },
-                        {
-                          "text": "📊 Localhost form state: { submitButtonEnabled: \u001b[33mtrue\u001b[39m, passwordStrength: \u001b[32m''\u001b[39m }\n"
-                        },
-                        {
-                          "text": "🔍 Button state before interaction on Localhost: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mtrue\u001b[39m,\n  buttonText: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 1/6 on Localhost\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 1 on Localhost\n"
-                        },
-                        {
-                          "text": "✅ Button click successfully triggered form submission on Localhost\n"
-                        },
-                        {
-                          "text": "⏳ Waiting for signup process to complete on Localhost...\n"
-                        },
-                        {
-                          "text": "✅ Localhost signup result: {\n  isOnChatPage: \u001b[33mtrue\u001b[39m,\n  hasComingSoonText: \u001b[33mtrue\u001b[39m,\n  currentUrl: \u001b[32m'/'\u001b[39m,\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  isStillOnSignup: \u001b[33mfalse\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎉 Core authentication flow completed successfully on Localhost!\n"
-                        },
-                        {
-                          "text": "📊 Core functionality verified: {\n  environment: \u001b[32m'Localhost'\u001b[39m,\n  authenticated: \u001b[33mtrue\u001b[39m,\n  redirectedFromSignup: \u001b[33mtrue\u001b[39m,\n  hasExpectedContent: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
-                        },
-                        {
-                          "text": "🔍 Testing profile menu on Localhost...\n"
-                        },
-                        {
-                          "text": "👤 Localhost profile menu state: {\n  isMenuOpen: \u001b[33mtrue\u001b[39m,\n  userEmail: \u001b[32m'test-1749672807188@stagehand-localhost.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
-                        },
-                        {
-                          "text": "📋 Final Localhost test state: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  pageContent: \u001b[32m'Frontier.Family\\n'\u001b[39m +\n    \u001b[32m'👤\\n'\u001b[39m +\n    \u001b[32m'Chat Feature Coming Soon!\\n'\u001b[39m +\n    \u001b[32m\"We're working hard to bring you an amazing chat experience.\\n\"\u001b[39m +\n    \u001b[32m'Welcome,\\n'\u001b[39m +\n    \u001b[32m'test-1749672807188@stagehand-localhost.com\\n'\u001b[39m +\n    \u001b[32m'!'\u001b[39m,\n  testCompleted: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎉 Stagehand authentication flow test completed successfully on Localhost!\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-06-11T20:13:21.029Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "23d705daed2e8844e6a8-0fe7edd6ce45169a7246",
-              "file": "stagehand-auth-test.spec.ts",
-              "line": 93,
-              "column": 7
-            },
-            {
-              "title": "🏠 Complete signup and authentication flow on Localhost",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 300000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 4,
-                      "parallelIndex": 4,
-                      "status": "passed",
-                      "duration": 56067,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "🎭 Initializing Stagehand tests for Localhost environment (http://localhost:19006)\n"
-                        },
-                        {
-                          "text": "🎭 Testing Stagehand-powered authentication flow on Localhost...\n"
-                        },
-                        {
-                          "text": "🎯 Phase 1: Core Functionality Testing\n"
-                        },
-                        {
-                          "text": "📝 Creating account for: test-1749672807558@stagehand-localhost.com on Localhost\n"
-                        },
-                        {
-                          "text": "📊 Localhost form state: { submitButtonEnabled: \u001b[33mtrue\u001b[39m, passwordStrength: \u001b[32m''\u001b[39m }\n"
-                        },
-                        {
-                          "text": "🔍 Button state before interaction on Localhost: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mtrue\u001b[39m,\n  buttonText: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 1/6 on Localhost\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 1 on Localhost\n"
-                        },
-                        {
-                          "text": "✅ Button click successfully triggered form submission on Localhost\n"
-                        },
-                        {
-                          "text": "⏳ Waiting for signup process to complete on Localhost...\n"
-                        },
-                        {
-                          "text": "✅ Localhost signup result: {\n  isOnChatPage: \u001b[33mtrue\u001b[39m,\n  hasComingSoonText: \u001b[33mtrue\u001b[39m,\n  currentUrl: \u001b[32m'/'\u001b[39m,\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  isStillOnSignup: \u001b[33mfalse\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎉 Core authentication flow completed successfully on Localhost!\n"
-                        },
-                        {
-                          "text": "📊 Core functionality verified: {\n  environment: \u001b[32m'Localhost'\u001b[39m,\n  authenticated: \u001b[33mtrue\u001b[39m,\n  redirectedFromSignup: \u001b[33mtrue\u001b[39m,\n  hasExpectedContent: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
-                        },
-                        {
-                          "text": "🔍 Testing profile menu on Localhost...\n"
-                        },
-                        {
-                          "text": "👤 Localhost profile menu state: {\n  isMenuOpen: \u001b[33mtrue\u001b[39m,\n  userEmail: \u001b[32m'test-1749672807558@stagehand-localhost.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
-                        },
-                        {
-                          "text": "📋 Final Localhost test state: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  pageContent: \u001b[32m'Frontier.Family\\n'\u001b[39m +\n    \u001b[32m'👤\\n'\u001b[39m +\n    \u001b[32m'Chat Feature Coming Soon!\\n'\u001b[39m +\n    \u001b[32m\"We're working hard to bring you an amazing chat experience.\\n\"\u001b[39m +\n    \u001b[32m'Welcome,\\n'\u001b[39m +\n    \u001b[32m'test-1749672807558@stagehand-localhost.com\\n'\u001b[39m +\n    \u001b[32m'!'\u001b[39m,\n  testCompleted: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎉 Stagehand authentication flow test completed successfully on Localhost!\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-06-11T20:13:21.037Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "23d705daed2e8844e6a8-c05bd6edaf0b628dde7c",
-              "file": "stagehand-auth-test.spec.ts",
-              "line": 93,
-              "column": 7
-            },
-            {
-              "title": "🏠 Complete signup and authentication flow on Localhost",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 300000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "Mobile Chrome",
-                  "projectName": "Mobile Chrome",
-                  "results": [
-                    {
-                      "workerIndex": 5,
-                      "parallelIndex": 3,
-                      "status": "passed",
-                      "duration": 51326,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "🎭 Initializing Stagehand tests for Localhost environment (http://localhost:19006)\n"
-                        },
-                        {
-                          "text": "🎭 Testing Stagehand-powered authentication flow on Localhost...\n"
-                        },
-                        {
-                          "text": "🎯 Phase 1: Core Functionality Testing\n"
-                        },
-                        {
-                          "text": "📝 Creating account for: test-1749672818067@stagehand-localhost.com on Localhost\n"
-                        },
-                        {
-                          "text": "📊 Localhost form state: { submitButtonEnabled: \u001b[33mtrue\u001b[39m, passwordStrength: \u001b[32m''\u001b[39m }\n"
-                        },
-                        {
-                          "text": "🔍 Button state before interaction on Localhost: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mtrue\u001b[39m,\n  buttonText: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 1/6 on Localhost\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 1 on Localhost\n"
-                        },
-                        {
-                          "text": "✅ Button click successfully triggered form submission on Localhost\n"
-                        },
-                        {
-                          "text": "⏳ Waiting for signup process to complete on Localhost...\n"
-                        },
-                        {
-                          "text": "✅ Localhost signup result: {\n  isOnChatPage: \u001b[33mtrue\u001b[39m,\n  hasComingSoonText: \u001b[33mtrue\u001b[39m,\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  isStillOnSignup: \u001b[33mfalse\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎉 Core authentication flow completed successfully on Localhost!\n"
-                        },
-                        {
-                          "text": "📊 Core functionality verified: {\n  environment: \u001b[32m'Localhost'\u001b[39m,\n  authenticated: \u001b[33mtrue\u001b[39m,\n  redirectedFromSignup: \u001b[33mtrue\u001b[39m,\n  hasExpectedContent: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
-                        },
-                        {
-                          "text": "🔍 Testing profile menu on Localhost...\n"
-                        },
-                        {
-                          "text": "👤 Localhost profile menu state: {\n  isMenuOpen: \u001b[33mtrue\u001b[39m,\n  userEmail: \u001b[32m'test-1749672818067@stagehand-localhost.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
-                        },
-                        {
-                          "text": "📋 Final Localhost test state: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  pageContent: \u001b[32m'Frontier.Family\\n'\u001b[39m +\n    \u001b[32m'👤\\n'\u001b[39m +\n    \u001b[32m'Chat Feature Coming Soon!\\n'\u001b[39m +\n    \u001b[32m\"We're working hard to bring you an amazing chat experience.\\n\"\u001b[39m +\n    \u001b[32m'Welcome,\\n'\u001b[39m +\n    \u001b[32m'test-1749672818067@stagehand-localhost.com\\n'\u001b[39m +\n    \u001b[32m'!'\u001b[39m,\n  testCompleted: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎉 Stagehand authentication flow test completed successfully on Localhost!\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-06-11T20:13:34.395Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "23d705daed2e8844e6a8-f0351c890e73d8724b0d",
-              "file": "stagehand-auth-test.spec.ts",
-              "line": 93,
-              "column": 7
-            },
-            {
-              "title": "🏠 Complete signup and authentication flow on Localhost",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 300000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "Mobile Safari",
-                  "projectName": "Mobile Safari",
-                  "results": [
-                    {
-                      "workerIndex": 8,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 45809,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "🎭 Initializing Stagehand tests for Localhost environment (http://localhost:19006)\n"
-                        },
-                        {
-                          "text": "🎭 Testing Stagehand-powered authentication flow on Localhost...\n"
-                        },
-                        {
-                          "text": "🎯 Phase 1: Core Functionality Testing\n"
-                        },
-                        {
-                          "text": "📝 Creating account for: test-1749672839643@stagehand-localhost.com on Localhost\n"
-                        },
-                        {
-                          "text": "📊 Localhost form state: { submitButtonEnabled: \u001b[33mtrue\u001b[39m, passwordStrength: \u001b[32m''\u001b[39m }\n"
-                        },
-                        {
-                          "text": "🔍 Button state before interaction on Localhost: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mtrue\u001b[39m,\n  buttonText: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 1/6 on Localhost\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 1 on Localhost\n"
-                        },
-                        {
-                          "text": "✅ Button click successfully triggered form submission on Localhost\n"
-                        },
-                        {
-                          "text": "⏳ Waiting for signup process to complete on Localhost...\n"
-                        },
-                        {
-                          "text": "✅ Localhost signup result: {\n  isOnChatPage: \u001b[33mtrue\u001b[39m,\n  hasComingSoonText: \u001b[33mtrue\u001b[39m,\n  currentUrl: \u001b[32m'/'\u001b[39m,\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  isStillOnSignup: \u001b[33mfalse\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎉 Core authentication flow completed successfully on Localhost!\n"
-                        },
-                        {
-                          "text": "📊 Core functionality verified: {\n  environment: \u001b[32m'Localhost'\u001b[39m,\n  authenticated: \u001b[33mtrue\u001b[39m,\n  redirectedFromSignup: \u001b[33mtrue\u001b[39m,\n  hasExpectedContent: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
-                        },
-                        {
-                          "text": "🔍 Testing profile menu on Localhost...\n"
-                        },
-                        {
-                          "text": "👤 Localhost profile menu state: {\n  isMenuOpen: \u001b[33mtrue\u001b[39m,\n  userEmail: \u001b[32m'test-1749672839643@stagehand-localhost.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
-                        },
-                        {
-                          "text": "📋 Final Localhost test state: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  pageContent: \u001b[32m'Frontier.Family\\n'\u001b[39m +\n    \u001b[32m'👤\\n'\u001b[39m +\n    \u001b[32m'Chat Feature Coming Soon!\\n'\u001b[39m +\n    \u001b[32m\"We're working hard to bring you an amazing chat experience.\\n\"\u001b[39m +\n    \u001b[32m'Welcome,\\n'\u001b[39m +\n    \u001b[32m'test-1749672839643@stagehand-localhost.com\\n'\u001b[39m +\n    \u001b[32m'!'\u001b[39m,\n  testCompleted: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎉 Stagehand authentication flow test completed successfully on Localhost!\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-06-11T20:13:55.973Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "23d705daed2e8844e6a8-02b4bd63bbfd05fb110e",
-              "file": "stagehand-auth-test.spec.ts",
-              "line": 93,
-              "column": 7
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "stagehand-production-auth.spec.ts",
-      "file": "stagehand-production-auth.spec.ts",
-      "column": 0,
-      "line": 0,
-      "specs": [],
-      "suites": [
-        {
-          "title": "🌐 Stagehand Production Authentication",
-          "file": "stagehand-production-auth.spec.ts",
-          "line": 56,
-          "column": 6,
-          "specs": [
-            {
-              "title": "🌐 Production site verification and health check",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
                   "results": [
                     {
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 11810,
+                      "duration": 48379,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "🎭 Initializing Stagehand for Production environment (https://frontier-family-flora.netlify.app)\n"
+                          "text": "🎭 Initializing Stagehand for Preview environment (https://deploy-preview-14--frontier-family-flora.netlify.app/)\n"
                         },
                         {
-                          "text": "🌐 Testing production deployment with Stagehand...\n"
+                          "text": "🎭 Testing complete authentication flow with Stagehand on preview...\n"
                         },
                         {
-                          "text": "🏭 Production state: {\n  siteLoaded: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  isResponsive: \u001b[33mtrue\u001b[39m,\n  hasTitle: \u001b[33mfalse\u001b[39m,\n  formFieldsVisible: \u001b[33mtrue\u001b[39m\n}\n"
+                          "text": "📄 Initial page state: {\n  isSignupPage: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  pageTitle: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
                         },
                         {
-                          "text": "📱 Responsive: true\n"
+                          "text": "👤 Creating test user: stagehand-preview-1749693363239@example.com\n"
                         },
                         {
-                          "text": "📄 Has Title: false\n"
+                          "text": "✅ Form validation state: {\n  allFieldsFilled: \u001b[33mtrue\u001b[39m,\n  passwordStrength: \u001b[32m''\u001b[39m,\n  submitButtonEnabled: \u001b[33mtrue\u001b[39m,\n  validationErrors: []\n}\n"
                         },
                         {
-                          "text": "✅ Production site verification passed!\n"
+                          "text": "🚀 Submitting signup form...\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction on Preview: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mtrue\u001b[39m,\n  buttonText: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 1/6 on Preview\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 1 on Preview\n"
+                        },
+                        {
+                          "text": "✅ Button click successfully triggered form submission on Preview\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for signup process to complete...\n"
+                        },
+                        {
+                          "text": "📊 Signup result: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  isOnChatPage: \u001b[33mtrue\u001b[39m,\n  isStillOnSignup: \u001b[33mfalse\u001b[39m,\n  hasSuccessIndicator: \u001b[33mtrue\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m,\n  pageContent: \u001b[32m'Chat Feature Coming Soon!\\n'\u001b[39m +\n    \u001b[32m\"We're working hard to bring you an amazing chat experience.\\n\"\u001b[39m +\n    \u001b[32m'Welcome,\\n'\u001b[39m +\n    \u001b[32m'stagehand-preview-1749693363239@example.com!'\u001b[39m,\n  showsWelcomeMessage: \u001b[33mtrue\u001b[39m,\n  showsChatContent: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "👤 Authenticated state: {\n  userIsLoggedIn: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  hasLogoutOption: \u001b[33mtrue\u001b[39m,\n  mainContent: \u001b[32m'Chat Feature Coming Soon!\\n'\u001b[39m +\n    \u001b[32m\"We're working hard to bring you an amazing chat experience.\\n\"\u001b[39m +\n    \u001b[32m'Welcome,\\n'\u001b[39m +\n    \u001b[32m'stagehand-preview-1749693363239@example.com\\n'\u001b[39m +\n    \u001b[32m'!\\n'\u001b[39m +\n    \u001b[32m'Profile\\n'\u001b[39m +\n    \u001b[32m'×\\n'\u001b[39m +\n    \u001b[32m'stagehand-preview-1749693363239@example.com\\n'\u001b[39m +\n    \u001b[32m'EMAIL\\n'\u001b[39m +\n    \u001b[32m'ACCOUNT\\n'\u001b[39m +\n    \u001b[32m'Settings\\n'\u001b[39m +\n    \u001b[32m'Preferences\\n'\u001b[39m +\n    \u001b[32m'Sign Out'\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🔍 Testing profile menu...\n"
+                        },
+                        {
+                          "text": "📋 Profile menu state: { isMenuOpen: \u001b[33mtrue\u001b[39m, hasLogoutButton: \u001b[33mfalse\u001b[39m }\n"
+                        },
+                        {
+                          "text": "🎉 Complete authentication flow test passed on Preview!\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-06-11T20:13:21.038Z",
+                      "startTime": "2025-06-12T01:55:56.038Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -670,105 +301,82 @@
                   "status": "expected"
                 }
               ],
-              "id": "8ccf6718ab6a9cbf060b-03569cd2e52af1cfce2f",
+              "id": "8ccf6718ab6a9cbf060b-08476d95b3a23991310f",
               "file": "stagehand-production-auth.spec.ts",
-              "line": 300,
+              "line": 82,
               "column": 9
             },
             {
-              "title": "🌐 Production site verification and health check",
+              "title": "🔍 Complete authentication flow on Preview deployment",
               "ok": true,
               "tags": [],
               "tests": [
                 {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "firefox",
-                  "projectName": "firefox",
-                  "results": [
-                    {
-                      "workerIndex": 3,
-                      "parallelIndex": 3,
-                      "status": "passed",
-                      "duration": 12187,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "🎭 Initializing Stagehand for Production environment (https://frontier-family-flora.netlify.app)\n"
-                        },
-                        {
-                          "text": "🌐 Testing production deployment with Stagehand...\n"
-                        },
-                        {
-                          "text": "🏭 Production state: {\n  siteLoaded: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  isResponsive: \u001b[33mtrue\u001b[39m,\n  hasTitle: \u001b[33mtrue\u001b[39m,\n  formFieldsVisible: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "📱 Responsive: true\n"
-                        },
-                        {
-                          "text": "📄 Has Title: true\n"
-                        },
-                        {
-                          "text": "✅ Production site verification passed!\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-06-11T20:13:21.022Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "8ccf6718ab6a9cbf060b-d7ecd4916730cbffc257",
-              "file": "stagehand-production-auth.spec.ts",
-              "line": 300,
-              "column": 9
-            },
-            {
-              "title": "🌐 Production site verification and health check",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
+                  "timeout": 300000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "webkit",
                   "projectName": "webkit",
                   "results": [
                     {
-                      "workerIndex": 6,
-                      "parallelIndex": 1,
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 10355,
+                      "duration": 48400,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "🎭 Initializing Stagehand for Production environment (https://frontier-family-flora.netlify.app)\n"
+                          "text": "🎭 Initializing Stagehand for Preview environment (https://deploy-preview-14--frontier-family-flora.netlify.app/)\n"
                         },
                         {
-                          "text": "🌐 Testing production deployment with Stagehand...\n"
+                          "text": "🎭 Testing complete authentication flow with Stagehand on preview...\n"
                         },
                         {
-                          "text": "🏭 Production state: {\n  siteLoaded: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  isResponsive: \u001b[33mtrue\u001b[39m,\n  hasTitle: \u001b[33mtrue\u001b[39m,\n  formFieldsVisible: \u001b[33mtrue\u001b[39m\n}\n"
+                          "text": "📄 Initial page state: {\n  isSignupPage: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  pageTitle: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
                         },
                         {
-                          "text": "📱 Responsive: true\n"
+                          "text": "👤 Creating test user: stagehand-preview-1749693361848@example.com\n"
                         },
                         {
-                          "text": "📄 Has Title: true\n"
+                          "text": "✅ Form validation state: {\n  allFieldsFilled: \u001b[33mtrue\u001b[39m,\n  passwordStrength: \u001b[32m''\u001b[39m,\n  submitButtonEnabled: \u001b[33mtrue\u001b[39m,\n  validationErrors: []\n}\n"
                         },
                         {
-                          "text": "✅ Production site verification passed!\n"
+                          "text": "🚀 Submitting signup form...\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction on Preview: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mtrue\u001b[39m,\n  buttonText: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 1/6 on Preview\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 1 on Preview\n"
+                        },
+                        {
+                          "text": "✅ Button click successfully triggered form submission on Preview\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for signup process to complete...\n"
+                        },
+                        {
+                          "text": "📊 Signup result: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  isOnChatPage: \u001b[33mtrue\u001b[39m,\n  isStillOnSignup: \u001b[33mfalse\u001b[39m,\n  hasSuccessIndicator: \u001b[33mtrue\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m,\n  pageContent: \u001b[32m'Chat Feature Coming Soon!\\n'\u001b[39m +\n    \u001b[32m\"We're working hard to bring you an amazing chat experience.\\n\"\u001b[39m +\n    \u001b[32m'Welcome,\\n'\u001b[39m +\n    \u001b[32m'stagehand-preview-1749693361848@example.com!'\u001b[39m,\n  showsWelcomeMessage: \u001b[33mtrue\u001b[39m,\n  showsChatContent: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "👤 Authenticated state: {\n  userIsLoggedIn: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  hasLogoutOption: \u001b[33mtrue\u001b[39m,\n  mainContent: \u001b[32m'Chat Feature Coming Soon!\\n'\u001b[39m +\n    \u001b[32m\"We're working hard to bring you an amazing chat experience.\\n\"\u001b[39m +\n    \u001b[32m'Welcome,\\n'\u001b[39m +\n    \u001b[32m'stagehand-preview-1749693361848@example.com\\n'\u001b[39m +\n    \u001b[32m'!\\n'\u001b[39m +\n    \u001b[32m'Profile\\n'\u001b[39m +\n    \u001b[32m'EMAIL\\n'\u001b[39m +\n    \u001b[32m'ACCOUNT\\n'\u001b[39m +\n    \u001b[32m'Settings\\n'\u001b[39m +\n    \u001b[32m'Preferences\\n'\u001b[39m +\n    \u001b[32m'Sign Out'\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🔍 Testing profile menu...\n"
+                        },
+                        {
+                          "text": "📋 Profile menu state: { isMenuOpen: \u001b[33mtrue\u001b[39m, hasLogoutButton: \u001b[33mfalse\u001b[39m }\n"
+                        },
+                        {
+                          "text": "🎉 Complete authentication flow test passed on Preview!\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-06-11T20:13:34.393Z",
+                      "startTime": "2025-06-12T01:55:56.030Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -776,52 +384,82 @@
                   "status": "expected"
                 }
               ],
-              "id": "8ccf6718ab6a9cbf060b-fee0fa2f65df13155021",
+              "id": "8ccf6718ab6a9cbf060b-955ff2c960db25d27518",
               "file": "stagehand-production-auth.spec.ts",
-              "line": 300,
+              "line": 82,
               "column": 9
             },
             {
-              "title": "🌐 Production site verification and health check",
+              "title": "🔍 Complete authentication flow on Preview deployment",
               "ok": true,
               "tags": [],
               "tests": [
                 {
-                  "timeout": 30000,
+                  "timeout": 300000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "Mobile Chrome",
                   "projectName": "Mobile Chrome",
                   "results": [
                     {
-                      "workerIndex": 7,
-                      "parallelIndex": 1,
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 8941,
+                      "duration": 48456,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "🎭 Initializing Stagehand for Production environment (https://frontier-family-flora.netlify.app)\n"
+                          "text": "🎭 Initializing Stagehand for Preview environment (https://deploy-preview-14--frontier-family-flora.netlify.app/)\n"
                         },
                         {
-                          "text": "🌐 Testing production deployment with Stagehand...\n"
+                          "text": "🎭 Testing complete authentication flow with Stagehand on preview...\n"
                         },
                         {
-                          "text": "🏭 Production state: {\n  siteLoaded: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  isResponsive: \u001b[33mtrue\u001b[39m,\n  hasTitle: \u001b[33mtrue\u001b[39m,\n  formFieldsVisible: \u001b[33mtrue\u001b[39m\n}\n"
+                          "text": "📄 Initial page state: {\n  isSignupPage: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  pageTitle: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
                         },
                         {
-                          "text": "📱 Responsive: true\n"
+                          "text": "👤 Creating test user: stagehand-preview-1749693363277@example.com\n"
                         },
                         {
-                          "text": "📄 Has Title: true\n"
+                          "text": "✅ Form validation state: {\n  allFieldsFilled: \u001b[33mtrue\u001b[39m,\n  passwordStrength: \u001b[32m''\u001b[39m,\n  submitButtonEnabled: \u001b[33mtrue\u001b[39m,\n  validationErrors: []\n}\n"
                         },
                         {
-                          "text": "✅ Production site verification passed!\n"
+                          "text": "🚀 Submitting signup form...\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction on Preview: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mtrue\u001b[39m,\n  buttonText: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 1/6 on Preview\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 1 on Preview\n"
+                        },
+                        {
+                          "text": "✅ Button click successfully triggered form submission on Preview\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for signup process to complete...\n"
+                        },
+                        {
+                          "text": "📊 Signup result: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  isOnChatPage: \u001b[33mtrue\u001b[39m,\n  isStillOnSignup: \u001b[33mfalse\u001b[39m,\n  hasSuccessIndicator: \u001b[33mtrue\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m,\n  pageContent: \u001b[32m'Chat Feature Coming Soon!\\n'\u001b[39m +\n    \u001b[32m\"We're working hard to bring you an amazing chat experience.\\n\"\u001b[39m +\n    \u001b[32m'Welcome,\\n'\u001b[39m +\n    \u001b[32m'stagehand-preview-1749693363277@example.com!'\u001b[39m,\n  showsWelcomeMessage: \u001b[33mtrue\u001b[39m,\n  showsChatContent: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "👤 Authenticated state: {\n  userIsLoggedIn: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  hasLogoutOption: \u001b[33mtrue\u001b[39m,\n  mainContent: \u001b[32m'Chat Feature Coming Soon!\\n'\u001b[39m +\n    \u001b[32m\"We're working hard to bring you an amazing chat experience.\\n\"\u001b[39m +\n    \u001b[32m'Welcome,\\n'\u001b[39m +\n    \u001b[32m'stagehand-preview-1749693363277@example.com\\n'\u001b[39m +\n    \u001b[32m'!\\n'\u001b[39m +\n    \u001b[32m'Profile\\n'\u001b[39m +\n    \u001b[32m'EMAIL\\n'\u001b[39m +\n    \u001b[32m'ACCOUNT\\n'\u001b[39m +\n    \u001b[32m'Settings\\n'\u001b[39m +\n    \u001b[32m'Preferences\\n'\u001b[39m +\n    \u001b[32m'Sign Out'\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🔍 Testing profile menu...\n"
+                        },
+                        {
+                          "text": "📋 Profile menu state: { isMenuOpen: \u001b[33mtrue\u001b[39m, hasLogoutButton: \u001b[33mfalse\u001b[39m }\n"
+                        },
+                        {
+                          "text": "🎉 Complete authentication flow test passed on Preview!\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-06-11T20:13:46.119Z",
+                      "startTime": "2025-06-12T01:55:56.033Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -829,62 +467,112 @@
                   "status": "expected"
                 }
               ],
-              "id": "8ccf6718ab6a9cbf060b-fd0df29b5c508c167bad",
+              "id": "8ccf6718ab6a9cbf060b-a265fe6463ff1d4c37dc",
               "file": "stagehand-production-auth.spec.ts",
-              "line": 300,
+              "line": 82,
               "column": 9
             },
             {
-              "title": "🌐 Production site verification and health check",
-              "ok": true,
+              "title": "🔍 Complete authentication flow on Preview deployment",
+              "ok": false,
               "tags": [],
               "tests": [
                 {
-                  "timeout": 30000,
+                  "timeout": 300000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "Mobile Safari",
                   "projectName": "Mobile Safari",
                   "results": [
                     {
-                      "workerIndex": 9,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 8628,
-                      "errors": [],
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "timedOut",
+                      "duration": 300273,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 300000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 300000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 300000ms exceeded.\u001b[39m"
+                        }
+                      ],
                       "stdout": [
                         {
-                          "text": "🎭 Initializing Stagehand for Production environment (https://frontier-family-flora.netlify.app)\n"
+                          "text": "🎭 Initializing Stagehand for Preview environment (https://deploy-preview-14--frontier-family-flora.netlify.app/)\n"
                         },
                         {
-                          "text": "🌐 Testing production deployment with Stagehand...\n"
+                          "text": "🎭 Testing complete authentication flow with Stagehand on preview...\n"
                         },
                         {
-                          "text": "🏭 Production state: {\n  siteLoaded: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  isResponsive: \u001b[33mtrue\u001b[39m,\n  hasTitle: \u001b[33mtrue\u001b[39m,\n  formFieldsVisible: \u001b[33mtrue\u001b[39m\n}\n"
+                          "text": "📄 Initial page state: {\n  isSignupPage: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  pageTitle: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
                         },
                         {
-                          "text": "📱 Responsive: true\n"
+                          "text": "👤 Creating test user: stagehand-preview-1749693361962@example.com\n"
                         },
                         {
-                          "text": "📄 Has Title: true\n"
+                          "text": "✅ Form validation state: {\n  allFieldsFilled: \u001b[33mtrue\u001b[39m,\n  passwordStrength: \u001b[32m''\u001b[39m,\n  submitButtonEnabled: \u001b[33mtrue\u001b[39m,\n  validationErrors: []\n}\n"
                         },
                         {
-                          "text": "✅ Production site verification passed!\n"
+                          "text": "🚀 Submitting signup form...\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction on Preview: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mtrue\u001b[39m,\n  buttonText: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 1/6 on Preview\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 1 on Preview\n"
+                        },
+                        {
+                          "text": "✅ Button click successfully triggered form submission on Preview\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for signup process to complete...\n"
+                        },
+                        {
+                          "text": "📊 Signup result: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  isOnChatPage: \u001b[33mtrue\u001b[39m,\n  isStillOnSignup: \u001b[33mfalse\u001b[39m,\n  hasSuccessIndicator: \u001b[33mtrue\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m,\n  pageContent: \u001b[32m'Chat Feature Coming Soon!\\n'\u001b[39m +\n    \u001b[32m\"We're working hard to bring you an amazing chat experience.\\n\"\u001b[39m +\n    \u001b[32m'Welcome,\\n'\u001b[39m +\n    \u001b[32m'stagehand-preview-1749693361962@example.com!'\u001b[39m,\n  showsWelcomeMessage: \u001b[33mtrue\u001b[39m,\n  showsChatContent: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "👤 Authenticated state: {\n  userIsLoggedIn: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  hasLogoutOption: \u001b[33mfalse\u001b[39m,\n  mainContent: \u001b[32m'Chat Feature Coming Soon!\\n'\u001b[39m +\n    \u001b[32m\"We're working hard to bring you an amazing chat experience.\\n\"\u001b[39m +\n    \u001b[32m'Welcome,\\n'\u001b[39m +\n    \u001b[32m'stagehand-preview-1749693361962@example.com!'\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🔍 Testing profile menu...\n"
+                        },
+                        {
+                          "text": "📋 Profile menu state: { isMenuOpen: \u001b[33mtrue\u001b[39m, hasLogoutButton: \u001b[33mtrue\u001b[39m }\n"
+                        },
+                        {
+                          "text": "🚪 Testing logout...\n"
+                        },
+                        {
+                          "text": "⚠️ Profile menu testing encountered issues (non-blocking): \nHey! We're sorry you ran into an error. \nIf you need help, please open a Github issue or reach out to us on Slack: https://stagehand.dev/slack\n\nFull error:\npage.evaluate: Target page, context or browser has been closed\n"
+                        },
+                        {
+                          "text": "🎉 Complete authentication flow test passed on Preview!\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-06-11T20:14:16.396Z",
+                      "startTime": "2025-06-12T01:55:56.031Z",
                       "annotations": [],
-                      "attachments": []
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results/stagehand-production-auth--f47f7--flow-on-Preview-deployment-Mobile-Safari/test-failed-1.png"
+                        }
+                      ]
                     }
                   ],
-                  "status": "expected"
+                  "status": "unexpected"
                 }
               ],
-              "id": "8ccf6718ab6a9cbf060b-613dae4a353275b3d835",
+              "id": "8ccf6718ab6a9cbf060b-63f26be1808f4f4bbb48",
               "file": "stagehand-production-auth.spec.ts",
-              "line": 300,
+              "line": 82,
               "column": 9
             }
           ]
@@ -894,11 +582,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-06-11T20:13:20.235Z",
-    "duration": 81938.289,
-    "expected": 10,
+    "startTime": "2025-06-12T01:55:55.302Z",
+    "duration": 301224.971,
+    "expected": 4,
     "skipped": 0,
-    "unexpected": 0,
+    "unexpected": 1,
     "flaky": 0
   }
 }
