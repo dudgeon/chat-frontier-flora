@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { AuthFlow } from './auth/AuthFlow';
 import { ChatPage } from './ChatPage';
 import { DebugPage } from '../pages/DebugPage';
+import { useAuthNavigation } from '../hooks/useAuthNavigation';
 
 /**
  * Protected Route Component
@@ -45,6 +46,12 @@ const ChatPageWrapper: React.FC = () => {
   );
 };
 
+// Helper component that runs the navigation hook inside Router context
+const NavigationListener: React.FC = () => {
+  useAuthNavigation();
+  return null;
+};
+
 /**
  * Main App Router Component
  * Handles all routing logic for the application
@@ -58,6 +65,8 @@ export const AppRouter: React.FC = () => {
 
   return (
     <BrowserRouter>
+      {/* Runs navigation side-effects inside Router */}
+      <NavigationListener />
       <Routes>
         {/* Homepage - Shows login/signup */}
         <Route path="/" element={<AuthFlow />} />

@@ -26,7 +26,8 @@
     "test:localhost": "unset DEPLOY_PREVIEW_URL && npm run test:e2e",
     "test:production": "unset DEPLOY_PREVIEW_URL && playwright test e2e/stagehand-production-auth.spec.ts",
     "dev:safe": "./scripts/verify-test-status.sh && cd apps/web && npm run web",
-    "status:check": "echo 'Directory:' && pwd && echo 'Expo processes:' && ps aux | grep expo | grep -v grep || echo 'None' && echo 'Environment:' && echo \"DEPLOY_PREVIEW_URL: $DEPLOY_PREVIEW_URL\" && echo \"OPENAI_API_KEY: $([ -n \"$OPENAI_API_KEY\" ] && echo 'Set' || echo 'Not set')\""
+    "status:check": "echo 'Directory:' && pwd && echo 'Expo processes:' && ps aux | grep expo | grep -v grep || echo 'None' && echo 'Environment:' && echo \"DEPLOY_PREVIEW_URL: $DEPLOY_PREVIEW_URL\" && echo \"OPENAI_API_KEY: $([ -n \"$OPENAI_API_KEY\" ] && echo 'Set' || echo 'Not set')\"",
+    "test:e2e:login": "playwright test e2e/stagehand-login-test.spec.ts"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
