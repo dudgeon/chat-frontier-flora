@@ -11,9 +11,9 @@ export const ChatInterface: React.FC = () => {
     {
       id: '1',
       author: 'bot',
-      text: 'Hello! I\'m your AI assistant. How can I help you today?',
+      text: "Hello! I'm your AI assistant. How can I help you today?",
       timestamp: new Date(),
-    }
+    },
   ]);
 
   // Task 4.2: Function to handle sending messages
@@ -57,11 +57,7 @@ export const ChatInterface: React.FC = () => {
       if (currentIndex < responseText.length) {
         const nextChar = responseText[currentIndex];
         setMessages(prev =>
-          prev.map(msg =>
-            msg.id === botMessageId
-              ? { ...msg, text: msg.text + nextChar }
-              : msg
-          )
+          prev.map(msg => (msg.id === botMessageId ? { ...msg, text: msg.text + nextChar } : msg))
         );
         currentIndex++;
       } else {
@@ -71,9 +67,9 @@ export const ChatInterface: React.FC = () => {
   }, []);
 
   return (
-    <View style={{ flex: 1, justifyContent: 'space-between' }}>
+    <View className="flex-1 justify-between">
       {/* Ref: 3 ChatInterface.Root */}
-      <View style={{ flex: 1 }}>
+      <View className="flex-1">
         {/* Ref: 3.1 MessageList.Component */}
         <MessageList messages={messages} />
       </View>

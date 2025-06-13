@@ -1,26 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
-// Design system constants for consistent styling (matching ChatPage.tsx)
-const designSystem = {
-  colors: {
-    white: '#ffffff',
-    gray50: '#f8f9fa',
-    gray200: '#e0e0e0',
-    gray500: '#666666',
-    gray700: '#333333',
-    overlayDark: 'rgba(0, 0, 0, 0.5)',
-  },
-  shadow: {
-    sm: {
-      shadowColor: '#000',
-      shadowOffset: { width: 2, height: 0 }, // Reversed from -2 for left side
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
-    },
-  },
-};
-
 interface ChatHistoryPaneProps {
   show: boolean;
   onToggle: () => void;
@@ -42,99 +22,43 @@ export const ChatHistoryPane: React.FC<ChatHistoryPaneProps> = ({ show, onToggle
     <>
       {/* Overlay - exact match to ProfileMenu */}
       <TouchableOpacity
-        style={{
-          position: 'absolute' as const,
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: designSystem.colors.overlayDark,
-          zIndex: 1,
-        }}
+        className="absolute inset-0 bg-black/50 z-10"
         onPress={onToggle}
         testID="history-menu-overlay"
       />
 
       {/* History Menu - matching ProfileMenu but on left side */}
-      <View style={{
-        position: 'absolute' as const,
-        top: 0,
-        left: 0, // Changed from right: 0
-        bottom: 0,
-        width: 300,
-        backgroundColor: designSystem.colors.white,
-        borderRightWidth: 1, // Changed from borderLeftWidth
-        borderRightColor: designSystem.colors.gray200, // Changed from borderLeftColor
-        zIndex: 2,
-        ...designSystem.shadow.sm,
-      }} testID="history-menu">
-        <View style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          padding: 16,
-          borderBottomWidth: 1,
-          borderBottomColor: designSystem.colors.gray200,
-        }}>
-          <TouchableOpacity
-            onPress={onToggle}
-            style={{
-              padding: 4,
-            }}
-            testID="history-menu-close"
-          >
-            <Text style={{
-              fontSize: 24,
-              color: designSystem.colors.gray500,
-            }}>×</Text>
+      <View
+        className="absolute left-0 top-0 bottom-0 w-[300px] bg-white border-r border-gray-200 z-20 shadow"
+        testID="history-menu"
+      >
+        <View className="flex-row justify-between items-center p-4 border-b border-gray-200">
+          <TouchableOpacity onPress={onToggle} className="p-1" testID="history-menu-close">
+            <Text className="text-2xl text-gray-500">×</Text>
           </TouchableOpacity>
-          <Text style={{
-            fontSize: 18,
-            fontWeight: 'bold' as const,
-            color: designSystem.colors.gray700,
-          }}>History</Text>
+          <Text className="text-lg font-bold text-gray-700">History</Text>
         </View>
 
         {/* New Chat Button */}
         <TouchableOpacity
-          style={{
-            backgroundColor: designSystem.colors.gray50,
-            paddingVertical: 12,
-            paddingHorizontal: 16,
-            borderRadius: 6,
-            margin: 16,
-          }}
+          className="bg-gray-50 py-3 px-4 rounded-md m-4"
           onPress={() => {
             /* TODO: implement new chat logic */
           }}
           testID="new-chat-button"
         >
-          <Text style={{
-            fontSize: 16,
-            color: designSystem.colors.gray700,
-            fontWeight: '500' as const,
-            textAlign: 'center' as const,
-          }}>✨ New</Text>
+          <Text className="text-base text-gray-700 font-medium text-center">✨ New</Text>
         </TouchableOpacity>
 
-        <View style={{ flex: 1 }}>
+        <View className="flex-1">
           {dummySessions.map(session => (
             <TouchableOpacity
               key={session.id}
-              style={{
-                paddingVertical: 12,
-                paddingHorizontal: 16,
-                borderBottomWidth: 1,
-                borderBottomColor: designSystem.colors.gray200,
-              }}
+              className="py-3 px-4 border-b border-gray-200"
               // Ref: ChatHistoryPane.SessionListItem
             >
-              <Text style={{ fontSize: 16, color: designSystem.colors.gray700, marginBottom: 4 }}>
-                {session.name}
-              </Text>
-              <Text style={{ fontSize: 12, color: designSystem.colors.gray500 }}>
-                {session.timestamp}
-              </Text>
+              <Text className="text-base text-gray-700 mb-1">{session.name}</Text>
+              <Text className="text-xs text-gray-500">{session.timestamp}</Text>
             </TouchableOpacity>
           ))}
         </View>

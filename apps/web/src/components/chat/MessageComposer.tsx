@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, Text, NativeSyntheticEvent, TextInputContentSizeChangeEventData, Platform } from 'react-native';
+import {
+  View,
+  TextInput,
+  TouchableOpacity,
+  Text,
+  NativeSyntheticEvent,
+  TextInputContentSizeChangeEventData,
+  Platform,
+} from 'react-native';
 
 interface MessageComposerProps {
   onSendMessage: (message: string) => void;
@@ -9,7 +17,9 @@ export const MessageComposer: React.FC<MessageComposerProps> = ({ onSendMessage 
   const [text, setText] = useState('');
   const [inputHeight, setInputHeight] = useState(44); // Increased initial height for better UX
 
-  const handleContentSizeChange = (event: NativeSyntheticEvent<TextInputContentSizeChangeEventData>) => {
+  const handleContentSizeChange = (
+    event: NativeSyntheticEvent<TextInputContentSizeChangeEventData>
+  ) => {
     const height = event.nativeEvent.contentSize.height;
     // Max height for approx 3 lines + padding (adjusted for new padding)
     const maxHeight = 108;
@@ -48,36 +58,14 @@ export const MessageComposer: React.FC<MessageComposerProps> = ({ onSendMessage 
   };
 
   return (
-    <View style={{
-      flexDirection: 'row',
-      alignItems: 'flex-end',
-      padding: 16,
-      paddingTop: 12,
-      paddingBottom: 16,
-      borderTopWidth: 1,
-      borderTopColor: '#e5e7eb',
-      backgroundColor: '#ffffff',
-      gap: 12,
-    }}>
+    <View className="flex-row items-end p-4 pt-3 pb-4 border-t border-gray-200 bg-white gap-3">
       <TextInput
         value={text}
         onChangeText={setText}
         placeholder="Type a message... (Cmd+Enter to send)"
         placeholderTextColor="#9ca3af"
-        style={{
-          flex: 1,
-          borderWidth: 1,
-          borderRadius: 24,
-          paddingHorizontal: 16,
-          paddingVertical: 12,
-          fontSize: 16,
-          color: '#111827',
-          backgroundColor: '#f9fafb',
-          borderColor: '#d1d5db',
-          height: inputHeight,
-          maxHeight: 108,
-          textAlignVertical: 'top',
-        }}
+        className="flex-1 border rounded-full px-4 py-3 text-base text-gray-900 bg-gray-50 border-gray-300 max-h-[108px]"
+        style={{ height: inputHeight, textAlignVertical: 'top' }}
         multiline
         onContentSizeChange={handleContentSizeChange}
         onKeyPress={handleKeyPress}
@@ -86,28 +74,10 @@ export const MessageComposer: React.FC<MessageComposerProps> = ({ onSendMessage 
       <TouchableOpacity
         onPress={handleSend}
         disabled={!text.trim()}
-        style={{
-          width: 44,
-          height: 44,
-          borderRadius: 22,
-          backgroundColor: text.trim() ? '#3b82f6' : '#9ca3af',
-          alignItems: 'center',
-          justifyContent: 'center',
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.1,
-          shadowRadius: 4,
-          elevation: 2,
-        }}
+        className={`w-11 h-11 rounded-full items-center justify-center shadow ${text.trim() ? 'bg-blue-500' : 'bg-gray-400'}`}
         // Ref: 3.2.2 MessageComposer.SendButton
       >
-        <Text style={{
-          color: '#ffffff',
-          fontSize: 18,
-          fontWeight: '600',
-        }}>
-          ➤
-        </Text>
+        <Text className="text-white text-lg font-semibold">➤</Text>
       </TouchableOpacity>
     </View>
   );

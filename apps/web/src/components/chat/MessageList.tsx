@@ -20,11 +20,11 @@ export const MessageList: React.FC<MessageListProps> = ({ messages }) => {
   return (
     <ScrollView
       ref={scrollViewRef}
-      style={{ flex: 1, padding: 16 }}
+      className="flex-1 p-4"
       showsVerticalScrollIndicator={false}
       // Ref: 3.1.1 MessageList.ScrollView
     >
-      {messages.map((message) => (
+      {messages.map(message => (
         <Message
           key={message.id}
           id={message.id}
