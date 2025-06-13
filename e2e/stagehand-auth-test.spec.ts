@@ -104,14 +104,49 @@ test.describe(`${ENV.icon} Stagehand Authentication Flow [${ENV.name}]`, () => {
     console.log('🎯 Phase 1: Core Functionality Testing');
 
     try {
-      // Wait for page load with timeout
-      const pageLoadPromise = page.act('wait for the signup form to be visible');
-      const pageLoadResult = await Promise.race([
+      // Wait for page load and ensure we are on SIGNUP form
+      const pageLoadPromise = page.act('wait until the initial auth form is visible');
+      await Promise.race([
         pageLoadPromise,
         new Promise((_, reject) =>
           setTimeout(() => reject(new Error('Page load timeout after 30s')), 30000)
         )
       ]);
+
+      // Detect current form mode (signup vs login) and switch if needed
+      const modeInfo = await page.extract({
+        instruction:
+          'Determine whether the visible form is for signing up or signing in. Return "signup" if the form collects name + confirm-password, "login" otherwise.',
+        schema: z.object({ mode: z.enum(['signup', 'login']) }),
+      });
+
+      if (modeInfo.mode === 'login') {
+        console.log('🔄 Detected login form – switching to Create Account mode');
+
+        const switchStrategies = [
+          'click the link or button that switches to Sign Up or Create Account',
+          'click the link containing "Create Account" or "Sign Up"',
+          'click the text "New here? Create Account"',
+        ];
+
+        let switched = false;
+        for (let i = 0; i < switchStrategies.length; i++) {
+          try {
+            await page.act(switchStrategies[i]);
+            switched = true;
+            break;
+          } catch (err) {
+            console.log(`⚠️  Switch strategy ${i + 1} failed:`, err instanceof Error ? err.message : String(err));
+          }
+        }
+
+        if (!switched) {
+          throw new Error('Unable to switch the form to Sign Up mode');
+        }
+
+        // Wait for signup fields to appear
+        await page.act('wait until the signup form is visible');
+      }
 
       // Generate test user data
       const testEmail = `test-${Date.now()}@stagehand-${ENV.name.toLowerCase()}.com`;
@@ -250,7 +285,7 @@ test.describe(`${ENV.icon} Stagehand Authentication Flow [${ENV.name}]`, () => {
 
       // Verify successful signup - CORE SUCCESS CRITERIA
       const signupResult = await page.extract({
-        instruction: `check if the user was successfully signed up on ${ENV.name} environment`,
+        instruction: `check if the user was successfully signed up on ${ENV.name} environment. The chat page root element has data-testid=\"chat-page\" and contains the heading \"Chat Feature Coming Soon!\"`,
         schema: z.object({
           isOnChatPage: z.boolean().describe('whether the user is now on a page with chat-related content or "Chat Feature Coming Soon" text'),
           hasComingSoonText: z.boolean().describe('whether the page shows "Chat Feature Coming Soon" or similar placeholder text'),

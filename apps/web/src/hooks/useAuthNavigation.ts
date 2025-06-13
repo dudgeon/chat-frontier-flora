@@ -21,10 +21,25 @@ export const useAuthNavigation = () => {
     console.log('🔍 useAuthNavigation - user:', user ? 'authenticated' : 'not authenticated');
     console.log('🔍 useAuthNavigation - current path:', location.pathname);
 
-    // If user is authenticated and on root, redirect to chat
+    // If user is authenticated and on root, redirect based on role
     if (user && location.pathname === '/') {
-      console.log('✅ Authenticated user on root, redirecting to /chat');
-      navigate('/chat', { replace: true });
+      const role = user.profile?.user_role;
+      let targetPath = '/chat';
+
+      // 🛣️ Role-based destination mapping
+      switch (role) {
+        case 'primary':
+          targetPath = '/chat';
+          break;
+        case 'child':
+          targetPath = '/chat';
+          break;
+        default:
+          targetPath = '/chat';
+      }
+
+      console.log(`✅ Authenticated user (${role ?? 'unknown'}) on root, redirecting to ${targetPath}`);
+      navigate(targetPath, { replace: true });
     }
 
     // If user is not authenticated and on protected route, redirect to root

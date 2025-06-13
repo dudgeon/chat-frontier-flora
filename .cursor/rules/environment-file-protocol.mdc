@@ -3,3 +3,67 @@ description:
 globs:
 alwaysApply: false
 ---
+# Environment File Verification Protocol
+
+## CRITICAL: Mandatory Environment File Check
+
+**BEFORE ANY ENVIRONMENT VARIABLE WORK, YOU MUST:**
+
+### 1. ALWAYS Run Environment File Verification First
+
+```bash
+# MANDATORY: Check for .env file in root (hidden file)
+ls -la | grep env
+
+# MANDATORY: Verify contents if file exists
+cat .env | grep EXPO_PUBLIC
+```
+
+### 2. NEVER Claim Environment Files Don't Exist
+
+**❌ FORBIDDEN ACTIONS:**
+- Claiming `.env` file doesn't exist without running `ls -la | grep env`
+- Using `list_dir` tool to check for hidden files
+- Assuming files don't exist if `read_file` tool fails
+- Proceeding with environment variable debugging without verification
+
+**✅ REQUIRED ACTIONS:**
+- Always use `ls -la | grep env` FIRST before any env var work
+- Use `cat .env` if `read_file` tool fails on .env files
+- Check both root directory and apps/web directory
+- Verify file contents before claiming missing variables
+
+### 3. Environment File Locations in This Project
+
+- **Root `.env`**: Contains all environment variables, copied to apps/web during build
+- **apps/web/.env`**: May or may not exist, gets created by `cp ../../.env .env` command
+- **`e2e/.env.stagehand`**: Contains Stagehand‐specific variables (`OPENAI_API_KEY`, `TEST_LOGIN_EMAIL`, `TEST_LOGIN_PASSWORD`, etc.) used exclusively by the Stagehand test suites. This file **does exist** in the repository and is automatically loaded by the Stagehand specs via `dotenvConfig({ path: path.resolve(__dirname, '..', '.env.stagehand') })`.
+- **netlify.toml**: Contains environment variables for Netlify deployment
+
+### 4. Common Environment Variables
+
+- `EXPO_PUBLIC_SUPABASE_URL`
+- `EXPO_PUBLIC_SUPABASE_ANON_KEY`
+- `OPENAI_API_KEY`
+- `NETLIFY_AUTH_TOKEN`
+- `NETLIFY_SITE_ID`
+
+### 5. Build Process Environment Loading
+
+- Local development: `.env` copied via `cp ../../.env .env` in package.json scripts
+- Netlify deployment: Environment variables set in `netlify.toml` [build.environment] section
+
+### 6. Emergency Recovery Protocol
+
+If you've already claimed .env doesn't exist:
+1. Immediately run `ls -la | grep env`
+2. Acknowledge the mistake
+3. Use `cat .env` to show contents
+4. Update any incorrect documentation
+5. Follow this protocol going forward
+
+## Failure Prevention
+
+This protocol exists because of a critical incident where the AI claimed environment files didn't exist, causing significant debugging delays. The root cause was not using proper commands to check for hidden files and making assumptions when tools failed.
+
+**This rule is MANDATORY and must be followed without exception.**

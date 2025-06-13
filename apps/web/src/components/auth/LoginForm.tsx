@@ -8,6 +8,7 @@ import { useFormValidation } from '../../hooks/useFormValidation';
 import { useSubmitButton } from '../../hooks/useSubmitButton';
 import { validateEmail } from '../../../utils/validation';
 import { parseAuthError, createSuccessMessage, type ParsedError } from '../../utils/errorHandling';
+import { supabase } from '../../lib/supabase';
 
 // Design system constants (matching other components)
 const designSystem = {
@@ -139,6 +140,39 @@ export const LoginForm: React.FC<LoginFormProps> = ({
 
       // signIn method throws on error, doesn't return error object
       await signIn(email, password);
+
+      // Handle "Remember me" functionality
+      // If the user does NOT want to be remembered, we still keep the session for the lifetime
+      // of the current tab so the chat page can render. We schedule token removal on
+      // page unload, which clears persistence but preserves the current-tab session.
+      if (!rememberMe) {
+        try {
+          const removeTokens = () => {
+            try {
+              // Supabase JS v2 stores auth session under this key
+              // @ts-ignore - storageKey is internal, may not be typed
+              const storageKey = (supabase.auth as any).storageKey as string | undefined;
+              if (storageKey) {
+                localStorage.removeItem(storageKey);
+              } else {
+                Object.keys(localStorage).forEach((key) => {
+                  if (key.startsWith('sb-') && key.endsWith('-auth-token')) {
+                    localStorage.removeItem(key);
+                  }
+                });
+              }
+            } catch (err) {
+              console.warn('Remember me cleanup error:', err);
+            }
+          };
+
+          // Ensure we only attach one listener per tab
+          window.removeEventListener('beforeunload', removeTokens);
+          window.addEventListener('beforeunload', removeTokens);
+        } catch (err) {
+          console.warn('Remember me setup error:', err);
+        }
+      }
 
       // Success - redirect will be handled by auth context
       onSuccess?.();

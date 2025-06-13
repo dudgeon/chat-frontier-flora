@@ -183,6 +183,41 @@ Required GitHub Secrets:
 4. Avoid modifying existing migrations
 5. Use proper indexing for performance
 
+## Testing
+
+The project uses Stagehand for E2E testing with natural language actions that adapt to UI changes.
+
+### Running Tests
+
+```bash
+# Run all E2E tests
+npm run test:e2e
+
+# Run specific test files
+npm run test:e2e -- e2e/stagehand-auth-test.spec.ts
+npm run test:e2e -- e2e/stagehand-login-test.spec.ts
+
+# Environment-specific testing
+npm run test:localhost    # Local testing only
+npm run test:production   # Production verification only
+```
+
+### Critical Test Implementation Notes
+
+- **Login Tests**: See `docs/LOGIN_TEST_IMPLEMENTATION_GUIDE.md` for comprehensive implementation details
+- **Authentication Testing**: Login tests require special handling due to "Remember me" checkbox behavior
+- **Test Protection**: See `.cursor/rules/login-test-protection.mdc` for modification guidelines
+- **3-Phase Architecture**: All tests use false-failure-prevention architecture (Core → Secondary → Cleanup)
+
+### Test Environment Setup
+
+Create `.env.stagehand` file in project root:
+```bash
+TEST_LOGIN_EMAIL=your-existing-user@example.com
+TEST_LOGIN_PASSWORD=your-test-password
+OPENAI_API_KEY=your-openai-api-key
+```
+
 ## Features
 
 - Cross-platform support (iOS, Android, Web)
