@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { AuthProvider } from './contexts/AuthContext';
 import { AppRouter } from './components/AppRouter';
 
 // Import CSS for web
-import './index.css';
+import './global.css';
 
 console.log('Starting app initialization...');
 
@@ -20,6 +20,10 @@ function App() {
   return (
     <AuthProvider>
       <View style={styles.container}>
+        {/* NativeWind Test */}
+        <View className="bg-red-500 p-4 m-2 rounded-lg">
+          <Text className="text-white text-center font-bold">NativeWind Test - Should be Red</Text>
+        </View>
         <AppRouter />
       </View>
     </AuthProvider>

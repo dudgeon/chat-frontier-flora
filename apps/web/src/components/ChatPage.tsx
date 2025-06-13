@@ -1,6 +1,8 @@
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { useAuth } from '../contexts/AuthContext';
+import { ChatHistoryPane } from './chat/ChatHistoryPane';
+import { ChatInterface } from './chat/ChatInterface';
 
 // Design system constants for consistent styling
 const designSystem = {
@@ -58,6 +60,7 @@ export const ChatPage: React.FC<ChatPageProps> = ({
   onToggleProfileMenu
 }) => {
   const { user, signOut } = useAuth();
+  const [showHistoryPane, setShowHistoryPane] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -87,11 +90,23 @@ export const ChatPage: React.FC<ChatPageProps> = ({
           borderBottomColor: designSystem.colors.gray200,
           backgroundColor: designSystem.colors.white,
         }}>
-          <Text style={{
-            fontSize: 20,
-            fontWeight: 'bold' as const,
-            color: designSystem.colors.gray700,
-          }}>Frontier.Family</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <TouchableOpacity
+              onPress={() => setShowHistoryPane(!showHistoryPane)}
+              style={{
+                padding: 8,
+                marginRight: 8,
+              }}
+              testID="history-menu-button"
+            >
+              <Text style={{ fontSize: 18, color: designSystem.colors.gray500 }}>☰</Text>
+            </TouchableOpacity>
+            <Text style={{
+              fontSize: 20,
+              fontWeight: 'bold' as const,
+              color: designSystem.colors.gray700,
+            }}>Frontier.Family</Text>
+          </View>
           <TouchableOpacity
             style={{
               padding: 8,
@@ -114,37 +129,20 @@ export const ChatPage: React.FC<ChatPageProps> = ({
           </TouchableOpacity>
         </View>
 
-        <View style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: 32,
-        }}>
-          <Text style={{
-            fontSize: 24,
-            fontWeight: 'bold' as const,
-            color: designSystem.colors.blue600,
-            marginBottom: 16,
-            textAlign: 'center' as const,
-          }}>Chat Feature Coming Soon!</Text>
-          <Text style={{
-            fontSize: 16,
-            color: designSystem.colors.gray500,
-            textAlign: 'center' as const,
-            marginBottom: 24,
-            lineHeight: 24,
-          }}>
-            We're working hard to bring you an amazing chat experience.
-          </Text>
-          <Text style={{
-            fontSize: 14,
-            color: designSystem.colors.gray600,
-            textAlign: 'center' as const,
-          }}>
-            Welcome, {user?.email || 'User'}!
-          </Text>
-        </View>
+        <ScrollView
+          style={{
+            flex: 1,
+          }}
+          contentContainerStyle={{
+            flexGrow: 1,
+            justifyContent: 'flex-end',
+          }}
+        >
+          <ChatInterface />
+        </ScrollView>
       </View>
+
+      <ChatHistoryPane show={showHistoryPane} onToggle={() => setShowHistoryPane(false)} />
 
       {/* Profile Menu - Right Sidebar */}
       {showProfileMenu && (

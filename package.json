@@ -45,6 +45,7 @@
     "@browserbasehq/stagehand": "^2.3.0",
     "@react-navigation/native": "^7.1.10",
     "@react-navigation/stack": "^7.1.1",
+    "react-native-markdown-display": "^7.0.2",
     "react-native-reanimated": "^3.18.0",
     "react-native-safe-area-context": "^5.4.1",
     "react-native-screens": "^4.11.1",

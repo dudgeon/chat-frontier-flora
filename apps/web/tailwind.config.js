@@ -6,6 +6,7 @@ module.exports = {
     "../shared/src/**/*.{js,jsx,ts,tsx}",
     "../../packages/ui/src/**/*.{js,jsx,ts,tsx}",
   ],
+  presets: [require('nativewind/preset')],
   theme: {
     extend: {
       colors: {
@@ -48,5 +49,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('nativewind/dist/tailwind')],
 }
