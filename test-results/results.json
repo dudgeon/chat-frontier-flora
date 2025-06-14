@@ -1,0 +1,587 @@
+{
+  "config": {
+    "configFile": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/playwright.config.ts",
+    "rootDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 5
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "test-results/results.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 5
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 5
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 5
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 5
+        },
+        "id": "Mobile Chrome",
+        "name": "Mobile Chrome",
+        "testDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 5
+        },
+        "id": "Mobile Safari",
+        "name": "Mobile Safari",
+        "testDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.52.0",
+    "workers": 5,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "stagehand-login-test.spec.ts",
+      "file": "stagehand-login-test.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "🔍 Stagehand Login Flow [Preview]",
+          "file": "stagehand-login-test.spec.ts",
+          "line": 79,
+          "column": 8,
+          "specs": [
+            {
+              "title": "🔍 User can log in and reach chat on Preview",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 33679,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Stagehand login test initialised – Preview\n"
+                        },
+                        {
+                          "text": "🎯 Phase 1: Core Login Flow\n"
+                        },
+                        {
+                          "text": "📝 Switching from signup to login form\n"
+                        },
+                        {
+                          "text": "📝 Logging in as: dudgeon+floratest@gmail.com\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction: {\"isVisible\":false,\"isEnabled\":false,\"buttonText\":\"Sign In\",\"isLoading\":false}\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button click\n"
+                        },
+                        {
+                          "text": "✅ Button clicked via testID\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for login process to complete...\n"
+                        },
+                        {
+                          "text": "✅ Login result: {\n  \"isOnChatPage\": true,\n  \"hasComingSoonText\": true,\n  \"currentUrl\": \"https://frontier-family-flora.netlify.app/chat\",\n  \"userIsAuthenticated\": true,\n  \"hasProfileMenu\": false,\n  \"hasWelcomeMessage\": true,\n  \"hasErrorMessages\": false\n}\n"
+                        },
+                        {
+                          "text": "🎉 Core login flow completed successfully!\n"
+                        },
+                        {
+                          "text": "📊 Core functionality verified: {\n  environment: 'Preview',\n  authenticated: true,\n  redirectedToChat: true,\n  hasExpectedContent: true\n}\n"
+                        },
+                        {
+                          "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
+                        },
+                        {
+                          "text": "🔍 Testing profile menu...\n"
+                        },
+                        {
+                          "text": "👤 Profile menu state: {\n  \"isMenuOpen\": true,\n  \"userEmail\": \"dudgeon+floratest@gmail.com\",\n  \"hasLogoutButton\": false\n}\n"
+                        },
+                        {
+                          "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
+                        },
+                        {
+                          "text": "📋 Final test state: {\n  \"currentUrl\": \"/\",\n  \"pageContent\": \"Frontier.Family\\n👤\\nChat Feature Coming Soon!\\nWe're working hard to bring you an amazing chat experience.\\nWelcome,\\ndudgeon+floratest@gmail.com\\n!\",\n  \"testCompleted\": true\n}\n"
+                        },
+                        {
+                          "text": "🎉 Stagehand login flow test completed successfully!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:25:05.358Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ff9076f86caf660f7bfb-9db67845b0d7b6f23c8b",
+              "file": "stagehand-login-test.spec.ts",
+              "line": 97,
+              "column": 9
+            },
+            {
+              "title": "🔍 User can log in and reach chat on Preview",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 31772,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Stagehand login test initialised – Preview\n"
+                        },
+                        {
+                          "text": "🎯 Phase 1: Core Login Flow\n"
+                        },
+                        {
+                          "text": "📝 Switching from signup to login form\n"
+                        },
+                        {
+                          "text": "📝 Logging in as: dudgeon+floratest@gmail.com\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction: {\"isVisible\":false,\"isEnabled\":false,\"buttonText\":\"Sign In\",\"isLoading\":false}\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button click\n"
+                        },
+                        {
+                          "text": "✅ Button clicked via testID\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for login process to complete...\n"
+                        },
+                        {
+                          "text": "✅ Login result: {\n  \"isOnChatPage\": true,\n  \"hasComingSoonText\": true,\n  \"currentUrl\": \"https://frontier-family-flora.netlify.app/chat\",\n  \"userIsAuthenticated\": true,\n  \"hasProfileMenu\": false,\n  \"hasWelcomeMessage\": true,\n  \"hasErrorMessages\": false\n}\n"
+                        },
+                        {
+                          "text": "🎉 Core login flow completed successfully!\n"
+                        },
+                        {
+                          "text": "📊 Core functionality verified: {\n  environment: 'Preview',\n  authenticated: true,\n  redirectedToChat: true,\n  hasExpectedContent: true\n}\n"
+                        },
+                        {
+                          "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
+                        },
+                        {
+                          "text": "🔍 Testing profile menu...\n"
+                        },
+                        {
+                          "text": "👤 Profile menu state: {\n  \"isMenuOpen\": true,\n  \"userEmail\": \"dudgeon+floratest@gmail.com\",\n  \"hasLogoutButton\": false\n}\n"
+                        },
+                        {
+                          "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
+                        },
+                        {
+                          "text": "📋 Final test state: {\n  \"currentUrl\": \"/\",\n  \"pageContent\": \"Frontier.Family\\n👤\\nChat Feature Coming Soon!\\nWe're working hard to bring you an amazing chat experience.\\nWelcome,\\ndudgeon+floratest@gmail.com\\n!\",\n  \"testCompleted\": true\n}\n"
+                        },
+                        {
+                          "text": "🎉 Stagehand login flow test completed successfully!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:25:05.348Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ff9076f86caf660f7bfb-d55ea268dd85c6f0ae11",
+              "file": "stagehand-login-test.spec.ts",
+              "line": 97,
+              "column": 9
+            },
+            {
+              "title": "🔍 User can log in and reach chat on Preview",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 36614,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Stagehand login test initialised – Preview\n"
+                        },
+                        {
+                          "text": "🎯 Phase 1: Core Login Flow\n"
+                        },
+                        {
+                          "text": "📝 Switching from signup to login form\n"
+                        },
+                        {
+                          "text": "📝 Logging in as: dudgeon+floratest@gmail.com\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction: {\"isVisible\":false,\"isEnabled\":false,\"buttonText\":\"Sign In\",\"isLoading\":false}\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button click\n"
+                        },
+                        {
+                          "text": "✅ Button clicked via testID\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for login process to complete...\n"
+                        },
+                        {
+                          "text": "✅ Login result: {\n  \"isOnChatPage\": true,\n  \"hasComingSoonText\": true,\n  \"currentUrl\": \"https://frontier-family-flora.netlify.app/chat\",\n  \"userIsAuthenticated\": true,\n  \"hasProfileMenu\": false,\n  \"hasWelcomeMessage\": true,\n  \"hasErrorMessages\": false\n}\n"
+                        },
+                        {
+                          "text": "🎉 Core login flow completed successfully!\n"
+                        },
+                        {
+                          "text": "📊 Core functionality verified: {\n  environment: 'Preview',\n  authenticated: true,\n  redirectedToChat: true,\n  hasExpectedContent: true\n}\n"
+                        },
+                        {
+                          "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
+                        },
+                        {
+                          "text": "🔍 Testing profile menu...\n"
+                        },
+                        {
+                          "text": "👤 Profile menu state: {\n  \"isMenuOpen\": true,\n  \"userEmail\": \"dudgeon+floratest@gmail.com\",\n  \"hasLogoutButton\": true\n}\n"
+                        },
+                        {
+                          "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
+                        },
+                        {
+                          "text": "📋 Final test state: {\n  \"currentUrl\": \"/\",\n  \"pageContent\": \"Frontier.Family\\n👤\\nChat Feature Coming Soon!\\nWe're working hard to bring you an amazing chat experience.\\nWelcome,\\ndudgeon+floratest@gmail.com\\n!\",\n  \"testCompleted\": true\n}\n"
+                        },
+                        {
+                          "text": "🎉 Stagehand login flow test completed successfully!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:25:05.337Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ff9076f86caf660f7bfb-988701dba7e5b67bcbf3",
+              "file": "stagehand-login-test.spec.ts",
+              "line": 97,
+              "column": 9
+            },
+            {
+              "title": "🔍 User can log in and reach chat on Preview",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 33921,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Stagehand login test initialised – Preview\n"
+                        },
+                        {
+                          "text": "🎯 Phase 1: Core Login Flow\n"
+                        },
+                        {
+                          "text": "📝 Switching from signup to login form\n"
+                        },
+                        {
+                          "text": "📝 Logging in as: dudgeon+floratest@gmail.com\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction: {\"isVisible\":false,\"isEnabled\":false,\"buttonText\":\"Sign In\",\"isLoading\":false}\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button click\n"
+                        },
+                        {
+                          "text": "✅ Button clicked via testID\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for login process to complete...\n"
+                        },
+                        {
+                          "text": "✅ Login result: {\n  \"isOnChatPage\": true,\n  \"hasComingSoonText\": true,\n  \"currentUrl\": \"https://frontier-family-flora.netlify.app/chat\",\n  \"userIsAuthenticated\": true,\n  \"hasProfileMenu\": false,\n  \"hasWelcomeMessage\": true,\n  \"hasErrorMessages\": false\n}\n"
+                        },
+                        {
+                          "text": "🎉 Core login flow completed successfully!\n"
+                        },
+                        {
+                          "text": "📊 Core functionality verified: {\n  environment: 'Preview',\n  authenticated: true,\n  redirectedToChat: true,\n  hasExpectedContent: true\n}\n"
+                        },
+                        {
+                          "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
+                        },
+                        {
+                          "text": "🔍 Testing profile menu...\n"
+                        },
+                        {
+                          "text": "👤 Profile menu state: {\n  \"isMenuOpen\": false,\n  \"userEmail\": \"dudgeon+floratest@gmail.com\",\n  \"hasLogoutButton\": false\n}\n"
+                        },
+                        {
+                          "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
+                        },
+                        {
+                          "text": "📋 Final test state: {\n  \"currentUrl\": \"/\",\n  \"pageContent\": \"Frontier.Family\\n👤\\nChat Feature Coming Soon!\\nWe're working hard to bring you an amazing chat experience.\\nWelcome,\\ndudgeon+floratest@gmail.com\\n!\",\n  \"testCompleted\": true\n}\n"
+                        },
+                        {
+                          "text": "🎉 Stagehand login flow test completed successfully!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:25:05.349Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ff9076f86caf660f7bfb-99bb30cb5c612af88c1b",
+              "file": "stagehand-login-test.spec.ts",
+              "line": 97,
+              "column": 9
+            },
+            {
+              "title": "🔍 User can log in and reach chat on Preview",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 33439,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Stagehand login test initialised – Preview\n"
+                        },
+                        {
+                          "text": "🎯 Phase 1: Core Login Flow\n"
+                        },
+                        {
+                          "text": "📝 Switching from signup to login form\n"
+                        },
+                        {
+                          "text": "📝 Logging in as: dudgeon+floratest@gmail.com\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction: {\"isVisible\":false,\"isEnabled\":false,\"buttonText\":\"Sign In\",\"isLoading\":false}\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button click\n"
+                        },
+                        {
+                          "text": "✅ Button clicked via testID\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for login process to complete...\n"
+                        },
+                        {
+                          "text": "✅ Login result: {\n  \"isOnChatPage\": true,\n  \"hasComingSoonText\": true,\n  \"currentUrl\": \"https://frontier-family-flora.netlify.app/chat\",\n  \"userIsAuthenticated\": true,\n  \"hasProfileMenu\": false,\n  \"hasWelcomeMessage\": true,\n  \"hasErrorMessages\": false\n}\n"
+                        },
+                        {
+                          "text": "🎉 Core login flow completed successfully!\n"
+                        },
+                        {
+                          "text": "📊 Core functionality verified: {\n  environment: 'Preview',\n  authenticated: true,\n  redirectedToChat: true,\n  hasExpectedContent: true\n}\n"
+                        },
+                        {
+                          "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
+                        },
+                        {
+                          "text": "🔍 Testing profile menu...\n"
+                        },
+                        {
+                          "text": "👤 Profile menu state: {\n  \"isMenuOpen\": false,\n  \"userEmail\": \"dudgeon+floratest@gmail.com\",\n  \"hasLogoutButton\": false\n}\n"
+                        },
+                        {
+                          "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
+                        },
+                        {
+                          "text": "📋 Final test state: {\n  \"currentUrl\": \"/\",\n  \"pageContent\": \"Frontier.Family\\n👤\\nChat Feature Coming Soon!\\nWe're working hard to bring you an amazing chat experience.\\nWelcome,\\ndudgeon+floratest@gmail.com\\n!\",\n  \"testCompleted\": true\n}\n"
+                        },
+                        {
+                          "text": "🎉 Stagehand login flow test completed successfully!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-13T02:25:05.359Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ff9076f86caf660f7bfb-ab583d28b74b51b9eab5",
+              "file": "stagehand-login-test.spec.ts",
+              "line": 97,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-06-13T02:25:04.582Z",
+    "duration": 38313.304000000004,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

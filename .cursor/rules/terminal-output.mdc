@@ -1,0 +1,6 @@
+---
+description: Checking the terminal output
+globs:
+alwaysApply: false
+---
+Cursor can see the terminal ouput. Cursor should always check the terminal output before asking the user to do so.

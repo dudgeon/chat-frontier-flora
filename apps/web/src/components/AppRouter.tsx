@@ -61,8 +61,6 @@ const NavigationListener: React.FC = () => {
  * - Authenticated users: / redirects to /chat, /chat shows chat page
  */
 export const AppRouter: React.FC = () => {
-  console.log('🔄 AppRouter rendering');
-
   return (
     <BrowserRouter>
       {/* Runs navigation side-effects inside Router */}
