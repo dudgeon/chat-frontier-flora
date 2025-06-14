@@ -211,34 +211,29 @@ export const SignUpForm: React.FC = () => {
   };
 
     return (
-    <ScrollView
-      contentContainerStyle={{
-        flexGrow: 1,
+    <View
+      style={{
+        flex: 1,
+        width: '100%',
+        alignItems: 'center',
         justifyContent: 'center',
-        minHeight: '100%',
         backgroundColor: '#f9fafb',
+        paddingHorizontal: 16,
       }}
       testID="signup-form"
     >
       <View style={{
         width: '100%',
-        maxWidth: 448,
-        backgroundColor: '#ffffff',
-        borderRadius: 12,
-        padding: 24,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.1,
-        shadowRadius: 12,
-        elevation: 4,
+        maxWidth: 400,
+        paddingVertical: 24,
       }}>
-                  <Text style={{
-            fontSize: 32,
-            fontWeight: 'bold',
-            marginBottom: 32,
-            textAlign: 'center',
-            color: '#111827',
-          }}>
+        <Text style={{
+          fontSize: 32,
+          fontWeight: 'bold',
+          marginBottom: 32,
+          textAlign: 'center',
+          color: '#111827',
+        }}>
           Create Account
         </Text>
 
@@ -494,9 +489,8 @@ export const SignUpForm: React.FC = () => {
           />
         </View>
 
-
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
