@@ -296,13 +296,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       await loadUserProfile(authUser.id, 0, authUser);
       console.log('🎉 Client-side signup flow completed successfully');
 
-      // Navigate to chat page after successful signup
-      console.log('🔄 Navigating to /chat after successful signup');
-      // Use a small delay to ensure state updates are processed
-      setTimeout(() => {
-        window.location.href = '/chat';
-      }, 100);
-
     } catch (err) {
       console.error('❌ Error during sign up:', err);
       throw err;

@@ -21,8 +21,8 @@ export const useAuthNavigation = () => {
     console.log('🔍 useAuthNavigation - user:', user ? 'authenticated' : 'not authenticated');
     console.log('🔍 useAuthNavigation - current path:', location.pathname);
 
-    // If user is authenticated and on root, redirect based on role
-    if (user && location.pathname === '/') {
+    // If user is authenticated and on a public auth page (root, login, signup), redirect to chat
+    if (user && ['/', '/login', '/signup'].includes(location.pathname)) {
       const role = user.profile?.user_role;
       let targetPath = '/chat';
 
@@ -38,7 +38,7 @@ export const useAuthNavigation = () => {
           targetPath = '/chat';
       }
 
-      console.log(`✅ Authenticated user (${role ?? 'unknown'}) on root, redirecting to ${targetPath}`);
+      console.log(`✅ Authenticated user (${role ?? 'unknown'}) on auth page, redirecting to ${targetPath}`);
       navigate(targetPath, { replace: true });
     }
 

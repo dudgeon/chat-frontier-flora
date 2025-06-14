@@ -273,48 +273,42 @@ test.describe(`${ENV.icon} Stagehand Authentication Flow [${ENV.name}]`, () => {
         )
       ]);
 
-      // Wait for signup completion with timeout
+      // Wait a moment for any final state updates after signup
       console.log(`⏳ Waiting for signup process to complete on ${ENV.name}...`);
-      const signupWaitPromise = page.act('wait for the page to finish loading and any loading indicators to disappear');
-      await Promise.race([
-        signupWaitPromise,
-        new Promise((_, reject) =>
-          setTimeout(() => reject(new Error('Signup completion timeout after 60s')), 60000)
-        )
-      ]);
+      await new Promise(resolve => setTimeout(resolve, 2000)); // 2s wait for state stabilization
 
-      // Verify successful signup - CORE SUCCESS CRITERIA
+      // 🛡️ CRITICAL VERIFICATION: Extract final page state after signup
+      const signupSchema = z.object({
+        isSuccessful: z.boolean().describe('true if the user is on the chat page with the welcome text'),
+        currentUrl: z.string().describe('the current page URL'),
+        userIsAuthenticated: z.boolean().describe('whether the user is in an authenticated state'),
+        hasProfileMenu: z.boolean().describe('whether the profile menu is visible'),
+        isStillOnSignup: z.boolean().describe('whether the signup form is still visible'),
+        hasErrorMessages: z.boolean().describe('whether any error messages are displayed'),
+      });
+      const signupInstruction =
+        'After signup, determine if the user has successfully landed on the chat page. The chat page is identified by the welcome text "Hello! I\'m your AI assistant. How can I help you today?". Also verify the user is authenticated and the URL is now /chat.';
+
       const signupResult = await page.extract({
-        instruction: `check if the user was successfully signed up on ${ENV.name} environment. The chat page root element has data-testid=\"chat-page\" and contains the heading \"Chat Feature Coming Soon!\"`,
-        schema: z.object({
-          isOnChatPage: z.boolean().describe('whether the user is now on a page with chat-related content or "Chat Feature Coming Soon" text'),
-          hasComingSoonText: z.boolean().describe('whether the page shows "Chat Feature Coming Soon" or similar placeholder text'),
-          currentUrl: z.string().describe('the current page URL'),
-          userIsAuthenticated: z.boolean().describe('whether the user appears to be logged in'),
-          hasProfileMenu: z.boolean().describe('whether a profile menu button or hamburger menu (☰) is visible in the top right'),
-          isStillOnSignup: z.boolean().describe('whether still on the signup page'),
-          hasErrorMessages: z.boolean().describe('whether there are any error messages visible'),
-        }),
+        instruction: signupInstruction,
+        schema: signupSchema,
       });
 
       console.log(`✅ ${ENV.name} signup result:`, signupResult);
 
       // CORE FUNCTIONALITY MUST PASS - Mark test as successful after this point
       expect(signupResult.isStillOnSignup).toBe(false);
-      expect(signupResult.isOnChatPage || signupResult.hasComingSoonText).toBe(true);
+      expect(signupResult.isSuccessful).toBe(true);
       expect(signupResult.userIsAuthenticated).toBe(true);
       expect(signupResult.hasErrorMessages).toBe(false);
 
       console.log(`🎉 Core authentication flow completed successfully on ${ENV.name}!`);
-
-      // Capture successful state before secondary features
-      const coreState = {
+      console.log('📊 Core functionality verified:', {
         environment: ENV.name,
         authenticated: signupResult.userIsAuthenticated,
         redirectedFromSignup: !signupResult.isStillOnSignup,
-        hasExpectedContent: signupResult.isOnChatPage || signupResult.hasComingSoonText
-      };
-      console.log('📊 Core functionality verified:', coreState);
+        hasExpectedContent: signupResult.isSuccessful,
+      });
 
     } catch (error) {
       console.error(`❌ Core functionality failed on ${ENV.name}:`, error instanceof Error ? error.message : String(error));
