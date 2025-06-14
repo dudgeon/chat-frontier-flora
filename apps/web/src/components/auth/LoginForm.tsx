@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { useNavigate } from 'react-router-dom';
 import { InputField } from '../ui/InputField';
 import { FormButton } from '../ui/FormButton';
 import { ErrorAlert } from '../ui/ErrorAlert';
@@ -85,6 +86,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   onSuccess,
 }) => {
   const { signIn } = useAuth();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
@@ -373,6 +375,33 @@ export const LoginForm: React.FC<LoginFormProps> = ({
           />
         </View>
 
+        {/* Sign Up Link */}
+        <View style={{
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginTop: 16,
+        }}>
+          <Text style={{
+            fontSize: 14,
+            color: '#666',
+            marginRight: 8,
+          }}>
+            Don't have an account?
+          </Text>
+          <TouchableOpacity
+            onPress={() => navigate('/signup')}
+            testID="switch-to-signup"
+          >
+            <Text style={{
+              fontSize: 14,
+              color: '#0056b3',
+              fontWeight: '600',
+            }}>
+              Sign Up
+            </Text>
+          </TouchableOpacity>
+        </View>
 
       </View>
     </View>

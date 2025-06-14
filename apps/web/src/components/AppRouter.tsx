@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { AuthFlow } from './auth/AuthFlow';
+import { LoginForm } from './auth/LoginForm';
+import { SignUpForm } from './auth/SignUpForm';
 import { ChatPage } from './ChatPage';
 import { DebugPage } from '../pages/DebugPage';
 import { useAuthNavigation } from '../hooks/useAuthNavigation';
@@ -70,6 +72,12 @@ export const AppRouter: React.FC = () => {
       <Routes>
         {/* Homepage - Shows login/signup */}
         <Route path="/" element={<AuthFlow />} />
+
+        {/* Dedicated Login Route - For testing and direct access */}
+        <Route path="/login" element={<LoginForm />} />
+
+        {/* Dedicated Signup Route - For testing and direct access */}
+        <Route path="/signup" element={<SignUpForm />} />
 
         {/* Protected Chat Route - Requires authentication */}
         <Route

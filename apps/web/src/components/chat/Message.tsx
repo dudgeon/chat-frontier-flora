@@ -18,7 +18,7 @@ export const Message: React.FC<MessageType> = ({ author, text }) => {
     console.log('Rendering user message with NativeWind classes');
     return (
       <View className="my-2 items-end px-4">
-        <View className="bg-blue-600 rounded-lg rounded-tr-sm px-4 py-3 max-w-[80%] min-w-[60px]">
+        <View className="bg-green-500 rounded-lg rounded-tr-sm px-4 py-3 max-w-[80%] min-w-[60px]">
           <Text className="text-white text-base leading-6">
             {text}
           </Text>

@@ -49,5 +49,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('nativewind/dist/tailwind')],
+  plugins: [],
 }

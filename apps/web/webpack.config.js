@@ -65,14 +65,14 @@ module.exports = async function (env, argv) {
     })
   );
 
-  // Ensure babel-loader is configured for JSX transform
+  // Ensure babel-loader is configured for JSX transform with NativeWind
   config.module.rules.forEach(rule => {
     if (rule.test && rule.test.toString().includes('.tsx')) {
       if (rule.use && rule.use.loader && rule.use.loader.includes('babel-loader')) {
         rule.use.options = {
           ...rule.use.options,
           presets: [
-            ['babel-preset-expo', { jsxRuntime: 'automatic', jsxImportSource: 'nativewind' }],
+            ['babel-preset-expo', { jsxImportSource: 'nativewind' }],
             'nativewind/babel'
           ]
         };

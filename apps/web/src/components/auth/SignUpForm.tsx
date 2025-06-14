@@ -26,6 +26,7 @@
 
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView, Pressable } from 'react-native';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { useFormValidation, FieldConfig } from '../../hooks/useFormValidation';
 import { useSubmitButton, getSubmitButtonStyles, getSubmitButtonTextStyles } from '../../hooks/useSubmitButton';
@@ -69,6 +70,7 @@ interface SignUpFormData {
 export const SignUpForm: React.FC = () => {
   // ⚠️ CRITICAL: Auth hook provides signUp function
   const { signUp } = useAuth();
+  const navigate = useNavigate();
 
   // ⚠️ CRITICAL STATE: Controls form behavior and UI
   const [loading, setLoading] = useState(false);
@@ -494,6 +496,33 @@ export const SignUpForm: React.FC = () => {
           />
         </View>
 
+        {/* Sign In Link */}
+        <View style={{
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginTop: 16,
+        }}>
+          <Text style={{
+            fontSize: 14,
+            color: '#666',
+            marginRight: 8,
+          }}>
+            Already have an account?
+          </Text>
+          <TouchableOpacity
+            onPress={() => navigate('/login')}
+            testID="switch-to-login"
+          >
+            <Text style={{
+              fontSize: 14,
+              color: '#0056b3',
+              fontWeight: '600',
+            }}>
+              Sign In
+            </Text>
+          </TouchableOpacity>
+        </View>
 
       </View>
     </ScrollView>

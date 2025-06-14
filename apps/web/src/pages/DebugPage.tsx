@@ -36,6 +36,19 @@ export const DebugPage: React.FC = () => {
         <Text>Error: {error?.message || 'none'}</Text>
       </View>
 
+      {/* NativeWind Test Section */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>NativeWind Test:</Text>
+        <View className="my-2 items-end px-4">
+          <View className="bg-green-500 rounded-lg rounded-tr-sm px-4 py-3 max-w-[80%] min-w-[60px]">
+            <Text className="text-white text-base leading-6">
+              Test message bubble - should be green with white text
+            </Text>
+          </View>
+        </View>
+        <Text>If the above message shows with green background and white text, NativeWind is working!</Text>
+      </View>
+
       <View style={styles.section}>
         <TouchableOpacity style={styles.button} onPress={handleLogout}>
           <Text style={styles.buttonText}>Sign Out</Text>
