@@ -1,0 +1,227 @@
+<testsuites id="" name="" tests="5" failures="0" skipped="0" errors="0" time="38.313304">
+<testsuite name="stagehand-login-test.spec.ts" timestamp="2025-06-13T02:25:04.776Z" hostname="chromium" tests="1" failures="0" skipped="0" time="33.679" errors="0">
+<testcase name="🔍 Stagehand Login Flow [Preview] › 🔍 User can log in and reach chat on Preview" classname="stagehand-login-test.spec.ts" time="33.679">
+<system-out>
+<![CDATA[🎭 Stagehand login test initialised – Preview
+🎯 Phase 1: Core Login Flow
+📝 Switching from signup to login form
+📝 Logging in as: dudgeon+floratest@gmail.com
+🔍 Button state before interaction: {"isVisible":false,"isEnabled":false,"buttonText":"Sign In","isLoading":false}
+🎯 Attempting button click
+✅ Button clicked via testID
+⏳ Waiting for login process to complete...
+✅ Login result: {
+  "isOnChatPage": true,
+  "hasComingSoonText": true,
+  "currentUrl": "https://frontier-family-flora.netlify.app/chat",
+  "userIsAuthenticated": true,
+  "hasProfileMenu": false,
+  "hasWelcomeMessage": true,
+  "hasErrorMessages": false
+}
+🎉 Core login flow completed successfully!
+📊 Core functionality verified: {
+  environment: 'Preview',
+  authenticated: true,
+  redirectedToChat: true,
+  hasExpectedContent: true
+}
+🔧 Phase 2: Secondary Features Testing (Non-Critical)
+🔍 Testing profile menu...
+👤 Profile menu state: {
+  "isMenuOpen": true,
+  "userEmail": "dudgeon+floratest@gmail.com",
+  "hasLogoutButton": false
+}
+🧹 Phase 3: Cleanup Phase (Non-Critical)
+📋 Final test state: {
+  "currentUrl": "/",
+  "pageContent": "Frontier.Family\n👤\nChat Feature Coming Soon!\nWe're working hard to bring you an amazing chat experience.\nWelcome,\ndudgeon+floratest@gmail.com\n!",
+  "testCompleted": true
+}
+🎉 Stagehand login flow test completed successfully!
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="stagehand-login-test.spec.ts" timestamp="2025-06-13T02:25:04.776Z" hostname="firefox" tests="1" failures="0" skipped="0" time="31.772" errors="0">
+<testcase name="🔍 Stagehand Login Flow [Preview] › 🔍 User can log in and reach chat on Preview" classname="stagehand-login-test.spec.ts" time="31.772">
+<system-out>
+<![CDATA[🎭 Stagehand login test initialised – Preview
+🎯 Phase 1: Core Login Flow
+📝 Switching from signup to login form
+📝 Logging in as: dudgeon+floratest@gmail.com
+🔍 Button state before interaction: {"isVisible":false,"isEnabled":false,"buttonText":"Sign In","isLoading":false}
+🎯 Attempting button click
+✅ Button clicked via testID
+⏳ Waiting for login process to complete...
+✅ Login result: {
+  "isOnChatPage": true,
+  "hasComingSoonText": true,
+  "currentUrl": "https://frontier-family-flora.netlify.app/chat",
+  "userIsAuthenticated": true,
+  "hasProfileMenu": false,
+  "hasWelcomeMessage": true,
+  "hasErrorMessages": false
+}
+🎉 Core login flow completed successfully!
+📊 Core functionality verified: {
+  environment: 'Preview',
+  authenticated: true,
+  redirectedToChat: true,
+  hasExpectedContent: true
+}
+🔧 Phase 2: Secondary Features Testing (Non-Critical)
+🔍 Testing profile menu...
+👤 Profile menu state: {
+  "isMenuOpen": true,
+  "userEmail": "dudgeon+floratest@gmail.com",
+  "hasLogoutButton": false
+}
+🧹 Phase 3: Cleanup Phase (Non-Critical)
+📋 Final test state: {
+  "currentUrl": "/",
+  "pageContent": "Frontier.Family\n👤\nChat Feature Coming Soon!\nWe're working hard to bring you an amazing chat experience.\nWelcome,\ndudgeon+floratest@gmail.com\n!",
+  "testCompleted": true
+}
+🎉 Stagehand login flow test completed successfully!
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="stagehand-login-test.spec.ts" timestamp="2025-06-13T02:25:04.776Z" hostname="webkit" tests="1" failures="0" skipped="0" time="36.614" errors="0">
+<testcase name="🔍 Stagehand Login Flow [Preview] › 🔍 User can log in and reach chat on Preview" classname="stagehand-login-test.spec.ts" time="36.614">
+<system-out>
+<![CDATA[🎭 Stagehand login test initialised – Preview
+🎯 Phase 1: Core Login Flow
+📝 Switching from signup to login form
+📝 Logging in as: dudgeon+floratest@gmail.com
+🔍 Button state before interaction: {"isVisible":false,"isEnabled":false,"buttonText":"Sign In","isLoading":false}
+🎯 Attempting button click
+✅ Button clicked via testID
+⏳ Waiting for login process to complete...
+✅ Login result: {
+  "isOnChatPage": true,
+  "hasComingSoonText": true,
+  "currentUrl": "https://frontier-family-flora.netlify.app/chat",
+  "userIsAuthenticated": true,
+  "hasProfileMenu": false,
+  "hasWelcomeMessage": true,
+  "hasErrorMessages": false
+}
+🎉 Core login flow completed successfully!
+📊 Core functionality verified: {
+  environment: 'Preview',
+  authenticated: true,
+  redirectedToChat: true,
+  hasExpectedContent: true
+}
+🔧 Phase 2: Secondary Features Testing (Non-Critical)
+🔍 Testing profile menu...
+👤 Profile menu state: {
+  "isMenuOpen": true,
+  "userEmail": "dudgeon+floratest@gmail.com",
+  "hasLogoutButton": true
+}
+🧹 Phase 3: Cleanup Phase (Non-Critical)
+📋 Final test state: {
+  "currentUrl": "/",
+  "pageContent": "Frontier.Family\n👤\nChat Feature Coming Soon!\nWe're working hard to bring you an amazing chat experience.\nWelcome,\ndudgeon+floratest@gmail.com\n!",
+  "testCompleted": true
+}
+🎉 Stagehand login flow test completed successfully!
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="stagehand-login-test.spec.ts" timestamp="2025-06-13T02:25:04.776Z" hostname="Mobile Chrome" tests="1" failures="0" skipped="0" time="33.921" errors="0">
+<testcase name="🔍 Stagehand Login Flow [Preview] › 🔍 User can log in and reach chat on Preview" classname="stagehand-login-test.spec.ts" time="33.921">
+<system-out>
+<![CDATA[🎭 Stagehand login test initialised – Preview
+🎯 Phase 1: Core Login Flow
+📝 Switching from signup to login form
+📝 Logging in as: dudgeon+floratest@gmail.com
+🔍 Button state before interaction: {"isVisible":false,"isEnabled":false,"buttonText":"Sign In","isLoading":false}
+🎯 Attempting button click
+✅ Button clicked via testID
+⏳ Waiting for login process to complete...
+✅ Login result: {
+  "isOnChatPage": true,
+  "hasComingSoonText": true,
+  "currentUrl": "https://frontier-family-flora.netlify.app/chat",
+  "userIsAuthenticated": true,
+  "hasProfileMenu": false,
+  "hasWelcomeMessage": true,
+  "hasErrorMessages": false
+}
+🎉 Core login flow completed successfully!
+📊 Core functionality verified: {
+  environment: 'Preview',
+  authenticated: true,
+  redirectedToChat: true,
+  hasExpectedContent: true
+}
+🔧 Phase 2: Secondary Features Testing (Non-Critical)
+🔍 Testing profile menu...
+👤 Profile menu state: {
+  "isMenuOpen": false,
+  "userEmail": "dudgeon+floratest@gmail.com",
+  "hasLogoutButton": false
+}
+🧹 Phase 3: Cleanup Phase (Non-Critical)
+📋 Final test state: {
+  "currentUrl": "/",
+  "pageContent": "Frontier.Family\n👤\nChat Feature Coming Soon!\nWe're working hard to bring you an amazing chat experience.\nWelcome,\ndudgeon+floratest@gmail.com\n!",
+  "testCompleted": true
+}
+🎉 Stagehand login flow test completed successfully!
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="stagehand-login-test.spec.ts" timestamp="2025-06-13T02:25:04.776Z" hostname="Mobile Safari" tests="1" failures="0" skipped="0" time="33.439" errors="0">
+<testcase name="🔍 Stagehand Login Flow [Preview] › 🔍 User can log in and reach chat on Preview" classname="stagehand-login-test.spec.ts" time="33.439">
+<system-out>
+<![CDATA[🎭 Stagehand login test initialised – Preview
+🎯 Phase 1: Core Login Flow
+📝 Switching from signup to login form
+📝 Logging in as: dudgeon+floratest@gmail.com
+🔍 Button state before interaction: {"isVisible":false,"isEnabled":false,"buttonText":"Sign In","isLoading":false}
+🎯 Attempting button click
+✅ Button clicked via testID
+⏳ Waiting for login process to complete...
+✅ Login result: {
+  "isOnChatPage": true,
+  "hasComingSoonText": true,
+  "currentUrl": "https://frontier-family-flora.netlify.app/chat",
+  "userIsAuthenticated": true,
+  "hasProfileMenu": false,
+  "hasWelcomeMessage": true,
+  "hasErrorMessages": false
+}
+🎉 Core login flow completed successfully!
+📊 Core functionality verified: {
+  environment: 'Preview',
+  authenticated: true,
+  redirectedToChat: true,
+  hasExpectedContent: true
+}
+🔧 Phase 2: Secondary Features Testing (Non-Critical)
+🔍 Testing profile menu...
+👤 Profile menu state: {
+  "isMenuOpen": false,
+  "userEmail": "dudgeon+floratest@gmail.com",
+  "hasLogoutButton": false
+}
+🧹 Phase 3: Cleanup Phase (Non-Critical)
+📋 Final test state: {
+  "currentUrl": "/",
+  "pageContent": "Frontier.Family\n👤\nChat Feature Coming Soon!\nWe're working hard to bring you an amazing chat experience.\nWelcome,\ndudgeon+floratest@gmail.com\n!",
+  "testCompleted": true
+}
+🎉 Stagehand login flow test completed successfully!
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>
