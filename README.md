@@ -107,19 +107,14 @@ npm run status:check
 npm run verify:test-env
 ```
 
-3. Start the web application safely:
+3. Start the web application:
 ```bash
-npm run dev:safe
-# OR manually: cd apps/web && npm run web
+npm run start:web
 ```
 
 4. Start the mobile application:
 ```bash
-# For iOS
-npm run dev:mobile -- --ios
-
-# For Android
-npm run dev:mobile -- --android
+npm run start:ios
 ```
 
 5. Run tests safely:

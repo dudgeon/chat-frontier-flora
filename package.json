@@ -5,6 +5,9 @@
     "apps/*",
     "packages/*"
   ],
+  "engines": {
+    "node": "18.18.x"
+  },
   "scripts": {
     "build": "mkdir -p apps/web/web-build && echo 'Static build ready - HTML file already exists'",
     "build:expo": "cd apps/web && npx expo export:web",
@@ -27,7 +30,11 @@
     "test:production": "unset DEPLOY_PREVIEW_URL && playwright test e2e/stagehand-production-auth.spec.ts",
     "dev:safe": "./scripts/verify-test-status.sh && cd apps/web && npm run web",
     "status:check": "echo 'Directory:' && pwd && echo 'Expo processes:' && ps aux | grep expo | grep -v grep || echo 'None' && echo 'Environment:' && echo \"DEPLOY_PREVIEW_URL: $DEPLOY_PREVIEW_URL\" && echo \"OPENAI_API_KEY: $([ -n \"$OPENAI_API_KEY\" ] && echo 'Set' || echo 'Not set')\"",
-    "test:e2e:login": "playwright test e2e/stagehand-login-test.spec.ts"
+    "test:e2e:login": "playwright test e2e/stagehand-login-test.spec.ts",
+    "start": "expo start",
+    "start:web": "expo start --web",
+    "start:ios": "expo run:ios",
+    "clean": "rm -rf node_modules && npm i"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
@@ -39,30 +46,40 @@
     "eslint": "^8.0.0",
     "prettier": "^3.0.0",
     "stream-browserify": "^3.0.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "prettier-plugin-tailwindcss": "0.5.11"
   },
   "dependencies": {
     "@browserbasehq/stagehand": "^2.3.0",
     "@react-navigation/native": "^7.1.10",
     "@react-navigation/stack": "^7.1.1",
+    "expo": "52.0.x",
+    "expo-router": "4.0.20",
+    "nativewind": "4.1.23",
+    "postcss": "8.4.38",
     "puppeteer": "^24.10.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-native-markdown-display": "^7.0.2",
-    "react-native-reanimated": "^3.18.0",
-    "react-native-safe-area-context": "^5.4.1",
+    "react-native-reanimated": "~3.17.4",
+    "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "^4.11.1",
-    "react-native-web": "^0.19.13",
+    "react-native-web": "~0.19.13",
+    "tailwindcss": "3.4.17",
     "zod": "^3.25.56"
   },
   "overrides": {
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-test-renderer": "18.2.0",
-    "@types/react": "~18.2.45"
+    "@types/react": "18.2.38",
+    "@types/react-dom": "18.2.14"
   },
   "resolutions": {
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-test-renderer": "18.2.0",
-    "@types/react": "~18.2.45"
+    "@types/react": "18.2.38",
+    "@types/react-dom": "18.2.14"
   }
 }
