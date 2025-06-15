@@ -3,11 +3,11 @@ module.exports = function (api) {
 
   return {
     presets: [
-      ["babel-preset-expo", { jsxImportSource: "nativewind" }],
-      "nativewind/babel"
+      "babel-preset-expo"
     ],
     plugins: [
-      "react-native-reanimated/plugin"
+      require("nativewind/babel"),      // ① run the transform using require
+      "react-native-reanimated/plugin"  // ② must remain last
     ],
   };
 };

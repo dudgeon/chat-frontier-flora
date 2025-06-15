@@ -86,26 +86,12 @@ export const MessageComposer: React.FC<MessageComposerProps> = ({ onSendMessage 
       <TouchableOpacity
         onPress={handleSend}
         disabled={!text.trim()}
-        style={{
-          width: 44,
-          height: 44,
-          borderRadius: 22,
-          backgroundColor: text.trim() ? '#3b82f6' : '#9ca3af',
-          alignItems: 'center',
-          justifyContent: 'center',
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.1,
-          shadowRadius: 4,
-          elevation: 2,
-        }}
-        // Ref: 3.2.2 MessageComposer.SendButton
+        className={`w-11 h-11 rounded-full flex items-center justify-center shadow-sm ${
+          text.trim() ? 'bg-blue-500' : 'bg-gray-400'
+        }`}
+        // Ref: 3.2.2 MessageComposer.SendButton - CONVERTED TO NATIVEWIND
       >
-        <Text style={{
-          color: '#ffffff',
-          fontSize: 18,
-          fontWeight: '600',
-        }}>
+        <Text className="text-white text-lg font-semibold">
           ➤
         </Text>
       </TouchableOpacity>

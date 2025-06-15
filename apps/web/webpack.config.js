@@ -38,6 +38,41 @@ module.exports = async function (env, argv) {
     return true;
   });
 
+  // CRITICAL FIX: Remove conflicting Expo CSS processing rules
+  // This prevents conflicts between Expo CSS rules and our NativeWind rule
+  // We'll add our own CSS rule after this cleanup
+  const originalRulesCount = config.module.rules.length;
+  
+  config.module.rules = config.module.rules.filter(rule => {
+    // Remove direct CSS rules (but keep others)
+    if (rule.test && rule.test.toString().includes('css')) {
+      console.log('Removing Expo CSS rule:', rule.test.toString());
+      return false;
+    }
+
+    // Remove oneOf rules that contain CSS processing
+    if (rule.oneOf && Array.isArray(rule.oneOf)) {
+      const originalOneOfLength = rule.oneOf.length;
+      rule.oneOf = rule.oneOf.filter(oneOfRule => {
+        if (oneOfRule.test && oneOfRule.test.toString().includes('css')) {
+          console.log('Removing oneOf CSS rule:', oneOfRule.test.toString());
+          return false;
+        }
+        return true;
+      });
+
+      // If oneOf is now empty, remove the entire rule
+      if (rule.oneOf.length === 0) {
+        console.log('Removing empty oneOf rule');
+        return false;
+      }
+    }
+
+    return true;
+  });
+  
+  console.log(`Removed ${originalRulesCount - config.module.rules.length} conflicting CSS rules`);
+
   // Add crypto polyfills
   config.resolve.fallback = {
     ...config.resolve.fallback,
@@ -65,53 +100,74 @@ module.exports = async function (env, argv) {
     })
   );
 
-  // Ensure babel-loader is configured for JSX transform with NativeWind
-  config.module.rules.forEach(rule => {
-    if (rule.test && rule.test.toString().includes('.tsx')) {
-      if (rule.use && rule.use.loader && rule.use.loader.includes('babel-loader')) {
-        rule.use.options = {
-          ...rule.use.options,
-          presets: [
-            ['babel-preset-expo', { jsxImportSource: 'nativewind' }],
-            'nativewind/babel'
-          ]
-        };
-      }
-    }
+  // Add NativeWind babel-loader rule for proper transpilation
+  // Use babel.config.js instead of inline configuration to avoid conflicts
+  config.module.rules.unshift({
+    test: /\.[jt]sx?$/,
+    include: [
+      path.resolve(__dirname, 'src'),
+      // Include nativewind and other React Native packages that need transpilation
+      /node_modules\/(nativewind|react-native|react-native-reanimated|react-native-safe-area-context)/,
+    ],
+    use: {
+      loader: 'babel-loader',
+      options: {
+        cacheDirectory: true,
+        // Use the babel.config.js file instead of inline config to avoid conflicts
+        configFile: path.resolve(__dirname, 'babel.config.js')
+      },
+    },
   });
 
-  // Modify existing CSS rules to include PostCSS processing for Tailwind
-  config.module.rules.forEach(rule => {
-    if (rule.test && rule.test.toString().includes('.css')) {
-      // Find CSS rules and add PostCSS loader
-      if (rule.use && Array.isArray(rule.use)) {
-        // Check if postcss-loader is already present
-        const hasPostCSS = rule.use.some(use =>
-          (typeof use === 'string' && use.includes('postcss-loader')) ||
-          (use.loader && use.loader.includes('postcss-loader'))
-        );
-
-        if (!hasPostCSS) {
-          // Add postcss-loader after css-loader
-          const cssLoaderIndex = rule.use.findIndex(use =>
-            (typeof use === 'string' && use.includes('css-loader')) ||
-            (use.loader && use.loader.includes('css-loader'))
-          );
-
-          if (cssLoaderIndex !== -1) {
-            rule.use.splice(cssLoaderIndex + 1, 0, {
-              loader: 'postcss-loader',
-              options: {
-                postcssOptions: {
-                  config: path.resolve(__dirname, 'postcss.config.js'),
-                },
-              },
-            });
-          }
-        }
-      }
-    }
+  // Add ONLY our clean NativeWind CSS processing rule with debugging
+  config.module.rules.push({
+    test: /\.css$/,
+    use: [
+      'style-loader',
+      {
+        loader: 'css-loader',
+        options: {
+          importLoaders: 1,
+          sourceMap: false
+        },
+      },
+      {
+        loader: 'postcss-loader',
+        options: {
+          postcssOptions: {
+            config: false, // Don't use postcss.config.js
+            plugins: [
+              require('tailwindcss')('./tailwind.config.js'),
+              require('autoprefixer'),
+              {
+                postcssPlugin: 'debug-plugin',
+                Once(root, { result }) {
+                  console.log('🎨 PostCSS processing CSS file:', result.opts.from);
+                  console.log('🎨 CSS rules count:', root.nodes.length);
+                  
+                  // Look for our specific classes
+                  let hasNativeWindClasses = false;
+                  root.walkRules(rule => {
+                    if (rule.selector.includes('bg-blue-500') || rule.selector.includes('w-10') || rule.selector.includes('h-10')) {
+                      hasNativeWindClasses = true;
+                      console.log('✅ Found NativeWind class:', rule.selector);
+                    }
+                  });
+                  
+                  if (!hasNativeWindClasses) {
+                    console.log('❌ No NativeWind classes generated by Tailwind');
+                  }
+                }
+              }
+            ],
+          },
+          sourceMap: false
+        },
+      },
+    ],
   });
+
+  console.log('Final webpack rules count:', config.module.rules.length);
 
   return config;
 };

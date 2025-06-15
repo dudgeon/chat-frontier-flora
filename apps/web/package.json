@@ -18,6 +18,7 @@
     "@chat-frontier-flora/ui": "*",
     "@supabase/supabase-js": "^2.39.0",
     "@types/react-router-dom": "^5.3.3",
+    "autoprefixer": "^10.4.21",
     "dotenv": "^16.5.0",
     "dotenv-webpack": "^8.1.0",
     "expo": "~50.0.0",
