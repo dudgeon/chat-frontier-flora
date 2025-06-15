@@ -10,10 +10,10 @@
   },
   "scripts": {
     "build": "mkdir -p apps/web/web-build && echo 'Static build ready - HTML file already exists'",
-    "build:expo": "cd apps/web && npx expo export:web",
+    "build:expo": "cd apps/web && npx expo export",
     "dev:web": "cd apps/web && npm run web",
     "dev:mobile": "npm run start -w @chat-frontier-flora/mobile",
-    "build:web": "cd apps/web && npx expo export:web",
+    "build:web": "cd apps/web && npx expo export",
     "build:mobile": "cd apps/mobile && eas build",
     "test": "npm run test --workspaces --if-present",
     "test:e2e": "playwright test e2e/stagehand-auth-test.spec.ts e2e/stagehand-production-auth.spec.ts",
