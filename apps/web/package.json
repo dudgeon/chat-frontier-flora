@@ -1,7 +1,7 @@
 {
   "name": "@chat-frontier-flora/web",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "expo-router/entry",
   "private": true,
   "scripts": {
     "start": "expo start",
@@ -11,23 +11,24 @@
     "web": "cp ../../.env .env 2>/dev/null || true && expo start --web",
     "test": "jest",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
-    "build": "expo export:web"
+    "build": "expo export"
   },
   "dependencies": {
     "@chat-frontier-flora/shared": "*",
     "@chat-frontier-flora/ui": "*",
     "@supabase/supabase-js": "^2.39.0",
-    "@types/react-router-dom": "^5.3.3",
-    "dotenv": "^16.5.0",
-    "dotenv-webpack": "^8.1.0",
-    "expo": "~50.0.0",
+    "expo": "52.0.x",
+    "expo-router": "4.0.20",
     "expo-status-bar": "~1.11.1",
+    "nativewind": "4.1.23",
+    "postcss": "8.4.38",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.73.6",
-    "react-native-web": "0.19.13",
-    "react-router-dom": "^7.6.2",
-    "tailwindcss": "^3.4.17"
+    "react-native-reanimated": "~3.17.4",
+    "react-native-safe-area-context": "5.4.0",
+    "react-native-web": "~0.19.13",
+    "tailwindcss": "3.4.17"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
@@ -36,13 +37,12 @@
     "@babel/preset-env": "^7.27.2",
     "@babel/preset-react": "^7.27.1",
     "@babel/preset-typescript": "^7.27.1",
-    "@expo/webpack-config": "~19.0.1",
     "@testing-library/jest-dom": "^6.0.0",
     "@testing-library/react": "^14.0.0",
     "@testing-library/react-native": "^12.3.2",
     "@types/jest": "^29.5.0",
-    "@types/react": "~18.2.45",
-    "@types/react-dom": "~18.0.10",
+    "@types/react": "18.2.38",
+    "@types/react-dom": "18.2.14",
     "@types/react-native": "^0.73.0",
     "assert": "^2.1.0",
     "babel-jest": "^30.0.0-beta.3",
@@ -52,26 +52,26 @@
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
     "jest-expo": "~50.0.1",
-    "nativewind": "^4.1.23",
-    "postcss-loader": "^8.1.1",
     "process": "^0.11.10",
     "react-test-renderer": "18.2.0",
     "stream-browserify": "^3.0.0",
     "ts-jest": "^29.1.0",
     "typescript": "^5.0.0",
     "url": "^0.11.4",
-    "util": "^0.12.5",
-    "webpack": "^5.99.9"
+    "util": "^0.12.5"
   },
   "overrides": {
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-test-renderer": "18.2.0"
+    "react-test-renderer": "18.2.0",
+    "@types/react": "18.2.38",
+    "@types/react-dom": "18.2.14"
   },
   "resolutions": {
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-test-renderer": "18.2.0",
-    "@types/react": "~18.2.45"
+    "@types/react": "18.2.38",
+    "@types/react-dom": "18.2.14"
   }
 }
