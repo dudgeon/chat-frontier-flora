@@ -7,7 +7,7 @@ import { ErrorAlert } from '../ui/ErrorAlert';
 import { useAuth } from '../../hooks/useAuth';
 import { useFormValidation } from '../../hooks/useFormValidation';
 import { useSubmitButton } from '../../hooks/useSubmitButton';
-import { validateEmail } from '../../../utils/validation';
+import { validateEmail } from '../../utils/validation';
 import { parseAuthError, createSuccessMessage, type ParsedError } from '../../utils/errorHandling';
 import { supabase } from '../../lib/supabase';
 

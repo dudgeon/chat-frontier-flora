@@ -23,6 +23,7 @@
       "edgeToEdgeEnabled": true
     },
     "web": {
+      "bundler": "metro",  // CRITICAL: Required for Metro web serving (GPT-o3 fix)
       "favicon": "./assets/favicon.png",
       "name": "Frontier.Family",
       "shortName": "Frontier.Family",

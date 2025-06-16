@@ -31,7 +31,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { useFormValidation, FieldConfig } from '../../hooks/useFormValidation';
 import { useSubmitButton, getSubmitButtonStyles, getSubmitButtonTextStyles } from '../../hooks/useSubmitButton';
 import { PasswordValidation, PASSWORD_RULES } from './PasswordValidation';
-import { validateEmail, validatePassword } from '../../../utils/validation';
+import { validateEmail, validatePassword } from '../../utils/validation';
 import { Checkbox } from '../Checkbox';
 import { InputField } from '../ui/InputField';
 import { FormButton } from '../ui/FormButton';
