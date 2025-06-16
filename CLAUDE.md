@@ -169,6 +169,40 @@ cd apps/web && npx tsc --noEmit
 5. **Pre-commit**: Verify builds work locally and tests pass
 6. **Deployment**: Test on preview deployment before merging to main
 
+## ⚠️  CRITICAL: Version Upgrade Protocol
+
+**🚨 NEVER UPGRADE DEPENDENCIES WITHOUT FOLLOWING THIS PROTOCOL 🚨**
+
+This project uses a highly version-sensitive stack (React 18.2.0 + NativeWind v4 + Metro). ANY version changes can break the app.
+
+### Before ANY Dependency Upgrade:
+
+1. **Read VERSION_COMPATIBILITY.md** - Complete compatibility matrix and known breaking combinations
+2. **Create test branch**: `git checkout -b test-upgrade-[package]`
+3. **Baseline test**: `npm run test:safe && node test-blue-user-bubble.js`
+4. **Upgrade and test**: 
+   ```bash
+   npm install [package]@[version]
+   npm run web  # Test Metro compilation
+   node test-blue-user-bubble.js  # Test NativeWind styling
+   ```
+5. **Verify critical features**:
+   - Metro compiles without errors
+   - NativeWind generates CSS classes (not just css-view-*)
+   - Blue user bubbles appear correctly
+   - Authentication flow works
+
+### Emergency Rollback:
+```bash
+git reset --hard HEAD~1 && npm install
+```
+
+### Ultra-Critical Versions (DO NOT CHANGE):
+- React: `18.2.0` (exact)
+- React-DOM: `18.2.0` (exact)
+- NativeWind: `^4.1.23` (v4 only)
+- Expo: `~50.0.0`
+
 ## Important File Locations
 
 ### Configuration Files
@@ -197,4 +231,5 @@ Never create files unless absolutely necessary. Always prefer editing existing f
 ## Development Memories & Recommendations
 
 - Whenever you change the version of any component in this application, perform research to ensure it doesn't break other components, especially Nativewind which is very version sensitive
-```
+- Test assumptions about html rendering with the puppeteer mcp before drawing conclusions or making decisions
+- **Stagehand Test Credentials**: there are valid test credentials located in `/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/.env.stagehand`

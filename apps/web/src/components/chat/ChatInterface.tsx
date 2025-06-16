@@ -31,7 +31,7 @@ export const ChatInterface: React.FC = () => {
     setMessages(prev => [...prev, userMessage]);
 
     // SIMPLIFIED: Direct bot response (streaming simulation removed for simplicity)
-    const responseText = `You said: "${userMessage}". This is a mock echo response.`;
+    const responseText = `You said: "${messageText}". This is a mock echo response.`;
     const botMessage: MessageType = {
       id: (Date.now() + 1).toString(),
       author: 'bot',

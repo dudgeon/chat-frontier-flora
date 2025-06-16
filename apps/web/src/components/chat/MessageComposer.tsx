@@ -62,6 +62,7 @@ export const MessageComposer: React.FC<MessageComposerProps> = ({ onSendMessage 
       <TextInput
         value={text}
         onChangeText={setText}
+        testID="message-input"
         placeholder="Type a message... (Cmd+Enter to send)"
         placeholderTextColor="#9ca3af"
         style={{
@@ -86,6 +87,7 @@ export const MessageComposer: React.FC<MessageComposerProps> = ({ onSendMessage 
       <TouchableOpacity
         onPress={handleSend}
         disabled={!text.trim()}
+        testID="send-button"
         className={`w-11 h-11 rounded-full flex items-center justify-center shadow-sm ${
           text.trim() ? 'bg-blue-500' : 'bg-gray-400'
         }`}

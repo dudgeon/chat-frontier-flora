@@ -23,7 +23,11 @@
       "edgeToEdgeEnabled": true
     },
     "web": {
-      "bundler": "metro",  // CRITICAL: Required for Metro web serving (GPT-o3 fix)
+      // ⚠️  CRITICAL: Metro bundler required for NativeWind v4 + web serving
+      // 🚨 DO NOT CHANGE TO "webpack" - will break NativeWind CSS processing 🚨
+      // This setting enables Metro to serve web content with NativeWind v4 support
+      // Changing to webpack will revert to old bundler without NativeWind integration
+      "bundler": "metro",
       "favicon": "./assets/favicon.png",
       "name": "Frontier.Family",
       "shortName": "Frontier.Family",

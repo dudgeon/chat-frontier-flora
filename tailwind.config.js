@@ -1,11 +1,35 @@
+// ⚠️  CRITICAL: NativeWind v4 Tailwind Configuration
+// 🚨 DO NOT MODIFY PRESETS OR CONTENT PATHS WITHOUT TESTING 🚨
+//
+// This Tailwind config is essential for NativeWind v4 CSS processing:
+// 1. nativewind/preset - REQUIRED for React Native compatibility
+// 2. Content paths - Must include all component files for CSS generation
+// 3. Custom theme - Used throughout the application
+//
+// CRITICAL REQUIREMENTS:
+// - presets: [require('nativewind/preset')] - DO NOT REMOVE
+// - Content paths must cover all component files
+// - Compatible with tailwindcss ^3.4.x
+//
+// BEFORE MODIFYING:
+// 1. Test CSS generation: Check browser for .bg-blue-500 rules
+// 2. Test component styling: node test-blue-user-bubble.js
+// 3. Verify no css-view-* only styling (broken NativeWind symptom)
+//
+// REGRESSION HISTORY:
+// - NativeWind v2 → v4 migration required complete config overhaul
+// - Content path mismatches cause missing CSS generation
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  // CRITICAL: Content paths must include ALL component files for CSS generation
   content: [
     "apps/*/App.{js,jsx,ts,tsx}",
     "apps/*/app/**/*.{js,jsx,ts,tsx}",
     "apps/*/src/**/*.{js,jsx,ts,tsx}",
     "packages/*/src/**/*.{js,jsx,ts,tsx}",
   ],
+  // CRITICAL: NativeWind preset required for React Native compatibility
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
