@@ -1,0 +1,25 @@
+{
+  "timestamp": "2025-06-14T14:47:15.472Z",
+  "pageState": {
+    "hasSignupForm": true,
+    "hasLoginForm": false,
+    "hasChatInterface": false,
+    "hasMessageComposer": false,
+    "hasTextarea": false,
+    "hasSendButton": false,
+    "currentPath": "/",
+    "allButtons": [
+      {
+        "text": "Create Account",
+        "type": "button",
+        "className": "css-view-175oi2r r-pointerEvents-12vffkv",
+        "ariaLabel": "Create Account Button"
+      }
+    ]
+  },
+  "url": "http://localhost:19006/",
+  "title": "Frontier.Family",
+  "screenshots": [
+    "sendbutton-step1-initial.png"
+  ]
+}

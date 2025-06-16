@@ -1,0 +1,841 @@
+{
+  "timestamp": "2025-06-14T15:53:29.995Z",
+  "cssAnalysis": {
+    "totalStylesheets": 3,
+    "stylesheetSources": [
+      {
+        "index": 0,
+        "href": "inline",
+        "title": "untitled",
+        "rulesCount": 195
+      },
+      {
+        "index": 1,
+        "href": "inline",
+        "title": "untitled",
+        "rulesCount": 4
+      },
+      {
+        "index": 2,
+        "href": "inline",
+        "title": "untitled",
+        "rulesCount": 12
+      }
+    ],
+    "tailwindClasses": {
+      "widthClasses": [],
+      "heightClasses": [],
+      "backgroundClasses": [],
+      "borderRadiusClasses": [
+        ".rounded-lg { border-radius: 0.5rem !important; }"
+      ]
+    },
+    "allCSSRules": [
+      {
+        "selector": "[stylesheet-group=\"0\"]",
+        "cssText": "[stylesheet-group=\"0\"] { }"
+      },
+      {
+        "selector": "html",
+        "cssText": "html { text-size-adjust: 100%; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }"
+      },
+      {
+        "selector": "body",
+        "cssText": "body { margin: 0px; }"
+      },
+      {
+        "selector": "input::-webkit-search-cancel-button, input::-webkit-search-decoration, input::-webkit-search-results-button, input::-webkit-search-results-decoration",
+        "cssText": "input::-webkit-search-cancel-button, input::-webkit-search-decoration, input::-webkit-search-results-button, input::-webkit-search-results-decoration { display: none; }"
+      },
+      {
+        "selector": "[stylesheet-group=\"1\"]",
+        "cssText": "[stylesheet-group=\"1\"] { }"
+      },
+      {
+        "selector": ".css-view-175oi2r",
+        "cssText": ".css-view-175oi2r { align-items: stretch; background-color: rgba(0, 0, 0, 0); border: 0px solid black; box-sizing: border-box; display: flex; flex-basis: auto; flex-direction: column; flex-shrink: 0; "
+      },
+      {
+        "selector": ".css-accessibilityImage-9pa8cd",
+        "cssText": ".css-accessibilityImage-9pa8cd { inset: 0px; height: 100%; opacity: 0; position: absolute; width: 100%; z-index: -1; }"
+      },
+      {
+        "selector": ".css-text-146c3p1",
+        "cssText": ".css-text-146c3p1 { background-color: rgba(0, 0, 0, 0); border: 0px solid black; box-sizing: border-box; color: rgb(0, 0, 0); display: inline; font: 14px -apple-system, BlinkMacSystemFont, \"Segoe UI\","
+      },
+      {
+        "selector": ".css-textHasAncestor-1jxf684",
+        "cssText": ".css-textHasAncestor-1jxf684 { background-color: rgba(0, 0, 0, 0); border: 0px solid black; box-sizing: border-box; color: inherit; display: inline; font: inherit; list-style: none; margin: 0px; paddi"
+      },
+      {
+        "selector": ".css-textinput-11aywtz",
+        "cssText": ".css-textinput-11aywtz { appearance: none; background-color: rgba(0, 0, 0, 0); border-radius: 0px; border: 0px solid black; box-sizing: border-box; font: 14px -apple-system, BlinkMacSystemFont, \"Segoe"
+      },
+      {
+        "selector": "[stylesheet-group=\"2\"]",
+        "cssText": "[stylesheet-group=\"2\"] { }"
+      },
+      {
+        "selector": ".r-display-xoduu5",
+        "cssText": ".r-display-xoduu5 { display: inline-flex; }"
+      },
+      {
+        "selector": ".r-flex-13awgt0",
+        "cssText": ".r-flex-13awgt0 { flex: 1 1 0%; }"
+      },
+      {
+        "selector": ".r-borderColor-fx7oqy",
+        "cssText": ".r-borderColor-fx7oqy { border-color: rgb(0, 0, 255); }"
+      },
+      {
+        "selector": ".r-borderWidth-rs99b7",
+        "cssText": ".r-borderWidth-rs99b7 { border-width: 1px; }"
+      },
+      {
+        "selector": ".r-borderColor-60ke3l",
+        "cssText": ".r-borderColor-60ke3l { border-color: rgb(0, 128, 0); }"
+      },
+      {
+        "selector": ".r-borderWidth-d045u9",
+        "cssText": ".r-borderWidth-d045u9 { border-width: 2px; }"
+      },
+      {
+        "selector": ".r-borderColor-4a18lf",
+        "cssText": ".r-borderColor-4a18lf { border-color: rgb(255, 0, 0); }"
+      },
+      {
+        "selector": ".r-overflow-1udh08x",
+        "cssText": ".r-overflow-1udh08x { overflow: hidden; }"
+      },
+      {
+        "selector": ".r-display-krxsd3",
+        "cssText": ".r-display-krxsd3 { display: -webkit-box; }"
+      },
+      {
+        "selector": ".r-borderRadius-1jkafct",
+        "cssText": ".r-borderRadius-1jkafct { border-radius: 2px; }"
+      },
+      {
+        "selector": ".r-padding-edyy15",
+        "cssText": ".r-padding-edyy15 { padding: 8px; }"
+      },
+      {
+        "selector": ".r-borderColor-1awa8pu",
+        "cssText": ".r-borderColor-1awa8pu { border-color: rgb(101, 119, 134); }"
+      },
+      {
+        "selector": ".r-borderStyle-1phboty",
+        "cssText": ".r-borderStyle-1phboty { border-style: solid; }"
+      },
+      {
+        "selector": ".r-borderColor-1jyn79y",
+        "cssText": ".r-borderColor-1jyn79y { border-color: rgb(0, 150, 136); }"
+      },
+      {
+        "selector": ".r-borderColor-9x6qib",
+        "cssText": ".r-borderColor-9x6qib { border-color: rgb(204, 214, 221); }"
+      },
+      {
+        "selector": ".r-borderColor-1d4xg89",
+        "cssText": ".r-borderColor-1d4xg89 { border-color: rgb(170, 184, 194); }"
+      },
+      {
+        "selector": ".r-margin-crgep1",
+        "cssText": ".r-margin-crgep1 { margin: 0px; }"
+      },
+      {
+        "selector": ".r-padding-t60dpp",
+        "cssText": ".r-padding-t60dpp { padding: 0px; }"
+      },
+      {
+        "selector": ".r-margin-ywje51",
+        "cssText": ".r-margin-ywje51 { margin: auto; }"
+      },
+      {
+        "selector": ".r-borderRadius-1j16mh1",
+        "cssText": ".r-borderRadius-1j16mh1 { border-radius: 100%; }"
+      },
+      {
+        "selector": ".r-padding-1pcd2l5",
+        "cssText": ".r-padding-1pcd2l5 { padding: 20px; }"
+      },
+      {
+        "selector": ".r-borderRadius-1xfd6ze",
+        "cssText": ".r-borderRadius-1xfd6ze { border-radius: 8px; }"
+      },
+      {
+        "selector": ".r-padding-1oqcu8e",
+        "cssText": ".r-padding-1oqcu8e { padding: 15px; }"
+      },
+      {
+        "selector": ".r-overflow-bztko3",
+        "cssText": ".r-overflow-bztko3 { overflow: visible; }"
+      },
+      {
+        "selector": "[stylesheet-group=\"2.2\"]",
+        "cssText": "[stylesheet-group=\"2.2\"] { }"
+      },
+      {
+        "selector": ".r-insetInlineStart-10s2tm5",
+        "cssText": ".r-insetInlineStart-10s2tm5 { left: 0%; }"
+      },
+      {
+        "selector": ".r-insetInlineStart-dqe1q",
+        "cssText": ".r-insetInlineStart-dqe1q { right: 0%; }"
+      },
+      {
+        "selector": ".r-insetInlineStart-rci37q",
+        "cssText": ".r-insetInlineStart-rci37q { left: 100%; }"
+      },
+      {
+        "selector": ".r-insetInlineStart-16o8guy",
+        "cssText": ".r-insetInlineStart-16o8guy { right: 100%; }"
+      },
+      {
+        "selector": "[stylesheet-group=\"3\"]",
+        "cssText": "[stylesheet-group=\"3\"] { }"
+      },
+      {
+        "selector": ".r-bottom-1p0dtai",
+        "cssText": ".r-bottom-1p0dtai { bottom: 0px; }"
+      },
+      {
+        "selector": ".r-left-1d2f490",
+        "cssText": ".r-left-1d2f490 { left: 0px; }"
+      },
+      {
+        "selector": ".r-position-u8s1d",
+        "cssText": ".r-position-u8s1d { position: absolute; }"
+      },
+      {
+        "selector": ".r-right-zchlnj",
+        "cssText": ".r-right-zchlnj { right: 0px; }"
+      },
+      {
+        "selector": ".r-top-ipm5af",
+        "cssText": ".r-top-ipm5af { top: 0px; }"
+      },
+      {
+        "selector": ".r-pointerEvents-105ug2t",
+        "cssText": ".r-pointerEvents-105ug2t { pointer-events: auto !important; }"
+      },
+      {
+        "selector": ".r-pointerEvents-12vffkv > *",
+        "cssText": ".r-pointerEvents-12vffkv > * { pointer-events: auto; }"
+      },
+      {
+        "selector": ".r-pointerEvents-12vffkv",
+        "cssText": ".r-pointerEvents-12vffkv { pointer-events: none !important; }"
+      },
+      {
+        "selector": ".r-pointerEvents-ah5dr5 > *",
+        "cssText": ".r-pointerEvents-ah5dr5 > * { pointer-events: none; }"
+      },
+      {
+        "selector": ".r-pointerEvents-ah5dr5",
+        "cssText": ".r-pointerEvents-ah5dr5 { pointer-events: auto !important; }"
+      },
+      {
+        "selector": ".r-pointerEvents-633pao",
+        "cssText": ".r-pointerEvents-633pao { pointer-events: none !important; }"
+      },
+      {
+        "selector": ".r-overflowX-11yh6sk",
+        "cssText": ".r-overflowX-11yh6sk { overflow-x: hidden; }"
+      },
+      {
+        "selector": ".r-overflowY-buy8e9",
+        "cssText": ".r-overflowY-buy8e9 { overflow-y: hidden; }"
+      },
+      {
+        "selector": ".r-touchAction-19z077z",
+        "cssText": ".r-touchAction-19z077z { touch-action: none; }"
+      },
+      {
+        "selector": ".r-scrollbarWidth-2eszeu::-webkit-scrollbar",
+        "cssText": ".r-scrollbarWidth-2eszeu::-webkit-scrollbar { display: none; }"
+      },
+      {
+        "selector": ".r-scrollbarWidth-2eszeu",
+        "cssText": ".r-scrollbarWidth-2eszeu { scrollbar-width: none; }"
+      },
+      {
+        "selector": ".r-WebkitOverflowScrolling-150rngu",
+        "cssText": ".r-WebkitOverflowScrolling-150rngu { }"
+      },
+      {
+        "selector": ".r-flexDirection-eqz5dr",
+        "cssText": ".r-flexDirection-eqz5dr { flex-direction: column; }"
+      },
+      {
+        "selector": ".r-flexGrow-16y2uox",
+        "cssText": ".r-flexGrow-16y2uox { flex-grow: 1; }"
+      },
+      {
+        "selector": ".r-flexShrink-1wbh5a2",
+        "cssText": ".r-flexShrink-1wbh5a2 { flex-shrink: 1; }"
+      },
+      {
+        "selector": ".r-overflowY-1rnoaur",
+        "cssText": ".r-overflowY-1rnoaur { overflow-y: auto; }"
+      },
+      {
+        "selector": ".r-transform-agouwx",
+        "cssText": ".r-transform-agouwx { transform: translateZ(0px); }"
+      },
+      {
+        "selector": ".r-flexDirection-18u37iz",
+        "cssText": ".r-flexDirection-18u37iz { flex-direction: row; }"
+      },
+      {
+        "selector": ".r-overflowX-lltvgl",
+        "cssText": ".r-overflowX-lltvgl { overflow-x: auto; }"
+      },
+      {
+        "selector": ".r-justifyContent-1777fci",
+        "cssText": ".r-justifyContent-1777fci { justify-content: center; }"
+      },
+      {
+        "selector": ".r-position-gtdqiz",
+        "cssText": ".r-position-gtdqiz { position: sticky; }"
+      },
+      {
+        "selector": ".r-zIndex-mhe3cw",
+        "cssText": ".r-zIndex-mhe3cw { z-index: 10; }"
+      },
+      {
+        "selector": ".r-scrollSnapType-mfh4gg",
+        "cssText": ".r-scrollSnapType-mfh4gg { scroll-snap-type: x mandatory; }"
+      },
+      {
+        "selector": ".r-scrollSnapType-1ocf4r9",
+        "cssText": ".r-scrollSnapType-1ocf4r9 { scroll-snap-type: y mandatory; }"
+      },
+      {
+        "selector": ".r-scrollSnapAlign-cpa5s6",
+        "cssText": ".r-scrollSnapAlign-cpa5s6 { scroll-snap-align: start; }"
+      },
+      {
+        "selector": ".r-flexDirection-1euycsn",
+        "cssText": ".r-flexDirection-1euycsn { flex-direction: row-reverse; }"
+      },
+      {
+        "selector": ".r-flexDirection-1d5kdc7",
+        "cssText": ".r-flexDirection-1d5kdc7 { flex-direction: column-reverse; }"
+      },
+      {
+        "selector": ".r-transform-173mzie",
+        "cssText": ".r-transform-173mzie { transform: scaleY(-1); }"
+      },
+      {
+        "selector": ".r-transform-10v3vxq",
+        "cssText": ".r-transform-10v3vxq { transform: scaleX(-1); }"
+      },
+      {
+        "selector": ".r-width-19wmn03",
+        "cssText": ".r-width-19wmn03 { width: 20px; }"
+      },
+      {
+        "selector": ".r-backgroundColor-u92y06",
+        "cssText": ".r-backgroundColor-u92y06 { background-color: rgb(255, 165, 0); }"
+      },
+      {
+        "selector": ".r-flexBasis-1mlwlqe",
+        "cssText": ".r-flexBasis-1mlwlqe { flex-basis: auto; }"
+      },
+      {
+        "selector": ".r-zIndex-417010",
+        "cssText": ".r-zIndex-417010 { z-index: 0; }"
+      },
+      {
+        "selector": ".r-backgroundColor-1niwhzg",
+        "cssText": ".r-backgroundColor-1niwhzg { background-color: rgba(0, 0, 0, 0); }"
+      },
+      {
+        "selector": ".r-backgroundPosition-vvn4in",
+        "cssText": ".r-backgroundPosition-vvn4in { background-position: center center; }"
+      },
+      {
+        "selector": ".r-backgroundRepeat-u6sd8q",
+        "cssText": ".r-backgroundRepeat-u6sd8q { background-repeat: no-repeat; }"
+      },
+      {
+        "selector": ".r-backgroundSize-4gszlv",
+        "cssText": ".r-backgroundSize-4gszlv { background-size: cover; }"
+      },
+      {
+        "selector": ".r-height-1pi2tsx",
+        "cssText": ".r-height-1pi2tsx { height: 100%; }"
+      },
+      {
+        "selector": ".r-width-13qz1uu",
+        "cssText": ".r-width-13qz1uu { width: 100%; }"
+      },
+      {
+        "selector": ".r-zIndex-1wyyakw",
+        "cssText": ".r-zIndex-1wyyakw { z-index: -1; }"
+      },
+      {
+        "selector": ".r-backgroundSize-1sxrcry",
+        "cssText": ".r-backgroundSize-1sxrcry { background-size: auto; }"
+      },
+      {
+        "selector": ".r-backgroundSize-ehq7j7",
+        "cssText": ".r-backgroundSize-ehq7j7 { background-size: contain; }"
+      },
+      {
+        "selector": ".r-backgroundPosition-1mrlafo",
+        "cssText": ".r-backgroundPosition-1mrlafo { background-position: 0px center; }"
+      },
+      {
+        "selector": ".r-backgroundRepeat-17leim2",
+        "cssText": ".r-backgroundRepeat-17leim2 { background-repeat: repeat; }"
+      },
+      {
+        "selector": ".r-backgroundSize-x3cy2q",
+        "cssText": ".r-backgroundSize-x3cy2q { background-size: 100% 100%; }"
+      },
+      {
+        "selector": ".r-maxWidth-dnmrzs",
+        "cssText": ".r-maxWidth-dnmrzs { max-width: 100%; }"
+      },
+      {
+        "selector": ".r-textOverflow-1udbk01",
+        "cssText": ".r-textOverflow-1udbk01 { text-overflow: ellipsis; }"
+      },
+      {
+        "selector": ".r-whiteSpace-3s2u2q",
+        "cssText": ".r-whiteSpace-3s2u2q { white-space: nowrap; }"
+      },
+      {
+        "selector": ".r-wordWrap-1iln25a",
+        "cssText": ".r-wordWrap-1iln25a { overflow-wrap: normal; }"
+      },
+      {
+        "selector": ".r-WebkitBoxOrient-8akbws",
+        "cssText": ".r-WebkitBoxOrient-8akbws { -webkit-box-orient: vertical; }"
+      },
+      {
+        "selector": ".r-userSelect-lrvibr",
+        "cssText": ".r-userSelect-lrvibr { user-select: none; }"
+      },
+      {
+        "selector": ".r-userSelect-1xnzce8",
+        "cssText": ".r-userSelect-1xnzce8 { user-select: text; }"
+      },
+      {
+        "selector": ".r-cursor-1loqt21",
+        "cssText": ".r-cursor-1loqt21 { cursor: pointer; }"
+      },
+      {
+        "selector": ".r-alignItems-1awozwy",
+        "cssText": ".r-alignItems-1awozwy { align-items: center; }"
+      },
+      {
+        "selector": ".r-visibility-11j9u27",
+        "cssText": ".r-visibility-11j9u27 { visibility: hidden; }"
+      },
+      {
+        "selector": ".r-animationDuration-17bb2tj",
+        "cssText": ".r-animationDuration-17bb2tj { animation-duration: 0.75s; }"
+      },
+      {
+        "selector": ".r-animationIterationCount-1muvv40",
+        "cssText": ".r-animationIterationCount-1muvv40 { animation-iteration-count: infinite; }"
+      },
+      {
+        "selector": ".r-animationKeyframes-1yef0xd",
+        "cssText": ".r-animationKeyframes-1yef0xd { animation-name: r-animation-11cv4x; }"
+      },
+      {
+        "selector": ".r-animationTimingFunction-1ldzwu0",
+        "cssText": ".r-animationTimingFunction-1ldzwu0 { animation-timing-function: linear; }"
+      },
+      {
+        "selector": ".r-animationPlayState-1abnn5w",
+        "cssText": ".r-animationPlayState-1abnn5w { animation-play-state: paused; }"
+      },
+      {
+        "selector": ".r-height-z80fyv",
+        "cssText": ".r-height-z80fyv { height: 20px; }"
+      },
+      {
+        "selector": ".r-height-1r8g8re",
+        "cssText": ".r-height-1r8g8re { height: 36px; }"
+      },
+      {
+        "selector": ".r-width-1acpoxo",
+        "cssText": ".r-width-1acpoxo { width: 36px; }"
+      },
+      {
+        "selector": ".r-transitionDuration-eafdt9",
+        "cssText": ".r-transitionDuration-eafdt9 { transition-duration: 0.15s; }"
+      },
+      {
+        "selector": ".r-transitionProperty-1i6wzkk",
+        "cssText": ".r-transitionProperty-1i6wzkk { transition-property: opacity; }"
+      },
+      {
+        "selector": ".r-touchAction-1otgn73",
+        "cssText": ".r-touchAction-1otgn73 { touch-action: manipulation; }"
+      },
+      {
+        "selector": ".r-backgroundColor-14sbq61",
+        "cssText": ".r-backgroundColor-14sbq61 { background-color: rgb(33, 150, 243); }"
+      },
+      {
+        "selector": ".r-color-jwli3a",
+        "cssText": ".r-color-jwli3a { color: rgb(255, 255, 255); }"
+      },
+      {
+        "selector": ".r-fontWeight-majxgm",
+        "cssText": ".r-fontWeight-majxgm { font-weight: 500; }"
+      },
+      {
+        "selector": ".r-textAlign-fdjqy7",
+        "cssText": ".r-textAlign-fdjqy7 { text-align: left; }"
+      },
+      {
+        "selector": ".r-textAlign-1ff274t",
+        "cssText": ".r-textAlign-1ff274t { text-align: right; }"
+      },
+      {
+        "selector": ".r-textAlign-q4m81j",
+        "cssText": ".r-textAlign-q4m81j { text-align: center; }"
+      },
+      {
+        "selector": ".r-textTransform-tsynxw",
+        "cssText": ".r-textTransform-tsynxw { text-transform: uppercase; }"
+      },
+      {
+        "selector": ".r-backgroundColor-11mpjr4",
+        "cssText": ".r-backgroundColor-11mpjr4 { background-color: rgb(223, 223, 223); }"
+      },
+      {
+        "selector": ".r-color-c68hjy",
+        "cssText": ".r-color-c68hjy { color: rgb(161, 161, 161); }"
+      },
+      {
+        "selector": ".r-height-10ptun7",
+        "cssText": ".r-height-10ptun7 { height: 16px; }"
+      },
+      {
+        "selector": ".r-width-1janqcz",
+        "cssText": ".r-width-1janqcz { width: 16px; }"
+      },
+      {
+        "selector": ".r-cursor-7q8q6z",
+        "cssText": ".r-cursor-7q8q6z { cursor: default; }"
+      },
+      {
+        "selector": ".r-cursor-1ei5mc7",
+        "cssText": ".r-cursor-1ei5mc7 { cursor: inherit; }"
+      },
+      {
+        "selector": ".r-backgroundColor-14lw9ot",
+        "cssText": ".r-backgroundColor-14lw9ot { background-color: rgb(255, 255, 255); }"
+      },
+      {
+        "selector": ".r-backgroundColor-11udlyb",
+        "cssText": ".r-backgroundColor-11udlyb { background-color: rgb(0, 150, 136); }"
+      },
+      {
+        "selector": ".r-backgroundImage-rs94m5",
+        "cssText": ".r-backgroundImage-rs94m5 { background-image: url(\"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9"
+      },
+      {
+        "selector": ".r-backgroundColor-dkge59",
+        "cssText": ".r-backgroundColor-dkge59 { background-color: rgb(170, 184, 194); }"
+      },
+      {
+        "selector": ".r-appearance-30o5oe",
+        "cssText": ".r-appearance-30o5oe { appearance: none; }"
+      },
+      {
+        "selector": ".r-position-1xcajam",
+        "cssText": ".r-position-1xcajam { position: fixed; }"
+      },
+      {
+        "selector": ".r-zIndex-sfbmgh",
+        "cssText": ".r-zIndex-sfbmgh { z-index: 9999; }"
+      },
+      {
+        "selector": ".r-animationDuration-1ielgck",
+        "cssText": ".r-animationDuration-1ielgck { animation-duration: 300ms; }"
+      },
+      {
+        "selector": ".r-animationTimingFunction-1uypc71",
+        "cssText": ".r-animationTimingFunction-1uypc71 { animation-timing-function: ease-in; }"
+      },
+      {
+        "selector": ".r-animationTimingFunction-nvplwv",
+        "cssText": ".r-animationTimingFunction-nvplwv { animation-timing-function: ease-out; }"
+      },
+      {
+        "selector": ".r-animationKeyframes-xx3c9p",
+        "cssText": ".r-animationKeyframes-xx3c9p { animation-name: r-animation-imtty0; }"
+      },
+      {
+        "selector": ".r-opacity-6dt33c",
+        "cssText": ".r-opacity-6dt33c { opacity: 1; }"
+      },
+      {
+        "selector": ".r-animationKeyframes-g3mlsw",
+        "cssText": ".r-animationKeyframes-g3mlsw { animation-name: r-animation-t2lo5v; }"
+      },
+      {
+        "selector": ".r-opacity-orgf3d",
+        "cssText": ".r-opacity-orgf3d { opacity: 0; }"
+      },
+      {
+        "selector": ".r-animationKeyframes-1qulhi1",
+        "cssText": ".r-animationKeyframes-1qulhi1 { animation-name: r-animation-1pzkwqh; }"
+      },
+      {
+        "selector": ".r-transform-ghxds0",
+        "cssText": ".r-transform-ghxds0 { transform: translateY(0%); }"
+      },
+      {
+        "selector": ".r-animationKeyframes-13aq9py",
+        "cssText": ".r-animationKeyframes-13aq9py { animation-name: r-animation-1iq689l; }"
+      },
+      {
+        "selector": ".r-transform-bi4vy9",
+        "cssText": ".r-transform-bi4vy9 { transform: translateY(100%); }"
+      },
+      {
+        "selector": ".r-outlineStyle-1ny4l3l",
+        "cssText": ".r-outlineStyle-1ny4l3l { outline-style: none; }"
+      },
+      {
+        "selector": ".r-fontFamily-1qd0xha",
+        "cssText": ".r-fontFamily-1qd0xha { font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif; }"
+      },
+      {
+        "selector": ".r-fontSize-7cikom",
+        "cssText": ".r-fontSize-7cikom { font-size: inherit; }"
+      },
+      {
+        "selector": ".r-forcedColorAdjust-1c6unfx",
+        "cssText": ".r-forcedColorAdjust-1c6unfx { forced-color-adjust: none; }"
+      },
+      {
+        "selector": ".r-height-4v7adb",
+        "cssText": ".r-height-4v7adb { height: 5px; }"
+      },
+      {
+        "selector": ".r-animationDuration-1ay1djp",
+        "cssText": ".r-animationDuration-1ay1djp { animation-duration: 1s; }"
+      },
+      {
+        "selector": ".r-animationKeyframes-ebwn4k",
+        "cssText": ".r-animationKeyframes-ebwn4k { animation-name: r-animation-q67da2; }"
+      },
+      {
+        "selector": ".r-paddingBottom-97e31f",
+        "cssText": ".r-paddingBottom-97e31f { padding-bottom: env(safe-area-inset-bottom); }"
+      },
+      {
+        "selector": ".r-paddingLeft-bv2aro",
+        "cssText": ".r-paddingLeft-bv2aro { padding-left: env(safe-area-inset-left); }"
+      },
+      {
+        "selector": ".r-paddingRight-hxflta",
+        "cssText": ".r-paddingRight-hxflta { padding-right: env(safe-area-inset-right); }"
+      },
+      {
+        "selector": ".r-paddingTop-10xqauy",
+        "cssText": ".r-paddingTop-10xqauy { padding-top: env(safe-area-inset-top); }"
+      },
+      {
+        "selector": ".r-height-1dernwh",
+        "cssText": ".r-height-1dernwh { height: 70%; }"
+      },
+      {
+        "selector": ".r-transitionDuration-13tjlyg",
+        "cssText": ".r-transitionDuration-13tjlyg { transition-duration: 0.1s; }"
+      },
+      {
+        "selector": ".r-alignSelf-k200y",
+        "cssText": ".r-alignSelf-k200y { align-self: flex-start; }"
+      },
+      {
+        "selector": ".r-boxShadow-1ewcgjf",
+        "cssText": ".r-boxShadow-1ewcgjf { box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 3px; }"
+      },
+      {
+        "selector": ".r-placeholderTextColor-6taxm2::-webkit-input-placeholder",
+        "cssText": ".r-placeholderTextColor-6taxm2::-webkit-input-placeholder { color: var(--placeholderTextColor); opacity: 1; }"
+      },
+      {
+        "selector": ".r-placeholderTextColor-6taxm2::placeholder",
+        "cssText": ".r-placeholderTextColor-6taxm2::placeholder { color: var(--placeholderTextColor); opacity: 1; }"
+      },
+      {
+        "selector": ".r-caretColor-van48c",
+        "cssText": ".r-caretColor-van48c { caret-color: transparent; }"
+      },
+      {
+        "selector": ".r-maxWidth-hvns9x",
+        "cssText": ".r-maxWidth-hvns9x { max-width: 400px; }"
+      },
+      {
+        "selector": ".r-marginTop-1x0uki6",
+        "cssText": ".r-marginTop-1x0uki6 { margin-top: 20px; }"
+      },
+      {
+        "selector": ".r-color-djgu52",
+        "cssText": ".r-color-djgu52 { color: rgb(102, 102, 102); }"
+      },
+      {
+        "selector": ".r-fontSize-1b43r93",
+        "cssText": ".r-fontSize-1b43r93 { font-size: 14px; }"
+      },
+      {
+        "selector": ".r-marginRight-1kb76zh",
+        "cssText": ".r-marginRight-1kb76zh { margin-right: 8px; }"
+      },
+      {
+        "selector": ".r-color-6ud3tt",
+        "cssText": ".r-color-6ud3tt { color: rgb(0, 86, 179); }"
+      },
+      {
+        "selector": ".r-fontWeight-1kfrs79",
+        "cssText": ".r-fontWeight-1kfrs79 { font-weight: 600; }"
+      },
+      {
+        "selector": ".r-fontSize-ubezar",
+        "cssText": ".r-fontSize-ubezar { font-size: 16px; }"
+      },
+      {
+        "selector": ".r-fontSize-1x35g6",
+        "cssText": ".r-fontSize-1x35g6 { font-size: 24px; }"
+      },
+      {
+        "selector": ".r-fontWeight-vw2c0b",
+        "cssText": ".r-fontWeight-vw2c0b { font-weight: bold; }"
+      },
+      {
+        "selector": ".r-marginBottom-117bsoe",
+        "cssText": ".r-marginBottom-117bsoe { margin-bottom: 20px; }"
+      },
+      {
+        "selector": ".r-backgroundColor-cb25cm",
+        "cssText": ".r-backgroundColor-cb25cm { background-color: rgb(245, 245, 245); }"
+      },
+      {
+        "selector": ".r-fontSize-1i10wst",
+        "cssText": ".r-fontSize-1i10wst { font-size: 18px; }"
+      },
+      {
+        "selector": ".r-marginBottom-15d164r",
+        "cssText": ".r-marginBottom-15d164r { margin-bottom: 10px; }"
+      },
+      {
+        "selector": ".r-backgroundColor-q3k7ks",
+        "cssText": ".r-backgroundColor-q3k7ks { background-color: rgb(0, 122, 255); }"
+      },
+      {
+        "selector": ".r-zIndex-eyya15",
+        "cssText": ".r-zIndex-eyya15 { z-index: 42; }"
+      },
+      {
+        "selector": ".r-backgroundColor-1fdnko3",
+        "cssText": ".r-backgroundColor-1fdnko3 { background-color: rgba(0, 0, 0, 0.75); }"
+      },
+      {
+        "selector": ".r-paddingBottom-1mdbw0j",
+        "cssText": ".r-paddingBottom-1mdbw0j { padding-bottom: 0px; }"
+      },
+      {
+        "selector": ".r-paddingBottom-1inuy60",
+        "cssText": ".r-paddingBottom-1inuy60 { padding-bottom: 5px; }"
+      },
+      {
+        "selector": ".r-paddingTop-m611by",
+        "cssText": ".r-paddingTop-m611by { padding-top: 10px; }"
+      },
+      {
+        "selector": ".r-fontSize-a023e6",
+        "cssText": ".r-fontSize-a023e6 { font-size: 15px; }"
+      },
+      {
+        "selector": ".r-color-kpc20e",
+        "cssText": ".r-color-kpc20e { color: rgba(255, 255, 255, 0.8); }"
+      },
+      {
+        "selector": "html, body, #root",
+        "cssText": "html, body, #root { width: 100%; margin: 0px; padding: 0px; min-height: 100%; }"
+      },
+      {
+        "selector": "#root",
+        "cssText": "#root { display: flex; flex: 1 1 0%; }"
+      },
+      {
+        "selector": "html",
+        "cssText": "html { scroll-behavior: smooth; text-size-adjust: 100%; height: calc(100% + env(keyboard-inset-height, 0)); }"
+      },
+      {
+        "selector": "body",
+        "cssText": "body { display: flex; overflow-y: auto; overscroll-behavior-y: none; text-rendering: optimizelegibility; -webkit-font-smoothing: antialiased; }"
+      },
+      {
+        "selector": ".bg-green-500",
+        "cssText": ".bg-green-500 { --tw-bg-opacity: 1; background-color: rgb(34 197 94 / var(--tw-bg-opacity, 1)) !important; }"
+      },
+      {
+        "selector": ".text-white",
+        "cssText": ".text-white { --tw-text-opacity: 1; color: rgb(255 255 255 / var(--tw-text-opacity, 1)) !important; }"
+      },
+      {
+        "selector": ".rounded-lg",
+        "cssText": ".rounded-lg { border-radius: 0.5rem !important; }"
+      },
+      {
+        "selector": ".px-4",
+        "cssText": ".px-4 { padding-left: 1rem !important; padding-right: 1rem !important; }"
+      },
+      {
+        "selector": ".py-3",
+        "cssText": ".py-3 { padding-top: 0.75rem !important; padding-bottom: 0.75rem !important; }"
+      },
+      {
+        "selector": ".my-2",
+        "cssText": ".my-2 { margin-top: 0.5rem !important; margin-bottom: 0.5rem !important; }"
+      },
+      {
+        "selector": ".items-end",
+        "cssText": ".items-end { align-items: flex-end !important; }"
+      },
+      {
+        "selector": ".max-w-\\[80\\%\\]",
+        "cssText": ".max-w-\\[80\\%\\] { max-width: 80% !important; }"
+      },
+      {
+        "selector": ".min-w-\\[60px\\]",
+        "cssText": ".min-w-\\[60px\\] { min-width: 60px !important; }"
+      },
+      {
+        "selector": ".rounded-tr-sm",
+        "cssText": ".rounded-tr-sm { border-top-right-radius: 0.125rem !important; }"
+      },
+      {
+        "selector": ".text-base",
+        "cssText": ".text-base { font-size: 1rem !important; line-height: 1.5rem !important; }"
+      },
+      {
+        "selector": ".leading-6",
+        "cssText": ".leading-6 { line-height: 1.5rem !important; }"
+      }
+    ]
+  },
+  "tailwindPresence": {
+    "hasTailwindBase": true,
+    "hasTailwindUtilities": true,
+    "sampleRules": [
+      ".bg-green-500: --tw-bg-opacity: 1; background-color: rgb(34 197 94 / var(--tw-bg-opacity, 1)) !important;",
+      ".text-white: --tw-text-opacity: 1; color: rgb(255 255 255 / var(--tw-text-opacity, 1)) !important;",
+      ".text-base: font-size: 1rem !important; line-height: 1.5rem !important;"
+    ]
+  }
+}

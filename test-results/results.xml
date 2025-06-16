@@ -1,0 +1,522 @@
+<testsuites id="" name="" tests="15" failures="0" skipped="0" errors="0" time="138.70968299999998">
+<testsuite name="stagehand-auth-test.spec.ts" timestamp="2025-06-14T13:25:08.957Z" hostname="chromium" tests="2" failures="0" skipped="0" time="105.052" errors="0">
+<testcase name="🌐 Stagehand Authentication Flow [Production] › 🌐 Complete signup and authentication flow on Production" classname="stagehand-auth-test.spec.ts" time="98.496">
+<system-out>
+<![CDATA[🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)
+🎭 Testing Stagehand-powered authentication flow on Production...
+🎯 Phase 1: Core Functionality Testing
+📝 Creating account for: test-1749907517704@stagehand-production.com on Production
+📊 Production form state: { submitButtonEnabled: [33mtrue[39m, passwordStrength: [32m''[39m }
+🔍 Button state before interaction on Production: {
+  isVisible: [33mtrue[39m,
+  isEnabled: [33mtrue[39m,
+  buttonText: [32m'Create Account'[39m,
+  isLoading: [33mfalse[39m
+}
+🎯 Attempting button interaction strategy 1/6 on Production
+✅ Button interaction successful with strategy 1 on Production
+⚠️ Strategy 1 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 2/6 on Production
+✅ Button interaction successful with strategy 2 on Production
+⚠️ Strategy 2 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 3/6 on Production
+✅ Button interaction successful with strategy 3 on Production
+⚠️ Strategy 3 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 4/6 on Production
+✅ Button interaction successful with strategy 4 on Production
+⚠️ Strategy 4 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 5/6 on Production
+✅ Button interaction successful with strategy 5 on Production
+⚠️ Strategy 5 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 6/6 on Production
+✅ Button interaction successful with strategy 6 on Production
+⚠️ Strategy 6 clicked button but no expected effect detected, trying next strategy...
+⏳ Waiting for signup process to complete on Production...
+✅ Production signup result: {
+  isSuccessful: [33mtrue[39m,
+  currentUrl: [32m'/chat'[39m,
+  userIsAuthenticated: [33mtrue[39m,
+  hasProfileMenu: [33mtrue[39m,
+  isStillOnSignup: [33mfalse[39m,
+  hasErrorMessages: [33mfalse[39m
+}
+🎉 Core authentication flow completed successfully on Production!
+📊 Core functionality verified: {
+  environment: [32m'Production'[39m,
+  authenticated: [33mtrue[39m,
+  redirectedFromSignup: [33mtrue[39m,
+  hasExpectedContent: [33mtrue[39m
+}
+🔧 Phase 2: Secondary Features Testing (Non-Critical)
+🔍 Testing profile menu on Production...
+👤 Production profile menu state: {
+  isMenuOpen: [33mtrue[39m,
+  userEmail: [32m'test-1749907517704@stagehand-production.com'[39m,
+  hasLogoutButton: [33mtrue[39m
+}
+⚠️ Secondary features testing failed on Production (non-critical): Menu interaction timeout after 30s
+🧹 Phase 3: Cleanup Phase (Non-Critical)
+📋 Final Production test state: {
+  currentUrl: [32m'null'[39m,
+  pageContent: [32m'Profile\n'[39m +
+    [32m'EMAIL\n'[39m +
+    [32m'test-1749907517704@stagehand-production.com\n'[39m +
+    [32m'ACCOUNT\n'[39m +
+    [32m'Settings\n'[39m +
+    [32m'Preferences\n'[39m +
+    [32m'Sign Out'[39m,
+  testCompleted: [33mtrue[39m
+}
+🎉 Stagehand authentication flow test completed successfully on Production!
+]]>
+</system-out>
+</testcase>
+<testcase name="🌐 Stagehand Authentication Flow [Production] › 🌐 Production site verification and health check" classname="stagehand-auth-test.spec.ts" time="6.556">
+<system-out>
+<![CDATA[🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)
+🌐 Running production-specific verification tests...
+🏥 Production health check: {
+  siteLoaded: [33mtrue[39m,
+  hasSignupForm: [33mtrue[39m,
+  formFieldsVisible: [33mtrue[39m,
+  noErrors: [33mtrue[39m
+}
+✅ Production site verification completed successfully!
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="stagehand-production-auth.spec.ts" timestamp="2025-06-14T13:25:08.957Z" hostname="chromium" tests="1" failures="0" skipped="0" time="10.946" errors="0">
+<testcase name="🌐 Stagehand Production Authentication › 🌐 Production site verification and health check" classname="stagehand-production-auth.spec.ts" time="10.946">
+<system-out>
+<![CDATA[🎭 Initializing Stagehand for Production environment (https://frontier-family-flora.netlify.app)
+🌐 Testing production deployment with Stagehand...
+🏭 Production state: {
+  siteLoaded: [33mtrue[39m,
+  hasSignupForm: [33mtrue[39m,
+  isResponsive: [33mtrue[39m,
+  hasTitle: [33mfalse[39m,
+  formFieldsVisible: [33mtrue[39m
+}
+📱 Responsive: true
+📄 Has Title: false
+✅ Production site verification passed!
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="stagehand-auth-test.spec.ts" timestamp="2025-06-14T13:25:08.957Z" hostname="firefox" tests="2" failures="0" skipped="0" time="103.432" errors="0">
+<testcase name="🌐 Stagehand Authentication Flow [Production] › 🌐 Complete signup and authentication flow on Production" classname="stagehand-auth-test.spec.ts" time="96.779">
+<system-out>
+<![CDATA[🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)
+🎭 Testing Stagehand-powered authentication flow on Production...
+🎯 Phase 1: Core Functionality Testing
+📝 Creating account for: test-1749907516974@stagehand-production.com on Production
+📊 Production form state: { submitButtonEnabled: [33mtrue[39m, passwordStrength: [32m''[39m }
+🔍 Button state before interaction on Production: {
+  isVisible: [33mtrue[39m,
+  isEnabled: [33mtrue[39m,
+  buttonText: [32m'Create Account'[39m,
+  isLoading: [33mfalse[39m
+}
+🎯 Attempting button interaction strategy 1/6 on Production
+✅ Button interaction successful with strategy 1 on Production
+⚠️ Strategy 1 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 2/6 on Production
+✅ Button interaction successful with strategy 2 on Production
+⚠️ Strategy 2 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 3/6 on Production
+✅ Button interaction successful with strategy 3 on Production
+⚠️ Strategy 3 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 4/6 on Production
+✅ Button interaction successful with strategy 4 on Production
+⚠️ Strategy 4 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 5/6 on Production
+✅ Button interaction successful with strategy 5 on Production
+⚠️ Strategy 5 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 6/6 on Production
+✅ Button interaction successful with strategy 6 on Production
+⚠️ Strategy 6 clicked button but no expected effect detected, trying next strategy...
+⏳ Waiting for signup process to complete on Production...
+✅ Production signup result: {
+  isSuccessful: [33mtrue[39m,
+  currentUrl: [32m'/chat'[39m,
+  userIsAuthenticated: [33mtrue[39m,
+  hasProfileMenu: [33mtrue[39m,
+  isStillOnSignup: [33mfalse[39m,
+  hasErrorMessages: [33mfalse[39m
+}
+🎉 Core authentication flow completed successfully on Production!
+📊 Core functionality verified: {
+  environment: [32m'Production'[39m,
+  authenticated: [33mtrue[39m,
+  redirectedFromSignup: [33mtrue[39m,
+  hasExpectedContent: [33mtrue[39m
+}
+🔧 Phase 2: Secondary Features Testing (Non-Critical)
+🔍 Testing profile menu on Production...
+👤 Production profile menu state: {
+  isMenuOpen: [33mtrue[39m,
+  userEmail: [32m'test-1749907516974@stagehand-production.com'[39m,
+  hasLogoutButton: [33mtrue[39m
+}
+⚠️ Secondary features testing failed on Production (non-critical): Menu interaction timeout after 30s
+🧹 Phase 3: Cleanup Phase (Non-Critical)
+📋 Final Production test state: {
+  currentUrl: [32m'null'[39m,
+  pageContent: [32m'Profile\n'[39m +
+    [32m'EMAIL\n'[39m +
+    [32m'test-1749907516974@stagehand-production.com\n'[39m +
+    [32m'ACCOUNT\n'[39m +
+    [32m'Settings\n'[39m +
+    [32m'Preferences\n'[39m +
+    [32m'Sign Out'[39m,
+  testCompleted: [33mtrue[39m
+}
+🎉 Stagehand authentication flow test completed successfully on Production!
+]]>
+</system-out>
+</testcase>
+<testcase name="🌐 Stagehand Authentication Flow [Production] › 🌐 Production site verification and health check" classname="stagehand-auth-test.spec.ts" time="6.653">
+<system-out>
+<![CDATA[🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)
+🌐 Running production-specific verification tests...
+🏥 Production health check: {
+  siteLoaded: [33mtrue[39m,
+  hasSignupForm: [33mtrue[39m,
+  formFieldsVisible: [33mtrue[39m,
+  noErrors: [33mtrue[39m
+}
+✅ Production site verification completed successfully!
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="stagehand-production-auth.spec.ts" timestamp="2025-06-14T13:25:08.957Z" hostname="firefox" tests="1" failures="0" skipped="0" time="9.219" errors="0">
+<testcase name="🌐 Stagehand Production Authentication › 🌐 Production site verification and health check" classname="stagehand-production-auth.spec.ts" time="9.219">
+<system-out>
+<![CDATA[🎭 Initializing Stagehand for Production environment (https://frontier-family-flora.netlify.app)
+🌐 Testing production deployment with Stagehand...
+🏭 Production state: {
+  siteLoaded: [33mtrue[39m,
+  hasSignupForm: [33mtrue[39m,
+  isResponsive: [33mtrue[39m,
+  hasTitle: [33mfalse[39m,
+  formFieldsVisible: [33mtrue[39m
+}
+📱 Responsive: true
+📄 Has Title: false
+✅ Production site verification passed!
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="stagehand-auth-test.spec.ts" timestamp="2025-06-14T13:25:08.957Z" hostname="webkit" tests="2" failures="0" skipped="0" time="92.832" errors="0">
+<testcase name="🌐 Stagehand Authentication Flow [Production] › 🌐 Complete signup and authentication flow on Production" classname="stagehand-auth-test.spec.ts" time="88.534">
+<system-out>
+<![CDATA[🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)
+🎭 Testing Stagehand-powered authentication flow on Production...
+🎯 Phase 1: Core Functionality Testing
+📝 Creating account for: test-1749907523743@stagehand-production.com on Production
+📊 Production form state: { submitButtonEnabled: [33mtrue[39m, passwordStrength: [32m''[39m }
+🔍 Button state before interaction on Production: {
+  isVisible: [33mtrue[39m,
+  isEnabled: [33mtrue[39m,
+  buttonText: [32m'Create Account'[39m,
+  isLoading: [33mfalse[39m
+}
+🎯 Attempting button interaction strategy 1/6 on Production
+✅ Button interaction successful with strategy 1 on Production
+⚠️ Strategy 1 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 2/6 on Production
+✅ Button interaction successful with strategy 2 on Production
+⚠️ Strategy 2 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 3/6 on Production
+✅ Button interaction successful with strategy 3 on Production
+⚠️ Strategy 3 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 4/6 on Production
+✅ Button interaction successful with strategy 4 on Production
+⚠️ Strategy 4 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 5/6 on Production
+✅ Button interaction successful with strategy 5 on Production
+⚠️ Strategy 5 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 6/6 on Production
+✅ Button interaction successful with strategy 6 on Production
+⚠️ Strategy 6 clicked button but no expected effect detected, trying next strategy...
+⏳ Waiting for signup process to complete on Production...
+✅ Production signup result: {
+  isSuccessful: [33mtrue[39m,
+  currentUrl: [32m'/chat'[39m,
+  userIsAuthenticated: [33mtrue[39m,
+  hasProfileMenu: [33mtrue[39m,
+  isStillOnSignup: [33mfalse[39m,
+  hasErrorMessages: [33mfalse[39m
+}
+🎉 Core authentication flow completed successfully on Production!
+📊 Core functionality verified: {
+  environment: [32m'Production'[39m,
+  authenticated: [33mtrue[39m,
+  redirectedFromSignup: [33mtrue[39m,
+  hasExpectedContent: [33mtrue[39m
+}
+🔧 Phase 2: Secondary Features Testing (Non-Critical)
+🔍 Testing profile menu on Production...
+👤 Production profile menu state: {
+  isMenuOpen: [33mtrue[39m,
+  userEmail: [32m'test-1749907523743@stagehand-production.com'[39m,
+  hasLogoutButton: [33mtrue[39m
+}
+⚠️ Secondary features testing failed on Production (non-critical): Menu interaction timeout after 30s
+🧹 Phase 3: Cleanup Phase (Non-Critical)
+📋 Final Production test state: {
+  currentUrl: [32m'null'[39m,
+  pageContent: [32m'Profile\n'[39m +
+    [32m'EMAIL\n'[39m +
+    [32m'test-1749907523743@stagehand-production.com\n'[39m +
+    [32m'ACCOUNT\n'[39m +
+    [32m'Settings\n'[39m +
+    [32m'Preferences\n'[39m +
+    [32m'Sign Out'[39m,
+  testCompleted: [33mtrue[39m
+}
+🎉 Stagehand authentication flow test completed successfully on Production!
+]]>
+</system-out>
+</testcase>
+<testcase name="🌐 Stagehand Authentication Flow [Production] › 🌐 Production site verification and health check" classname="stagehand-auth-test.spec.ts" time="4.298">
+<system-out>
+<![CDATA[🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)
+🌐 Running production-specific verification tests...
+🏥 Production health check: {
+  siteLoaded: [33mtrue[39m,
+  hasSignupForm: [33mtrue[39m,
+  formFieldsVisible: [33mtrue[39m,
+  noErrors: [33mtrue[39m
+}
+✅ Production site verification completed successfully!
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="stagehand-production-auth.spec.ts" timestamp="2025-06-14T13:25:08.957Z" hostname="webkit" tests="1" failures="0" skipped="0" time="8.911" errors="0">
+<testcase name="🌐 Stagehand Production Authentication › 🌐 Production site verification and health check" classname="stagehand-production-auth.spec.ts" time="8.911">
+<system-out>
+<![CDATA[🎭 Initializing Stagehand for Production environment (https://frontier-family-flora.netlify.app)
+🌐 Testing production deployment with Stagehand...
+🏭 Production state: {
+  siteLoaded: [33mtrue[39m,
+  hasSignupForm: [33mtrue[39m,
+  isResponsive: [33mtrue[39m,
+  hasTitle: [33mfalse[39m,
+  formFieldsVisible: [33mtrue[39m
+}
+📱 Responsive: true
+📄 Has Title: false
+✅ Production site verification passed!
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="stagehand-auth-test.spec.ts" timestamp="2025-06-14T13:25:08.957Z" hostname="Mobile Chrome" tests="2" failures="0" skipped="0" time="77.74" errors="0">
+<testcase name="🌐 Stagehand Authentication Flow [Production] › 🌐 Complete signup and authentication flow on Production" classname="stagehand-auth-test.spec.ts" time="73.572">
+<system-out>
+<![CDATA[🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)
+🎭 Testing Stagehand-powered authentication flow on Production...
+🎯 Phase 1: Core Functionality Testing
+📝 Creating account for: test-1749907534159@stagehand-production.com on Production
+📊 Production form state: { submitButtonEnabled: [33mtrue[39m, passwordStrength: [32m''[39m }
+🔍 Button state before interaction on Production: {
+  isVisible: [33mtrue[39m,
+  isEnabled: [33mtrue[39m,
+  buttonText: [32m'Create Account'[39m,
+  isLoading: [33mfalse[39m
+}
+🎯 Attempting button interaction strategy 1/6 on Production
+✅ Button interaction successful with strategy 1 on Production
+⚠️ Strategy 1 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 2/6 on Production
+✅ Button interaction successful with strategy 2 on Production
+⚠️ Strategy 2 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 3/6 on Production
+✅ Button interaction successful with strategy 3 on Production
+⚠️ Strategy 3 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 4/6 on Production
+✅ Button interaction successful with strategy 4 on Production
+⚠️ Strategy 4 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 5/6 on Production
+✅ Button interaction successful with strategy 5 on Production
+⚠️ Strategy 5 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 6/6 on Production
+✅ Button interaction successful with strategy 6 on Production
+⚠️ Strategy 6 clicked button but no expected effect detected, trying next strategy...
+⏳ Waiting for signup process to complete on Production...
+✅ Production signup result: {
+  isSuccessful: [33mtrue[39m,
+  currentUrl: [32m'/chat'[39m,
+  userIsAuthenticated: [33mtrue[39m,
+  hasProfileMenu: [33mtrue[39m,
+  isStillOnSignup: [33mfalse[39m,
+  hasErrorMessages: [33mfalse[39m
+}
+🎉 Core authentication flow completed successfully on Production!
+📊 Core functionality verified: {
+  environment: [32m'Production'[39m,
+  authenticated: [33mtrue[39m,
+  redirectedFromSignup: [33mtrue[39m,
+  hasExpectedContent: [33mtrue[39m
+}
+🔧 Phase 2: Secondary Features Testing (Non-Critical)
+🔍 Testing profile menu on Production...
+👤 Production profile menu state: {
+  isMenuOpen: [33mtrue[39m,
+  userEmail: [32m'Frontier.Family'[39m,
+  hasLogoutButton: [33mfalse[39m
+}
+🧹 Phase 3: Cleanup Phase (Non-Critical)
+📋 Final Production test state: { currentUrl: [32m'null'[39m, pageContent: [32m'null'[39m, testCompleted: [33mfalse[39m }
+🎉 Stagehand authentication flow test completed successfully on Production!
+]]>
+</system-out>
+</testcase>
+<testcase name="🌐 Stagehand Authentication Flow [Production] › 🌐 Production site verification and health check" classname="stagehand-auth-test.spec.ts" time="4.168">
+<system-out>
+<![CDATA[🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)
+🌐 Running production-specific verification tests...
+🏥 Production health check: {
+  siteLoaded: [33mtrue[39m,
+  hasSignupForm: [33mtrue[39m,
+  formFieldsVisible: [33mtrue[39m,
+  noErrors: [33mtrue[39m
+}
+✅ Production site verification completed successfully!
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="stagehand-production-auth.spec.ts" timestamp="2025-06-14T13:25:08.957Z" hostname="Mobile Chrome" tests="1" failures="0" skipped="0" time="7.899" errors="0">
+<testcase name="🌐 Stagehand Production Authentication › 🌐 Production site verification and health check" classname="stagehand-production-auth.spec.ts" time="7.899">
+<system-out>
+<![CDATA[🎭 Initializing Stagehand for Production environment (https://frontier-family-flora.netlify.app)
+🌐 Testing production deployment with Stagehand...
+🏭 Production state: {
+  siteLoaded: [33mtrue[39m,
+  hasSignupForm: [33mtrue[39m,
+  isResponsive: [33mtrue[39m,
+  hasTitle: [33mfalse[39m,
+  formFieldsVisible: [33mtrue[39m
+}
+📱 Responsive: true
+📄 Has Title: false
+✅ Production site verification passed!
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="stagehand-auth-test.spec.ts" timestamp="2025-06-14T13:25:08.957Z" hostname="Mobile Safari" tests="2" failures="0" skipped="0" time="102.512" errors="0">
+<testcase name="🌐 Stagehand Authentication Flow [Production] › 🌐 Complete signup and authentication flow on Production" classname="stagehand-auth-test.spec.ts" time="96.518">
+<system-out>
+<![CDATA[🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)
+🎭 Testing Stagehand-powered authentication flow on Production...
+🎯 Phase 1: Core Functionality Testing
+📝 Creating account for: test-1749907556074@stagehand-production.com on Production
+📊 Production form state: { submitButtonEnabled: [33mtrue[39m, passwordStrength: [32m''[39m }
+🔍 Button state before interaction on Production: {
+  isVisible: [33mtrue[39m,
+  isEnabled: [33mtrue[39m,
+  buttonText: [32m'Create Account'[39m,
+  isLoading: [33mfalse[39m
+}
+🎯 Attempting button interaction strategy 1/6 on Production
+✅ Button interaction successful with strategy 1 on Production
+⚠️ Strategy 1 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 2/6 on Production
+✅ Button interaction successful with strategy 2 on Production
+⚠️ Strategy 2 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 3/6 on Production
+✅ Button interaction successful with strategy 3 on Production
+⚠️ Strategy 3 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 4/6 on Production
+✅ Button interaction successful with strategy 4 on Production
+⚠️ Strategy 4 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 5/6 on Production
+✅ Button interaction successful with strategy 5 on Production
+⚠️ Strategy 5 clicked button but no expected effect detected, trying next strategy...
+🎯 Attempting button interaction strategy 6/6 on Production
+✅ Button interaction successful with strategy 6 on Production
+⚠️ Strategy 6 clicked button but no expected effect detected, trying next strategy...
+⏳ Waiting for signup process to complete on Production...
+✅ Production signup result: {
+  isSuccessful: [33mtrue[39m,
+  currentUrl: [32m'/chat'[39m,
+  userIsAuthenticated: [33mtrue[39m,
+  hasProfileMenu: [33mtrue[39m,
+  isStillOnSignup: [33mfalse[39m,
+  hasErrorMessages: [33mfalse[39m
+}
+🎉 Core authentication flow completed successfully on Production!
+📊 Core functionality verified: {
+  environment: [32m'Production'[39m,
+  authenticated: [33mtrue[39m,
+  redirectedFromSignup: [33mtrue[39m,
+  hasExpectedContent: [33mtrue[39m
+}
+🔧 Phase 2: Secondary Features Testing (Non-Critical)
+🔍 Testing profile menu on Production...
+👤 Production profile menu state: {
+  isMenuOpen: [33mtrue[39m,
+  userEmail: [32m'test-1749907556074@stagehand-production.com'[39m,
+  hasLogoutButton: [33mtrue[39m
+}
+⚠️ Secondary features testing failed on Production (non-critical): Menu interaction timeout after 30s
+🧹 Phase 3: Cleanup Phase (Non-Critical)
+📋 Final Production test state: {
+  currentUrl: [32m'null'[39m,
+  pageContent: [32m'Profile\n'[39m +
+    [32m'×\n'[39m +
+    [32m'test-1749907556074@stagehand-production.com\n'[39m +
+    [32m'EMAIL\n'[39m +
+    [32m'ACCOUNT\n'[39m +
+    [32m'Settings\n'[39m +
+    [32m'Preferences\n'[39m +
+    [32m'Sign Out'[39m,
+  testCompleted: [33mtrue[39m
+}
+🎉 Stagehand authentication flow test completed successfully on Production!
+]]>
+</system-out>
+</testcase>
+<testcase name="🌐 Stagehand Authentication Flow [Production] › 🌐 Production site verification and health check" classname="stagehand-auth-test.spec.ts" time="5.994">
+<system-out>
+<![CDATA[🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)
+🌐 Running production-specific verification tests...
+🏥 Production health check: {
+  siteLoaded: [33mtrue[39m,
+  hasSignupForm: [33mtrue[39m,
+  formFieldsVisible: [33mtrue[39m,
+  noErrors: [33mtrue[39m
+}
+✅ Production site verification completed successfully!
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="stagehand-production-auth.spec.ts" timestamp="2025-06-14T13:25:08.957Z" hostname="Mobile Safari" tests="1" failures="0" skipped="0" time="8.2" errors="0">
+<testcase name="🌐 Stagehand Production Authentication › 🌐 Production site verification and health check" classname="stagehand-production-auth.spec.ts" time="8.2">
+<system-out>
+<![CDATA[🎭 Initializing Stagehand for Production environment (https://frontier-family-flora.netlify.app)
+🌐 Testing production deployment with Stagehand...
+🏭 Production state: {
+  siteLoaded: [33mtrue[39m,
+  hasSignupForm: [33mtrue[39m,
+  isResponsive: [33mtrue[39m,
+  hasTitle: [33mfalse[39m,
+  formFieldsVisible: [33mtrue[39m
+}
+📱 Responsive: true
+📄 Has Title: false
+✅ Production site verification passed!
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>

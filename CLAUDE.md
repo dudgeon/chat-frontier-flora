@@ -59,6 +59,27 @@ npm run lint
 cd apps/web && npx tsc --noEmit
 ```
 
+## Git workflow for Claude Code
+
+1. **Always work on a feature branch**
+   If none exists:
+   `git checkout -B fix/<topic>`
+
+2. **Commit every tangible step** (≤ 20 min or one major checklist item)
+   Prefix in-progress commits with `WIP:`.
+   Example: `git commit -m "WIP: fix validation import path"`
+
+3. **Push after each commit**
+   `git push -u origin $(git rev-parse --abbrev-ref HEAD)`
+   If first push on this branch, open a **draft PR**: "🚧 WIP \<topic\>".
+
+4. **Update the task log** (e.g. `NATIVEWIND_V4_METRO_MIGRATION_TASKS.md`)
+   in the *same commit* whenever progress changes.
+
+5. **Before merging**
+    Squash/rebase WIP commits into clear logical commits; never force-push to `main`.
+
+
 ## Project Architecture
 
 ### Monorepo Structure
@@ -133,7 +154,7 @@ cd apps/web && npx tsc --noEmit
 - **Environment isolation**: Test data isolated from production via environment-specific stores
 - **False failure prevention**: 3-phase architecture prevents unreliable test failures
 
-### Deployment Requirements 
+### Deployment Requirements
 - **Build verification**: Always test builds locally before pushing
 - **React version consistency**: Ensure exact React versions across all packages
 - **Environment variables**: Verify all required env vars are set for target environment
@@ -168,7 +189,12 @@ cd apps/web && npx tsc --noEmit
 ### Testing
 - `e2e/stagehand-*.spec.ts` - Active Stagehand-based E2E tests (AI-powered)
 - `e2e/archived/` and `e2e/quarantined-playwright-tests/` - Obsolete traditional Playwright tests (ignore)
-- `playwright.config.ts` - Test runner configuration 
+- `playwright.config.ts` - Test runner configuration
 - `docs/LOGIN_TEST_IMPLEMENTATION_GUIDE.md` - Critical testing documentation
 
 Never create files unless absolutely necessary. Always prefer editing existing files. The authentication system was complex to implement correctly - handle auth-related changes with extreme care.
+
+## Development Memories & Recommendations
+
+- Whenever you change the version of any component in this application, perform research to ensure it doesn't break other components, especially Nativewind which is very version sensitive
+```

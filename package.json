@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
+    "nativewind": "^4.1.23",
     "@netlify/edge-functions": "^2.14.5",
     "@playwright/test": "^1.52.0",
     "@types/node": "^20.0.0",

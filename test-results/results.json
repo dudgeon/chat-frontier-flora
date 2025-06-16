@@ -1,0 +1,1376 @@
+{
+  "config": {
+    "configFile": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/playwright.config.ts",
+    "rootDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 5
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "test-results/results.xml"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 5
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 5
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 5
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 5
+        },
+        "id": "Mobile Chrome",
+        "name": "Mobile Chrome",
+        "testDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 5
+        },
+        "id": "Mobile Safari",
+        "name": "Mobile Safari",
+        "testDir": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.52.0",
+    "workers": 5,
+    "webServer": {
+      "command": "cd apps/web && npm run web",
+      "port": 19006,
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "stagehand-auth-test.spec.ts",
+      "file": "stagehand-auth-test.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "🌐 Stagehand Authentication Flow [Production]",
+          "file": "stagehand-auth-test.spec.ts",
+          "line": 67,
+          "column": 6,
+          "specs": [
+            {
+              "title": "🌐 Complete signup and authentication flow on Production",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 98496,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)\n"
+                        },
+                        {
+                          "text": "🎭 Testing Stagehand-powered authentication flow on Production...\n"
+                        },
+                        {
+                          "text": "🎯 Phase 1: Core Functionality Testing\n"
+                        },
+                        {
+                          "text": "📝 Creating account for: test-1749907517704@stagehand-production.com on Production\n"
+                        },
+                        {
+                          "text": "📊 Production form state: { submitButtonEnabled: \u001b[33mtrue\u001b[39m, passwordStrength: \u001b[32m''\u001b[39m }\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction on Production: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mtrue\u001b[39m,\n  buttonText: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 1/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 1 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 1 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 2/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 2 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 2 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 3/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 3 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 3 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 4/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 4 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 4 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 5/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 5 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 5 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 6/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 6 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 6 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for signup process to complete on Production...\n"
+                        },
+                        {
+                          "text": "✅ Production signup result: {\n  isSuccessful: \u001b[33mtrue\u001b[39m,\n  currentUrl: \u001b[32m'/chat'\u001b[39m,\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  isStillOnSignup: \u001b[33mfalse\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎉 Core authentication flow completed successfully on Production!\n"
+                        },
+                        {
+                          "text": "📊 Core functionality verified: {\n  environment: \u001b[32m'Production'\u001b[39m,\n  authenticated: \u001b[33mtrue\u001b[39m,\n  redirectedFromSignup: \u001b[33mtrue\u001b[39m,\n  hasExpectedContent: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
+                        },
+                        {
+                          "text": "🔍 Testing profile menu on Production...\n"
+                        },
+                        {
+                          "text": "👤 Production profile menu state: {\n  isMenuOpen: \u001b[33mtrue\u001b[39m,\n  userEmail: \u001b[32m'test-1749907517704@stagehand-production.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "⚠️ Secondary features testing failed on Production (non-critical): Menu interaction timeout after 30s\n"
+                        },
+                        {
+                          "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
+                        },
+                        {
+                          "text": "📋 Final Production test state: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  pageContent: \u001b[32m'Profile\\n'\u001b[39m +\n    \u001b[32m'EMAIL\\n'\u001b[39m +\n    \u001b[32m'test-1749907517704@stagehand-production.com\\n'\u001b[39m +\n    \u001b[32m'ACCOUNT\\n'\u001b[39m +\n    \u001b[32m'Settings\\n'\u001b[39m +\n    \u001b[32m'Preferences\\n'\u001b[39m +\n    \u001b[32m'Sign Out'\u001b[39m,\n  testCompleted: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎉 Stagehand authentication flow test completed successfully on Production!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-14T13:25:09.618Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23d705daed2e8844e6a8-45115e59ddc7771017d2",
+              "file": "stagehand-auth-test.spec.ts",
+              "line": 93,
+              "column": 7
+            },
+            {
+              "title": "🌐 Production site verification and health check",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 6556,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)\n"
+                        },
+                        {
+                          "text": "🌐 Running production-specific verification tests...\n"
+                        },
+                        {
+                          "text": "🏥 Production health check: {\n  siteLoaded: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  formFieldsVisible: \u001b[33mtrue\u001b[39m,\n  noErrors: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "✅ Production site verification completed successfully!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-14T13:25:09.624Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23d705daed2e8844e6a8-9bb95ae022c1e5350682",
+              "file": "stagehand-auth-test.spec.ts",
+              "line": 421,
+              "column": 9
+            },
+            {
+              "title": "🌐 Complete signup and authentication flow on Production",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 96779,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)\n"
+                        },
+                        {
+                          "text": "🎭 Testing Stagehand-powered authentication flow on Production...\n"
+                        },
+                        {
+                          "text": "🎯 Phase 1: Core Functionality Testing\n"
+                        },
+                        {
+                          "text": "📝 Creating account for: test-1749907516974@stagehand-production.com on Production\n"
+                        },
+                        {
+                          "text": "📊 Production form state: { submitButtonEnabled: \u001b[33mtrue\u001b[39m, passwordStrength: \u001b[32m''\u001b[39m }\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction on Production: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mtrue\u001b[39m,\n  buttonText: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 1/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 1 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 1 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 2/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 2 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 2 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 3/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 3 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 3 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 4/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 4 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 4 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 5/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 5 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 5 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 6/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 6 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 6 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for signup process to complete on Production...\n"
+                        },
+                        {
+                          "text": "✅ Production signup result: {\n  isSuccessful: \u001b[33mtrue\u001b[39m,\n  currentUrl: \u001b[32m'/chat'\u001b[39m,\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  isStillOnSignup: \u001b[33mfalse\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎉 Core authentication flow completed successfully on Production!\n"
+                        },
+                        {
+                          "text": "📊 Core functionality verified: {\n  environment: \u001b[32m'Production'\u001b[39m,\n  authenticated: \u001b[33mtrue\u001b[39m,\n  redirectedFromSignup: \u001b[33mtrue\u001b[39m,\n  hasExpectedContent: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
+                        },
+                        {
+                          "text": "🔍 Testing profile menu on Production...\n"
+                        },
+                        {
+                          "text": "👤 Production profile menu state: {\n  isMenuOpen: \u001b[33mtrue\u001b[39m,\n  userEmail: \u001b[32m'test-1749907516974@stagehand-production.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "⚠️ Secondary features testing failed on Production (non-critical): Menu interaction timeout after 30s\n"
+                        },
+                        {
+                          "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
+                        },
+                        {
+                          "text": "📋 Final Production test state: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  pageContent: \u001b[32m'Profile\\n'\u001b[39m +\n    \u001b[32m'EMAIL\\n'\u001b[39m +\n    \u001b[32m'test-1749907516974@stagehand-production.com\\n'\u001b[39m +\n    \u001b[32m'ACCOUNT\\n'\u001b[39m +\n    \u001b[32m'Settings\\n'\u001b[39m +\n    \u001b[32m'Preferences\\n'\u001b[39m +\n    \u001b[32m'Sign Out'\u001b[39m,\n  testCompleted: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎉 Stagehand authentication flow test completed successfully on Production!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-14T13:25:09.631Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23d705daed2e8844e6a8-01ebfd578e98ff9b17ed",
+              "file": "stagehand-auth-test.spec.ts",
+              "line": 93,
+              "column": 7
+            },
+            {
+              "title": "🌐 Production site verification and health check",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 6653,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)\n"
+                        },
+                        {
+                          "text": "🌐 Running production-specific verification tests...\n"
+                        },
+                        {
+                          "text": "🏥 Production health check: {\n  siteLoaded: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  formFieldsVisible: \u001b[33mtrue\u001b[39m,\n  noErrors: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "✅ Production site verification completed successfully!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-14T13:25:09.609Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23d705daed2e8844e6a8-9909fb78bf3d2e7e8a95",
+              "file": "stagehand-auth-test.spec.ts",
+              "line": 421,
+              "column": 9
+            },
+            {
+              "title": "🌐 Complete signup and authentication flow on Production",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 88534,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)\n"
+                        },
+                        {
+                          "text": "🎭 Testing Stagehand-powered authentication flow on Production...\n"
+                        },
+                        {
+                          "text": "🎯 Phase 1: Core Functionality Testing\n"
+                        },
+                        {
+                          "text": "📝 Creating account for: test-1749907523743@stagehand-production.com on Production\n"
+                        },
+                        {
+                          "text": "📊 Production form state: { submitButtonEnabled: \u001b[33mtrue\u001b[39m, passwordStrength: \u001b[32m''\u001b[39m }\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction on Production: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mtrue\u001b[39m,\n  buttonText: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 1/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 1 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 1 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 2/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 2 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 2 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 3/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 3 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 3 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 4/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 4 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 4 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 5/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 5 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 5 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 6/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 6 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 6 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for signup process to complete on Production...\n"
+                        },
+                        {
+                          "text": "✅ Production signup result: {\n  isSuccessful: \u001b[33mtrue\u001b[39m,\n  currentUrl: \u001b[32m'/chat'\u001b[39m,\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  isStillOnSignup: \u001b[33mfalse\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎉 Core authentication flow completed successfully on Production!\n"
+                        },
+                        {
+                          "text": "📊 Core functionality verified: {\n  environment: \u001b[32m'Production'\u001b[39m,\n  authenticated: \u001b[33mtrue\u001b[39m,\n  redirectedFromSignup: \u001b[33mtrue\u001b[39m,\n  hasExpectedContent: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
+                        },
+                        {
+                          "text": "🔍 Testing profile menu on Production...\n"
+                        },
+                        {
+                          "text": "👤 Production profile menu state: {\n  isMenuOpen: \u001b[33mtrue\u001b[39m,\n  userEmail: \u001b[32m'test-1749907523743@stagehand-production.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "⚠️ Secondary features testing failed on Production (non-critical): Menu interaction timeout after 30s\n"
+                        },
+                        {
+                          "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
+                        },
+                        {
+                          "text": "📋 Final Production test state: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  pageContent: \u001b[32m'Profile\\n'\u001b[39m +\n    \u001b[32m'EMAIL\\n'\u001b[39m +\n    \u001b[32m'test-1749907523743@stagehand-production.com\\n'\u001b[39m +\n    \u001b[32m'ACCOUNT\\n'\u001b[39m +\n    \u001b[32m'Settings\\n'\u001b[39m +\n    \u001b[32m'Preferences\\n'\u001b[39m +\n    \u001b[32m'Sign Out'\u001b[39m,\n  testCompleted: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎉 Stagehand authentication flow test completed successfully on Production!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-14T13:25:17.731Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23d705daed2e8844e6a8-e453b5e320c77bb314d3",
+              "file": "stagehand-auth-test.spec.ts",
+              "line": 93,
+              "column": 7
+            },
+            {
+              "title": "🌐 Production site verification and health check",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4298,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)\n"
+                        },
+                        {
+                          "text": "🌐 Running production-specific verification tests...\n"
+                        },
+                        {
+                          "text": "🏥 Production health check: {\n  siteLoaded: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  formFieldsVisible: \u001b[33mtrue\u001b[39m,\n  noErrors: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "✅ Production site verification completed successfully!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-14T13:25:21.845Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23d705daed2e8844e6a8-4aa89a7b24de4e9a9a09",
+              "file": "stagehand-auth-test.spec.ts",
+              "line": 421,
+              "column": 9
+            },
+            {
+              "title": "🌐 Complete signup and authentication flow on Production",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 73572,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)\n"
+                        },
+                        {
+                          "text": "🎭 Testing Stagehand-powered authentication flow on Production...\n"
+                        },
+                        {
+                          "text": "🎯 Phase 1: Core Functionality Testing\n"
+                        },
+                        {
+                          "text": "📝 Creating account for: test-1749907534159@stagehand-production.com on Production\n"
+                        },
+                        {
+                          "text": "📊 Production form state: { submitButtonEnabled: \u001b[33mtrue\u001b[39m, passwordStrength: \u001b[32m''\u001b[39m }\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction on Production: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mtrue\u001b[39m,\n  buttonText: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 1/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 1 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 1 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 2/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 2 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 2 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 3/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 3 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 3 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 4/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 4 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 4 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 5/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 5 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 5 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 6/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 6 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 6 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for signup process to complete on Production...\n"
+                        },
+                        {
+                          "text": "✅ Production signup result: {\n  isSuccessful: \u001b[33mtrue\u001b[39m,\n  currentUrl: \u001b[32m'/chat'\u001b[39m,\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  isStillOnSignup: \u001b[33mfalse\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎉 Core authentication flow completed successfully on Production!\n"
+                        },
+                        {
+                          "text": "📊 Core functionality verified: {\n  environment: \u001b[32m'Production'\u001b[39m,\n  authenticated: \u001b[33mtrue\u001b[39m,\n  redirectedFromSignup: \u001b[33mtrue\u001b[39m,\n  hasExpectedContent: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
+                        },
+                        {
+                          "text": "🔍 Testing profile menu on Production...\n"
+                        },
+                        {
+                          "text": "👤 Production profile menu state: {\n  isMenuOpen: \u001b[33mtrue\u001b[39m,\n  userEmail: \u001b[32m'Frontier.Family'\u001b[39m,\n  hasLogoutButton: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
+                        },
+                        {
+                          "text": "📋 Final Production test state: { currentUrl: \u001b[32m'null'\u001b[39m, pageContent: \u001b[32m'null'\u001b[39m, testCompleted: \u001b[33mfalse\u001b[39m }\n"
+                        },
+                        {
+                          "text": "🎉 Stagehand authentication flow test completed successfully on Production!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-14T13:25:28.693Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23d705daed2e8844e6a8-3fd505ce199e275426c2",
+              "file": "stagehand-auth-test.spec.ts",
+              "line": 93,
+              "column": 7
+            },
+            {
+              "title": "🌐 Production site verification and health check",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4168,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)\n"
+                        },
+                        {
+                          "text": "🌐 Running production-specific verification tests...\n"
+                        },
+                        {
+                          "text": "🏥 Production health check: {\n  siteLoaded: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  formFieldsVisible: \u001b[33mtrue\u001b[39m,\n  noErrors: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "✅ Production site verification completed successfully!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-14T13:25:36.814Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23d705daed2e8844e6a8-efe34ea57457de2a5d70",
+              "file": "stagehand-auth-test.spec.ts",
+              "line": 421,
+              "column": 9
+            },
+            {
+              "title": "🌐 Complete signup and authentication flow on Production",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 96518,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)\n"
+                        },
+                        {
+                          "text": "🎭 Testing Stagehand-powered authentication flow on Production...\n"
+                        },
+                        {
+                          "text": "🎯 Phase 1: Core Functionality Testing\n"
+                        },
+                        {
+                          "text": "📝 Creating account for: test-1749907556074@stagehand-production.com on Production\n"
+                        },
+                        {
+                          "text": "📊 Production form state: { submitButtonEnabled: \u001b[33mtrue\u001b[39m, passwordStrength: \u001b[32m''\u001b[39m }\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction on Production: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mtrue\u001b[39m,\n  buttonText: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 1/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 1 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 1 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 2/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 2 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 2 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 3/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 3 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 3 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 4/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 4 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 4 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 5/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 5 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 5 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button interaction strategy 6/6 on Production\n"
+                        },
+                        {
+                          "text": "✅ Button interaction successful with strategy 6 on Production\n"
+                        },
+                        {
+                          "text": "⚠️ Strategy 6 clicked button but no expected effect detected, trying next strategy...\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for signup process to complete on Production...\n"
+                        },
+                        {
+                          "text": "✅ Production signup result: {\n  isSuccessful: \u001b[33mtrue\u001b[39m,\n  currentUrl: \u001b[32m'/chat'\u001b[39m,\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  isStillOnSignup: \u001b[33mfalse\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎉 Core authentication flow completed successfully on Production!\n"
+                        },
+                        {
+                          "text": "📊 Core functionality verified: {\n  environment: \u001b[32m'Production'\u001b[39m,\n  authenticated: \u001b[33mtrue\u001b[39m,\n  redirectedFromSignup: \u001b[33mtrue\u001b[39m,\n  hasExpectedContent: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
+                        },
+                        {
+                          "text": "🔍 Testing profile menu on Production...\n"
+                        },
+                        {
+                          "text": "👤 Production profile menu state: {\n  isMenuOpen: \u001b[33mtrue\u001b[39m,\n  userEmail: \u001b[32m'test-1749907556074@stagehand-production.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "⚠️ Secondary features testing failed on Production (non-critical): Menu interaction timeout after 30s\n"
+                        },
+                        {
+                          "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
+                        },
+                        {
+                          "text": "📋 Final Production test state: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  pageContent: \u001b[32m'Profile\\n'\u001b[39m +\n    \u001b[32m'×\\n'\u001b[39m +\n    \u001b[32m'test-1749907556074@stagehand-production.com\\n'\u001b[39m +\n    \u001b[32m'EMAIL\\n'\u001b[39m +\n    \u001b[32m'ACCOUNT\\n'\u001b[39m +\n    \u001b[32m'Settings\\n'\u001b[39m +\n    \u001b[32m'Preferences\\n'\u001b[39m +\n    \u001b[32m'Sign Out'\u001b[39m,\n  testCompleted: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎉 Stagehand authentication flow test completed successfully on Production!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-14T13:25:50.095Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23d705daed2e8844e6a8-cf38532ed5bf232b7560",
+              "file": "stagehand-auth-test.spec.ts",
+              "line": 93,
+              "column": 7
+            },
+            {
+              "title": "🌐 Production site verification and health check",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 5994,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)\n"
+                        },
+                        {
+                          "text": "🌐 Running production-specific verification tests...\n"
+                        },
+                        {
+                          "text": "🏥 Production health check: {\n  siteLoaded: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  formFieldsVisible: \u001b[33mtrue\u001b[39m,\n  noErrors: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "✅ Production site verification completed successfully!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-14T13:26:44.139Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23d705daed2e8844e6a8-2c5ad96bc5ab3617d0e8",
+              "file": "stagehand-auth-test.spec.ts",
+              "line": 421,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "stagehand-production-auth.spec.ts",
+      "file": "stagehand-production-auth.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "🌐 Stagehand Production Authentication",
+          "file": "stagehand-production-auth.spec.ts",
+          "line": 56,
+          "column": 6,
+          "specs": [
+            {
+              "title": "🌐 Production site verification and health check",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 10946,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Initializing Stagehand for Production environment (https://frontier-family-flora.netlify.app)\n"
+                        },
+                        {
+                          "text": "🌐 Testing production deployment with Stagehand...\n"
+                        },
+                        {
+                          "text": "🏭 Production state: {\n  siteLoaded: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  isResponsive: \u001b[33mtrue\u001b[39m,\n  hasTitle: \u001b[33mfalse\u001b[39m,\n  formFieldsVisible: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "📱 Responsive: true\n"
+                        },
+                        {
+                          "text": "📄 Has Title: false\n"
+                        },
+                        {
+                          "text": "✅ Production site verification passed!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-14T13:25:09.619Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "8ccf6718ab6a9cbf060b-03569cd2e52af1cfce2f",
+              "file": "stagehand-production-auth.spec.ts",
+              "line": 313,
+              "column": 9
+            },
+            {
+              "title": "🌐 Production site verification and health check",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 9219,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Initializing Stagehand for Production environment (https://frontier-family-flora.netlify.app)\n"
+                        },
+                        {
+                          "text": "🌐 Testing production deployment with Stagehand...\n"
+                        },
+                        {
+                          "text": "🏭 Production state: {\n  siteLoaded: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  isResponsive: \u001b[33mtrue\u001b[39m,\n  hasTitle: \u001b[33mfalse\u001b[39m,\n  formFieldsVisible: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "📱 Responsive: true\n"
+                        },
+                        {
+                          "text": "📄 Has Title: false\n"
+                        },
+                        {
+                          "text": "✅ Production site verification passed!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-14T13:25:17.727Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "8ccf6718ab6a9cbf060b-d7ecd4916730cbffc257",
+              "file": "stagehand-production-auth.spec.ts",
+              "line": 313,
+              "column": 9
+            },
+            {
+              "title": "🌐 Production site verification and health check",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 8911,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Initializing Stagehand for Production environment (https://frontier-family-flora.netlify.app)\n"
+                        },
+                        {
+                          "text": "🌐 Testing production deployment with Stagehand...\n"
+                        },
+                        {
+                          "text": "🏭 Production state: {\n  siteLoaded: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  isResponsive: \u001b[33mtrue\u001b[39m,\n  hasTitle: \u001b[33mfalse\u001b[39m,\n  formFieldsVisible: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "📱 Responsive: true\n"
+                        },
+                        {
+                          "text": "📄 Has Title: false\n"
+                        },
+                        {
+                          "text": "✅ Production site verification passed!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-14T13:25:26.157Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "8ccf6718ab6a9cbf060b-fee0fa2f65df13155021",
+              "file": "stagehand-production-auth.spec.ts",
+              "line": 313,
+              "column": 9
+            },
+            {
+              "title": "🌐 Production site verification and health check",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 7899,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Initializing Stagehand for Production environment (https://frontier-family-flora.netlify.app)\n"
+                        },
+                        {
+                          "text": "🌐 Testing production deployment with Stagehand...\n"
+                        },
+                        {
+                          "text": "🏭 Production state: {\n  siteLoaded: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  isResponsive: \u001b[33mtrue\u001b[39m,\n  hasTitle: \u001b[33mfalse\u001b[39m,\n  formFieldsVisible: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "📱 Responsive: true\n"
+                        },
+                        {
+                          "text": "📄 Has Title: false\n"
+                        },
+                        {
+                          "text": "✅ Production site verification passed!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-14T13:25:40.994Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "8ccf6718ab6a9cbf060b-fd0df29b5c508c167bad",
+              "file": "stagehand-production-auth.spec.ts",
+              "line": 313,
+              "column": 9
+            },
+            {
+              "title": "🌐 Production site verification and health check",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 8200,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Initializing Stagehand for Production environment (https://frontier-family-flora.netlify.app)\n"
+                        },
+                        {
+                          "text": "🌐 Testing production deployment with Stagehand...\n"
+                        },
+                        {
+                          "text": "🏭 Production state: {\n  siteLoaded: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  isResponsive: \u001b[33mtrue\u001b[39m,\n  hasTitle: \u001b[33mfalse\u001b[39m,\n  formFieldsVisible: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "📱 Responsive: true\n"
+                        },
+                        {
+                          "text": "📄 Has Title: false\n"
+                        },
+                        {
+                          "text": "✅ Production site verification passed!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-14T13:26:47.701Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "8ccf6718ab6a9cbf060b-613dae4a353275b3d835",
+              "file": "stagehand-production-auth.spec.ts",
+              "line": 313,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-06-14T13:25:08.751Z",
+    "duration": 138709.683,
+    "expected": 15,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
