@@ -155,15 +155,10 @@ export const LoginForm: React.FC<LoginFormProps> = ({
           />
         )}
 
-        <View style={{ flexDirection: 'column', gap: 24 }}>
+        <View className="flex flex-col">
           {/* Email Field */}
-          <View>
-            <Text style={{
-              fontSize: 16,
-              fontWeight: '500',
-              marginBottom: 8,
-              color: '#374151',
-            }}>
+          <View className="mb-6">
+            <Text className="text-base font-medium mb-2 text-gray-700">
               Email Address
             </Text>
             <InputField
@@ -180,24 +175,15 @@ export const LoginForm: React.FC<LoginFormProps> = ({
             />
             {formValidation.getFieldProps('email').touched &&
               formValidation.getFieldProps('email').error && (
-              <Text style={{
-                color: '#ef4444',
-                fontSize: 14,
-                marginTop: 4,
-              }}>
+              <Text className="text-red-500 text-sm mt-1">
                 {formValidation.getFieldProps('email').error}
               </Text>
             )}
           </View>
 
           {/* Password Field */}
-          <View>
-            <Text style={{
-              fontSize: 16,
-              fontWeight: '500',
-              marginBottom: 8,
-              color: '#374151',
-            }}>
+          <View className="mb-6">
+            <Text className="text-base font-medium mb-2 text-gray-700">
               Password
             </Text>
             <View style={{ position: 'relative' }}>
@@ -214,38 +200,25 @@ export const LoginForm: React.FC<LoginFormProps> = ({
               />
               {/* Show/Hide Password Toggle */}
               <TouchableOpacity
-                style={{
-                  position: 'absolute',
-                  right: 12,
-                  top: 12,
-                  padding: 8,
-                }}
+                className="absolute right-3 top-3 p-2"
                 onPress={() => setShowPassword(!showPassword)}
                 testID="password-toggle"
               >
-                <Text style={{
-                  fontSize: 14,
-                  color: '#2563eb',
-                  fontWeight: '500',
-                }}>
+                <Text className="text-sm text-blue-600 font-medium">
                   {showPassword ? 'Hide' : 'Show'}
                 </Text>
               </TouchableOpacity>
             </View>
             {formValidation.getFieldProps('password').touched &&
               formValidation.getFieldProps('password').error && (
-              <Text style={{
-                color: '#ef4444',
-                fontSize: 14,
-                marginTop: 4,
-              }}>
+              <Text className="text-red-500 text-sm mt-1">
                 {formValidation.getFieldProps('password').error}
               </Text>
             )}
           </View>
 
           {/* Remember Me & Forgot Password */}
-          <View style={{
+          <View className="mb-6" style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
