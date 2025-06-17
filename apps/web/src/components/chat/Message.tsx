@@ -14,11 +14,11 @@ export const Message: React.FC<MessageType> = ({ author, text }) => {
   const isUser = author === 'user';
 
   if (isUser) {
-    // User messages: right-aligned with speech bubble (PRD 4.3.2)
+    // User messages: right-aligned with blue speech bubble (PRD 4.3.2)
     console.log('Rendering user message with NativeWind classes');
     return (
       <View className="my-2 items-end px-4">
-        <View className="bg-green-500 rounded-lg rounded-tr-sm px-4 py-3 max-w-[80%] min-w-[60px]">
+        <View className="bg-blue-500 rounded-lg rounded-tr-sm px-4 py-3 max-w-[80%] min-w-[60px]">
           <Text className="text-white text-base leading-6">
             {text}
           </Text>

@@ -125,10 +125,12 @@
     "version": "1.52.0",
     "workers": 5,
     "webServer": {
-      "command": "cd apps/web && npm run web",
+      "command": "bash -c \"cd apps/web && npm run web &\"",
       "port": 19006,
       "reuseExistingServer": true,
-      "timeout": 120000
+      "timeout": 120000,
+      "stdout": "ignore",
+      "stderr": "ignore"
     }
   },
   "suites": [
@@ -140,13 +142,13 @@
       "specs": [],
       "suites": [
         {
-          "title": "🌐 Stagehand Authentication Flow [Production]",
+          "title": "🏠 Stagehand Authentication Flow [Localhost]",
           "file": "stagehand-auth-test.spec.ts",
-          "line": 67,
+          "line": 71,
           "column": 6,
           "specs": [
             {
-              "title": "🌐 Complete signup and authentication flow on Production",
+              "title": "🏠 Complete signup and authentication flow on Localhost",
               "ok": true,
               "tags": [],
               "tests": [
@@ -161,118 +163,76 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 98496,
+                      "duration": 47915,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)\n"
+                          "text": "🎭 Initializing Stagehand tests for Localhost environment (http://localhost:19006)\n"
                         },
                         {
-                          "text": "🎭 Testing Stagehand-powered authentication flow on Production...\n"
+                          "text": "🎭 Testing Stagehand-powered authentication flow on Localhost...\n"
                         },
                         {
                           "text": "🎯 Phase 1: Core Functionality Testing\n"
                         },
                         {
-                          "text": "📝 Creating account for: test-1749907517704@stagehand-production.com on Production\n"
+                          "text": "✅ Login form loaded – proceeding with authentication test\n"
                         },
                         {
-                          "text": "📊 Production form state: { submitButtonEnabled: \u001b[33mtrue\u001b[39m, passwordStrength: \u001b[32m''\u001b[39m }\n"
+                          "text": "📝 Logging in with: dudgeon+floratest@gmail.com on Localhost\n"
                         },
                         {
-                          "text": "🔍 Button state before interaction on Production: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mtrue\u001b[39m,\n  buttonText: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
+                          "text": "📊 Localhost login form state: { submitButtonEnabled: \u001b[33mtrue\u001b[39m, emailFilled: \u001b[33mtrue\u001b[39m, passwordFilled: \u001b[33mtrue\u001b[39m }\n"
                         },
                         {
-                          "text": "🎯 Attempting button interaction strategy 1/6 on Production\n"
+                          "text": "🔍 Button state before interaction on Localhost: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mfalse\u001b[39m,\n  buttonText: \u001b[32m'Sign In'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
                         },
                         {
-                          "text": "✅ Button interaction successful with strategy 1 on Production\n"
+                          "text": "🔍 Button detection: visible=true, enabled=false, text=\"Sign In\"\n"
                         },
                         {
-                          "text": "⚠️ Strategy 1 clicked button but no expected effect detected, trying next strategy...\n"
+                          "text": "🎯 Attempting direct Playwright click on submit button\n"
                         },
                         {
-                          "text": "🎯 Attempting button interaction strategy 2/6 on Production\n"
+                          "text": "✅ Direct Playwright click successful\n"
                         },
                         {
-                          "text": "✅ Button interaction successful with strategy 2 on Production\n"
+                          "text": "⏳ Waiting for login process to complete on Localhost...\n"
                         },
                         {
-                          "text": "⚠️ Strategy 2 clicked button but no expected effect detected, trying next strategy...\n"
+                          "text": "✅ Localhost login result: {\n  isSuccessful: \u001b[33mtrue\u001b[39m,\n  currentUrl: \u001b[32m'/chat'\u001b[39m,\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  isStillOnLogin: \u001b[33mfalse\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m\n}\n"
                         },
                         {
-                          "text": "🎯 Attempting button interaction strategy 3/6 on Production\n"
+                          "text": "🎉 Core authentication flow completed successfully on Localhost!\n"
                         },
                         {
-                          "text": "✅ Button interaction successful with strategy 3 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 3 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 4/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 4 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 4 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 5/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 5 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 5 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 6/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 6 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 6 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "⏳ Waiting for signup process to complete on Production...\n"
-                        },
-                        {
-                          "text": "✅ Production signup result: {\n  isSuccessful: \u001b[33mtrue\u001b[39m,\n  currentUrl: \u001b[32m'/chat'\u001b[39m,\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  isStillOnSignup: \u001b[33mfalse\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎉 Core authentication flow completed successfully on Production!\n"
-                        },
-                        {
-                          "text": "📊 Core functionality verified: {\n  environment: \u001b[32m'Production'\u001b[39m,\n  authenticated: \u001b[33mtrue\u001b[39m,\n  redirectedFromSignup: \u001b[33mtrue\u001b[39m,\n  hasExpectedContent: \u001b[33mtrue\u001b[39m\n}\n"
+                          "text": "📊 Core functionality verified: {\n  environment: \u001b[32m'Localhost'\u001b[39m,\n  authenticated: \u001b[33mtrue\u001b[39m,\n  redirectedFromLogin: \u001b[33mtrue\u001b[39m,\n  hasExpectedContent: \u001b[33mtrue\u001b[39m\n}\n"
                         },
                         {
                           "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
                         },
                         {
-                          "text": "🔍 Testing profile menu on Production...\n"
+                          "text": "🔍 Testing profile menu on Localhost...\n"
                         },
                         {
-                          "text": "👤 Production profile menu state: {\n  isMenuOpen: \u001b[33mtrue\u001b[39m,\n  userEmail: \u001b[32m'test-1749907517704@stagehand-production.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mtrue\u001b[39m\n}\n"
+                          "text": "👤 Localhost profile menu state: {\n  isMenuOpen: \u001b[33mtrue\u001b[39m,\n  userEmail: \u001b[32m'dudgeon+floratest@gmail.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mtrue\u001b[39m\n}\n"
                         },
                         {
-                          "text": "⚠️ Secondary features testing failed on Production (non-critical): Menu interaction timeout after 30s\n"
+                          "text": "⚠️ Secondary features testing failed on Localhost (non-critical): Menu interaction timeout after 15s\n"
                         },
                         {
                           "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
                         },
                         {
-                          "text": "📋 Final Production test state: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  pageContent: \u001b[32m'Profile\\n'\u001b[39m +\n    \u001b[32m'EMAIL\\n'\u001b[39m +\n    \u001b[32m'test-1749907517704@stagehand-production.com\\n'\u001b[39m +\n    \u001b[32m'ACCOUNT\\n'\u001b[39m +\n    \u001b[32m'Settings\\n'\u001b[39m +\n    \u001b[32m'Preferences\\n'\u001b[39m +\n    \u001b[32m'Sign Out'\u001b[39m,\n  testCompleted: \u001b[33mtrue\u001b[39m\n}\n"
+                          "text": "📋 Final Localhost test state: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  pageContent: \u001b[32m'Profile\\n'\u001b[39m +\n    \u001b[32m'×\\n'\u001b[39m +\n    \u001b[32m'dudgeon+floratest@gmail.com\\n'\u001b[39m +\n    \u001b[32m'EMAIL\\n'\u001b[39m +\n    \u001b[32m'ACCOUNT\\n'\u001b[39m +\n    \u001b[32m'Settings\\n'\u001b[39m +\n    \u001b[32m'Preferences\\n'\u001b[39m +\n    \u001b[32m'Sign Out'\u001b[39m,\n  testCompleted: \u001b[33mtrue\u001b[39m\n}\n"
                         },
                         {
-                          "text": "🎉 Stagehand authentication flow test completed successfully on Production!\n"
+                          "text": "🎉 Stagehand authentication flow test completed successfully on Localhost!\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-06-14T13:25:09.618Z",
+                      "startTime": "2025-06-17T01:32:44.577Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -280,60 +240,13 @@
                   "status": "expected"
                 }
               ],
-              "id": "23d705daed2e8844e6a8-45115e59ddc7771017d2",
+              "id": "23d705daed2e8844e6a8-7df3e21364bfdeacab4e",
               "file": "stagehand-auth-test.spec.ts",
-              "line": 93,
+              "line": 97,
               "column": 7
             },
             {
-              "title": "🌐 Production site verification and health check",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "chromium",
-                  "projectName": "chromium",
-                  "results": [
-                    {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 6556,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)\n"
-                        },
-                        {
-                          "text": "🌐 Running production-specific verification tests...\n"
-                        },
-                        {
-                          "text": "🏥 Production health check: {\n  siteLoaded: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  formFieldsVisible: \u001b[33mtrue\u001b[39m,\n  noErrors: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "✅ Production site verification completed successfully!\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-06-14T13:25:09.624Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "23d705daed2e8844e6a8-9bb95ae022c1e5350682",
-              "file": "stagehand-auth-test.spec.ts",
-              "line": 421,
-              "column": 9
-            },
-            {
-              "title": "🌐 Complete signup and authentication flow on Production",
+              "title": "🏠 Complete signup and authentication flow on Localhost",
               "ok": true,
               "tags": [],
               "tests": [
@@ -348,118 +261,76 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 96779,
+                      "duration": 48227,
                       "errors": [],
                       "stdout": [
                         {
-                          "text": "🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)\n"
+                          "text": "🎭 Initializing Stagehand tests for Localhost environment (http://localhost:19006)\n"
                         },
                         {
-                          "text": "🎭 Testing Stagehand-powered authentication flow on Production...\n"
+                          "text": "🎭 Testing Stagehand-powered authentication flow on Localhost...\n"
                         },
                         {
                           "text": "🎯 Phase 1: Core Functionality Testing\n"
                         },
                         {
-                          "text": "📝 Creating account for: test-1749907516974@stagehand-production.com on Production\n"
+                          "text": "✅ Login form loaded – proceeding with authentication test\n"
                         },
                         {
-                          "text": "📊 Production form state: { submitButtonEnabled: \u001b[33mtrue\u001b[39m, passwordStrength: \u001b[32m''\u001b[39m }\n"
+                          "text": "📝 Logging in with: dudgeon+floratest@gmail.com on Localhost\n"
                         },
                         {
-                          "text": "🔍 Button state before interaction on Production: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mtrue\u001b[39m,\n  buttonText: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
+                          "text": "📊 Localhost login form state: { submitButtonEnabled: \u001b[33mtrue\u001b[39m, emailFilled: \u001b[33mtrue\u001b[39m, passwordFilled: \u001b[33mtrue\u001b[39m }\n"
                         },
                         {
-                          "text": "🎯 Attempting button interaction strategy 1/6 on Production\n"
+                          "text": "🔍 Button state before interaction on Localhost: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mfalse\u001b[39m,\n  buttonText: \u001b[32m'Sign In'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
                         },
                         {
-                          "text": "✅ Button interaction successful with strategy 1 on Production\n"
+                          "text": "🔍 Button detection: visible=true, enabled=false, text=\"Sign In\"\n"
                         },
                         {
-                          "text": "⚠️ Strategy 1 clicked button but no expected effect detected, trying next strategy...\n"
+                          "text": "🎯 Attempting direct Playwright click on submit button\n"
                         },
                         {
-                          "text": "🎯 Attempting button interaction strategy 2/6 on Production\n"
+                          "text": "✅ Direct Playwright click successful\n"
                         },
                         {
-                          "text": "✅ Button interaction successful with strategy 2 on Production\n"
+                          "text": "⏳ Waiting for login process to complete on Localhost...\n"
                         },
                         {
-                          "text": "⚠️ Strategy 2 clicked button but no expected effect detected, trying next strategy...\n"
+                          "text": "✅ Localhost login result: {\n  isSuccessful: \u001b[33mtrue\u001b[39m,\n  currentUrl: \u001b[32m'/chat'\u001b[39m,\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  isStillOnLogin: \u001b[33mfalse\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m\n}\n"
                         },
                         {
-                          "text": "🎯 Attempting button interaction strategy 3/6 on Production\n"
+                          "text": "🎉 Core authentication flow completed successfully on Localhost!\n"
                         },
                         {
-                          "text": "✅ Button interaction successful with strategy 3 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 3 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 4/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 4 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 4 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 5/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 5 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 5 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 6/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 6 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 6 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "⏳ Waiting for signup process to complete on Production...\n"
-                        },
-                        {
-                          "text": "✅ Production signup result: {\n  isSuccessful: \u001b[33mtrue\u001b[39m,\n  currentUrl: \u001b[32m'/chat'\u001b[39m,\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  isStillOnSignup: \u001b[33mfalse\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎉 Core authentication flow completed successfully on Production!\n"
-                        },
-                        {
-                          "text": "📊 Core functionality verified: {\n  environment: \u001b[32m'Production'\u001b[39m,\n  authenticated: \u001b[33mtrue\u001b[39m,\n  redirectedFromSignup: \u001b[33mtrue\u001b[39m,\n  hasExpectedContent: \u001b[33mtrue\u001b[39m\n}\n"
+                          "text": "📊 Core functionality verified: {\n  environment: \u001b[32m'Localhost'\u001b[39m,\n  authenticated: \u001b[33mtrue\u001b[39m,\n  redirectedFromLogin: \u001b[33mtrue\u001b[39m,\n  hasExpectedContent: \u001b[33mtrue\u001b[39m\n}\n"
                         },
                         {
                           "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
                         },
                         {
-                          "text": "🔍 Testing profile menu on Production...\n"
+                          "text": "🔍 Testing profile menu on Localhost...\n"
                         },
                         {
-                          "text": "👤 Production profile menu state: {\n  isMenuOpen: \u001b[33mtrue\u001b[39m,\n  userEmail: \u001b[32m'test-1749907516974@stagehand-production.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mtrue\u001b[39m\n}\n"
+                          "text": "👤 Localhost profile menu state: {\n  isMenuOpen: \u001b[33mtrue\u001b[39m,\n  userEmail: \u001b[32m'dudgeon+floratest@gmail.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mtrue\u001b[39m\n}\n"
                         },
                         {
-                          "text": "⚠️ Secondary features testing failed on Production (non-critical): Menu interaction timeout after 30s\n"
+                          "text": "⚠️ Secondary features testing failed on Localhost (non-critical): Menu interaction timeout after 15s\n"
                         },
                         {
                           "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
                         },
                         {
-                          "text": "📋 Final Production test state: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  pageContent: \u001b[32m'Profile\\n'\u001b[39m +\n    \u001b[32m'EMAIL\\n'\u001b[39m +\n    \u001b[32m'test-1749907516974@stagehand-production.com\\n'\u001b[39m +\n    \u001b[32m'ACCOUNT\\n'\u001b[39m +\n    \u001b[32m'Settings\\n'\u001b[39m +\n    \u001b[32m'Preferences\\n'\u001b[39m +\n    \u001b[32m'Sign Out'\u001b[39m,\n  testCompleted: \u001b[33mtrue\u001b[39m\n}\n"
+                          "text": "📋 Final Localhost test state: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  pageContent: \u001b[32m'Profile\\n'\u001b[39m +\n    \u001b[32m'×\\n'\u001b[39m +\n    \u001b[32m'dudgeon+floratest@gmail.com\\n'\u001b[39m +\n    \u001b[32m'EMAIL\\n'\u001b[39m +\n    \u001b[32m'ACCOUNT\\n'\u001b[39m +\n    \u001b[32m'Settings\\n'\u001b[39m +\n    \u001b[32m'Preferences\\n'\u001b[39m +\n    \u001b[32m'Sign Out'\u001b[39m,\n  testCompleted: \u001b[33mtrue\u001b[39m\n}\n"
                         },
                         {
-                          "text": "🎉 Stagehand authentication flow test completed successfully on Production!\n"
+                          "text": "🎉 Stagehand authentication flow test completed successfully on Localhost!\n"
                         }
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-06-14T13:25:09.631Z",
+                      "startTime": "2025-06-17T01:32:44.578Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -467,18 +338,427 @@
                   "status": "expected"
                 }
               ],
-              "id": "23d705daed2e8844e6a8-01ebfd578e98ff9b17ed",
+              "id": "23d705daed2e8844e6a8-0fe7edd6ce45169a7246",
               "file": "stagehand-auth-test.spec.ts",
-              "line": 93,
+              "line": 97,
               "column": 7
             },
             {
-              "title": "🌐 Production site verification and health check",
+              "title": "🏠 Complete signup and authentication flow on Localhost",
               "ok": true,
               "tags": [],
               "tests": [
                 {
-                  "timeout": 30000,
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 41869,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Initializing Stagehand tests for Localhost environment (http://localhost:19006)\n"
+                        },
+                        {
+                          "text": "🎭 Testing Stagehand-powered authentication flow on Localhost...\n"
+                        },
+                        {
+                          "text": "🎯 Phase 1: Core Functionality Testing\n"
+                        },
+                        {
+                          "text": "✅ Login form loaded – proceeding with authentication test\n"
+                        },
+                        {
+                          "text": "📝 Logging in with: dudgeon+floratest@gmail.com on Localhost\n"
+                        },
+                        {
+                          "text": "📊 Localhost login form state: { submitButtonEnabled: \u001b[33mtrue\u001b[39m, emailFilled: \u001b[33mtrue\u001b[39m, passwordFilled: \u001b[33mtrue\u001b[39m }\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction on Localhost: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mfalse\u001b[39m,\n  buttonText: \u001b[32m'Sign In'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🔍 Button detection: visible=true, enabled=false, text=\"Sign In\"\n"
+                        },
+                        {
+                          "text": "🎯 Attempting direct Playwright click on submit button\n"
+                        },
+                        {
+                          "text": "✅ Direct Playwright click successful\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for login process to complete on Localhost...\n"
+                        },
+                        {
+                          "text": "✅ Localhost login result: {\n  isSuccessful: \u001b[33mtrue\u001b[39m,\n  currentUrl: \u001b[32m'/chat'\u001b[39m,\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  isStillOnLogin: \u001b[33mfalse\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎉 Core authentication flow completed successfully on Localhost!\n"
+                        },
+                        {
+                          "text": "📊 Core functionality verified: {\n  environment: \u001b[32m'Localhost'\u001b[39m,\n  authenticated: \u001b[33mtrue\u001b[39m,\n  redirectedFromLogin: \u001b[33mtrue\u001b[39m,\n  hasExpectedContent: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
+                        },
+                        {
+                          "text": "🔍 Testing profile menu on Localhost...\n"
+                        },
+                        {
+                          "text": "👤 Localhost profile menu state: {\n  isMenuOpen: \u001b[33mtrue\u001b[39m,\n  userEmail: \u001b[32m'dudgeon+floratest@gmail.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "⚠️ Secondary features testing failed on Localhost (non-critical): Menu interaction timeout after 15s\n"
+                        },
+                        {
+                          "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
+                        },
+                        {
+                          "text": "📋 Final Localhost test state: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  pageContent: \u001b[32m'StaticText: ☰\\n'\u001b[39m +\n    \u001b[32m'StaticText: Frontier.Family\\n'\u001b[39m +\n    \u001b[32m'StaticText: 👤\\n'\u001b[39m +\n    \u001b[32m\"StaticText: Hello! I'm your AI assistant. How can I help you today?\\n\"\u001b[39m +\n    \u001b[32m'StaticText: ➤\\n'\u001b[39m +\n    \u001b[32m'StaticText: Profile\\n'\u001b[39m +\n    \u001b[32m'StaticText: ×\\n'\u001b[39m +\n    \u001b[32m'StaticText: dudgeon+floratest@gmail.com\\n'\u001b[39m +\n    \u001b[32m'StaticText: EMAIL\\n'\u001b[39m +\n    \u001b[32m'StaticText: ACCOUNT\\n'\u001b[39m +\n    \u001b[32m'StaticText: Settings\\n'\u001b[39m +\n    \u001b[32m'StaticText: Preferences\\n'\u001b[39m +\n    \u001b[32m'StaticText: Sign Out'\u001b[39m,\n  testCompleted: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎉 Stagehand authentication flow test completed successfully on Localhost!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-17T01:33:05.129Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23d705daed2e8844e6a8-c05bd6edaf0b628dde7c",
+              "file": "stagehand-auth-test.spec.ts",
+              "line": 97,
+              "column": 7
+            },
+            {
+              "title": "🏠 Complete signup and authentication flow on Localhost",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Chrome",
+                  "projectName": "Mobile Chrome",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 39959,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Initializing Stagehand tests for Localhost environment (http://localhost:19006)\n"
+                        },
+                        {
+                          "text": "🎭 Testing Stagehand-powered authentication flow on Localhost...\n"
+                        },
+                        {
+                          "text": "🎯 Phase 1: Core Functionality Testing\n"
+                        },
+                        {
+                          "text": "✅ Login form loaded – proceeding with authentication test\n"
+                        },
+                        {
+                          "text": "📝 Logging in with: dudgeon+floratest@gmail.com on Localhost\n"
+                        },
+                        {
+                          "text": "📊 Localhost login form state: { submitButtonEnabled: \u001b[33mtrue\u001b[39m, emailFilled: \u001b[33mtrue\u001b[39m, passwordFilled: \u001b[33mtrue\u001b[39m }\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction on Localhost: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mtrue\u001b[39m,\n  buttonText: \u001b[32m'Sign In'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🔍 Button detection: visible=true, enabled=true, text=\"Sign In\"\n"
+                        },
+                        {
+                          "text": "🎯 Attempting direct Playwright click on submit button\n"
+                        },
+                        {
+                          "text": "✅ Direct Playwright click successful\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for login process to complete on Localhost...\n"
+                        },
+                        {
+                          "text": "✅ Localhost login result: {\n  isSuccessful: \u001b[33mtrue\u001b[39m,\n  currentUrl: \u001b[32m'/chat'\u001b[39m,\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  isStillOnLogin: \u001b[33mfalse\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎉 Core authentication flow completed successfully on Localhost!\n"
+                        },
+                        {
+                          "text": "📊 Core functionality verified: {\n  environment: \u001b[32m'Localhost'\u001b[39m,\n  authenticated: \u001b[33mtrue\u001b[39m,\n  redirectedFromLogin: \u001b[33mtrue\u001b[39m,\n  hasExpectedContent: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
+                        },
+                        {
+                          "text": "🔍 Testing profile menu on Localhost...\n"
+                        },
+                        {
+                          "text": "👤 Localhost profile menu state: {\n  isMenuOpen: \u001b[33mtrue\u001b[39m,\n  userEmail: \u001b[32m'dudgeon+floratest@gmail.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "⚠️ Secondary features testing failed on Localhost (non-critical): Menu interaction timeout after 15s\n"
+                        },
+                        {
+                          "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
+                        },
+                        {
+                          "text": "📋 Final Localhost test state: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  pageContent: \u001b[32m'Profile\\n'\u001b[39m +\n    \u001b[32m'×\\n'\u001b[39m +\n    \u001b[32m'dudgeon+floratest@gmail.com\\n'\u001b[39m +\n    \u001b[32m'EMAIL\\n'\u001b[39m +\n    \u001b[32m'ACCOUNT\\n'\u001b[39m +\n    \u001b[32m'Settings\\n'\u001b[39m +\n    \u001b[32m'Preferences\\n'\u001b[39m +\n    \u001b[32m'Sign Out'\u001b[39m,\n  testCompleted: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎉 Stagehand authentication flow test completed successfully on Localhost!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-17T01:33:20.588Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23d705daed2e8844e6a8-f0351c890e73d8724b0d",
+              "file": "stagehand-auth-test.spec.ts",
+              "line": 97,
+              "column": 7
+            },
+            {
+              "title": "🏠 Complete signup and authentication flow on Localhost",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 300000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "Mobile Safari",
+                  "projectName": "Mobile Safari",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 40192,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Initializing Stagehand tests for Localhost environment (http://localhost:19006)\n"
+                        },
+                        {
+                          "text": "🎭 Testing Stagehand-powered authentication flow on Localhost...\n"
+                        },
+                        {
+                          "text": "🎯 Phase 1: Core Functionality Testing\n"
+                        },
+                        {
+                          "text": "✅ Login form loaded – proceeding with authentication test\n"
+                        },
+                        {
+                          "text": "📝 Logging in with: dudgeon+floratest@gmail.com on Localhost\n"
+                        },
+                        {
+                          "text": "📊 Localhost login form state: { submitButtonEnabled: \u001b[33mtrue\u001b[39m, emailFilled: \u001b[33mtrue\u001b[39m, passwordFilled: \u001b[33mtrue\u001b[39m }\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction on Localhost: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mfalse\u001b[39m,\n  buttonText: \u001b[32m'Sign In'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🔍 Button detection: visible=true, enabled=false, text=\"Sign In\"\n"
+                        },
+                        {
+                          "text": "🎯 Attempting direct Playwright click on submit button\n"
+                        },
+                        {
+                          "text": "✅ Direct Playwright click successful\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for login process to complete on Localhost...\n"
+                        },
+                        {
+                          "text": "✅ Localhost login result: {\n  isSuccessful: \u001b[33mtrue\u001b[39m,\n  currentUrl: \u001b[32m'/chat'\u001b[39m,\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  isStillOnLogin: \u001b[33mfalse\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎉 Core authentication flow completed successfully on Localhost!\n"
+                        },
+                        {
+                          "text": "📊 Core functionality verified: {\n  environment: \u001b[32m'Localhost'\u001b[39m,\n  authenticated: \u001b[33mtrue\u001b[39m,\n  redirectedFromLogin: \u001b[33mtrue\u001b[39m,\n  hasExpectedContent: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
+                        },
+                        {
+                          "text": "🔍 Testing profile menu on Localhost...\n"
+                        },
+                        {
+                          "text": "👤 Localhost profile menu state: {\n  isMenuOpen: \u001b[33mtrue\u001b[39m,\n  userEmail: \u001b[32m'dudgeon+floratest@gmail.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "⚠️ Secondary features testing failed on Localhost (non-critical): Menu interaction timeout after 15s\n"
+                        },
+                        {
+                          "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
+                        },
+                        {
+                          "text": "📋 Final Localhost test state: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  pageContent: \u001b[32m'Profile\\n'\u001b[39m +\n    \u001b[32m'×\\n'\u001b[39m +\n    \u001b[32m'dudgeon+floratest@gmail.com\\n'\u001b[39m +\n    \u001b[32m'EMAIL\\n'\u001b[39m +\n    \u001b[32m'ACCOUNT\\n'\u001b[39m +\n    \u001b[32m'Settings\\n'\u001b[39m +\n    \u001b[32m'Preferences\\n'\u001b[39m +\n    \u001b[32m'Sign Out'\u001b[39m,\n  testCompleted: \u001b[33mtrue\u001b[39m\n}\n"
+                        },
+                        {
+                          "text": "🎉 Stagehand authentication flow test completed successfully on Localhost!\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2025-06-17T01:33:33.835Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "23d705daed2e8844e6a8-02b4bd63bbfd05fb110e",
+              "file": "stagehand-auth-test.spec.ts",
+              "line": 97,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "stagehand-login-test.spec.ts",
+      "file": "stagehand-login-test.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "🏠 Stagehand Login Flow [Localhost]",
+          "file": "stagehand-login-test.spec.ts",
+          "line": 79,
+          "column": 8,
+          "specs": [
+            {
+              "title": "🏠 User can log in and reach chat on Localhost",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 24754,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts:215:49",
+                        "location": {
+                          "file": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts",
+                          "column": 49,
+                          "line": 215
+                        },
+                        "snippet": "  213 |         // These assertions MUST pass for test to succeed\n  214 |         expect(loginResult.isOnChatPage).toBe(true);\n> 215 |         expect(loginResult.userIsAuthenticated).toBe(true);\n      |                                                 ^\n  216 |         expect(loginResult.hasErrorMessages).toBe(false);\n  217 |\n  218 |         console.log('🎉 Core login flow completed successfully!');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts",
+                            "column": 49,
+                            "line": 215
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  213 |         // These assertions MUST pass for test to succeed\n  214 |         expect(loginResult.isOnChatPage).toBe(true);\n> 215 |         expect(loginResult.userIsAuthenticated).toBe(true);\n      |                                                 ^\n  216 |         expect(loginResult.hasErrorMessages).toBe(false);\n  217 |\n  218 |         console.log('🎉 Core login flow completed successfully!');\n    at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts:215:49"
+                        }
+                      ],
+                      "stdout": [
+                        {
+                          "text": "🎭 Stagehand login test initialised – Localhost\n"
+                        },
+                        {
+                          "text": "🎯 Phase 1: Core Login Flow\n"
+                        },
+                        {
+                          "text": "📝 Logging in as: dudgeon+floratest@gmail.com\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction: {\"isVisible\":false,\"isEnabled\":false,\"buttonText\":\"null\",\"isLoading\":false}\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button click\n"
+                        },
+                        {
+                          "text": "✅ Button clicked via testID\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for login process to complete...\n"
+                        },
+                        {
+                          "text": "✅ Login result: {\n  \"isOnChatPage\": true,\n  \"hasComingSoonText\": false,\n  \"currentUrl\": \"http://localhost:19006/chat\",\n  \"userIsAuthenticated\": false,\n  \"hasProfileMenu\": false,\n  \"hasWelcomeMessage\": false,\n  \"hasErrorMessages\": false\n}\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "❌ Core login failure: ExpectError: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at \u001b[90m/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/\u001b[39me2e/stagehand-login-test.spec.ts:215:49 {\n  matcherResult: {\n    actual: \u001b[33mfalse\u001b[39m,\n    expected: \u001b[33mtrue\u001b[39m,\n    message: \u001b[32m'\\x1B[2mexpect(\\x1B[22m\\x1B[31mreceived\\x1B[39m\\x1B[2m).\\x1B[22mtoBe\\x1B[2m(\\x1B[22m\\x1B[32mexpected\\x1B[39m\\x1B[2m) // Object.is equality\\x1B[22m\\n'\u001b[39m +\n      \u001b[32m'\\n'\u001b[39m +\n      \u001b[32m'Expected: \\x1B[32mtrue\\x1B[39m\\n'\u001b[39m +\n      \u001b[32m'Received: \\x1B[31mfalse\\x1B[39m'\u001b[39m,\n    name: \u001b[32m'toBe'\u001b[39m,\n    pass: \u001b[33mfalse\u001b[39m\n  },\n  [\u001b[32mSymbol(step)\u001b[39m]: {\n    stepId: \u001b[32m'expect@140'\u001b[39m,\n    category: \u001b[32m'expect'\u001b[39m,\n    title: \u001b[32m'expect.toBe'\u001b[39m,\n    params: { expected: \u001b[33mtrue\u001b[39m },\n    infectParentStepsWithError: \u001b[90mundefined\u001b[39m,\n    boxedStack: \u001b[90mundefined\u001b[39m,\n    location: {\n      file: \u001b[32m'/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts'\u001b[39m,\n      line: \u001b[33m215\u001b[39m,\n      column: \u001b[33m49\u001b[39m\n    },\n    steps: [],\n    attachmentIndices: [],\n    info: TestStepInfoImpl {\n      annotations: [],\n      _testInfo: \u001b[36m[TestInfoImpl]\u001b[39m,\n      _stepId: \u001b[32m'expect@140'\u001b[39m\n    },\n    complete: \u001b[36m[Function: complete]\u001b[39m,\n    endWallTime: \u001b[33m1750123989154\u001b[39m,\n    error: {\n      message: \u001b[32m'Error: \\x1B[2mexpect(\\x1B[22m\\x1B[31mreceived\\x1B[39m\\x1B[2m).\\x1B[22mtoBe\\x1B[2m(\\x1B[22m\\x1B[32mexpected\\x1B[39m\\x1B[2m) // Object.is equality\\x1B[22m\\n'\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m'Expected: \\x1B[32mtrue\\x1B[39m\\n'\u001b[39m +\n        \u001b[32m'Received: \\x1B[31mfalse\\x1B[39m'\u001b[39m,\n      stack: \u001b[32m'Error: \\x1B[2mexpect(\\x1B[22m\\x1B[31mreceived\\x1B[39m\\x1B[2m).\\x1B[22mtoBe\\x1B[2m(\\x1B[22m\\x1B[32mexpected\\x1B[39m\\x1B[2m) // Object.is equality\\x1B[22m\\n'\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m'Expected: \\x1B[32mtrue\\x1B[39m\\n'\u001b[39m +\n        \u001b[32m'Received: \\x1B[31mfalse\\x1B[39m\\n'\u001b[39m +\n        \u001b[32m'    at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts:215:49'\u001b[39m,\n      cause: \u001b[90mundefined\u001b[39m\n    }\n  }\n}\n"
+                        }
+                      ],
+                      "retry": 0,
+                      "startTime": "2025-06-17T01:32:44.593Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results/stagehand-login-test-🏠-St-c2f4a-and-reach-chat-on-Localhost-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "_error-context-0",
+                          "contentType": "text/markdown",
+                          "path": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results/stagehand-login-test-🏠-St-c2f4a-and-reach-chat-on-Localhost-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts",
+                        "column": 49,
+                        "line": 215
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ff9076f86caf660f7bfb-1c13a4993731d5d80b12",
+              "file": "stagehand-login-test.spec.ts",
+              "line": 97,
+              "column": 9
+            },
+            {
+              "title": "🏠 User can log in and reach chat on Localhost",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 60000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "firefox",
@@ -487,185 +767,96 @@
                     {
                       "workerIndex": 4,
                       "parallelIndex": 4,
-                      "status": "passed",
-                      "duration": 6653,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)\n"
+                      "status": "failed",
+                      "duration": 24539,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts:215:49",
+                        "location": {
+                          "file": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts",
+                          "column": 49,
+                          "line": 215
                         },
+                        "snippet": "  213 |         // These assertions MUST pass for test to succeed\n  214 |         expect(loginResult.isOnChatPage).toBe(true);\n> 215 |         expect(loginResult.userIsAuthenticated).toBe(true);\n      |                                                 ^\n  216 |         expect(loginResult.hasErrorMessages).toBe(false);\n  217 |\n  218 |         console.log('🎉 Core login flow completed successfully!');"
+                      },
+                      "errors": [
                         {
-                          "text": "🌐 Running production-specific verification tests...\n"
-                        },
-                        {
-                          "text": "🏥 Production health check: {\n  siteLoaded: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  formFieldsVisible: \u001b[33mtrue\u001b[39m,\n  noErrors: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "✅ Production site verification completed successfully!\n"
+                          "location": {
+                            "file": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts",
+                            "column": 49,
+                            "line": 215
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  213 |         // These assertions MUST pass for test to succeed\n  214 |         expect(loginResult.isOnChatPage).toBe(true);\n> 215 |         expect(loginResult.userIsAuthenticated).toBe(true);\n      |                                                 ^\n  216 |         expect(loginResult.hasErrorMessages).toBe(false);\n  217 |\n  218 |         console.log('🎉 Core login flow completed successfully!');\n    at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts:215:49"
                         }
                       ],
-                      "stderr": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Stagehand login test initialised – Localhost\n"
+                        },
+                        {
+                          "text": "🎯 Phase 1: Core Login Flow\n"
+                        },
+                        {
+                          "text": "📝 Logging in as: dudgeon+floratest@gmail.com\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction: {\"isVisible\":false,\"isEnabled\":false,\"buttonText\":\"null\",\"isLoading\":false}\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button click\n"
+                        },
+                        {
+                          "text": "✅ Button clicked via testID\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for login process to complete...\n"
+                        },
+                        {
+                          "text": "✅ Login result: {\n  \"isOnChatPage\": true,\n  \"hasComingSoonText\": false,\n  \"currentUrl\": \"http://localhost:19006/chat\",\n  \"userIsAuthenticated\": false,\n  \"hasProfileMenu\": false,\n  \"hasWelcomeMessage\": false,\n  \"hasErrorMessages\": false\n}\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "❌ Core login failure: ExpectError: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at \u001b[90m/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/\u001b[39me2e/stagehand-login-test.spec.ts:215:49 {\n  matcherResult: {\n    actual: \u001b[33mfalse\u001b[39m,\n    expected: \u001b[33mtrue\u001b[39m,\n    message: \u001b[32m'\\x1B[2mexpect(\\x1B[22m\\x1B[31mreceived\\x1B[39m\\x1B[2m).\\x1B[22mtoBe\\x1B[2m(\\x1B[22m\\x1B[32mexpected\\x1B[39m\\x1B[2m) // Object.is equality\\x1B[22m\\n'\u001b[39m +\n      \u001b[32m'\\n'\u001b[39m +\n      \u001b[32m'Expected: \\x1B[32mtrue\\x1B[39m\\n'\u001b[39m +\n      \u001b[32m'Received: \\x1B[31mfalse\\x1B[39m'\u001b[39m,\n    name: \u001b[32m'toBe'\u001b[39m,\n    pass: \u001b[33mfalse\u001b[39m\n  },\n  [\u001b[32mSymbol(step)\u001b[39m]: {\n    stepId: \u001b[32m'expect@140'\u001b[39m,\n    category: \u001b[32m'expect'\u001b[39m,\n    title: \u001b[32m'expect.toBe'\u001b[39m,\n    params: { expected: \u001b[33mtrue\u001b[39m },\n    infectParentStepsWithError: \u001b[90mundefined\u001b[39m,\n    boxedStack: \u001b[90mundefined\u001b[39m,\n    location: {\n      file: \u001b[32m'/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts'\u001b[39m,\n      line: \u001b[33m215\u001b[39m,\n      column: \u001b[33m49\u001b[39m\n    },\n    steps: [],\n    attachmentIndices: [],\n    info: TestStepInfoImpl {\n      annotations: [],\n      _testInfo: \u001b[36m[TestInfoImpl]\u001b[39m,\n      _stepId: \u001b[32m'expect@140'\u001b[39m\n    },\n    complete: \u001b[36m[Function: complete]\u001b[39m,\n    endWallTime: \u001b[33m1750123988920\u001b[39m,\n    error: {\n      message: \u001b[32m'Error: \\x1B[2mexpect(\\x1B[22m\\x1B[31mreceived\\x1B[39m\\x1B[2m).\\x1B[22mtoBe\\x1B[2m(\\x1B[22m\\x1B[32mexpected\\x1B[39m\\x1B[2m) // Object.is equality\\x1B[22m\\n'\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m'Expected: \\x1B[32mtrue\\x1B[39m\\n'\u001b[39m +\n        \u001b[32m'Received: \\x1B[31mfalse\\x1B[39m'\u001b[39m,\n      stack: \u001b[32m'Error: \\x1B[2mexpect(\\x1B[22m\\x1B[31mreceived\\x1B[39m\\x1B[2m).\\x1B[22mtoBe\\x1B[2m(\\x1B[22m\\x1B[32mexpected\\x1B[39m\\x1B[2m) // Object.is equality\\x1B[22m\\n'\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m'Expected: \\x1B[32mtrue\\x1B[39m\\n'\u001b[39m +\n        \u001b[32m'Received: \\x1B[31mfalse\\x1B[39m\\n'\u001b[39m +\n        \u001b[32m'    at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts:215:49'\u001b[39m,\n      cause: \u001b[90mundefined\u001b[39m\n    }\n  }\n}\n"
+                        }
+                      ],
                       "retry": 0,
-                      "startTime": "2025-06-14T13:25:09.609Z",
+                      "startTime": "2025-06-17T01:32:44.585Z",
                       "annotations": [],
-                      "attachments": []
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results/stagehand-login-test-🏠-St-c2f4a-and-reach-chat-on-Localhost-firefox/test-failed-1.png"
+                        },
+                        {
+                          "name": "_error-context-0",
+                          "contentType": "text/markdown",
+                          "path": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results/stagehand-login-test-🏠-St-c2f4a-and-reach-chat-on-Localhost-firefox/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts",
+                        "column": 49,
+                        "line": 215
+                      }
                     }
                   ],
-                  "status": "expected"
+                  "status": "unexpected"
                 }
               ],
-              "id": "23d705daed2e8844e6a8-9909fb78bf3d2e7e8a95",
-              "file": "stagehand-auth-test.spec.ts",
-              "line": 421,
+              "id": "ff9076f86caf660f7bfb-94a0dbb84e93399236d8",
+              "file": "stagehand-login-test.spec.ts",
+              "line": 97,
               "column": 9
             },
             {
-              "title": "🌐 Complete signup and authentication flow on Production",
-              "ok": true,
+              "title": "🏠 User can log in and reach chat on Localhost",
+              "ok": false,
               "tags": [],
               "tests": [
                 {
-                  "timeout": 300000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "webkit",
-                  "projectName": "webkit",
-                  "results": [
-                    {
-                      "workerIndex": 5,
-                      "parallelIndex": 4,
-                      "status": "passed",
-                      "duration": 88534,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)\n"
-                        },
-                        {
-                          "text": "🎭 Testing Stagehand-powered authentication flow on Production...\n"
-                        },
-                        {
-                          "text": "🎯 Phase 1: Core Functionality Testing\n"
-                        },
-                        {
-                          "text": "📝 Creating account for: test-1749907523743@stagehand-production.com on Production\n"
-                        },
-                        {
-                          "text": "📊 Production form state: { submitButtonEnabled: \u001b[33mtrue\u001b[39m, passwordStrength: \u001b[32m''\u001b[39m }\n"
-                        },
-                        {
-                          "text": "🔍 Button state before interaction on Production: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mtrue\u001b[39m,\n  buttonText: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 1/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 1 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 1 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 2/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 2 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 2 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 3/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 3 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 3 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 4/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 4 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 4 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 5/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 5 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 5 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 6/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 6 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 6 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "⏳ Waiting for signup process to complete on Production...\n"
-                        },
-                        {
-                          "text": "✅ Production signup result: {\n  isSuccessful: \u001b[33mtrue\u001b[39m,\n  currentUrl: \u001b[32m'/chat'\u001b[39m,\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  isStillOnSignup: \u001b[33mfalse\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎉 Core authentication flow completed successfully on Production!\n"
-                        },
-                        {
-                          "text": "📊 Core functionality verified: {\n  environment: \u001b[32m'Production'\u001b[39m,\n  authenticated: \u001b[33mtrue\u001b[39m,\n  redirectedFromSignup: \u001b[33mtrue\u001b[39m,\n  hasExpectedContent: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
-                        },
-                        {
-                          "text": "🔍 Testing profile menu on Production...\n"
-                        },
-                        {
-                          "text": "👤 Production profile menu state: {\n  isMenuOpen: \u001b[33mtrue\u001b[39m,\n  userEmail: \u001b[32m'test-1749907523743@stagehand-production.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "⚠️ Secondary features testing failed on Production (non-critical): Menu interaction timeout after 30s\n"
-                        },
-                        {
-                          "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
-                        },
-                        {
-                          "text": "📋 Final Production test state: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  pageContent: \u001b[32m'Profile\\n'\u001b[39m +\n    \u001b[32m'EMAIL\\n'\u001b[39m +\n    \u001b[32m'test-1749907523743@stagehand-production.com\\n'\u001b[39m +\n    \u001b[32m'ACCOUNT\\n'\u001b[39m +\n    \u001b[32m'Settings\\n'\u001b[39m +\n    \u001b[32m'Preferences\\n'\u001b[39m +\n    \u001b[32m'Sign Out'\u001b[39m,\n  testCompleted: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎉 Stagehand authentication flow test completed successfully on Production!\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-06-14T13:25:17.731Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "23d705daed2e8844e6a8-e453b5e320c77bb314d3",
-              "file": "stagehand-auth-test.spec.ts",
-              "line": 93,
-              "column": 7
-            },
-            {
-              "title": "🌐 Production site verification and health check",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
+                  "timeout": 60000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "webkit",
@@ -673,408 +864,284 @@
                   "results": [
                     {
                       "workerIndex": 7,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 4298,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)\n"
+                      "parallelIndex": 4,
+                      "status": "failed",
+                      "duration": 14509,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts:215:49",
+                        "location": {
+                          "file": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts",
+                          "column": 49,
+                          "line": 215
                         },
+                        "snippet": "  213 |         // These assertions MUST pass for test to succeed\n  214 |         expect(loginResult.isOnChatPage).toBe(true);\n> 215 |         expect(loginResult.userIsAuthenticated).toBe(true);\n      |                                                 ^\n  216 |         expect(loginResult.hasErrorMessages).toBe(false);\n  217 |\n  218 |         console.log('🎉 Core login flow completed successfully!');"
+                      },
+                      "errors": [
                         {
-                          "text": "🌐 Running production-specific verification tests...\n"
-                        },
-                        {
-                          "text": "🏥 Production health check: {\n  siteLoaded: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  formFieldsVisible: \u001b[33mtrue\u001b[39m,\n  noErrors: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "✅ Production site verification completed successfully!\n"
+                          "location": {
+                            "file": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts",
+                            "column": 49,
+                            "line": 215
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  213 |         // These assertions MUST pass for test to succeed\n  214 |         expect(loginResult.isOnChatPage).toBe(true);\n> 215 |         expect(loginResult.userIsAuthenticated).toBe(true);\n      |                                                 ^\n  216 |         expect(loginResult.hasErrorMessages).toBe(false);\n  217 |\n  218 |         console.log('🎉 Core login flow completed successfully!');\n    at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts:215:49"
                         }
                       ],
-                      "stderr": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Stagehand login test initialised – Localhost\n"
+                        },
+                        {
+                          "text": "🎯 Phase 1: Core Login Flow\n"
+                        },
+                        {
+                          "text": "📝 Logging in as: dudgeon+floratest@gmail.com\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction: {\"isVisible\":false,\"isEnabled\":false,\"buttonText\":\"Sign In\",\"isLoading\":false}\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button click\n"
+                        },
+                        {
+                          "text": "✅ Button clicked via testID\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for login process to complete...\n"
+                        },
+                        {
+                          "text": "✅ Login result: {\n  \"isOnChatPage\": true,\n  \"hasComingSoonText\": false,\n  \"currentUrl\": \"http://localhost:19006/chat\",\n  \"userIsAuthenticated\": false,\n  \"hasProfileMenu\": false,\n  \"hasWelcomeMessage\": false,\n  \"hasErrorMessages\": false\n}\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "❌ Core login failure: ExpectError: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at \u001b[90m/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/\u001b[39me2e/stagehand-login-test.spec.ts:215:49 {\n  matcherResult: {\n    actual: \u001b[33mfalse\u001b[39m,\n    expected: \u001b[33mtrue\u001b[39m,\n    message: \u001b[32m'\\x1B[2mexpect(\\x1B[22m\\x1B[31mreceived\\x1B[39m\\x1B[2m).\\x1B[22mtoBe\\x1B[2m(\\x1B[22m\\x1B[32mexpected\\x1B[39m\\x1B[2m) // Object.is equality\\x1B[22m\\n'\u001b[39m +\n      \u001b[32m'\\n'\u001b[39m +\n      \u001b[32m'Expected: \\x1B[32mtrue\\x1B[39m\\n'\u001b[39m +\n      \u001b[32m'Received: \\x1B[31mfalse\\x1B[39m'\u001b[39m,\n    name: \u001b[32m'toBe'\u001b[39m,\n    pass: \u001b[33mfalse\u001b[39m\n  },\n  [\u001b[32mSymbol(step)\u001b[39m]: {\n    stepId: \u001b[32m'expect@140'\u001b[39m,\n    category: \u001b[32m'expect'\u001b[39m,\n    title: \u001b[32m'expect.toBe'\u001b[39m,\n    params: { expected: \u001b[33mtrue\u001b[39m },\n    infectParentStepsWithError: \u001b[90mundefined\u001b[39m,\n    boxedStack: \u001b[90mundefined\u001b[39m,\n    location: {\n      file: \u001b[32m'/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts'\u001b[39m,\n      line: \u001b[33m215\u001b[39m,\n      column: \u001b[33m49\u001b[39m\n    },\n    steps: [],\n    attachmentIndices: [],\n    info: TestStepInfoImpl {\n      annotations: [],\n      _testInfo: \u001b[36m[TestInfoImpl]\u001b[39m,\n      _stepId: \u001b[32m'expect@140'\u001b[39m\n    },\n    complete: \u001b[36m[Function: complete]\u001b[39m,\n    endWallTime: \u001b[33m1750124003875\u001b[39m,\n    error: {\n      message: \u001b[32m'Error: \\x1B[2mexpect(\\x1B[22m\\x1B[31mreceived\\x1B[39m\\x1B[2m).\\x1B[22mtoBe\\x1B[2m(\\x1B[22m\\x1B[32mexpected\\x1B[39m\\x1B[2m) // Object.is equality\\x1B[22m\\n'\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m'Expected: \\x1B[32mtrue\\x1B[39m\\n'\u001b[39m +\n        \u001b[32m'Received: \\x1B[31mfalse\\x1B[39m'\u001b[39m,\n      stack: \u001b[32m'Error: \\x1B[2mexpect(\\x1B[22m\\x1B[31mreceived\\x1B[39m\\x1B[2m).\\x1B[22mtoBe\\x1B[2m(\\x1B[22m\\x1B[32mexpected\\x1B[39m\\x1B[2m) // Object.is equality\\x1B[22m\\n'\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m'Expected: \\x1B[32mtrue\\x1B[39m\\n'\u001b[39m +\n        \u001b[32m'Received: \\x1B[31mfalse\\x1B[39m\\n'\u001b[39m +\n        \u001b[32m'    at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts:215:49'\u001b[39m,\n      cause: \u001b[90mundefined\u001b[39m\n    }\n  }\n}\n"
+                        }
+                      ],
                       "retry": 0,
-                      "startTime": "2025-06-14T13:25:21.845Z",
+                      "startTime": "2025-06-17T01:33:09.572Z",
                       "annotations": [],
-                      "attachments": []
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results/stagehand-login-test-🏠-St-c2f4a-and-reach-chat-on-Localhost-webkit/test-failed-1.png"
+                        },
+                        {
+                          "name": "_error-context-0",
+                          "contentType": "text/markdown",
+                          "path": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results/stagehand-login-test-🏠-St-c2f4a-and-reach-chat-on-Localhost-webkit/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts",
+                        "column": 49,
+                        "line": 215
+                      }
                     }
                   ],
-                  "status": "expected"
+                  "status": "unexpected"
                 }
               ],
-              "id": "23d705daed2e8844e6a8-4aa89a7b24de4e9a9a09",
-              "file": "stagehand-auth-test.spec.ts",
-              "line": 421,
+              "id": "ff9076f86caf660f7bfb-be96aac68f8f1fa1595a",
+              "file": "stagehand-login-test.spec.ts",
+              "line": 97,
               "column": 9
             },
             {
-              "title": "🌐 Complete signup and authentication flow on Production",
-              "ok": true,
+              "title": "🏠 User can log in and reach chat on Localhost",
+              "ok": false,
               "tags": [],
               "tests": [
                 {
-                  "timeout": 300000,
+                  "timeout": 60000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "Mobile Chrome",
                   "projectName": "Mobile Chrome",
-                  "results": [
-                    {
-                      "workerIndex": 8,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 73572,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)\n"
-                        },
-                        {
-                          "text": "🎭 Testing Stagehand-powered authentication flow on Production...\n"
-                        },
-                        {
-                          "text": "🎯 Phase 1: Core Functionality Testing\n"
-                        },
-                        {
-                          "text": "📝 Creating account for: test-1749907534159@stagehand-production.com on Production\n"
-                        },
-                        {
-                          "text": "📊 Production form state: { submitButtonEnabled: \u001b[33mtrue\u001b[39m, passwordStrength: \u001b[32m''\u001b[39m }\n"
-                        },
-                        {
-                          "text": "🔍 Button state before interaction on Production: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mtrue\u001b[39m,\n  buttonText: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 1/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 1 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 1 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 2/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 2 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 2 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 3/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 3 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 3 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 4/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 4 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 4 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 5/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 5 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 5 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 6/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 6 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 6 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "⏳ Waiting for signup process to complete on Production...\n"
-                        },
-                        {
-                          "text": "✅ Production signup result: {\n  isSuccessful: \u001b[33mtrue\u001b[39m,\n  currentUrl: \u001b[32m'/chat'\u001b[39m,\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  isStillOnSignup: \u001b[33mfalse\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎉 Core authentication flow completed successfully on Production!\n"
-                        },
-                        {
-                          "text": "📊 Core functionality verified: {\n  environment: \u001b[32m'Production'\u001b[39m,\n  authenticated: \u001b[33mtrue\u001b[39m,\n  redirectedFromSignup: \u001b[33mtrue\u001b[39m,\n  hasExpectedContent: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
-                        },
-                        {
-                          "text": "🔍 Testing profile menu on Production...\n"
-                        },
-                        {
-                          "text": "👤 Production profile menu state: {\n  isMenuOpen: \u001b[33mtrue\u001b[39m,\n  userEmail: \u001b[32m'Frontier.Family'\u001b[39m,\n  hasLogoutButton: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
-                        },
-                        {
-                          "text": "📋 Final Production test state: { currentUrl: \u001b[32m'null'\u001b[39m, pageContent: \u001b[32m'null'\u001b[39m, testCompleted: \u001b[33mfalse\u001b[39m }\n"
-                        },
-                        {
-                          "text": "🎉 Stagehand authentication flow test completed successfully on Production!\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-06-14T13:25:28.693Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "23d705daed2e8844e6a8-3fd505ce199e275426c2",
-              "file": "stagehand-auth-test.spec.ts",
-              "line": 93,
-              "column": 7
-            },
-            {
-              "title": "🌐 Production site verification and health check",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 30000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "Mobile Chrome",
-                  "projectName": "Mobile Chrome",
-                  "results": [
-                    {
-                      "workerIndex": 9,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 4168,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)\n"
-                        },
-                        {
-                          "text": "🌐 Running production-specific verification tests...\n"
-                        },
-                        {
-                          "text": "🏥 Production health check: {\n  siteLoaded: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  formFieldsVisible: \u001b[33mtrue\u001b[39m,\n  noErrors: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "✅ Production site verification completed successfully!\n"
-                        }
-                      ],
-                      "stderr": [],
-                      "retry": 0,
-                      "startTime": "2025-06-14T13:25:36.814Z",
-                      "annotations": [],
-                      "attachments": []
-                    }
-                  ],
-                  "status": "expected"
-                }
-              ],
-              "id": "23d705daed2e8844e6a8-efe34ea57457de2a5d70",
-              "file": "stagehand-auth-test.spec.ts",
-              "line": 421,
-              "column": 9
-            },
-            {
-              "title": "🌐 Complete signup and authentication flow on Production",
-              "ok": true,
-              "tags": [],
-              "tests": [
-                {
-                  "timeout": 300000,
-                  "annotations": [],
-                  "expectedStatus": "passed",
-                  "projectId": "Mobile Safari",
-                  "projectName": "Mobile Safari",
                   "results": [
                     {
                       "workerIndex": 10,
-                      "parallelIndex": 2,
-                      "status": "passed",
-                      "duration": 96518,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)\n"
+                      "parallelIndex": 4,
+                      "status": "failed",
+                      "duration": 15756,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts:215:49",
+                        "location": {
+                          "file": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts",
+                          "column": 49,
+                          "line": 215
                         },
+                        "snippet": "  213 |         // These assertions MUST pass for test to succeed\n  214 |         expect(loginResult.isOnChatPage).toBe(true);\n> 215 |         expect(loginResult.userIsAuthenticated).toBe(true);\n      |                                                 ^\n  216 |         expect(loginResult.hasErrorMessages).toBe(false);\n  217 |\n  218 |         console.log('🎉 Core login flow completed successfully!');"
+                      },
+                      "errors": [
                         {
-                          "text": "🎭 Testing Stagehand-powered authentication flow on Production...\n"
-                        },
-                        {
-                          "text": "🎯 Phase 1: Core Functionality Testing\n"
-                        },
-                        {
-                          "text": "📝 Creating account for: test-1749907556074@stagehand-production.com on Production\n"
-                        },
-                        {
-                          "text": "📊 Production form state: { submitButtonEnabled: \u001b[33mtrue\u001b[39m, passwordStrength: \u001b[32m''\u001b[39m }\n"
-                        },
-                        {
-                          "text": "🔍 Button state before interaction on Production: {\n  isVisible: \u001b[33mtrue\u001b[39m,\n  isEnabled: \u001b[33mtrue\u001b[39m,\n  buttonText: \u001b[32m'Create Account'\u001b[39m,\n  isLoading: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 1/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 1 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 1 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 2/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 2 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 2 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 3/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 3 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 3 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 4/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 4 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 4 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 5/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 5 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 5 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "🎯 Attempting button interaction strategy 6/6 on Production\n"
-                        },
-                        {
-                          "text": "✅ Button interaction successful with strategy 6 on Production\n"
-                        },
-                        {
-                          "text": "⚠️ Strategy 6 clicked button but no expected effect detected, trying next strategy...\n"
-                        },
-                        {
-                          "text": "⏳ Waiting for signup process to complete on Production...\n"
-                        },
-                        {
-                          "text": "✅ Production signup result: {\n  isSuccessful: \u001b[33mtrue\u001b[39m,\n  currentUrl: \u001b[32m'/chat'\u001b[39m,\n  userIsAuthenticated: \u001b[33mtrue\u001b[39m,\n  hasProfileMenu: \u001b[33mtrue\u001b[39m,\n  isStillOnSignup: \u001b[33mfalse\u001b[39m,\n  hasErrorMessages: \u001b[33mfalse\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎉 Core authentication flow completed successfully on Production!\n"
-                        },
-                        {
-                          "text": "📊 Core functionality verified: {\n  environment: \u001b[32m'Production'\u001b[39m,\n  authenticated: \u001b[33mtrue\u001b[39m,\n  redirectedFromSignup: \u001b[33mtrue\u001b[39m,\n  hasExpectedContent: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🔧 Phase 2: Secondary Features Testing (Non-Critical)\n"
-                        },
-                        {
-                          "text": "🔍 Testing profile menu on Production...\n"
-                        },
-                        {
-                          "text": "👤 Production profile menu state: {\n  isMenuOpen: \u001b[33mtrue\u001b[39m,\n  userEmail: \u001b[32m'test-1749907556074@stagehand-production.com'\u001b[39m,\n  hasLogoutButton: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "⚠️ Secondary features testing failed on Production (non-critical): Menu interaction timeout after 30s\n"
-                        },
-                        {
-                          "text": "🧹 Phase 3: Cleanup Phase (Non-Critical)\n"
-                        },
-                        {
-                          "text": "📋 Final Production test state: {\n  currentUrl: \u001b[32m'null'\u001b[39m,\n  pageContent: \u001b[32m'Profile\\n'\u001b[39m +\n    \u001b[32m'×\\n'\u001b[39m +\n    \u001b[32m'test-1749907556074@stagehand-production.com\\n'\u001b[39m +\n    \u001b[32m'EMAIL\\n'\u001b[39m +\n    \u001b[32m'ACCOUNT\\n'\u001b[39m +\n    \u001b[32m'Settings\\n'\u001b[39m +\n    \u001b[32m'Preferences\\n'\u001b[39m +\n    \u001b[32m'Sign Out'\u001b[39m,\n  testCompleted: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "🎉 Stagehand authentication flow test completed successfully on Production!\n"
+                          "location": {
+                            "file": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts",
+                            "column": 49,
+                            "line": 215
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  213 |         // These assertions MUST pass for test to succeed\n  214 |         expect(loginResult.isOnChatPage).toBe(true);\n> 215 |         expect(loginResult.userIsAuthenticated).toBe(true);\n      |                                                 ^\n  216 |         expect(loginResult.hasErrorMessages).toBe(false);\n  217 |\n  218 |         console.log('🎉 Core login flow completed successfully!');\n    at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts:215:49"
                         }
                       ],
-                      "stderr": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Stagehand login test initialised – Localhost\n"
+                        },
+                        {
+                          "text": "🎯 Phase 1: Core Login Flow\n"
+                        },
+                        {
+                          "text": "📝 Logging in as: dudgeon+floratest@gmail.com\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction: {\"isVisible\":false,\"isEnabled\":false,\"buttonText\":\"Sign In\",\"isLoading\":false}\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button click\n"
+                        },
+                        {
+                          "text": "✅ Button clicked via testID\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for login process to complete...\n"
+                        },
+                        {
+                          "text": "✅ Login result: {\n  \"isOnChatPage\": true,\n  \"hasComingSoonText\": false,\n  \"currentUrl\": \"http://localhost:19006/chat\",\n  \"userIsAuthenticated\": false,\n  \"hasProfileMenu\": false,\n  \"hasWelcomeMessage\": false,\n  \"hasErrorMessages\": false\n}\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "❌ Core login failure: ExpectError: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at \u001b[90m/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/\u001b[39me2e/stagehand-login-test.spec.ts:215:49 {\n  matcherResult: {\n    actual: \u001b[33mfalse\u001b[39m,\n    expected: \u001b[33mtrue\u001b[39m,\n    message: \u001b[32m'\\x1B[2mexpect(\\x1B[22m\\x1B[31mreceived\\x1B[39m\\x1B[2m).\\x1B[22mtoBe\\x1B[2m(\\x1B[22m\\x1B[32mexpected\\x1B[39m\\x1B[2m) // Object.is equality\\x1B[22m\\n'\u001b[39m +\n      \u001b[32m'\\n'\u001b[39m +\n      \u001b[32m'Expected: \\x1B[32mtrue\\x1B[39m\\n'\u001b[39m +\n      \u001b[32m'Received: \\x1B[31mfalse\\x1B[39m'\u001b[39m,\n    name: \u001b[32m'toBe'\u001b[39m,\n    pass: \u001b[33mfalse\u001b[39m\n  },\n  [\u001b[32mSymbol(step)\u001b[39m]: {\n    stepId: \u001b[32m'expect@140'\u001b[39m,\n    category: \u001b[32m'expect'\u001b[39m,\n    title: \u001b[32m'expect.toBe'\u001b[39m,\n    params: { expected: \u001b[33mtrue\u001b[39m },\n    infectParentStepsWithError: \u001b[90mundefined\u001b[39m,\n    boxedStack: \u001b[90mundefined\u001b[39m,\n    location: {\n      file: \u001b[32m'/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts'\u001b[39m,\n      line: \u001b[33m215\u001b[39m,\n      column: \u001b[33m49\u001b[39m\n    },\n    steps: [],\n    attachmentIndices: [],\n    info: TestStepInfoImpl {\n      annotations: [],\n      _testInfo: \u001b[36m[TestInfoImpl]\u001b[39m,\n      _stepId: \u001b[32m'expect@140'\u001b[39m\n    },\n    complete: \u001b[36m[Function: complete]\u001b[39m,\n    endWallTime: \u001b[33m1750124020694\u001b[39m,\n    error: {\n      message: \u001b[32m'Error: \\x1B[2mexpect(\\x1B[22m\\x1B[31mreceived\\x1B[39m\\x1B[2m).\\x1B[22mtoBe\\x1B[2m(\\x1B[22m\\x1B[32mexpected\\x1B[39m\\x1B[2m) // Object.is equality\\x1B[22m\\n'\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m'Expected: \\x1B[32mtrue\\x1B[39m\\n'\u001b[39m +\n        \u001b[32m'Received: \\x1B[31mfalse\\x1B[39m'\u001b[39m,\n      stack: \u001b[32m'Error: \\x1B[2mexpect(\\x1B[22m\\x1B[31mreceived\\x1B[39m\\x1B[2m).\\x1B[22mtoBe\\x1B[2m(\\x1B[22m\\x1B[32mexpected\\x1B[39m\\x1B[2m) // Object.is equality\\x1B[22m\\n'\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m'Expected: \\x1B[32mtrue\\x1B[39m\\n'\u001b[39m +\n        \u001b[32m'Received: \\x1B[31mfalse\\x1B[39m\\n'\u001b[39m +\n        \u001b[32m'    at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts:215:49'\u001b[39m,\n      cause: \u001b[90mundefined\u001b[39m\n    }\n  }\n}\n"
+                        }
+                      ],
                       "retry": 0,
-                      "startTime": "2025-06-14T13:25:50.095Z",
+                      "startTime": "2025-06-17T01:33:25.135Z",
                       "annotations": [],
-                      "attachments": []
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results/stagehand-login-test-🏠-St-c2f4a-and-reach-chat-on-Localhost-Mobile-Chrome/test-failed-1.png"
+                        },
+                        {
+                          "name": "_error-context-0",
+                          "contentType": "text/markdown",
+                          "path": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results/stagehand-login-test-🏠-St-c2f4a-and-reach-chat-on-Localhost-Mobile-Chrome/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts",
+                        "column": 49,
+                        "line": 215
+                      }
                     }
                   ],
-                  "status": "expected"
+                  "status": "unexpected"
                 }
               ],
-              "id": "23d705daed2e8844e6a8-cf38532ed5bf232b7560",
-              "file": "stagehand-auth-test.spec.ts",
-              "line": 93,
-              "column": 7
+              "id": "ff9076f86caf660f7bfb-efb3ee0f29f39a2856dc",
+              "file": "stagehand-login-test.spec.ts",
+              "line": 97,
+              "column": 9
             },
             {
-              "title": "🌐 Production site verification and health check",
-              "ok": true,
+              "title": "🏠 User can log in and reach chat on Localhost",
+              "ok": false,
               "tags": [],
               "tests": [
                 {
-                  "timeout": 30000,
+                  "timeout": 60000,
                   "annotations": [],
                   "expectedStatus": "passed",
                   "projectId": "Mobile Safari",
                   "projectName": "Mobile Safari",
                   "results": [
                     {
-                      "workerIndex": 11,
-                      "parallelIndex": 1,
-                      "status": "passed",
-                      "duration": 5994,
-                      "errors": [],
-                      "stdout": [
-                        {
-                          "text": "🎭 Initializing Stagehand tests for Production environment (https://frontier-family-flora.netlify.app)\n"
+                      "workerIndex": 13,
+                      "parallelIndex": 4,
+                      "status": "failed",
+                      "duration": 16276,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts:215:49",
+                        "location": {
+                          "file": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts",
+                          "column": 49,
+                          "line": 215
                         },
+                        "snippet": "  213 |         // These assertions MUST pass for test to succeed\n  214 |         expect(loginResult.isOnChatPage).toBe(true);\n> 215 |         expect(loginResult.userIsAuthenticated).toBe(true);\n      |                                                 ^\n  216 |         expect(loginResult.hasErrorMessages).toBe(false);\n  217 |\n  218 |         console.log('🎉 Core login flow completed successfully!');"
+                      },
+                      "errors": [
                         {
-                          "text": "🌐 Running production-specific verification tests...\n"
-                        },
-                        {
-                          "text": "🏥 Production health check: {\n  siteLoaded: \u001b[33mtrue\u001b[39m,\n  hasSignupForm: \u001b[33mtrue\u001b[39m,\n  formFieldsVisible: \u001b[33mtrue\u001b[39m,\n  noErrors: \u001b[33mtrue\u001b[39m\n}\n"
-                        },
-                        {
-                          "text": "✅ Production site verification completed successfully!\n"
+                          "location": {
+                            "file": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts",
+                            "column": 49,
+                            "line": 215
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n  213 |         // These assertions MUST pass for test to succeed\n  214 |         expect(loginResult.isOnChatPage).toBe(true);\n> 215 |         expect(loginResult.userIsAuthenticated).toBe(true);\n      |                                                 ^\n  216 |         expect(loginResult.hasErrorMessages).toBe(false);\n  217 |\n  218 |         console.log('🎉 Core login flow completed successfully!');\n    at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts:215:49"
                         }
                       ],
-                      "stderr": [],
+                      "stdout": [
+                        {
+                          "text": "🎭 Stagehand login test initialised – Localhost\n"
+                        },
+                        {
+                          "text": "🎯 Phase 1: Core Login Flow\n"
+                        },
+                        {
+                          "text": "📝 Logging in as: dudgeon+floratest@gmail.com\n"
+                        },
+                        {
+                          "text": "🔍 Button state before interaction: {\"isVisible\":false,\"isEnabled\":false,\"buttonText\":\"Sign In\",\"isLoading\":false}\n"
+                        },
+                        {
+                          "text": "🎯 Attempting button click\n"
+                        },
+                        {
+                          "text": "✅ Button clicked via testID\n"
+                        },
+                        {
+                          "text": "⏳ Waiting for login process to complete...\n"
+                        },
+                        {
+                          "text": "✅ Login result: {\n  \"isOnChatPage\": true,\n  \"hasComingSoonText\": false,\n  \"currentUrl\": \"http://localhost:19006/chat\",\n  \"userIsAuthenticated\": false,\n  \"hasProfileMenu\": false,\n  \"hasWelcomeMessage\": false,\n  \"hasErrorMessages\": false\n}\n"
+                        }
+                      ],
+                      "stderr": [
+                        {
+                          "text": "❌ Core login failure: ExpectError: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at \u001b[90m/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/\u001b[39me2e/stagehand-login-test.spec.ts:215:49 {\n  matcherResult: {\n    actual: \u001b[33mfalse\u001b[39m,\n    expected: \u001b[33mtrue\u001b[39m,\n    message: \u001b[32m'\\x1B[2mexpect(\\x1B[22m\\x1B[31mreceived\\x1B[39m\\x1B[2m).\\x1B[22mtoBe\\x1B[2m(\\x1B[22m\\x1B[32mexpected\\x1B[39m\\x1B[2m) // Object.is equality\\x1B[22m\\n'\u001b[39m +\n      \u001b[32m'\\n'\u001b[39m +\n      \u001b[32m'Expected: \\x1B[32mtrue\\x1B[39m\\n'\u001b[39m +\n      \u001b[32m'Received: \\x1B[31mfalse\\x1B[39m'\u001b[39m,\n    name: \u001b[32m'toBe'\u001b[39m,\n    pass: \u001b[33mfalse\u001b[39m\n  },\n  [\u001b[32mSymbol(step)\u001b[39m]: {\n    stepId: \u001b[32m'expect@148'\u001b[39m,\n    category: \u001b[32m'expect'\u001b[39m,\n    title: \u001b[32m'expect.toBe'\u001b[39m,\n    params: { expected: \u001b[33mtrue\u001b[39m },\n    infectParentStepsWithError: \u001b[90mundefined\u001b[39m,\n    boxedStack: \u001b[90mundefined\u001b[39m,\n    location: {\n      file: \u001b[32m'/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts'\u001b[39m,\n      line: \u001b[33m215\u001b[39m,\n      column: \u001b[33m49\u001b[39m\n    },\n    steps: [],\n    attachmentIndices: [],\n    info: TestStepInfoImpl {\n      annotations: [],\n      _testInfo: \u001b[36m[TestInfoImpl]\u001b[39m,\n      _stepId: \u001b[32m'expect@148'\u001b[39m\n    },\n    complete: \u001b[36m[Function: complete]\u001b[39m,\n    endWallTime: \u001b[33m1750124037994\u001b[39m,\n    error: {\n      message: \u001b[32m'Error: \\x1B[2mexpect(\\x1B[22m\\x1B[31mreceived\\x1B[39m\\x1B[2m).\\x1B[22mtoBe\\x1B[2m(\\x1B[22m\\x1B[32mexpected\\x1B[39m\\x1B[2m) // Object.is equality\\x1B[22m\\n'\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m'Expected: \\x1B[32mtrue\\x1B[39m\\n'\u001b[39m +\n        \u001b[32m'Received: \\x1B[31mfalse\\x1B[39m'\u001b[39m,\n      stack: \u001b[32m'Error: \\x1B[2mexpect(\\x1B[22m\\x1B[31mreceived\\x1B[39m\\x1B[2m).\\x1B[22mtoBe\\x1B[2m(\\x1B[22m\\x1B[32mexpected\\x1B[39m\\x1B[2m) // Object.is equality\\x1B[22m\\n'\u001b[39m +\n        \u001b[32m'\\n'\u001b[39m +\n        \u001b[32m'Expected: \\x1B[32mtrue\\x1B[39m\\n'\u001b[39m +\n        \u001b[32m'Received: \\x1B[31mfalse\\x1B[39m\\n'\u001b[39m +\n        \u001b[32m'    at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts:215:49'\u001b[39m,\n      cause: \u001b[90mundefined\u001b[39m\n    }\n  }\n}\n"
+                        }
+                      ],
                       "retry": 0,
-                      "startTime": "2025-06-14T13:26:44.139Z",
+                      "startTime": "2025-06-17T01:33:41.918Z",
                       "annotations": [],
-                      "attachments": []
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results/stagehand-login-test-🏠-St-c2f4a-and-reach-chat-on-Localhost-Mobile-Safari/test-failed-1.png"
+                        },
+                        {
+                          "name": "_error-context-0",
+                          "contentType": "text/markdown",
+                          "path": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/test-results/stagehand-login-test-🏠-St-c2f4a-and-reach-chat-on-Localhost-Mobile-Safari/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/stagehand-login-test.spec.ts",
+                        "column": 49,
+                        "line": 215
+                      }
                     }
                   ],
-                  "status": "expected"
+                  "status": "unexpected"
                 }
               ],
-              "id": "23d705daed2e8844e6a8-2c5ad96bc5ab3617d0e8",
-              "file": "stagehand-auth-test.spec.ts",
-              "line": 421,
+              "id": "ff9076f86caf660f7bfb-00f51a8f27ec23bd9168",
+              "file": "stagehand-login-test.spec.ts",
+              "line": 97,
               "column": 9
             }
           ]
@@ -1110,7 +1177,7 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 10946,
+                      "duration": 11001,
                       "errors": [],
                       "stdout": [
                         {
@@ -1134,7 +1201,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-06-14T13:25:09.619Z",
+                      "startTime": "2025-06-17T01:32:44.574Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1160,10 +1227,10 @@
                   "projectName": "firefox",
                   "results": [
                     {
-                      "workerIndex": 6,
-                      "parallelIndex": 1,
+                      "workerIndex": 5,
+                      "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 9219,
+                      "duration": 6740,
                       "errors": [],
                       "stdout": [
                         {
@@ -1187,7 +1254,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-06-14T13:25:17.727Z",
+                      "startTime": "2025-06-17T01:32:56.971Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1213,10 +1280,10 @@
                   "projectName": "webkit",
                   "results": [
                     {
-                      "workerIndex": 7,
-                      "parallelIndex": 2,
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
                       "status": "passed",
-                      "duration": 8911,
+                      "duration": 8447,
                       "errors": [],
                       "stdout": [
                         {
@@ -1240,7 +1307,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-06-14T13:25:26.157Z",
+                      "startTime": "2025-06-17T01:33:10.947Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1266,10 +1333,10 @@
                   "projectName": "Mobile Chrome",
                   "results": [
                     {
-                      "workerIndex": 9,
-                      "parallelIndex": 2,
+                      "workerIndex": 11,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 7899,
+                      "duration": 9730,
                       "errors": [],
                       "stdout": [
                         {
@@ -1293,7 +1360,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-06-14T13:25:40.994Z",
+                      "startTime": "2025-06-17T01:33:33.762Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1319,10 +1386,10 @@
                   "projectName": "Mobile Safari",
                   "results": [
                     {
-                      "workerIndex": 12,
-                      "parallelIndex": 4,
+                      "workerIndex": 14,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 8200,
+                      "duration": 8697,
                       "errors": [],
                       "stdout": [
                         {
@@ -1346,7 +1413,7 @@
                       ],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2025-06-14T13:26:47.701Z",
+                      "startTime": "2025-06-17T01:33:44.506Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1366,11 +1433,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2025-06-14T13:25:08.751Z",
-    "duration": 138709.683,
-    "expected": 15,
+    "startTime": "2025-06-17T01:32:41.883Z",
+    "duration": 92368.89600000001,
+    "expected": 10,
     "skipped": 0,
-    "unexpected": 0,
+    "unexpected": 5,
     "flaky": 0
   }
 }

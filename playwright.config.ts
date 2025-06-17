@@ -71,11 +71,11 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: process.env.DEPLOY_PREVIEW_URL ? undefined : {
-    command: 'cd apps/web && npm run web',
+    command: 'bash -c "cd apps/web && npm run web &"',
     port: 19006,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: true, // Always reuse existing server, don't kill when tests end
     timeout: 120 * 1000, // 2 minutes for server to start
-    stdout: 'pipe',
-    stderr: 'pipe',
+    stdout: 'ignore', // Ignore output to avoid process binding
+    stderr: 'ignore',
   },
 });
