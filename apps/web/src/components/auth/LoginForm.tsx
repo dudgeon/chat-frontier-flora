@@ -11,56 +11,6 @@ import { validateEmail } from '../../../utils/validation';
 import { parseAuthError, createSuccessMessage, type ParsedError } from '../../utils/errorHandling';
 import { supabase } from '../../lib/supabase';
 
-// Design system constants (matching other components)
-const designSystem = {
-  colors: {
-    white: '#FFFFFF',
-    gray50: '#F9FAFB',
-    gray100: '#F3F4F6',
-    gray200: '#E5E7EB',
-    gray300: '#D1D5DB',
-    gray400: '#9CA3AF',
-    gray500: '#6B7280',
-    gray600: '#4B5563',
-    gray700: '#374151',
-    gray900: '#111827',
-    blue600: '#2563EB',
-    blue700: '#1D4ED8',
-    blue800: '#1E40AF',
-    red500: '#EF4444',
-    green500: '#22C55E',
-  },
-  spacing: {
-    xs: 4,
-    sm: 8,
-    md: 16,
-    lg: 24,
-    xl: 32,
-  },
-  borderRadius: {
-    sm: 4,
-    md: 6,
-    lg: 8,
-    xl: 12,
-  },
-  fontSize: {
-    sm: 14,
-    base: 16,
-    lg: 18,
-    xl: 20,
-  },
-  fontWeight: {
-    normal: '400' as const,
-    medium: '500' as const,
-    semibold: '600' as const,
-    bold: '700' as const,
-  },
-  lineHeight: {
-    tight: 20,
-    normal: 24,
-    relaxed: 28,
-  },
-};
 
 interface LoginFormProps {
   onSuccess?: () => void;
