@@ -214,33 +214,18 @@ export const SignUpForm: React.FC = () => {
 
     return (
     <ScrollView
+      className="flex-1 w-full bg-gray-50"
       contentContainerStyle={{
         flexGrow: 1,
         justifyContent: 'center',
+        alignItems: 'center',
         minHeight: '100%',
-        backgroundColor: '#f9fafb',
+        paddingHorizontal: 16,
       }}
       testID="signup-form"
     >
-      <View style={{
-        width: '100%',
-        maxWidth: 448,
-        backgroundColor: '#ffffff',
-        borderRadius: 12,
-        padding: 24,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.1,
-        shadowRadius: 12,
-        elevation: 4,
-      }}>
-                  <Text style={{
-            fontSize: 32,
-            fontWeight: 'bold',
-            marginBottom: 32,
-            textAlign: 'center',
-            color: '#111827',
-          }}>
+      <View className="w-full max-w-md bg-white rounded-xl p-6 shadow-lg">
+        <Text className="text-3xl font-bold mb-8 text-center text-gray-900">
           Create Account
         </Text>
 
@@ -255,15 +240,10 @@ export const SignUpForm: React.FC = () => {
           />
         )}
 
-        <View style={{ gap: 20 }}>
+        <View className="flex flex-col">
           {/* Full Name Field */}
-          <View>
-            <Text style={{
-              fontSize: 16,
-              fontWeight: '500',
-              marginBottom: 8,
-              color: '#374151',
-            }}>
+          <View className="mb-6">
+            <Text className="text-base font-medium mb-2 text-gray-700">
               Full Name *
             </Text>
             <InputField
@@ -278,24 +258,15 @@ export const SignUpForm: React.FC = () => {
               autoCorrect={true}
             />
             {formValidation.getFieldProps('fullName').error && (
-              <Text style={{
-                color: '#ef4444',
-                fontSize: 14,
-                marginTop: 4,
-              }}>
+              <Text className="text-red-500 text-sm mt-1">
                 {formValidation.getFieldProps('fullName').error}
               </Text>
             )}
           </View>
 
           {/* Email Field */}
-          <View>
-            <Text style={{
-              fontSize: 16,
-              fontWeight: '500',
-              marginBottom: 8,
-              color: '#374151',
-            }}>
+          <View className="mb-6">
+            <Text className="text-base font-medium mb-2 text-gray-700">
               Email Address *
             </Text>
             <InputField
@@ -311,24 +282,15 @@ export const SignUpForm: React.FC = () => {
               keyboardType="email-address"
             />
             {formValidation.getFieldProps('email').error && (
-              <Text style={{
-                color: '#ef4444',
-                fontSize: 14,
-                marginTop: 4,
-              }}>
+              <Text className="text-red-500 text-sm mt-1">
                 {formValidation.getFieldProps('email').error}
               </Text>
             )}
           </View>
 
           {/* Password Field */}
-          <View>
-            <Text style={{
-              fontSize: 16,
-              fontWeight: '500',
-              marginBottom: 8,
-              color: '#374151',
-            }}>
+          <View className="mb-6">
+            <Text className="text-base font-medium mb-2 text-gray-700">
               Password *
             </Text>
             <View style={{ position: 'relative' }}>
@@ -368,11 +330,7 @@ export const SignUpForm: React.FC = () => {
               </Pressable>
             </View>
             {formValidation.getFieldProps('password').error && (
-              <Text style={{
-                color: '#ef4444',
-                fontSize: 14,
-                marginTop: 4,
-              }}>
+              <Text className="text-red-500 text-sm mt-1">
                 {formValidation.getFieldProps('password').error}
               </Text>
             )}
@@ -386,13 +344,8 @@ export const SignUpForm: React.FC = () => {
           )}
 
           {/* Confirm Password Field */}
-          <View>
-            <Text style={{
-              fontSize: 16,
-              fontWeight: '500',
-              marginBottom: 8,
-              color: '#374151',
-            }}>
+          <View className="mb-6">
+            <Text className="text-base font-medium mb-2 text-gray-700">
               Confirm Password *
             </Text>
             <View style={{ position: 'relative' }}>
@@ -428,18 +381,14 @@ export const SignUpForm: React.FC = () => {
               </Pressable>
             </View>
             {formValidation.getFieldProps('confirmPassword').error && (
-              <Text style={{
-                color: '#ef4444',
-                fontSize: 14,
-                marginTop: 4,
-              }}>
+              <Text className="text-red-500 text-sm mt-1">
                 {formValidation.getFieldProps('confirmPassword').error}
               </Text>
             )}
           </View>
 
           {/* Age Verification Checkbox */}
-          <View style={{ marginTop: 16 }}>
+          <View className="mb-6">
             <Checkbox
               testID="age-verification"
               label="I verify that I am 18 years of age or older"
@@ -450,18 +399,14 @@ export const SignUpForm: React.FC = () => {
               }}
             />
             {formValidation.getFieldProps('ageVerification').error && (
-              <Text style={{
-                color: '#ef4444',
-                fontSize: 14,
-                marginTop: 4,
-              }}>
+              <Text className="text-red-500 text-sm mt-1">
                 {formValidation.getFieldProps('ageVerification').error}
               </Text>
             )}
           </View>
 
           {/* Development Consent Checkbox */}
-          <View style={{ marginTop: 16 }}>
+          <View className="mb-6">
             <Checkbox
               testID="development-consent"
               label="I consent to the use of my data for development and improvement purposes"
@@ -472,11 +417,7 @@ export const SignUpForm: React.FC = () => {
               }}
             />
             {formValidation.getFieldProps('developmentConsent').error && (
-              <Text style={{
-                color: '#ef4444',
-                fontSize: 14,
-                marginTop: 4,
-              }}>
+              <Text className="text-red-500 text-sm mt-1">
                 {formValidation.getFieldProps('developmentConsent').error}
               </Text>
             )}
