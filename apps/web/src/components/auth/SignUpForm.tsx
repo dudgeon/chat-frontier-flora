@@ -311,20 +311,11 @@ export const SignUpForm: React.FC = () => {
                 autoCorrect={false}
               />
               <Pressable
-                style={{
-                  position: 'absolute',
-                  right: 12,
-                  top: 12,
-                  padding: 8,
-                }}
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-2"
                 onPress={() => setShowPassword(!showPassword)}
                 testID="password-toggle"
               >
-                <Text style={{
-                  fontSize: 14,
-                  color: '#2563eb',
-                  fontWeight: '500',
-                }}>
+                <Text className="text-sm text-blue-600 font-medium">
                   {showPassword ? 'Hide' : 'Show'}
                 </Text>
               </Pressable>
@@ -362,20 +353,11 @@ export const SignUpForm: React.FC = () => {
                 autoCorrect={false}
               />
               <Pressable
-                style={{
-                  position: 'absolute',
-                  right: 12,
-                  top: 12,
-                  padding: 8,
-                }}
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-2"
                 onPress={() => setShowConfirmPassword(!showConfirmPassword)}
                 testID="confirm-password-toggle"
               >
-                <Text style={{
-                  fontSize: 14,
-                  color: '#2563eb',
-                  fontWeight: '500',
-                }}>
+                <Text className="text-sm text-blue-600 font-medium">
                   {showConfirmPassword ? 'Hide' : 'Show'}
                 </Text>
               </Pressable>
