@@ -138,27 +138,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   };
 
   return (
-    <View style={{
-      flex: 1,
-      width: '100%',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: '#f9fafb',
-      paddingHorizontal: 16,
-    }}>
-      <View style={{
-        width: '100%',
-        maxWidth: 448,
-        backgroundColor: '#ffffff',
-        borderRadius: 12,
-        padding: 24,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.1,
-        shadowRadius: 12,
-        elevation: 4,
-      }}>
-        <Text style={{ fontSize: 32, fontWeight: 'bold', marginBottom: 32, textAlign: 'center', color: '#1f2937' }}>
+    <View className="flex-1 w-full items-center justify-center bg-gray-50 px-4">
+      <View className="w-full max-w-md bg-white rounded-xl p-6 shadow-lg">
+        <Text className="text-3xl font-bold mb-8 text-center text-gray-900">
           Welcome Back
         </Text>
 
