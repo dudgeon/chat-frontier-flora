@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { LoginForm } from './components/auth/LoginForm';
+import { SignUpForm } from './components/auth/SignUpForm';
 import { ChatPage } from './components/ChatPage';
 import { useAuth } from './contexts/AuthContext';
 import '../global.css';
@@ -40,7 +41,7 @@ function AuthenticatedRoutes() {
     
     const currentPath = location.pathname;
     const isAuthenticatedRoute = currentPath === '/chat';
-    const isPublicRoute = currentPath === '/' || currentPath === '/login';
+    const isPublicRoute = currentPath === '/' || currentPath === '/login' || currentPath === '/signup';
     
     console.log('🔍 Auth routing check:', {
       currentPath,
@@ -71,6 +72,7 @@ function AuthenticatedRoutes() {
     <Routes>
       <Route path="/" element={<LoginPage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignUpPage />} />
       <Route path="/chat" element={<ChatPageWithMenu />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
@@ -95,6 +97,14 @@ function LoginPage() {
   return (
     <View style={styles.page}>
       <LoginForm />
+    </View>
+  );
+}
+
+function SignUpPage() {
+  return (
+    <View style={styles.page}>
+      <SignUpForm />
     </View>
   );
 }
