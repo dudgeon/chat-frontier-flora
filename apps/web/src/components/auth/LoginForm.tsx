@@ -322,7 +322,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
             <TouchableOpacity
               style={{ flexDirection: 'row', alignItems: 'center' }}
               onPress={() => setRememberMe(!rememberMe)}
-              testID="remember-me"
+              testID="remember-me-checkbox"
             >
               <View style={{
                 width: 20,
