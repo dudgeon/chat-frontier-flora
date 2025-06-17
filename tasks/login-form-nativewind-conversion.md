@@ -180,6 +180,52 @@ Completion Time: 10 minutes
 4. **Repository Organization**: Clean verification artifacts and comprehensive documentation
 5. **Maintainable Codebase**: Consistent utility-based styling throughout
 
+## 📚 LESSONS LEARNED
+
+### Critical Success Factors
+1. **Visual Verification is Essential**: Before/after screenshots caught edge cases that code review missed
+2. **E2E Test Integration**: Testing after every 2-3 conversions prevented accumulation of breaking changes
+3. **TestID Preservation**: Maintaining all testID attributes was crucial for E2E compatibility
+4. **React Native Web Compatibility**: CSS `gap` property doesn't work - use individual margins instead
+5. **Ref Forwarding Required**: Custom components need `React.forwardRef` for proper focus management
+
+### Conversion Patterns That Work
+1. **Container Layouts**: `style={{ flex: 1, alignItems: 'center' }}` → `className="flex-1 items-center"`
+2. **Typography**: `style={{ fontSize: 16, fontWeight: '500' }}` → `className="text-base font-medium"`
+3. **Spacing**: `style={{ marginTop: 32 }}` → `className="mt-8"` (remember 4px increments)
+4. **Colors**: `style={{ color: '#ef4444' }}` → `className="text-red-500"`
+5. **Conditional Styling**: Use template literals with ternary operators for dynamic classes
+
+### React Native Web Gotchas
+1. **CSS Gap**: Replace `gap: 24` with individual `marginBottom` classes on child elements
+2. **Shadow Properties**: Complex shadow objects → simple `className="shadow-lg"`
+3. **Absolute Positioning**: Use `top-1/2 -translate-y-1/2` for true centering, not fixed `top-3`
+4. **Border Radius**: `borderRadius: 12` → `rounded-xl` (use semantic names)
+
+### E2E Testing Strategy
+1. **Run Quick Auth Test**: `npx playwright test e2e/stagehand-auth-test.spec.ts --project=chromium`
+2. **Test After Major Changes**: Don't wait until the end - test every 2-3 conversions
+3. **Preserve All TestIDs**: Never remove or change testID attributes during styling conversion
+4. **Test Functionality**: Verify interactive elements (toggles, clicks, navigation) still work
+
+### Repository Management
+1. **Clean As You Go**: Remove test files immediately, store screenshots in verification-artifacts/
+2. **Commit Frequently**: Commit every 2-3 completed tasks to prevent filesystem drift
+3. **Document Everything**: Include before/after analysis in commit messages
+4. **Self-Contained Documentation**: Write tasks so they can be executed without conversation context
+
+### Performance Insights
+1. **Bundle Size**: NativeWind classes are smaller than inline styles in the final bundle
+2. **Runtime Performance**: Utility classes perform better than dynamic style objects
+3. **Development Speed**: Systematic conversion with verification is faster than ad-hoc changes
+4. **Maintainability**: Utility classes are much easier to modify and debug
+
+### Future Migration Recommendations
+1. **Start with Simple Components**: Begin with typography and basic layouts before complex interactions
+2. **Create Style Guide**: Document color mappings, spacing scales, and common patterns
+3. **Component Library**: Build reusable components with consistent NativeWind patterns
+4. **Cross-Platform Testing**: Test on both web and mobile to ensure NativeWind compatibility
+
 ---
 
 ## PHASE 2: Element-by-Element Conversion with E2E Verification

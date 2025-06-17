@@ -1,60 +1,43 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="41.777896">
-<testsuite name="stagehand-auth-test.spec.ts" timestamp="2025-06-17T10:46:40.741Z" hostname="chromium" tests="1" failures="0" skipped="0" time="40.206" errors="0">
-<testcase name="🏠 Stagehand Authentication Flow [Localhost] › 🏠 Complete signup and authentication flow on Localhost" classname="stagehand-auth-test.spec.ts" time="40.206">
+<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="31.797729999999998">
+<testsuite name="signup-nativewind-validation.spec.ts" timestamp="2025-06-17T23:06:59.698Z" hostname="chromium" tests="1" failures="1" skipped="0" time="31.022" errors="0">
+<testcase name="NativeWind Signup Form Validation › navigation between forms should work" classname="signup-nativewind-validation.spec.ts" time="31.022">
+<failure message="signup-nativewind-validation.spec.ts:158:7 navigation between forms should work" type="FAILURE">
+<![CDATA[  [chromium] › signup-nativewind-validation.spec.ts:158:7 › NativeWind Signup Form Validation › navigation between forms should work 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.waitForSelector: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="login-form"]') to be visible
+
+
+      159 |     // Click "Sign In" link to go to login
+      160 |     await page.click('[data-testid="switch-to-login"]');
+    > 161 |     await page.waitForSelector('[data-testid="login-form"]');
+          |                ^
+      162 |     await expect(page.url()).toContain('/login');
+      163 |     
+      164 |     // Click "Sign Up" link to go back to signup
+        at /Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/e2e/signup-nativewind-validation.spec.ts:161:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/signup-nativewind-validati-26c20-n-between-forms-should-work-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/signup-nativewind-validati-26c20-n-between-forms-should-work-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/signup-nativewind-validati-26c20-n-between-forms-should-work-chromium/error-context.md
+]]>
+</failure>
 <system-out>
-<![CDATA[🎭 Initializing Stagehand tests for Localhost environment (http://localhost:19006)
-🎭 Testing Stagehand-powered authentication flow on Localhost...
-🎯 Phase 1: Core Functionality Testing
-✅ Login form loaded – proceeding with authentication test
-📝 Logging in with: dudgeon+floratest@gmail.com on Localhost
-📊 Localhost login form state: { submitButtonEnabled: [33mtrue[39m, emailFilled: [33mtrue[39m, passwordFilled: [33mtrue[39m }
-🔍 Button state before interaction on Localhost: {
-  isVisible: [33mtrue[39m,
-  isEnabled: [33mfalse[39m,
-  buttonText: [32m'Sign In'[39m,
-  isLoading: [33mfalse[39m
-}
-🔍 Button detection: visible=true, enabled=false, text="Sign In"
-🎯 Attempting direct Playwright click on submit button
-✅ Direct Playwright click successful
-⏳ Waiting for login process to complete on Localhost...
-✅ Localhost login result: {
-  isSuccessful: [33mtrue[39m,
-  currentUrl: [32m'/chat'[39m,
-  userIsAuthenticated: [33mtrue[39m,
-  hasProfileMenu: [33mtrue[39m,
-  isStillOnLogin: [33mfalse[39m,
-  hasErrorMessages: [33mfalse[39m
-}
-🎉 Core authentication flow completed successfully on Localhost!
-📊 Core functionality verified: {
-  environment: [32m'Localhost'[39m,
-  authenticated: [33mtrue[39m,
-  redirectedFromLogin: [33mtrue[39m,
-  hasExpectedContent: [33mtrue[39m
-}
-🔧 Phase 2: Secondary Features Testing (Non-Critical)
-🔍 Testing profile menu on Localhost...
-👤 Localhost profile menu state: {
-  isMenuOpen: [33mtrue[39m,
-  userEmail: [32m'dudgeon+floratest@gmail.com'[39m,
-  hasLogoutButton: [33mtrue[39m
-}
-⚠️ Secondary features testing failed on Localhost (non-critical): Menu interaction timeout after 15s
-🧹 Phase 3: Cleanup Phase (Non-Critical)
-📋 Final Localhost test state: {
-  currentUrl: [32m'null'[39m,
-  pageContent: [32m'Profile\n'[39m +
-    [32m'×\n'[39m +
-    [32m'dudgeon+floratest@gmail.com\n'[39m +
-    [32m'EMAIL\n'[39m +
-    [32m'ACCOUNT\n'[39m +
-    [32m'Settings\n'[39m +
-    [32m'Preferences\n'[39m +
-    [32m'Sign Out'[39m,
-  testCompleted: [33mtrue[39m
-}
-🎉 Stagehand authentication flow test completed successfully on Localhost!
+<![CDATA[
+[[ATTACHMENT|signup-nativewind-validati-26c20-n-between-forms-should-work-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|signup-nativewind-validati-26c20-n-between-forms-should-work-chromium/video.webm]]
+
+[[ATTACHMENT|signup-nativewind-validati-26c20-n-between-forms-should-work-chromium/error-context.md]]
 ]]>
 </system-out>
 </testcase>

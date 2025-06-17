@@ -11,16 +11,9 @@ export const InputField = React.forwardRef<TextInput, InputFieldProps>(
       <TextInput
         ref={ref}
         placeholderTextColor="#9ca3af"
-        style={{
-          width: '100%',
-          borderWidth: 1,
-          borderRadius: 12,
-          padding: 12,
-          fontSize: 16,
-          color: '#111827',
-          backgroundColor: '#ffffff',
-          borderColor: error ? '#ef4444' : '#d1d5db',
-        }}
+        className={`w-full border rounded-xl p-3 text-base text-gray-900 bg-white ${
+          error ? 'border-red-500' : 'border-gray-300'
+        }`}
         {...props}
       />
     );

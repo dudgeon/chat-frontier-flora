@@ -12,8 +12,9 @@ interface ErrorAlertProps {
 /**
  * ErrorAlert Component
  *
- * A beautiful, NativeWind-styled error alert component that displays
+ * A NativeWind-styled error alert component that displays
  * error messages with proper styling and dismiss functionality.
+ * Fully converted to use NativeWind v4 utility classes.
  */
 export const ErrorAlert: React.FC<ErrorAlertProps> = ({
   title = 'Error',
@@ -64,39 +65,16 @@ export const ErrorAlert: React.FC<ErrorAlertProps> = ({
   const styles = getTypeStyles();
 
   return (
-    <View
-      className={`rounded-lg border p-4 mb-4 ${styles.container}`}
-      style={{
-        backgroundColor: type === 'error' ? '#fef2f2' : type === 'warning' ? '#fffbeb' : '#eff6ff',
-        borderColor: type === 'error' ? '#fecaca' : type === 'warning' ? '#fde68a' : '#bfdbfe',
-        borderWidth: 1,
-        borderRadius: 8,
-        padding: 16,
-        marginBottom: 16,
-      }}
-    >
-      <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
-        <Text style={{ fontSize: 20, marginRight: 12 }}>{styles.icon}</Text>
+    <View className={`rounded-lg border p-4 mb-4 ${styles.container}`}>
+      <View className="flex-row items-start">
+        <Text className="text-xl mr-3">{styles.icon}</Text>
 
-        <View style={{ flex: 1 }}>
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: '600',
-              color: type === 'error' ? '#991b1b' : type === 'warning' ? '#92400e' : '#1e40af',
-              marginBottom: 4,
-            }}
-          >
+        <View className="flex-1">
+          <Text className={`text-base font-semibold mb-1 ${styles.titleColor}`}>
             {title}
           </Text>
 
-          <Text
-            style={{
-              fontSize: 14,
-              lineHeight: 20,
-              color: type === 'error' ? '#7f1d1d' : type === 'warning' ? '#854d0e' : '#1e40af',
-            }}
-          >
+          <Text className={`text-sm leading-5 ${styles.messageColor}`}>
             {message}
           </Text>
         </View>
@@ -104,19 +82,10 @@ export const ErrorAlert: React.FC<ErrorAlertProps> = ({
         {onDismiss && (
           <Pressable
             onPress={onDismiss}
-            style={{
-              padding: 4,
-              marginLeft: 8,
-            }}
+            className="p-1 ml-2"
             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           >
-            <Text
-              style={{
-                fontSize: 18,
-                color: type === 'error' ? '#dc2626' : type === 'warning' ? '#d97706' : '#2563eb',
-                fontWeight: '500',
-              }}
-            >
+            <Text className={`text-lg font-medium ${styles.buttonColor}`}>
               ×
             </Text>
           </Pressable>

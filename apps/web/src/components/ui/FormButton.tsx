@@ -10,23 +10,12 @@ export function FormButton({ title, disabled = false, ...props }: FormButtonProp
   return (
     <Pressable
       disabled={disabled}
-      style={{
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 12,
-        paddingVertical: 16,
-        paddingHorizontal: 24,
-        backgroundColor: disabled ? '#9ca3af' : '#3b82f6',
-        opacity: disabled ? 0.6 : 1,
-      }}
+      className={`w-full items-center justify-center rounded-xl py-4 px-6 ${
+        disabled ? 'bg-gray-400 opacity-60' : 'bg-blue-500'
+      }`}
       {...props}
     >
-      <Text style={{
-        color: '#ffffff',
-        fontWeight: '600',
-        fontSize: 16,
-      }}>
+      <Text className="text-white font-semibold text-base">
         {title}
       </Text>
     </Pressable>
