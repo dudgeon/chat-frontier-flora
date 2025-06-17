@@ -41,6 +41,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [errorState, setErrorState] = useState<ParsedError | null>(null);
+  const passwordInputRef = React.useRef<any>(null);
 
   // Form validation setup using correct API
   const formValidation = useFormValidation({
@@ -166,12 +167,14 @@ export const LoginForm: React.FC<LoginFormProps> = ({
               value={formValidation.getFieldProps('email').value}
               onChangeText={(text: string) => formValidation.updateField('email', text)}
               onBlur={() => formValidation.touchField('email')}
+              onSubmitEditing={() => passwordInputRef.current?.focus()}
               keyboardType="email-address"
               autoCapitalize="none"
               autoComplete="email"
               textContentType="emailAddress"
               testID="email-input"
               placeholder="Enter your email address"
+              returnKeyType="next"
             />
             {formValidation.getFieldProps('email').touched &&
               formValidation.getFieldProps('email').error && (
@@ -188,19 +191,22 @@ export const LoginForm: React.FC<LoginFormProps> = ({
             </Text>
             <View style={{ position: 'relative' }}>
               <InputField
+                ref={passwordInputRef}
                 error={!!(formValidation.getFieldProps('password').touched && formValidation.getFieldProps('password').error)}
                 value={formValidation.getFieldProps('password').value}
                 onChangeText={(text: string) => formValidation.updateField('password', text)}
                 onBlur={() => formValidation.touchField('password')}
+                onSubmitEditing={handleSubmit}
                 secureTextEntry={!showPassword}
                 autoComplete="current-password"
                 textContentType="password"
                 testID="password-input"
                 placeholder="Enter your password"
+                returnKeyType="done"
               />
               {/* Show/Hide Password Toggle */}
               <TouchableOpacity
-                className="absolute right-3 top-3 p-2"
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-2"
                 onPress={() => setShowPassword(!showPassword)}
                 testID="password-toggle"
               >
@@ -218,52 +224,30 @@ export const LoginForm: React.FC<LoginFormProps> = ({
           </View>
 
           {/* Remember Me & Forgot Password */}
-          <View className="mb-6" style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginTop: 8,
-          }}>
+          <View className="mb-6 flex flex-row justify-between items-center mt-2">
             <TouchableOpacity
-              style={{ flexDirection: 'row', alignItems: 'center' }}
+              className="flex flex-row items-center"
               onPress={() => setRememberMe(!rememberMe)}
               testID="remember-me-checkbox"
             >
-              <View style={{
-                width: 20,
-                height: 20,
-                borderWidth: 2,
-                borderColor: rememberMe ? '#2563eb' : '#d1d5db',
-                borderRadius: 4,
-                marginRight: 8,
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: rememberMe ? '#2563eb' : 'transparent',
-              }}>
+              <View className={`w-5 h-5 border-2 rounded mr-2 justify-center items-center ${
+                rememberMe 
+                  ? 'border-blue-600 bg-blue-600' 
+                  : 'border-gray-300 bg-transparent'
+              }`}>
                 {rememberMe && (
-                  <Text style={{
-                    color: '#ffffff',
-                    fontSize: 12,
-                    fontWeight: 'bold',
-                  }}>
+                  <Text className="text-white text-xs font-bold">
                     ✓
                   </Text>
                 )}
               </View>
-              <Text style={{
-                fontSize: 14,
-                color: '#374151',
-              }}>
+              <Text className="text-sm text-gray-700">
                 Remember me
               </Text>
             </TouchableOpacity>
 
             <TouchableOpacity testID="forgot-password">
-              <Text style={{
-                fontSize: 14,
-                color: '#2563eb',
-                fontWeight: '500',
-              }}>
+              <Text className="text-sm text-blue-600 font-medium">
                 Forgot password?
               </Text>
             </TouchableOpacity>
@@ -271,7 +255,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
         </View>
 
         {/* Submit Button */}
-        <View style={{ marginTop: 32, marginBottom: 24 }}>
+        <View className="mt-8 mb-6">
           <FormButton
             title={submitButtonState.buttonText}
             disabled={submitButtonState.isDisabled}
@@ -281,28 +265,15 @@ export const LoginForm: React.FC<LoginFormProps> = ({
         </View>
 
         {/* Sign Up Link */}
-        <View style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginTop: 16,
-        }}>
-          <Text style={{
-            fontSize: 14,
-            color: '#666',
-            marginRight: 8,
-          }}>
+        <View className="flex flex-row justify-center items-center mt-4">
+          <Text className="text-sm text-gray-600 mr-2">
             Don't have an account?
           </Text>
           <TouchableOpacity
             onPress={() => navigate('/signup')}
             testID="switch-to-signup"
           >
-            <Text style={{
-              fontSize: 14,
-              color: '#0056b3',
-              fontWeight: '600',
-            }}>
+            <Text className="text-sm text-blue-700 font-semibold">
               Sign Up
             </Text>
           </TouchableOpacity>

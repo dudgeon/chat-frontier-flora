@@ -37,6 +37,9 @@ npm run build:mobile
 # ALWAYS run E2E tests from project root, never from apps/web/
 cd /Users/geoffreydudgeon/Documents/Cursor\ Projects/chat-frontier-flora
 
+# Quick auth flow verification (most efficient for development)
+npx playwright test e2e/stagehand-auth-test.spec.ts --project=chromium
+
 # Safe E2E testing with environment verification
 npm run test:safe
 
