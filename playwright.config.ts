@@ -72,8 +72,10 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: process.env.DEPLOY_PREVIEW_URL ? undefined : {
     command: 'cd apps/web && npm run web',
-    port: 19006, // Let Playwright detect the actual URL
+    port: 19006,
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000, // 2 minutes for server to start
+    stdout: 'pipe',
+    stderr: 'pipe',
   },
 });

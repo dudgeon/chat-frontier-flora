@@ -6,28 +6,28 @@
     "packages/*"
   ],
   
-  // ⚠️  CRITICAL: Version-Sensitive Stack Configuration
-  // 🚨 DO NOT UPGRADE DEPENDENCIES WITHOUT READING WARNINGS BELOW 🚨
-  //
-  // This project uses a highly version-sensitive stack with NativeWind v4 + Metro + React 18.2.0
-  // Upgrading ANY of these dependencies can break the entire application:
-  //
-  // ULTRA-CRITICAL DEPENDENCIES (Exact versions required):
-  // - React ecosystem: Must stay on exact 18.2.0 (React Native Web compatibility)
-  // - NativeWind: Must stay on v4.x (v2/v3 completely incompatible)
-  // - Expo: Must stay on ~50.0.0 (Metro bundler compatibility)
-  //
-  // BEFORE ANY UPGRADES:
-  // 1. Read VERSION_COMPATIBILITY.md
-  // 2. Test on separate branch
-  // 3. Run: npm run test:safe && node test-blue-user-bubble.js
-  // 4. Verify NativeWind classes work (not just React Native Web css-view-*)
-  //
-  // REGRESSION HISTORY:
-  // - 2025-06-16: Babel config corruption broke all NativeWind styling
-  // - React version mismatches cause Metro compilation failures
-  // - NativeWind v2/v4 API completely incompatible
-  //
+  "_warnings": {
+    "CRITICAL": "Version-Sensitive Stack Configuration",
+    "DO_NOT_UPGRADE": "DO NOT UPGRADE DEPENDENCIES WITHOUT READING WARNINGS BELOW",
+    "stack_description": "This project uses a highly version-sensitive stack with NativeWind v4 + Metro + React 18.2.0. Upgrading ANY of these dependencies can break the entire application.",
+    "ultra_critical_dependencies": {
+      "react_ecosystem": "Must stay on exact 18.2.0 (React Native Web compatibility)",
+      "nativewind": "Must stay on v4.x (v2/v3 completely incompatible)",
+      "expo": "Must stay on ~50.0.0 (Metro bundler compatibility)"
+    },
+    "before_any_upgrades": [
+      "Read VERSION_COMPATIBILITY.md",
+      "Test on separate branch",
+      "Run: npm run test:safe && node test-blue-user-bubble.js",
+      "Verify NativeWind classes work (not just React Native Web css-view-*)"
+    ],
+    "regression_history": [
+      "2025-06-16: Babel config corruption broke all NativeWind styling",
+      "React version mismatches cause Metro compilation failures",
+      "NativeWind v2/v4 API completely incompatible"
+    ]
+  },
+  
   "scripts": {
     "build": "mkdir -p apps/web/web-build && echo 'Static build ready - HTML file already exists'",
     "build:expo": "cd apps/web && npx expo export:web",
@@ -54,7 +54,6 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
-    // CRITICAL: NativeWind v4 ONLY - v2/v3 completely incompatible APIs
     "nativewind": "^4.1.23",
     "@netlify/edge-functions": "^2.14.5",
     "@playwright/test": "^1.52.0",

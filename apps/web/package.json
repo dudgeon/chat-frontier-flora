@@ -4,29 +4,29 @@
   "main": "index.ts",
   "private": true,
   
-  // ⚠️  CRITICAL: React Native Web + NativeWind v4 Stack
-  // 🚨 DO NOT UPGRADE REACT VERSIONS - EXACT 18.2.0 REQUIRED 🚨
-  //
-  // This package requires exact React versions for React Native Web compatibility:
-  // - React 18.2.0 (exact) - Any other version breaks RNW
-  // - React-DOM 18.2.0 (exact) - Must match React version exactly
-  // - React-Native 0.73.6 - Compatible with React 18.2.0
-  // - React-Native-Web 0.19.13 - Last compatible with RN 0.73.x
-  //
-  // CRITICAL POLYFILLS (Required for Supabase + Web):
-  // - crypto-browserify, stream-browserify, buffer
-  //
-  // BEFORE UPGRADING ANY DEPENDENCY:
-  // 1. Test Metro compilation: npm run web
-  // 2. Test NativeWind styles: node ../../test-blue-user-bubble.js
-  // 3. Verify no css-view-* only styling (sign of broken NativeWind)
-  //
+  "_warnings": {
+    "CRITICAL": "React Native Web + NativeWind v4 Stack",
+    "DO_NOT_UPGRADE_REACT": "EXACT 18.2.0 REQUIRED",
+    "exact_versions_required": {
+      "react": "18.2.0 (exact) - Any other version breaks RNW",
+      "react_dom": "18.2.0 (exact) - Must match React version exactly",
+      "react_native": "0.73.6 - Compatible with React 18.2.0",
+      "react_native_web": "0.19.13 - Last compatible with RN 0.73.x"
+    },
+    "critical_polyfills": "Required for Supabase + Web: crypto-browserify, stream-browserify, buffer",
+    "before_upgrading_any_dependency": [
+      "Test Metro compilation: npm run web",
+      "Test NativeWind styles: node ../../test-blue-user-bubble.js",
+      "Verify no css-view-* only styling (sign of broken NativeWind)"
+    ]
+  },
+  
   "scripts": {
-    "start": "expo start",
-    "dev": "cp ../../.env .env 2>/dev/null || true && expo start --web",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "cp ../../.env .env 2>/dev/null || true && expo start --web",
+    "start": "npx expo start",
+    "dev": "cp ../../.env .env 2>/dev/null || true && npx expo start --web --port 19006",
+    "android": "npx expo start --android",
+    "ios": "npx expo start --ios",
+    "web": "cp ../../.env .env 2>/dev/null || true && npx expo start --web --port 19006",
     "test": "jest",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "build": "expo export:web"
@@ -38,14 +38,12 @@
     "@types/react-router-dom": "^5.3.3",
     "autoprefixer": "^10.4.21",
     "dotenv": "^16.5.0",
-    // CRITICAL: Expo ~50.0.0 required for Metro web bundler support
     "expo": "~50.0.0",
     "expo-status-bar": "~1.11.1",
-    // CRITICAL: EXACT React versions required - DO NOT change without testing
-    "react": "18.2.0",           // Exact version - no ^ or ~ allowed
-    "react-dom": "18.2.0",       // Must match React exactly
-    "react-native": "0.73.6",    // Compatible with React 18.2.0
-    "react-native-web": "0.19.13", // Last version compatible with RN 0.73.x
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.73.6",
+    "react-native-web": "0.19.13",
     "react-router-dom": "^6.28.0",
     "tailwindcss": "^3.4.17",
     "@expo/metro-runtime": "~3.1.3"

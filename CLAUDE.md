@@ -32,7 +32,11 @@ npm run build:mobile
 ```
 
 ### Testing Commands
+**⚠️ CRITICAL: ALL E2E TEST COMMANDS MUST BE RUN FROM PROJECT ROOT**
 ```bash
+# ALWAYS run E2E tests from project root, never from apps/web/
+cd /Users/geoffreydudgeon/Documents/Cursor\ Projects/chat-frontier-flora
+
 # Safe E2E testing with environment verification
 npm run test:safe
 
@@ -46,7 +50,7 @@ npm run test:e2e:login     # Login-specific tests
 npm run test:e2e:ui        # Interactive test runner
 npm run test:e2e:debug     # Debug mode with browser
 
-# Unit tests (in web app)
+# Unit tests (must change to web app directory)
 cd apps/web && npm test
 ```
 
