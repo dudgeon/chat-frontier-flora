@@ -366,7 +366,71 @@ feat: convert SignUpForm [element-name] to NativeWind classes
 **Consistency check with LoginForm patterns**:
 - ✅ Perfect consistency: Exact same toggle pattern applied, vertical alignment fixed
 
-### Task 2.8: Apply Submit Button Container Pattern
+---
+
+## CRITICAL COMPONENT COMPLIANCE TASKS
+**REQUIRED**: Fix non-NativeWind UI components before continuing with container patterns
+
+### Task 2.8: Convert InputField Component to NativeWind
+**Objective**: Replace inline styles in InputField.tsx with NativeWind classes
+**Current Issue**: InputField uses inline styles instead of NativeWind classes
+
+**Actions**:
+1. [ ] Document current InputField styling patterns
+2. [ ] Convert all inline styles to NativeWind classes
+3. [ ] Preserve error state styling and ref forwarding
+4. [ ] Test in both LoginForm and SignUpForm
+5. [ ] Verify no visual regressions
+
+### Task 2.9: Convert FormButton Component to NativeWind  
+**Objective**: Replace inline styles in FormButton.tsx with NativeWind classes
+**Current Issue**: FormButton uses inline styles for disabled/enabled states
+
+**Actions**:
+1. [ ] Document current FormButton styling patterns
+2. [ ] Convert all inline styles to NativeWind classes
+3. [ ] Preserve disabled state styling and accessibility
+4. [ ] Test in both LoginForm and SignUpForm
+5. [ ] Verify no visual regressions
+
+### Task 2.10: Convert Checkbox Component to NativeWind
+**Objective**: Replace design system constants with NativeWind classes
+**Current Issue**: Checkbox uses old design system approach instead of NativeWind
+
+**Actions**:
+1. [ ] Document current Checkbox styling patterns
+2. [ ] Convert design system constants to NativeWind classes
+3. [ ] Apply LoginForm's inline checkbox pattern or create consistent component
+4. [ ] Test all checkbox states (checked, unchecked, error)
+5. [ ] Verify accessibility and testID preservation
+
+### Task 2.11: Convert ErrorAlert Component to NativeWind
+**Objective**: Replace inline styles in ErrorAlert.tsx with NativeWind classes
+**Current Issue**: ErrorAlert uses inline styles with getTypeStyles function
+
+**Actions**:
+1. [ ] Document current ErrorAlert styling patterns
+2. [ ] Convert all inline styles to NativeWind classes
+3. [ ] Preserve type-based styling (error, warning, info)
+4. [ ] Test all alert types and dismiss functionality
+5. [ ] Verify no visual regressions
+
+### Task 2.12: Convert PasswordValidation Component to NativeWind
+**Objective**: Replace design system constants with NativeWind classes
+**Current Issue**: PasswordValidation uses old design system approach
+
+**Actions**:
+1. [ ] Document current PasswordValidation styling patterns
+2. [ ] Convert design system constants to NativeWind classes
+3. [ ] Preserve validation rule styling and icons
+4. [ ] Test password validation display
+5. [ ] Verify no visual regressions
+
+---
+
+## REMAINING CONTAINER PATTERN TASKS
+
+### Task 2.13: Apply Submit Button Container Pattern
 **Objective**: Apply LoginForm's proven button container pattern
 **Pattern to Apply**: `className="mt-8 mb-6"` container with FormButton component
 
@@ -375,7 +439,7 @@ feat: convert SignUpForm [element-name] to NativeWind classes
 2. [ ] Ensure FormButton component usage matches LoginForm
 3. [ ] Preserve submit button testID attributes
 
-### Task 2.9: Apply Navigation Links Pattern
+### Task 2.14: Apply Navigation Links Pattern
 **Objective**: Apply LoginForm's proven navigation pattern
 **Pattern to Apply**: 
 - Container: `className="flex flex-row justify-center items-center mt-4"`
@@ -387,7 +451,7 @@ feat: convert SignUpForm [element-name] to NativeWind classes
 2. [ ] Ensure "Already have an account? Sign In" matches LoginForm's "Don't have an account? Sign Up"
 3. [ ] Preserve navigation testID attributes
 
-### Task 2.10: Enhanced UX Features from LoginForm
+### Task 2.15: Enhanced UX Features from LoginForm
 **Objective**: Apply UX enhancements learned from LoginForm conversion
 
 **UX Patterns to Apply**:
@@ -402,7 +466,7 @@ feat: convert SignUpForm [element-name] to NativeWind classes
 3. [ ] Test keyboard navigation flow
 4. [ ] Verify accessibility improvements
 
-### Task 2.11: Validation Components Consistency
+### Task 2.16: Validation Components Consistency
 **Objective**: Ensure validation components match LoginForm patterns
 
 **Actions**:
@@ -411,7 +475,7 @@ feat: convert SignUpForm [element-name] to NativeWind classes
 3. [ ] Ensure validation icons/indicators match design system
 4. [ ] Test validation states and styling
 
-### Task 2.12: Additional SignUpForm-Specific Elements
+### Task 2.17: Additional SignUpForm-Specific Elements
 **Objective**: Convert any SignUpForm-specific elements not in LoginForm
 
 **Actions**:
