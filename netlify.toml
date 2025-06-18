@@ -1,10 +1,12 @@
 [build]
-  command = "npm run build:web"
-  publish = "apps/web/web-build"
+  base = "apps/web"
+  command = "npm ci && npx expo export --platform web --output-dir dist"
+  publish = "apps/web/dist"
   functions = "netlify/functions"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
+  NODE_OPTIONS = "--max_old_space_size=4096"
   EXPO_PUBLIC_SUPABASE_URL = "https://djtunsxmzhxffehkclre.supabase.co"
   EXPO_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRqdHVuc3htemh4ZmZlaGtjbHJlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkwODc3MTAsImV4cCI6MjA2NDY2MzcxMH0.noI6qZ2nqAaGCntLeWRSpbfDndHFVoliYNk-Ywr0At4"
 

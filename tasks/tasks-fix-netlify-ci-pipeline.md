@@ -292,7 +292,25 @@ After converting from Webpack to Metro bundler, Netlify CI deployment fails beca
   - [x] Root cause: Expo CLI not available at root level for Netlify builds
   - [x] Added expo ~50.0.0 to root dependencies (matching apps/web version)
   - [x] Pushed fix (commit 69f964b) to trigger fifth build attempt
-  - [ ] Monitor fifth Netlify build with Expo CLI fix
+  - [x] Monitor builds 5-8: All failed with various Metro/CSS/SHA-1 issues
+
+**🚨 NEW STRATEGY: IMPLEMENT PROVEN SOLUTION**
+
+- [ ] 4.10 Implement Environment-Based Fix (EXPERT RECOMMENDATION) ⚠️ **REQUIRES PERMISSION**
+  - [ ] 4.10.1 Set Node version in netlify.toml: `NODE_VERSION = "20"`
+  - [ ] 4.10.2 Set memory limits: `NODE_OPTIONS = "--max_old_space_size=4096"`
+  - [ ] 4.10.3 Add Expo CLI to apps/web devDependencies: `npm i -w apps/web expo@^50 expo-cli -D`
+  - [ ] 4.10.4 Update netlify.toml build config:
+    ```
+    [build]
+      base     = "apps/web"
+      command  = "npm ci && npx expo export --platform web --output-dir dist"
+      publish  = "apps/web/dist"
+    ```
+  - [ ] 4.10.5 Test locally: `cd apps/web && NODE_OPTIONS="--max_old_space_size=4096" npx expo export --platform web`
+  - [ ] 4.10.6 Deploy and monitor build success
+
+**KEY INSIGHT:** Exit code 2 failures likely caused by Node version mismatch and memory constraints, not NativeWind configuration issues.
 
 - [ ] 5.0 Documentation and Cleanup (SAFE ACTIONS)
   - [ ] 5.1 **DOCUMENT:** Complete change summary with before/after comparison
