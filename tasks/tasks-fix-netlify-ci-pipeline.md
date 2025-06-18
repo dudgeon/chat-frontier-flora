@@ -372,6 +372,70 @@ Since fixing the native binary issue directly isn't feasible, we need one of the
 3. **Alternative CSS Processor**: Modify metro config to use a pure JS CSS processor instead of lightningcss
 4. **Pre-built Assets**: Build static assets locally and deploy them instead of building on Netlify
 
+**🚨 BUILD ATTEMPT #9: React Native Reanimated Plugin Issue**
+
+**Date:** 2025-01-18
+**Error:** `Cannot find module 'react-native-reanimated/plugin'`
+**Root Cause:** Babel config included unused React Native mobile plugin
+
+**Fix Applied (Commit 54c601c):**
+1. Removed `react-native-reanimated/plugin` from babel.config.js
+2. Removed unused dependencies:
+   - react-native-reanimated
+   - react-native-safe-area-context
+   - react-native-screens
+3. These were React Native mobile packages not needed for Expo web
+
+**Status:** Monitoring build...
+
+## 📋 BUILD ATTEMPTS SUMMARY
+
+**Total Attempts:** 9 builds (multiple failures, progressive fixes)
+
+### Major Issues Identified & Fixed:
+
+1. **npm ci Mismatch (Build #1-8)**
+   - Root cause: Missing platform-specific packages in package-lock.json
+   - Fix: Clean reinstall + explicit lightningcss optionalDependencies
+
+2. **Native Module Architecture (Build #1-8)**  
+   - Root cause: lightningcss.linux-x64-gnu.node missing on Netlify Linux servers
+   - Fix: Added lightningcss-linux-x64-gnu + lightningcss-darwin-arm64 to optionalDependencies
+
+3. **React Native Plugin Error (Build #9)**
+   - Root cause: Babel config included mobile-only react-native-reanimated/plugin
+   - Fix: Removed plugin + unused React Native dependencies from web-only Expo app
+
+### Build Environment Configuration Applied:
+- Node 20 (matching expert recommendations)
+- 4GB memory allocation (NODE_OPTIONS)
+- Clean npm ci workflow
+- Expo CLI in workspace devDependencies
+
+### Files Modified Through Process:
+- `package.json` (root): optionalDependencies, removed mobile packages
+- `package-lock.json`: regenerated with platform packages
+- `apps/web/babel.config.js`: removed react-native-reanimated/plugin
+- `apps/web/package.json`: removed optionalDependencies (moved to root)
+- `netlify.toml`: environment variables, clean build command
+
+**Next:** Awaiting Build #9 results...
+
+## 🎯 REMAINING SUCCESS CRITERIA
+
+**Build Success Requirements:**
+- [ ] ✅ Netlify build completes without errors
+- [ ] ✅ Static assets generated correctly in apps/web/dist
+- [ ] ✅ App loads and functions in deployed environment
+- [ ] ✅ NativeWind styles render properly (blue user bubbles test)
+- [ ] ✅ No console errors related to missing dependencies
+
+**Post-Success Tasks:**
+- [ ] Update CLAUDE.md with any new build commands/learnings
+- [ ] Close GitHub Issue #24 with solution summary
+- [ ] Document lessons learned for future Metro conversions
+- [ ] Clean up any remaining unused dependencies
+
 - [ ] 5.0 Documentation and Cleanup (SAFE ACTIONS)
   - [ ] 5.1 **DOCUMENT:** Complete change summary with before/after comparison
   - [ ] 5.2 Update CLAUDE.md with any new build commands - **RECORD:** exact documentation updates
