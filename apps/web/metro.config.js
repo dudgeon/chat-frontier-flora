@@ -33,6 +33,9 @@ config.resolver.alias = {
   buffer: require.resolve('buffer'),              // Buffer polyfill for browser
 };
 
+// CRITICAL: External node modules for Netlify compatibility
+config.resolver.externalNodeModules = ['resolve-from'];
+
 // CRITICAL: NativeWind v4 plugin for CSS processing
 // input: CSS file with @tailwind directives
 // configPath: Root Tailwind config with nativewind/preset
