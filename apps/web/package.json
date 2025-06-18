@@ -3,30 +3,47 @@
   "version": "1.0.0",
   "main": "index.ts",
   "private": true,
+  "_warnings": {
+    "CRITICAL": "React Native Web + NativeWind v4 Stack",
+    "DO_NOT_UPGRADE_REACT": "EXACT 18.2.0 REQUIRED",
+    "exact_versions_required": {
+      "react": "18.2.0 (exact) - Any other version breaks RNW",
+      "react_dom": "18.2.0 (exact) - Must match React version exactly",
+      "react_native": "0.73.6 - Compatible with React 18.2.0",
+      "react_native_web": "0.19.13 - Last compatible with RN 0.73.x"
+    },
+    "critical_polyfills": "Required for Supabase + Web: crypto-browserify, stream-browserify, buffer",
+    "before_upgrading_any_dependency": [
+      "Test Metro compilation: npm run web",
+      "Test NativeWind styles: node ../../test-blue-user-bubble.js",
+      "Verify no css-view-* only styling (sign of broken NativeWind)"
+    ]
+  },
   "scripts": {
-    "start": "expo start",
-    "dev": "cp ../../.env .env 2>/dev/null || true && expo start --web",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "cp ../../.env .env 2>/dev/null || true && expo start --web",
+    "start": "npx expo start",
+    "dev": "cp ../../.env .env 2>/dev/null || true && npx expo start --web --port 19006",
+    "android": "npx expo start --android",
+    "ios": "npx expo start --ios",
+    "web": "cp ../../.env .env 2>/dev/null || true && npx expo start --web --port 19006",
     "test": "jest",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
-    "build": "expo export:web"
+    "build": "npx expo export --platform web"
   },
   "dependencies": {
     "@chat-frontier-flora/shared": "*",
     "@chat-frontier-flora/ui": "*",
+    "@expo/metro-runtime": "~3.1.3",
     "@supabase/supabase-js": "^2.39.0",
     "@types/react-router-dom": "^5.3.3",
+    "autoprefixer": "^10.4.21",
     "dotenv": "^16.5.0",
-    "dotenv-webpack": "^8.1.0",
-    "expo": "~50.0.0",
     "expo-status-bar": "~1.11.1",
+    "nativewind": "^4.1.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.73.6",
     "react-native-web": "0.19.13",
-    "react-router-dom": "^7.6.2",
+    "react-router-dom": "^6.30.1",
     "tailwindcss": "^3.4.17"
   },
   "devDependencies": {
@@ -36,7 +53,6 @@
     "@babel/preset-env": "^7.27.2",
     "@babel/preset-react": "^7.27.1",
     "@babel/preset-typescript": "^7.27.1",
-    "@expo/webpack-config": "~19.0.1",
     "@testing-library/jest-dom": "^6.0.0",
     "@testing-library/react": "^14.0.0",
     "@testing-library/react-native": "^12.3.2",
@@ -47,21 +63,20 @@
     "assert": "^2.1.0",
     "babel-jest": "^30.0.0-beta.3",
     "buffer": "^6.0.3",
-    "crypto-browserify": "^3.12.0",
+    "crypto-browserify": "^3.12.1",
     "dotenv-cli": "^7.3.0",
+    "expo": "^50.0.21",
+    "expo-cli": "^6.3.10",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
     "jest-expo": "~50.0.1",
-    "nativewind": "^4.1.23",
-    "postcss-loader": "^8.1.1",
     "process": "^0.11.10",
     "react-test-renderer": "18.2.0",
     "stream-browserify": "^3.0.0",
     "ts-jest": "^29.1.0",
     "typescript": "^5.0.0",
     "url": "^0.11.4",
-    "util": "^0.12.5",
-    "webpack": "^5.99.9"
+    "util": "^0.12.5"
   },
   "overrides": {
     "react": "18.2.0",

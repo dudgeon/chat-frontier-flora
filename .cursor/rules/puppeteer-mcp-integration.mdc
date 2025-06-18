@@ -1,0 +1,143 @@
+---
+description: Any task that would benefit from visual inspection of web app and/or inspection of console
+globs:
+alwaysApply: false
+---
+# Puppeteer MCP Integration for Visual Testing
+
+## Overview
+The chat-frontier-flora project has successfully integrated Puppeteer via Model Context Protocol (MCP) for automated visual testing, screenshot capture, and UI analysis. This provides powerful capabilities for documenting UI changes, detecting regressions, and verifying styling implementations.
+
+## Setup Status
+✅ **ALREADY CONFIGURED** - No additional setup required
+- `@modelcontextprotocol/server-puppeteer` installed globally
+- Development server runs on localhost:19006 (or 8082 if port conflict)
+- Custom Puppeteer scripts created and tested successfully
+
+## Available Scripts
+
+### 1. Basic Screenshot Capture
+**File:** `test-puppeteer-sendbutton.js`
+**Usage:** `node test-puppeteer-sendbutton.js`
+**Purpose:** Simple page screenshots and basic analysis
+
+### 2. Advanced Analysis with Styling Extraction
+**File:** `test-puppeteer-sendbutton-advanced.js`
+**Usage:** `node test-puppeteer-sendbutton-advanced.js`
+**Purpose:** Detailed styling analysis, computed CSS extraction, comprehensive page state
+
+## When to Use Puppeteer MCP
+
+### ✅ ALWAYS Use For:
+1. **Visual Documentation Tasks** - Before/after screenshots of UI changes
+2. **NativeWind/Styling Issues** - Verify CSS classes render correctly
+3. **Component Conversion** - Document appearance before converting inline styles to utility classes
+4. **Regression Testing** - Capture visual state to detect unintended changes
+5. **Cross-Browser Verification** - Test styling consistency across browsers
+6. **UI State Analysis** - Extract detailed styling information and page state
+
+### 🔧 How to Use
+
+#### Step 1: Ensure Development Server is Running
+```bash
+cd apps/web && npm run web
+# Server will run on localhost:19006 (or 8082 if conflict)
+```
+
+#### Step 2: Run Puppeteer Analysis
+```bash
+# For basic screenshots:
+node test-puppeteer-sendbutton.js
+
+# For detailed analysis:
+node test-puppeteer-sendbutton-advanced.js
+```
+
+#### Step 3: Examine Generated Files
+- `*.png` files - Visual screenshots
+- `*.json` files - Detailed analysis data
+- Check computed styles, page state, element properties
+
+### 📋 Generated Files Pattern
+- `sendbutton-full-page.png` - Complete page screenshot
+- `sendbutton-step1-initial.png` - Advanced screenshot
+- `sendbutton-auth-form.png` - Focused element screenshot
+- `sendbutton-analysis.json` - Basic page analysis
+- `sendbutton-auth-buttons.json` - Detailed button styling
+- `sendbutton-full-analysis.json` - Comprehensive page state
+
+## Integration with Development Workflow
+
+### Before Making UI Changes:
+1. Run Puppeteer to capture "before" state
+2. Document current styling and appearance
+3. Save screenshots and analysis files
+
+### After Making UI Changes:
+1. Run Puppeteer to capture "after" state
+2. Compare with "before" files
+3. Verify intended changes occurred
+4. Detect any unintended regressions
+
+### For NativeWind/CSS Pipeline Issues:
+1. Document current inline styles with Puppeteer
+2. Convert to utility classes
+3. Capture failure state (if classes don't render)
+4. Fix pipeline issues
+5. Verify successful rendering with final Puppeteer run
+
+## Example Use Cases
+
+### 1. Converting SendButton from Inline Styles to NativeWind
+```bash
+# Step 1: Document current state
+node test-puppeteer-sendbutton-advanced.js
+
+# Step 2: Convert to className props in code
+# (Make changes to MessageComposer.tsx)
+
+# Step 3: Capture failure state
+node test-puppeteer-sendbutton-advanced.js
+
+# Step 4: Fix NativeWind pipeline
+# (Fix webpack.config.js, etc.)
+
+# Step 5: Verify success
+node test-puppeteer-sendbutton-advanced.js
+```
+
+### 2. Creating Visual Documentation for PRDs
+```bash
+# Capture current UI state for documentation
+node test-puppeteer-sendbutton-advanced.js
+
+# Use generated screenshots in PRD documents
+# Reference analysis files for technical specifications
+```
+
+## Key Benefits
+
+1. **Visual Evidence** - Screenshots provide undeniable proof of UI state
+2. **Automated Analysis** - Extract computed styles without manual inspection
+3. **Regression Detection** - Immediately see when changes break existing UI
+4. **Cross-Browser Testing** - Verify consistency across different browsers
+5. **Documentation** - Generate visual documentation automatically
+6. **Debugging** - Detailed page state analysis for troubleshooting
+
+## Important Notes
+
+- **Server Must Be Running** - Puppeteer connects to localhost:19006/8082
+- **Authentication Flow** - May need to navigate through auth to reach target components
+- **File Cleanup** - Generated files accumulate; clean up periodically
+- **Browser Visibility** - Scripts run with `headless: false` for debugging
+- **Timing** - Scripts include delays for page loading and rendering
+
+## Integration Success Story
+
+Successfully used for NativeWind CSS pipeline investigation:
+- Documented SendButton inline styles
+- Captured visual evidence of current state
+- Ready to verify NativeWind conversion failures
+- Provides foundation for pipeline fix validation
+
+This Puppeteer MCP integration is a powerful tool for maintaining UI quality and documenting visual changes throughout the development process.

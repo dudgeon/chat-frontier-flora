@@ -32,7 +32,6 @@ import { useFormValidation, FieldConfig } from '../../hooks/useFormValidation';
 import { useSubmitButton, getSubmitButtonStyles, getSubmitButtonTextStyles } from '../../hooks/useSubmitButton';
 import { PasswordValidation, PASSWORD_RULES } from './PasswordValidation';
 import { validateEmail, validatePassword } from '../../../utils/validation';
-import { Checkbox } from '../Checkbox';
 import { InputField } from '../ui/InputField';
 import { FormButton } from '../ui/FormButton';
 import { ErrorAlert } from '../ui/ErrorAlert';
@@ -144,6 +143,11 @@ export const SignUpForm: React.FC = () => {
   // ⚠️ CRITICAL: Form validation hook for real-time state management
   const formValidation = useFormValidation(formConfig);
 
+  // Refs for Enter key navigation
+  const emailInputRef = React.useRef<any>(null);
+  const passwordInputRef = React.useRef<any>(null);
+  const confirmPasswordInputRef = React.useRef<any>(null);
+
   // Helper function to check if all password criteria are met
   const checkPasswordCriteriaMet = (password: string): boolean => {
     if (!password) return false;
@@ -214,33 +218,12 @@ export const SignUpForm: React.FC = () => {
 
     return (
     <ScrollView
-      contentContainerStyle={{
-        flexGrow: 1,
-        justifyContent: 'center',
-        minHeight: '100%',
-        backgroundColor: '#f9fafb',
-      }}
+      className="flex-1 w-full bg-gray-50"
+      contentContainerClassName="flex-grow justify-center items-center min-h-full px-4"
       testID="signup-form"
     >
-      <View style={{
-        width: '100%',
-        maxWidth: 448,
-        backgroundColor: '#ffffff',
-        borderRadius: 12,
-        padding: 24,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.1,
-        shadowRadius: 12,
-        elevation: 4,
-      }}>
-                  <Text style={{
-            fontSize: 32,
-            fontWeight: 'bold',
-            marginBottom: 32,
-            textAlign: 'center',
-            color: '#111827',
-          }}>
+      <View className="w-full max-w-md bg-white rounded-xl p-6 shadow-lg">
+        <Text className="text-3xl font-bold mb-8 text-center text-gray-900">
           Create Account
         </Text>
 
@@ -255,15 +238,10 @@ export const SignUpForm: React.FC = () => {
           />
         )}
 
-        <View style={{ gap: 20 }}>
+        <View className="flex flex-col">
           {/* Full Name Field */}
-          <View>
-            <Text style={{
-              fontSize: 16,
-              fontWeight: '500',
-              marginBottom: 8,
-              color: '#374151',
-            }}>
+          <View className="mb-6">
+            <Text className="text-base font-medium mb-2 text-gray-700">
               Full Name *
             </Text>
             <InputField
@@ -276,26 +254,19 @@ export const SignUpForm: React.FC = () => {
               autoComplete="name"
               autoCapitalize="sentences"
               autoCorrect={true}
+              onSubmitEditing={() => emailInputRef.current?.focus()}
+              returnKeyType="next"
             />
             {formValidation.getFieldProps('fullName').error && (
-              <Text style={{
-                color: '#ef4444',
-                fontSize: 14,
-                marginTop: 4,
-              }}>
+              <Text className="text-red-500 text-sm mt-1">
                 {formValidation.getFieldProps('fullName').error}
               </Text>
             )}
           </View>
 
           {/* Email Field */}
-          <View>
-            <Text style={{
-              fontSize: 16,
-              fontWeight: '500',
-              marginBottom: 8,
-              color: '#374151',
-            }}>
+          <View className="mb-6">
+            <Text className="text-base font-medium mb-2 text-gray-700">
               Email Address *
             </Text>
             <InputField
@@ -309,26 +280,20 @@ export const SignUpForm: React.FC = () => {
               autoCapitalize="none"
               autoCorrect={false}
               keyboardType="email-address"
+              onSubmitEditing={() => passwordInputRef.current?.focus()}
+              returnKeyType="next"
+              ref={emailInputRef}
             />
             {formValidation.getFieldProps('email').error && (
-              <Text style={{
-                color: '#ef4444',
-                fontSize: 14,
-                marginTop: 4,
-              }}>
+              <Text className="text-red-500 text-sm mt-1">
                 {formValidation.getFieldProps('email').error}
               </Text>
             )}
           </View>
 
           {/* Password Field */}
-          <View>
-            <Text style={{
-              fontSize: 16,
-              fontWeight: '500',
-              marginBottom: 8,
-              color: '#374151',
-            }}>
+          <View className="mb-6">
+            <Text className="text-base font-medium mb-2 text-gray-700">
               Password *
             </Text>
             <View style={{ position: 'relative' }}>
@@ -342,57 +307,39 @@ export const SignUpForm: React.FC = () => {
                 }}
                 onBlur={() => formValidation.touchField('password')}
                 onFocus={() => setShowPasswordValidation(true)}
+                onSubmitEditing={() => confirmPasswordInputRef.current?.focus()}
                 placeholder="Enter your password"
                 secureTextEntry={!showPassword}
                 autoComplete="new-password"
                 autoCapitalize="none"
                 autoCorrect={false}
+                returnKeyType="next"
+                ref={passwordInputRef}
               />
               <Pressable
-                style={{
-                  position: 'absolute',
-                  right: 12,
-                  top: 12,
-                  padding: 8,
-                }}
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-2"
                 onPress={() => setShowPassword(!showPassword)}
                 testID="password-toggle"
               >
-                <Text style={{
-                  fontSize: 14,
-                  color: '#2563eb',
-                  fontWeight: '500',
-                }}>
+                <Text className="text-sm text-blue-600 font-medium">
                   {showPassword ? 'Hide' : 'Show'}
                 </Text>
               </Pressable>
             </View>
-            {formValidation.getFieldProps('password').error && (
-              <Text style={{
-                color: '#ef4444',
-                fontSize: 14,
-                marginTop: 4,
-              }}>
-                {formValidation.getFieldProps('password').error}
-              </Text>
-            )}
           </View>
 
           {/* Password Validation Component */}
           {showPasswordValidation && !checkPasswordCriteriaMet(formValidation.getFieldProps('password').value) && (
-            <PasswordValidation
-              password={formValidation.getFieldProps('password').value}
-            />
+            <View className="mb-6">
+              <PasswordValidation
+                password={formValidation.getFieldProps('password').value}
+              />
+            </View>
           )}
 
           {/* Confirm Password Field */}
-          <View>
-            <Text style={{
-              fontSize: 16,
-              fontWeight: '500',
-              marginBottom: 8,
-              color: '#374151',
-            }}>
+          <View className="mb-6">
+            <Text className="text-base font-medium mb-2 text-gray-700">
               Confirm Password *
             </Text>
             <View style={{ position: 'relative' }}>
@@ -407,76 +354,86 @@ export const SignUpForm: React.FC = () => {
                 autoComplete="new-password"
                 autoCapitalize="none"
                 autoCorrect={false}
+                onSubmitEditing={handleSubmit}
+                returnKeyType="done"
+                ref={confirmPasswordInputRef}
               />
               <Pressable
-                style={{
-                  position: 'absolute',
-                  right: 12,
-                  top: 12,
-                  padding: 8,
-                }}
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-2"
                 onPress={() => setShowConfirmPassword(!showConfirmPassword)}
                 testID="confirm-password-toggle"
               >
-                <Text style={{
-                  fontSize: 14,
-                  color: '#2563eb',
-                  fontWeight: '500',
-                }}>
+                <Text className="text-sm text-blue-600 font-medium">
                   {showConfirmPassword ? 'Hide' : 'Show'}
                 </Text>
               </Pressable>
             </View>
             {formValidation.getFieldProps('confirmPassword').error && (
-              <Text style={{
-                color: '#ef4444',
-                fontSize: 14,
-                marginTop: 4,
-              }}>
+              <Text className="text-red-500 text-sm mt-1">
                 {formValidation.getFieldProps('confirmPassword').error}
               </Text>
             )}
           </View>
 
           {/* Age Verification Checkbox */}
-          <View style={{ marginTop: 16 }}>
-            <Checkbox
-              testID="age-verification"
-              label="I verify that I am 18 years of age or older"
-              checked={formValidation.getFieldProps('ageVerification').value === 'true'}
+          <View className="mb-6">
+            <TouchableOpacity
+              className="flex flex-row items-start"
               onPress={() => {
                 const currentValue = formValidation.getFieldProps('ageVerification').value === 'true';
                 formValidation.updateField('ageVerification', (!currentValue).toString());
               }}
-            />
+              testID="age-verification"
+            >
+              <View className={`w-5 h-5 border-2 rounded mr-2 mt-0.5 justify-center items-center ${
+                formValidation.getFieldProps('ageVerification').value === 'true'
+                  ? 'border-blue-600 bg-blue-600' 
+                  : 'border-gray-300 bg-transparent'
+              }`}>
+                {formValidation.getFieldProps('ageVerification').value === 'true' && (
+                  <Text className="text-white text-xs font-bold">
+                    ✓
+                  </Text>
+                )}
+              </View>
+              <Text className="text-sm text-gray-900 flex-1">
+                I verify that I am 18 years of age or older
+              </Text>
+            </TouchableOpacity>
             {formValidation.getFieldProps('ageVerification').error && (
-              <Text style={{
-                color: '#ef4444',
-                fontSize: 14,
-                marginTop: 4,
-              }}>
+              <Text className="text-red-500 text-sm mt-1">
                 {formValidation.getFieldProps('ageVerification').error}
               </Text>
             )}
           </View>
 
           {/* Development Consent Checkbox */}
-          <View style={{ marginTop: 16 }}>
-            <Checkbox
-              testID="development-consent"
-              label="I consent to the use of my data for development and improvement purposes"
-              checked={formValidation.getFieldProps('developmentConsent').value === 'true'}
+          <View className="mb-6">
+            <TouchableOpacity
+              className="flex flex-row items-start"
               onPress={() => {
                 const currentValue = formValidation.getFieldProps('developmentConsent').value === 'true';
                 formValidation.updateField('developmentConsent', (!currentValue).toString());
               }}
-            />
+              testID="development-consent"
+            >
+              <View className={`w-5 h-5 border-2 rounded mr-2 mt-0.5 justify-center items-center ${
+                formValidation.getFieldProps('developmentConsent').value === 'true'
+                  ? 'border-blue-600 bg-blue-600' 
+                  : 'border-gray-300 bg-transparent'
+              }`}>
+                {formValidation.getFieldProps('developmentConsent').value === 'true' && (
+                  <Text className="text-white text-xs font-bold">
+                    ✓
+                  </Text>
+                )}
+              </View>
+              <Text className="text-sm text-gray-900 flex-1">
+                I consent to the use of my data for development and improvement purposes
+              </Text>
+            </TouchableOpacity>
             {formValidation.getFieldProps('developmentConsent').error && (
-              <Text style={{
-                color: '#ef4444',
-                fontSize: 14,
-                marginTop: 4,
-              }}>
+              <Text className="text-red-500 text-sm mt-1">
                 {formValidation.getFieldProps('developmentConsent').error}
               </Text>
             )}
@@ -484,7 +441,7 @@ export const SignUpForm: React.FC = () => {
         </View>
 
         {/* Submit Button */}
-        <View style={{ marginTop: 32, marginBottom: 24 }}>
+        <View className="mt-8 mb-6">
           <FormButton
             testID="submit-button"
             accessibilityLabel="Create Account Button"
@@ -497,28 +454,15 @@ export const SignUpForm: React.FC = () => {
         </View>
 
         {/* Sign In Link */}
-        <View style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginTop: 16,
-        }}>
-          <Text style={{
-            fontSize: 14,
-            color: '#666',
-            marginRight: 8,
-          }}>
+        <View className="flex flex-row justify-center items-center mt-4">
+          <Text className="text-sm text-gray-600 mr-2">
             Already have an account?
           </Text>
           <TouchableOpacity
             onPress={() => navigate('/login')}
             testID="switch-to-login"
           >
-            <Text style={{
-              fontSize: 14,
-              color: '#0056b3',
-              fontWeight: '600',
-            }}>
+            <Text className="text-sm text-blue-600 font-medium">
               Sign In
             </Text>
           </TouchableOpacity>

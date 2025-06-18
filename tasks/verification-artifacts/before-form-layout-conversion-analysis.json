@@ -1,0 +1,29 @@
+{
+  "forms": 0,
+  "inputs": 2,
+  "buttons": 0,
+  "formElements": [
+    {
+      "type": "input",
+      "index": 0,
+      "placeholder": "Enter your email address",
+      "width": 400,
+      "height": 45,
+      "padding": "12px",
+      "margin": "0px",
+      "borderRadius": "12px",
+      "border": "1px solid rgb(209, 213, 219)"
+    },
+    {
+      "type": "input",
+      "index": 1,
+      "placeholder": "Enter your password",
+      "width": 400,
+      "height": 45,
+      "padding": "12px",
+      "margin": "0px",
+      "borderRadius": "12px",
+      "border": "1px solid rgb(209, 213, 219)"
+    }
+  ]
+}

@@ -30,44 +30,17 @@ export const ChatInterface: React.FC = () => {
 
     setMessages(prev => [...prev, userMessage]);
 
-    // Task 4.3: Trigger mock response after user message
-    setTimeout(() => {
-      simulateStreamingResponse(messageText.trim());
-    }, 500); // Small delay to simulate processing
-  }, []);
-
-  // Task 4.3: Mock response function with streaming simulation
-  const simulateStreamingResponse = useCallback((userMessage: string) => {
-    const responseText = `You said: "${userMessage}". This is a mock echo response that demonstrates the streaming functionality.`;
-
-    // Create initial bot message with empty text
-    const botMessageId = (Date.now() + 1).toString();
-    const initialBotMessage: MessageType = {
-      id: botMessageId,
+    // SIMPLIFIED: Direct bot response (streaming simulation removed for simplicity)
+    const responseText = `You said: "${messageText}". This is a mock echo response.`;
+    const botMessage: MessageType = {
+      id: (Date.now() + 1).toString(),
       author: 'bot',
-      text: '',
+      text: responseText,
       timestamp: new Date(),
     };
 
-    setMessages(prev => [...prev, initialBotMessage]);
-
-    // Simulate streaming by adding characters over time
-    let currentIndex = 0;
-    const streamInterval = setInterval(() => {
-      if (currentIndex < responseText.length) {
-        const nextChar = responseText[currentIndex];
-        setMessages(prev =>
-          prev.map(msg =>
-            msg.id === botMessageId
-              ? { ...msg, text: msg.text + nextChar }
-              : msg
-          )
-        );
-        currentIndex++;
-      } else {
-        clearInterval(streamInterval);
-      }
-    }, 30); // Add character every 30ms for smooth streaming effect
+    // Add bot response immediately (no streaming simulation)
+    setMessages(prev => [...prev, botMessage]);
   }, []);
 
   return (

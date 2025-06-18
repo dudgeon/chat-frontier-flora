@@ -32,7 +32,14 @@ npm run build:mobile
 ```
 
 ### Testing Commands
+**⚠️ CRITICAL: ALL E2E TEST COMMANDS MUST BE RUN FROM PROJECT ROOT**
 ```bash
+# ALWAYS run E2E tests from project root, never from apps/web/
+cd /Users/geoffreydudgeon/Documents/Cursor\ Projects/chat-frontier-flora
+
+# Quick auth flow verification (most efficient for development)
+npx playwright test e2e/stagehand-auth-test.spec.ts --project=chromium
+
 # Safe E2E testing with environment verification
 npm run test:safe
 
@@ -46,7 +53,7 @@ npm run test:e2e:login     # Login-specific tests
 npm run test:e2e:ui        # Interactive test runner
 npm run test:e2e:debug     # Debug mode with browser
 
-# Unit tests (in web app)
+# Unit tests (must change to web app directory)
 cd apps/web && npm test
 ```
 
@@ -58,6 +65,27 @@ npm run lint
 # Type checking (in web app)
 cd apps/web && npx tsc --noEmit
 ```
+
+## Git workflow for Claude Code
+
+1. **Always work on a feature branch**
+   If none exists:
+   `git checkout -B fix/<topic>`
+
+2. **Commit every tangible step** (≤ 20 min or one major checklist item)
+   Prefix in-progress commits with `WIP:`.
+   Example: `git commit -m "WIP: fix validation import path"`
+
+3. **Push after each commit**
+   `git push -u origin $(git rev-parse --abbrev-ref HEAD)`
+   If first push on this branch, open a **draft PR**: "🚧 WIP \<topic\>".
+
+4. **Update the task log** (e.g. `NATIVEWIND_V4_METRO_MIGRATION_TASKS.md`)
+   in the *same commit* whenever progress changes.
+
+5. **Before merging**
+    Squash/rebase WIP commits into clear logical commits; never force-push to `main`.
+
 
 ## Project Architecture
 
@@ -133,7 +161,7 @@ cd apps/web && npx tsc --noEmit
 - **Environment isolation**: Test data isolated from production via environment-specific stores
 - **False failure prevention**: 3-phase architecture prevents unreliable test failures
 
-### Deployment Requirements 
+### Deployment Requirements
 - **Build verification**: Always test builds locally before pushing
 - **React version consistency**: Ensure exact React versions across all packages
 - **Environment variables**: Verify all required env vars are set for target environment
@@ -147,6 +175,40 @@ cd apps/web && npx tsc --noEmit
 4. **Testing**: Run `npm run test:safe` for comprehensive E2E testing
 5. **Pre-commit**: Verify builds work locally and tests pass
 6. **Deployment**: Test on preview deployment before merging to main
+
+## ⚠️  CRITICAL: Version Upgrade Protocol
+
+**🚨 NEVER UPGRADE DEPENDENCIES WITHOUT FOLLOWING THIS PROTOCOL 🚨**
+
+This project uses a highly version-sensitive stack (React 18.2.0 + NativeWind v4 + Metro). ANY version changes can break the app.
+
+### Before ANY Dependency Upgrade:
+
+1. **Read VERSION_COMPATIBILITY.md** - Complete compatibility matrix and known breaking combinations
+2. **Create test branch**: `git checkout -b test-upgrade-[package]`
+3. **Baseline test**: `npm run test:safe && node test-blue-user-bubble.js`
+4. **Upgrade and test**: 
+   ```bash
+   npm install [package]@[version]
+   npm run web  # Test Metro compilation
+   node test-blue-user-bubble.js  # Test NativeWind styling
+   ```
+5. **Verify critical features**:
+   - Metro compiles without errors
+   - NativeWind generates CSS classes (not just css-view-*)
+   - Blue user bubbles appear correctly
+   - Authentication flow works
+
+### Emergency Rollback:
+```bash
+git reset --hard HEAD~1 && npm install
+```
+
+### Ultra-Critical Versions (DO NOT CHANGE):
+- React: `18.2.0` (exact)
+- React-DOM: `18.2.0` (exact)
+- NativeWind: `^4.1.23` (v4 only)
+- Expo: `~50.0.0`
 
 ## Important File Locations
 
@@ -168,7 +230,13 @@ cd apps/web && npx tsc --noEmit
 ### Testing
 - `e2e/stagehand-*.spec.ts` - Active Stagehand-based E2E tests (AI-powered)
 - `e2e/archived/` and `e2e/quarantined-playwright-tests/` - Obsolete traditional Playwright tests (ignore)
-- `playwright.config.ts` - Test runner configuration 
+- `playwright.config.ts` - Test runner configuration
 - `docs/LOGIN_TEST_IMPLEMENTATION_GUIDE.md` - Critical testing documentation
 
 Never create files unless absolutely necessary. Always prefer editing existing files. The authentication system was complex to implement correctly - handle auth-related changes with extreme care.
+
+## Development Memories & Recommendations
+
+- Whenever you change the version of any component in this application, perform research to ensure it doesn't break other components, especially Nativewind which is very version sensitive
+- Test assumptions about html rendering with the puppeteer mcp before drawing conclusions or making decisions
+- **Stagehand Test Credentials**: there are valid test credentials located in `/Users/geoffreydudgeon/Documents/Cursor Projects/chat-frontier-flora/.env.stagehand`

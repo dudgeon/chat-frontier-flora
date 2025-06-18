@@ -1,3 +1,6 @@
+// CRITICAL: Metro runtime import required for web bundling (GPT-o3 fix)
+// DO NOT REMOVE: This import enables Metro to serve web content properly
+import '@expo/metro-runtime';
 import { registerRootComponent } from 'expo';
 
 import App from './src/App';

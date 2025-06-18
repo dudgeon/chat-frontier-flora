@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import Markdown from 'react-native-markdown-display';
+// TODO FUTURE: Add react-native-markdown-display for rich text formatting in bot messages
 
 // Define a type for the message props
 export interface MessageType {
@@ -14,11 +14,11 @@ export const Message: React.FC<MessageType> = ({ author, text }) => {
   const isUser = author === 'user';
 
   if (isUser) {
-    // User messages: right-aligned with speech bubble (PRD 4.3.2)
+    // User messages: right-aligned with blue speech bubble (PRD 4.3.2)
     console.log('Rendering user message with NativeWind classes');
     return (
       <View className="my-2 items-end px-4">
-        <View className="bg-green-500 rounded-lg rounded-tr-sm px-4 py-3 max-w-[80%] min-w-[60px]">
+        <View className="bg-blue-500 rounded-lg rounded-tr-sm px-4 py-3 max-w-[80%] min-w-[60px]">
           <Text className="text-white text-base leading-6">
             {text}
           </Text>
@@ -27,6 +27,7 @@ export const Message: React.FC<MessageType> = ({ author, text }) => {
     );
   } else {
     // Bot messages: left-aligned WITHOUT speech bubble (PRD 4.3.2)
+    // SIMPLIFIED: Using basic Text instead of Markdown for rudimentary functionality
     return (
       <View style={{
         marginVertical: 8,
@@ -36,16 +37,14 @@ export const Message: React.FC<MessageType> = ({ author, text }) => {
         <View style={{
           maxWidth: '80%',
         }}>
-          <Markdown style={{
-            body: {
-              color: '#111827',
-              fontSize: 16,
-              lineHeight: 24,
-              margin: 0,
-            }
+          <Text style={{
+            color: '#111827',
+            fontSize: 16,
+            lineHeight: 24,
+            margin: 0,
           }}>
             {text}
-          </Markdown>
+          </Text>
         </View>
       </View>
     );
