@@ -15,4 +15,9 @@ config.resolver.nodeModulesPaths = [
   path.resolve(__dirname, 'apps/web/node_modules'),
 ];
 
+// Block problematic CSS cache files that cause SHA-1 issues
+config.resolver.blockList = [
+  /node_modules\/react-native-css-interop\/\.cache\/.*\.css$/,
+];
+
 module.exports = config;
