@@ -338,6 +338,40 @@ After converting from Webpack to Metro bundler, Netlify CI deployment fails beca
 
 **KEY INSIGHT:** Exit code 2 failures likely caused by Node version mismatch and memory constraints, not NativeWind configuration issues. The lightningcss native module error suggests architecture-specific native binaries are not properly installed for the Netlify Linux environment.
 
+**🚨 FINAL BUILD FAILURE ANALYSIS (PERSISTENT lightningcss.linux-x64-gnu.node)**
+
+**Date:** 2025-01-18 (Latest Attempt)
+**Build Status:** FAILED (Same Error After Environment Fixes)
+**Error:** `Cannot find module '../lightningcss.linux-x64-gnu.node'`
+**Root Cause Analysis Complete:** 
+
+**Architecture Mismatch Issue:**
+- **LOCAL:** macOS ARM64 → `lightningcss-darwin-arm64` binary installed 
+- **NETLIFY:** Linux x64 → `lightningcss-linux-x64-gnu` binary required but missing
+- **Problem:** npm only installs platform-specific optional dependencies
+- **Challenge:** Can't force-install Linux binaries on macOS for Netlify deployment
+
+**Dependency Chain Analysis:**
+```
+apps/web/metro.config.js:24 
+  ↳ require('nativewind/metro')
+    ↳ react-native-css-interop/dist/metro/index.js
+      ↳ react-native-css-interop/dist/css-to-rn/index.js  
+        ↳ react-native-css-interop/node_modules/lightningcss/node/index.js:22
+          ↳ require('../lightningcss.linux-x64-gnu.node') // ❌ MISSING
+```
+
+**Critical Discovery:** NativeWind v4 has a hard dependency on lightningcss for CSS processing, and lightningcss requires architecture-specific native binaries that aren't cross-installable.
+
+**🎯 SOLUTION REQUIRED: Alternative Approach**
+
+Since fixing the native binary issue directly isn't feasible, we need one of these approaches:
+
+1. **Netlify Build Plugin Approach**: Use a Netlify build plugin that installs Linux binaries during build
+2. **Docker/Container Approach**: Build in a Linux container that matches Netlify's architecture  
+3. **Alternative CSS Processor**: Modify metro config to use a pure JS CSS processor instead of lightningcss
+4. **Pre-built Assets**: Build static assets locally and deploy them instead of building on Netlify
+
 - [ ] 5.0 Documentation and Cleanup (SAFE ACTIONS)
   - [ ] 5.1 **DOCUMENT:** Complete change summary with before/after comparison
   - [ ] 5.2 Update CLAUDE.md with any new build commands - **RECORD:** exact documentation updates
