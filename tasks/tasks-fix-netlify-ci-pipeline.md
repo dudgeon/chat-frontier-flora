@@ -181,18 +181,35 @@ After converting from Webpack to Metro bundler, Netlify CI deployment fails beca
 
 **Output Directory Verification Needed:** Confirm Metro `expo export` outputs to correct directory for each CI system.
 
-### **📋 COMPLETE STEP-BY-STEP SOLUTION:**
+### **🚨 NEW FINDING - NATIVEWIND DEPENDENCY ISSUE:**
+**Problem:** Netlify build fails with `Cannot find module 'nativewind/metro'`
+**Root Cause:** NativeWind is not declared in any package.json file
+**Why it works locally:** NativeWind exists in root node_modules (likely from manual install)
+**Why it fails on Netlify:** Netlify only installs declared dependencies
+
+### **📋 UPDATED SOLUTION REQUIRED:**
+
+**Option 1: Add NativeWind to Root Dependencies (Recommended)**
+- Add nativewind and required dependencies to root package.json
+- This ensures Netlify can install all required packages
+
+**Option 2: Add NativeWind to apps/web/package.json**  
+- Move nativewind dependency to where it's actually used
+- May require adjusting metro.config.js paths
 
 **File Changes Required:**
-1. **CREATE** `/package.json` (root level):
+1. **UPDATE** `/package.json` (root level) - Add dependencies:
    ```json
    {
      "name": "chat-frontier-flora", 
      "private": true,
      "workspaces": ["apps/*", "packages/*"],
      "scripts": {
-       "build": "cd apps/web && expo export",
-       "build:web": "cd apps/web && expo export"
+       "build": "cd apps/web && npx expo export --platform web && mkdir -p ../../dist && cp -r dist/* ../../dist/",
+       "build:web": "cd apps/web && npx expo export --platform web"
+     },
+     "dependencies": {
+       "nativewind": "^4.1.23"
      }
    }
    ```
@@ -231,10 +248,24 @@ After converting from Webpack to Metro bundler, Netlify CI deployment fails beca
     - **Root build test:** `npm run build` successfully copies Metro output to root `./dist`
     - **Directory alignment:** GitHub Actions expects `./dist` ✅ FIXED
     - **Script includes:** Metro export → create root dist → copy files
-  - [ ] 4.2 Create test commit to trigger Netlify build - **RECORD:** commit hash, build logs, deployment URL
-  - [ ] 4.3 Monitor Netlify build logs - **RECORD:** full build log analysis, any errors/warnings
+  - [x] 4.2 Create test commit to trigger Netlify build - **COMPLETED**
+    - **Commit Hash:** ce8617e
+    - **Branch:** fix/nativewind-css-pipeline-investigation
+    - **Files Changed:** package.json (created), apps/web/package.json, tasks/tasks-fix-netlify-ci-pipeline.md
+    - **Push Status:** Successfully pushed to origin
+  - [x] 4.3 Monitor Netlify build logs - **COMPLETED WITH FAILURE**
+    - **Build Status:** FAILED
+    - **Error:** `Cannot find module 'nativewind/metro'`
+    - **Root Cause:** Metro config requires nativewind/metro but nativewind package is not installed at root
+    - **Location:** `/opt/build/repo/apps/web/metro.config.js:24:28`
+    - **Critical Finding:** Netlify installs dependencies at root level, not in workspaces
   - [ ] 4.4 Verify deployed application functionality - **RECORD:** functional test results, screenshots if needed
   - [ ] 4.5 Run E2E tests against deployed version - **RECORD:** test results, any failures
+
+- [ ] 4.6 Fix NativeWind dependency issue - **IN PROGRESS**
+  - [x] Added nativewind to root package.json dependencies
+  - [ ] Test and redeploy to Netlify
+  - [ ] Verify build succeeds with dependency fix
 
 - [ ] 5.0 Documentation and Cleanup (SAFE ACTIONS)
   - [ ] 5.1 **DOCUMENT:** Complete change summary with before/after comparison
