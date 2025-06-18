@@ -294,6 +294,32 @@ After converting from Webpack to Metro bundler, Netlify CI deployment fails beca
   - [x] Pushed fix (commit 69f964b) to trigger fifth build attempt
   - [x] Monitor builds 5-8: All failed with various Metro/CSS/SHA-1 issues
 
+**🚨 LATEST BUILD FAILURE ANALYSIS (lightningcss.linux-x64-gnu.node)**
+
+**Date:** 2025-01-18
+**Build Status:** FAILED  
+**Error:** `Cannot find module '../lightningcss.linux-x64-gnu.node'`
+**Root Cause:** Native module architecture mismatch in NativeWind CSS pipeline
+
+**Error Location Chain:**
+```
+/opt/build/repo/node_modules/react-native-css-interop/node_modules/lightningcss/node/index.js:22
+↳ /opt/build/repo/node_modules/react-native-css-interop/dist/css-to-rn/index.js
+↳ /opt/build/repo/node_modules/nativewind/dist/metro/index.js
+↳ /opt/build/repo/apps/web/metro.config.js
+```
+
+**Critical Insight:** The lightningcss native module is architecture-specific and Linux ARM64 (Netlify) vs macOS (local) require different .node files.
+
+**🎯 O3 EXPERT CONSULTATION ANALYSIS:**
+
+**Recommended Solution Path (Least Disruptive):**
+1. **Node Version Alignment**: Ensure Netlify uses Node 20 (same as local)
+2. **Memory Limits**: Set NODE_OPTIONS="--max_old_space_size=4096" for Metro static export
+3. **CLI Availability**: Ensure Expo CLI is available in the workspace after cd apps/web
+4. **Metro Config**: Use minimal Metro config without custom webpack remnants
+5. **Build Command**: Use `npm ci && npx expo export --platform web --output-dir dist`
+
 **🚨 NEW STRATEGY: IMPLEMENT PROVEN SOLUTION**
 
 - [ ] 4.10 Implement Environment-Based Fix (EXPERT RECOMMENDATION) ⚠️ **REQUIRES PERMISSION**
@@ -310,7 +336,7 @@ After converting from Webpack to Metro bundler, Netlify CI deployment fails beca
   - [ ] 4.10.5 Test locally: `cd apps/web && NODE_OPTIONS="--max_old_space_size=4096" npx expo export --platform web`
   - [ ] 4.10.6 Deploy and monitor build success
 
-**KEY INSIGHT:** Exit code 2 failures likely caused by Node version mismatch and memory constraints, not NativeWind configuration issues.
+**KEY INSIGHT:** Exit code 2 failures likely caused by Node version mismatch and memory constraints, not NativeWind configuration issues. The lightningcss native module error suggests architecture-specific native binaries are not properly installed for the Netlify Linux environment.
 
 - [ ] 5.0 Documentation and Cleanup (SAFE ACTIONS)
   - [ ] 5.1 **DOCUMENT:** Complete change summary with before/after comparison
