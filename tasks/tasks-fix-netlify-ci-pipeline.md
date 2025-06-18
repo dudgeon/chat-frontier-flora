@@ -268,11 +268,24 @@ After converting from Webpack to Metro bundler, Netlify CI deployment fails beca
   - [x] Pushed fix (commit 105eb43) to trigger second build attempt
   - [x] Monitor second Netlify build with dependency fix - FAILED with new error
   
-- [x] 4.7 Fix react-native-reanimated dependency issue - **COMPLETED**
+- [x] 4.7 Fix ALL missing dependency issues - **COMPLETED**
   - [x] Build failed with `Cannot find module 'react-native-reanimated/plugin'`
-  - [x] Added react-native-reanimated ^3.18.0 to root dependencies
-  - [x] This is required by babel.config.js for animations
-  - [ ] Push fix and monitor third build attempt
+  - [x] Added comprehensive root dependencies matching local environment:
+    - nativewind ^4.1.23 (NativeWind Metro plugin)
+    - react-native-reanimated ^3.18.0 (Babel plugin requirement)
+    - react-native-safe-area-context ^5.4.1 (React Navigation)
+    - react-native-screens ^4.11.1 (React Navigation)
+    - tailwindcss ^3.4.17 (NativeWind CSS processing)
+  - [x] Pushed fixes (commits fee8fea, 15aafc3) to trigger third build
+  - [x] Monitor third Netlify build with all dependencies - FAILED with new error
+
+- [x] 4.8 Fix resolve-from dependency issue - **COMPLETED**
+  - [x] Build failed with `Cannot find module 'resolve-from'`
+  - [x] Added resolve-from ^4.0.0 (required by babel-preset-expo)
+  - [x] Added build polyfills: buffer, crypto-browserify, stream-browserify  
+  - [x] Added typescript ^5.0.0 for build compatibility
+  - [x] Pushed fix (commit fa5e603) to trigger fourth build
+  - [x] Monitor fourth Netlify build attempt - CHECKING STATUS
 
 - [ ] 5.0 Documentation and Cleanup (SAFE ACTIONS)
   - [ ] 5.1 **DOCUMENT:** Complete change summary with before/after comparison
