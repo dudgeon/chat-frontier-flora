@@ -1,0 +1,12 @@
+{
+  "name": "chat-frontier-flora",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "cd apps/web && npx expo export --platform web && mkdir -p ../../dist && cp -r dist/* ../../dist/",
+    "build:web": "cd apps/web && npx expo export --platform web"
+  }
+}
