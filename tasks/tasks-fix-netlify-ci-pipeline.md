@@ -285,7 +285,14 @@ After converting from Webpack to Metro bundler, Netlify CI deployment fails beca
   - [x] Added build polyfills: buffer, crypto-browserify, stream-browserify  
   - [x] Added typescript ^5.0.0 for build compatibility
   - [x] Pushed fix (commit fa5e603) to trigger fourth build
-  - [x] Monitor fourth Netlify build attempt - CHECKING STATUS
+  - [x] Monitor fourth Netlify build attempt - FAILED (missing Expo CLI)
+
+- [x] 4.9 Fix Expo CLI dependency issue - **COMPLETED**
+  - [x] Build failed with `npx expo export --platform web` returning non-zero exit code
+  - [x] Root cause: Expo CLI not available at root level for Netlify builds
+  - [x] Added expo ~50.0.0 to root dependencies (matching apps/web version)
+  - [x] Pushed fix (commit 69f964b) to trigger fifth build attempt
+  - [ ] Monitor fifth Netlify build with Expo CLI fix
 
 - [ ] 5.0 Documentation and Cleanup (SAFE ACTIONS)
   - [ ] 5.1 **DOCUMENT:** Complete change summary with before/after comparison
