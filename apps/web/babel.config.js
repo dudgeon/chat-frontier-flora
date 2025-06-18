@@ -28,8 +28,7 @@ module.exports = function (api) {
       "nativewind/babel"
     ],
     plugins: [
-      // Required for React Native Reanimated
-      "react-native-reanimated/plugin"
+      // No plugins needed for web-only Expo app
     ],
   };
 };
