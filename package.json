@@ -6,8 +6,8 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "cd apps/web && npx expo export --platform web && mkdir -p ../../dist && cp -r dist/* ../../dist/",
-    "build:web": "cd apps/web && npx expo export --platform web"
+    "build": "rm -rf node_modules/react-native-css-interop/.cache/ 2>/dev/null || true && cd apps/web && rm -rf .expo/ dist/ .cache/ 2>/dev/null || true && npx expo export --platform web && mkdir -p ../../dist && cp -r dist/* ../../dist/",
+    "build:web": "rm -rf node_modules/react-native-css-interop/.cache/ 2>/dev/null || true && cd apps/web && rm -rf .expo/ dist/ .cache/ 2>/dev/null || true && npx expo export --platform web"
   },
   "dependencies": {
     "expo": "~50.0.0",
