@@ -29,7 +29,7 @@
     "web": "cp ../../.env .env 2>/dev/null || true && npx expo start --web --port 19006",
     "test": "jest",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
-    "build": "expo export:web"
+    "build": "expo export"
   },
   "dependencies": {
     "@chat-frontier-flora/shared": "*",
