@@ -24,8 +24,6 @@ npm run dev:mobile -- --android # Android emulator
 ```bash
 # Build web application (Expo web export)
 cd apps/web && npm run build
-# OR from root
-npm run build:web
 
 # Build mobile (requires EAS setup)
 npm run build:mobile

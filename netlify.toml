@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build:web"
+  command = "cd apps/web && npx expo export"
   publish = "apps/web/web-build"
   functions = "netlify/functions"
 
